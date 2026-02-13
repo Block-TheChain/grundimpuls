@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Grundimpuls | Burnout & Stress Coaching — explore learn create</title>
+  <meta name="description" content="ICF-aligned burnout & stress coaching for individuals and organizations. Detect early signals, prevent escalation, build sustainable resilience. EN/RO/DE." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0B1220" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Grundimpuls | Burnout & Stress Coaching" />
+  <meta property="og:description" content="Detect early stress/burnout patterns, prevent escalation, and build sustainable resilience. Individuals & companies." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://grundimpuls.com/" />
+  <meta property="og:image" content="assets/og-image.jpg" />
+
+  <style>
+    :root{
+      --bg:#0B1220;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text:#EAF0FF;
+      --muted: rgba(234,240,255,.72);
+      --hair: rgba(234,240,255,.14);
+      --blue:#8FBAD8; /* pastel blue */
+      --gold:#C9A24A; /* gold */
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --r: 18px;
+      --r2: 28px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1100px 700px at 18% 12%, rgba(143,186,216,.20), transparent 55%),
+        radial-gradient(900px 600px at 85% 18%, rgba(201,162,74,.16), transparent 55%),
+        radial-gradient(900px 600px at 45% 80%, rgba(143,186,216,.10), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+    a{color:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:0 22px}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.62);
+      border-bottom:1px solid var(--hair);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+      letter-spacing:.12em; font-weight:650;
+    }
+    .mark{
+      width:34px; height:34px; border-radius:14px;
+      background: linear-gradient(140deg, rgba(143,186,216,.35), rgba(201,162,74,.25));
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow: 0 10px 28px rgba(0,0,0,.35);
+      display:grid; place-items:center;
+    }
+    .mark svg{width:22px; height:22px; opacity:.95}
+
+    .nav-links{
+      display:flex; flex-wrap:wrap; gap:12px 18px; align-items:center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .nav-links a{ text-decoration:none; padding:8px 10px; border-radius:12px; }
+    .nav-links a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+
+    .right-controls{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px;
+      border-radius:14px;
+      font-weight:650;
+      text-decoration:none;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      box-shadow: 0 8px 20px rgba(0,0,0,.25);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.24); }
+    .btn.primary{
+      background: linear-gradient(140deg, rgba(143,186,216,.26), rgba(201,162,74,.22));
+      border-color: rgba(255,255,255,.22);
+    }
+    .btn.gold{
+      background: linear-gradient(140deg, rgba(201,162,74,.28), rgba(143,186,216,.12));
+      border-color: rgba(255,255,255,.22);
+    }
+
+    /* Language switch */
+    .lang{
+      display:inline-flex; gap:6px; align-items:center;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.04);
+      padding:6px;
+      border-radius: 14px;
+    }
+    .lang button{
+      cursor:pointer;
+      border:1px solid transparent;
+      background: transparent;
+      color: rgba(234,240,255,.72);
+      font-weight:700;
+      font-size:12px;
+      padding:8px 10px;
+      border-radius: 12px;
+      letter-spacing: .10em;
+    }
+    .lang button.active{
+      color: var(--text);
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+    }
+
+    /* Cards/sections */
+    .card{
+      border:1px solid var(--hair);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--r2);
+      box-shadow: var(--shadow);
+    }
+    section{ padding: 62px 0; }
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:18px; flex-wrap:wrap;
+      margin-bottom: 18px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 26px;
+      letter-spacing:-0.01em;
+    }
+    .hint{ color: rgba(234,240,255,.62); font-size: 13px; max-width: 56ch; }
+
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    @media (max-width: 900px){ .grid-2{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr} }
+
+    .box{
+      border:1px solid var(--hair);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--r);
+      padding: 18px;
+    }
+    .box h3{margin:0 0 10px; font-size: 16px}
+    .box p{margin:0; color: var(--muted); font-size: 14px}
+    .box ul{margin:0; padding-left: 18px; color: var(--muted)}
+    .box li{margin:7px 0}
+
+    /* HERO */
+    .hero{ padding: 68px 0 28px; }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+    @media (max-width: 960px){ .hero-grid{grid-template-columns:1fr;} }
+
+    .hero-left{
+      padding: 34px 34px 28px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-left:before{
+      content:"";
+      position:absolute; inset:-40px -70px auto auto;
+      width:420px; height:420px;
+      background: radial-gradient(circle at 30% 30%, rgba(143,186,216,.28), transparent 60%),
+                  radial-gradient(circle at 70% 60%, rgba(201,162,74,.18), transparent 60%);
+      transform: rotate(12deg);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size: 12px;
+      letter-spacing:.18em;
+      text-transform: uppercase;
+      color: rgba(234,240,255,.80);
+      padding: 8px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      position:relative;
+      z-index:1;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--blue);
+      box-shadow: 0 0 0 4px rgba(143,186,216,.18);
+    }
+    h1{
+      margin: 18px 0 10px;
+      font-size: clamp(34px, 3.6vw, 52px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      position:relative;
+      z-index:1;
+    }
+    .subhead{
+      margin: 10px 0 18px;
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 62ch;
+      position:relative;
+      z-index:1;
+    }
+    .hero-actions{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top: 16px;
+      position:relative;
+      z-index:1;
+    }
+    .micro{
+      margin-top: 14px;
+      font-size: 13px;
+      color: rgba(234,240,255,.66);
+      position:relative;
+      z-index:1;
+    }
+
+    .hero-right{ padding: 22px; display:flex; flex-direction:column; gap: 14px; }
+    .panel{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .panel h3{
+      margin:0 0 6px;
+      font-size: 14px;
+      letter-spacing:.10em;
+      text-transform: uppercase;
+      color: rgba(234,240,255,.86);
+    }
+    .panel p{margin:0; color: var(--muted); font-size: 14px}
+    .split-cta{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top: 10px;
+    }
+    @media (max-width: 520px){ .split-cta{grid-template-columns:1fr} }
+
+    /* Business metrics */
+    .metrics{
+      display:grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 980px){ .metrics{grid-template-columns:repeat(2,1fr)} }
+    .metric{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 18px;
+      padding: 14px;
+      min-height: 92px;
+    }
+    .metric .val{ font-size: 20px; font-weight: 780; margin-bottom: 4px; }
+    .metric .lab{ font-size: 12px; color: rgba(234,240,255,.62); line-height: 1.35; }
+
+    /* Method */
+    .method{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 900px){ .method{grid-template-columns:1fr} }
+    .step{
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.03));
+      border-radius: 20px;
+      padding: 16px;
+    }
+    .badge{
+      display:inline-flex; align-items:center; justify-content:center;
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      font-weight: 780;
+      margin-bottom: 10px;
+    }
+    .step p{margin:0; color: var(--muted); font-size: 14px}
+
+    /* FAQ */
+    details{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+    details summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:650;
+    }
+    details summary::-webkit-details-marker{display:none}
+    details p{ margin: 10px 0 0; color: var(--muted); font-size: 14px; }
+    .faq{display:grid; gap:10px}
+
+    /* Final CTA */
+    .final{ padding: 64px 0 86px; }
+    .final-card{
+      padding: 28px;
+      border-radius: 28px;
+      border:1px solid rgba(255,255,255,.16);
+      background:
+        radial-gradient(650px 300px at 10% 20%, rgba(143,186,216,.22), transparent 60%),
+        radial-gradient(650px 300px at 90% 30%, rgba(201,162,74,.18), transparent 60%),
+        rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items:center;
+    }
+    @media (max-width: 900px){ .final-card{grid-template-columns:1fr} }
+    .final-card h2{margin:0 0 8px; font-size: 28px}
+    .final-card p{margin:0; color: var(--muted)}
+    .final-actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    @media (max-width: 900px){ .final-actions{justify-content:flex-start} }
+
+    footer{
+      border-top:1px solid var(--hair);
+      padding: 22px 0 34px;
+      color: rgba(234,240,255,.56);
+      font-size: 12px;
+    }
+    .foot-row{
+      display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; justify-content:space-between;
+    }
+    .small-links a{color: rgba(234,240,255,.56); text-decoration:none; margin-right:12px}
+    .small-links a:hover{color: var(--text)}
+  </style>
+
+  <!-- Structured data (placeholders for booking links can be added later) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Grundimpuls",
+    "url":"https://grundimpuls.com",
+    "slogan":"explore learn create",
+    "founder":{
+      "@type":"Person",
+      "name":"Stamin Daniel",
+      "jobTitle":"Coach",
+      "knowsAbout":[
+        "Burnout prevention",
+        "Stress management",
+        "Resilience coaching",
+        "Team coaching"
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="Grundimpuls Home">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 2.5C15.8 7 18 10.2 18 13.7A6 6 0 1 1 6 13.7C6 10.2 8.2 7 12 2.5Z" stroke="rgba(234,240,255,.88)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M14.8 10.8h4" stroke="rgba(234,240,255,.88)" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>GRUNDIMPULS</span>
+        </a>
+
+        <div class="nav-links" aria-label="Primary navigation">
+          <a href="#who" data-i18n="nav_who">Who it’s for</a>
+          <a href="#outcomes" data-i18n="nav_outcomes">Outcomes</a>
+          <a href="#services" data-i18n="nav_services">Services</a>
+          <a href="#method" data-i18n="nav_method">Method</a>
+          <a href="#faq" data-i18n="nav_faq">FAQ</a>
+          <a href="#blog" data-i18n="nav_blog">Blog</a>
+        </div>
+
+        <div class="right-controls">
+          <div class="lang" aria-label="Language switcher">
+            <button id="btn-en" class="active" type="button" onclick="setLang('en')">EN</button>
+            <button id="btn-ro" type="button" onclick="setLang('ro')">RO</button>
+            <button id="btn-de" type="button" onclick="setLang('de')">DE</button>
+          </div>
+          <a class="btn primary" href="#private" data-i18n="cta_private">Private</a>
+          <a class="btn gold" href="#companies" data-i18n="cta_companies">Companies</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="card hero-left">
+          <div class="kicker"><span class="dot"></span> <span data-i18n="kicker">Burnout & Stress Coaching</span></div>
+          <h1 data-i18n="hero_h1">Burnout doesn’t start when you collapse. It starts when you normalize depletion.</h1>
+
+          <p class="subhead" data-i18n="hero_sub">
+            I help individuals and organizations detect early stress/burnout patterns, prevent escalation,
+            and build sustainable resilience—using an ICF-aligned, ethical coaching process.
+          </p>
+
+          <div class="hero-actions">
+            <!-- Add your booking/proposal links later -->
+            <a class="btn primary" href="BOOKING_LINK_TBD" data-i18n="hero_btn_private">Book a first session</a>
+            <a class="btn" href="CORPORATE_PROPOSAL_LINK_TBD" data-i18n="hero_btn_corp">Request a corporate proposal</a>
+            <a class="btn" href="#method" data-i18n="hero_btn_method">How it works</a>
+          </div>
+
+          <div class="micro">
+            <span data-i18n="tagline_label">Tagline:</span>
+            <span style="color:rgba(234,240,255,.86)">explore learn create</span> ·
+            <span data-i18n="micro_note">calm, evidence-informed, action-oriented</span>.
+          </div>
+        </div>
+
+        <aside class="card hero-right" aria-label="Quick clarity">
+          <div class="panel">
+            <h3 data-i18n="quick_h">What you might be noticing</h3>
+            <p data-i18n="quick_p">Fatigue, irritability, emotional reactivity, sleep issues, cynicism/detachment, reduced effectiveness—often before you label it “burnout.”</p>
+          </div>
+          <div class="panel">
+            <h3 data-i18n="paths_h">Two paths</h3>
+            <p>
+              <strong data-i18n="paths_private">Private:</strong> <span data-i18n="paths_private_p">prevention + clarity + transition to a better baseline</span>.<br/>
+              <strong data-i18n="paths_corp">Companies:</strong> <span data-i18n="paths_corp_p">sustainable performance + healthier leadership + lower burnout risk</span>.
+            </p>
+            <div class="split-cta">
+              <a class="btn primary" href="#private" data-i18n="panel_private">Private</a>
+              <a class="btn gold" href="#companies" data-i18n="panel_companies">Companies</a>
+            </div>
+          </div>
+          <div class="panel">
+            <h3 data-i18n="scope_h">Scope</h3>
+            <p data-i18n="scope_p">Coaching is not therapy. No diagnosis. Clear boundaries, confidentiality, and ethical standards.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- WHY -->
+  <section id="why">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="why_h">Why this matters</h2>
+        <div class="hint" data-i18n="why_hint">Short, explicit, and easy to extract for AI search: definition → impact → action.</div>
+      </div>
+      <div class="grid-2">
+        <div class="box">
+          <h3 data-i18n="why_1_h">Burnout is not a personality flaw.</h3>
+          <p data-i18n="why_1_p">Burnout is a workplace-related syndrome from chronic stress that hasn’t been successfully managed—often seen as exhaustion, detachment/cynicism, and reduced efficacy.</p>
+        </div>
+        <div class="box">
+          <h3 data-i18n="why_2_h">Prevention beats recovery.</h3>
+          <p data-i18n="why_2_p">Stress often grows slowly and becomes “normal.” Coaching helps you see the pattern early—then change it, before performance, relationships, and health pay the cost.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO -->
+  <section id="who">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="who_h">Who it’s for</h2>
+        <div class="hint" data-i18n="who_hint">Two-audience split. Clear language. No fluff.</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="box" id="private">
+          <h3 data-i18n="who_private_h">For individuals</h3>
+          <ul>
+            <li data-i18n="who_private_1">You want to prevent burnout or stop it early (before “crisis mode”).</li>
+            <li data-i18n="who_private_2">You feel depleted, reactive, or “not yourself” and want clarity + a plan.</li>
+            <li data-i18n="who_private_3">You’re ready to act—because nobody can do the effort for you.</li>
+          </ul>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn primary" href="BOOKING_LINK_TBD" data-i18n="btn_book">Book a first session</a>
+            <a class="btn" href="#faq" data-i18n="btn_faq">Read FAQ</a>
+          </div>
+        </div>
+
+        <div class="box" id="companies">
+          <h3 data-i18n="who_corp_h">For organizations</h3>
+          <ul>
+            <li data-i18n="who_corp_1">You want sustainable performance: healthier leadership, stronger engagement, lower burnout risk.</li>
+            <li data-i18n="who_corp_2">You see signals: disengagement, cynicism, turnover, conflict, reduced productivity.</li>
+            <li data-i18n="who_corp_3">You want interventions that improve behavior and culture—not just “wellness theater.”</li>
+          </ul>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn gold" href="CORPORATE_PROPOSAL_LINK_TBD" data-i18n="btn_proposal">Request a corporate proposal</a>
+            <a class="btn" href="#business" data-i18n="btn_business">Business case</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section id="outcomes">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="out_h">Outcomes</h2>
+        <div class="hint" data-i18n="out_hint">Observable changes clients can describe, measure, and repeat.</div>
+      </div>
+
+      <div class="grid-3">
+        <div class="box">
+          <h3 data-i18n="out_1_h">Early detection</h3>
+          <ul>
+            <li data-i18n="out_1_1">Clear “where am I?” awareness on the stress–performance curve.</li>
+            <li data-i18n="out_1_2">Identify your personal early-warning signals.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3 data-i18n="out_2_h">Better regulation</h3>
+          <ul>
+            <li data-i18n="out_2_1">Steadier mood under pressure.</li>
+            <li data-i18n="out_2_2">Less emotional reactivity and conflict escalation.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3 data-i18n="out_3_h">Sustainable capacity</h3>
+          <ul>
+            <li data-i18n="out_3_1">Boundaries and workload negotiation habits.</li>
+            <li data-i18n="out_3_2">Recovery routines that hold under real work conditions.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="srv_h">Services</h2>
+        <div class="hint" data-i18n="srv_hint">Precise formats. Clear cycles. Strong boundaries.</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="box">
+          <h3 data-i18n="srv_private_h">Individual Coaching (ICF-aligned)</h3>
+          <p data-i18n="srv_private_p">Typical cycle: 7 sessions. Session 1 sets objectives, boundaries, confidentiality, and fit. Expect intensity, clarity, and action steps—your effort stays with you.</p>
+          <div style="margin-top:12px;border-top:1px solid var(--hair);padding-top:12px;color:var(--muted);font-size:14px">
+            <strong data-i18n="srv_s1_h">Session 1 includes:</strong>
+            <span data-i18n="srv_s1_p">patterns + signals · desired state · agreement · first micro-commitments</span>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3 data-i18n="srv_corp_h">Corporate Coaching</h3>
+          <ul>
+            <li data-i18n="srv_corp_1"><strong>Team coaching:</strong> typically 6 sessions · 2–4 hours each (size-dependent).</li>
+            <li data-i18n="srv_corp_2"><strong>1:1 coaching:</strong> same quality as private, plus sponsor/employee/coach boundary agreement.</li>
+            <li data-i18n="srv_corp_3"><strong>Delivery:</strong> on-site or hybrid; designed for attention, learning, and progression.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUSINESS CASE -->
+  <section id="business">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="bc_h">The business case</h2>
+        <div class="hint" data-i18n="bc_hint">Use as “evidence-informed indicators” and tie to your metrics (turnover, absenteeism, engagement).</div>
+      </div>
+
+      <div class="metrics" aria-label="Business case indicators">
+        <div class="metric"><div class="val">7×</div><div class="lab" data-i18n="bc_1">ROI (commonly cited coaching benchmark)</div></div>
+        <div class="metric"><div class="val">+39%</div><div class="lab" data-i18n="bc_2">Improved stress management</div></div>
+        <div class="metric"><div class="val">+23%</div><div class="lab" data-i18n="bc_3">Higher employee engagement</div></div>
+        <div class="metric"><div class="val">-22%</div><div class="lab" data-i18n="bc_4">Lower turnover rates</div></div>
+      </div>
+
+      <div class="box" style="margin-top:14px">
+        <h3 data-i18n="bc_practice_h">What you get in practice</h3>
+        <ul>
+          <li data-i18n="bc_practice_1">Lower burnout-risk behaviors (reactivity, cynicism, avoidance).</li>
+          <li data-i18n="bc_practice_2">Better leadership communication under pressure.</li>
+          <li data-i18n="bc_practice_3">More sustainable performance—without grinding people down.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section id="method">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="m_h">My method</h2>
+        <div class="hint" data-i18n="m_hint">Simple, memorable, and machine-readable.</div>
+      </div>
+
+      <div class="method">
+        <div class="step">
+          <div class="badge">1</div>
+          <h3 style="margin:0 0 6px" data-i18n="m1_h">Detect</h3>
+          <p data-i18n="m1_p">Spot early patterns in energy, mood, detachment, and efficacy. Identify “red flags” before collapse.</p>
+        </div>
+        <div class="step">
+          <div class="badge">2</div>
+          <h3 style="margin:0 0 6px" data-i18n="m2_h">Prevent</h3>
+          <p data-i18n="m2_p">Build boundaries, stress skills, recovery routines, and communication patterns that reduce escalation.</p>
+        </div>
+        <div class="step">
+          <div class="badge">3</div>
+          <h3 style="margin:0 0 6px" data-i18n="m3_h">Sustain</h3>
+          <p data-i18n="m3_p">Create a small system that keeps progress stable under real pressure—without relying on motivation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>FAQ</h2>
+        <div class="hint" data-i18n="faq_hint">Short answers → stronger AI extractability.</div>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary data-i18n="faq_1_q">Is this therapy?</summary>
+          <p data-i18n="faq_1_a">No. Coaching is action-focused and future-oriented. Therapy treats mental illness. I don’t diagnose; I keep clear scope and refer when needed.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq_2_q">How do I know if it’s burnout or “just stress”?</summary>
+          <p data-i18n="faq_2_a">Burnout commonly shows exhaustion + detachment/cynicism + reduced efficacy, often tied to chronic work stress. We clarify your stage and signals in Session 1.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq_3_q">How many sessions do I need?</summary>
+          <p data-i18n="faq_3_a">Individual coaching is typically ~7 sessions. Team coaching is typically ~6 sessions (2–4 hours each, size-dependent).</p>
+        </details>
+        <details>
+          <summary data-i18n="faq_4_q">How does confidentiality work in corporate coaching?</summary>
+          <p data-i18n="faq_4_a">We define sponsor–client–coach boundaries upfront (objectives, disclosures, process rules) to protect trust and prevent misunderstandings.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="blog_h">Blog / Insights</h2>
+        <div class="hint" data-i18n="blog_hint">Your articles live on Substack. This section links and drives subscribers.</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="box">
+          <h3 data-i18n="blog_latest_h">Read the latest</h3>
+          <p data-i18n="blog_latest_p">All posts are published here:</p>
+          <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="https://danielstamin.substack.com/" target="_blank" rel="noopener">danielstamin.substack.com</a>
+            <a class="btn" href="https://danielstamin.substack.com/archive" target="_blank" rel="noopener" data-i18n="blog_archive">Archive</a>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3 data-i18n="blog_news_h">Newsletter</h3>
+          <p data-i18n="blog_news_p">One practical insight per week: stress signals, resilience habits, and calm performance.</p>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn primary" href="https://danielstamin.substack.com/subscribe" target="_blank" rel="noopener" data-i18n="blog_subscribe">Subscribe</a>
+            <a class="btn" href="#final" data-i18n="blog_work">Work with me</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="final" class="final">
+    <div class="container">
+      <div class="final-card">
+        <div>
+          <h2 data-i18n="final_h">Start before it becomes a crisis.</h2>
+          <p data-i18n="final_p">Private clients: book a first session and get clarity + a concrete plan. Companies: request a proposal and align on outcomes, scope, and metrics.</p>
+        </div>
+        <div class="final-actions">
+          <a class="btn primary" href="BOOKING_LINK_TBD" data-i18n="final_book">Book a first session</a>
+          <a class="btn gold" href="CORPORATE_PROPOSAL_LINK_TBD" data-i18n="final_proposal">Request a proposal</a>
+          <a class="btn" href="mailto:CONTACT_EMAIL_TBD" data-i18n="final_email">Email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot-row">
+        <div>© <span id="year"></span> Grundimpuls · explore learn create · <span data-i18n="footer_name">Stamin Daniel</span></div>
+        <div class="small-links">
+          <a href="#top" data-i18n="footer_top">Top</a>
+          <a href="https://danielstamin.substack.com/" target="_blank" rel="noopener">Substack</a>
+          <!-- Add privacy/imprint later -->
+        </div>
+      </div>
+      <div style="margin-top:10px;max-width:92ch" data-i18n="footer_note">
+        Coaching note: Coaching is not therapy and does not diagnose or treat mental illness. If symptoms indicate clinical risk, appropriate referral is recommended.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const dict = {
+      en: {
+        nav_who:"Who it’s for", nav_outcomes:"Outcomes", nav_services:"Services", nav_method:"Method", nav_faq:"FAQ", nav_blog:"Blog",
+        cta_private:"Private", cta_companies:"Companies",
+        kicker:"Burnout & Stress Coaching",
+        hero_h1:"Burnout doesn’t start when you collapse. It starts when you normalize depletion.",
+        hero_sub:"I help individuals and organizations detect early stress/burnout patterns, prevent escalation, and build sustainable resilience—using an ICF-aligned, ethical coaching process.",
+        hero_btn_private:"Book a first session", hero_btn_corp:"Request a corporate proposal", hero_btn_method:"How it works",
+        tagline_label:"Tagline:", micro_note:"calm, evidence-informed, action-oriented",
+        quick_h:"What you might be noticing",
+        quick_p:"Fatigue, irritability, emotional reactivity, sleep issues, cynicism/detachment, reduced effectiveness—often before you label it “burnout.”",
+        paths_h:"Two paths",
+        paths_private:"Private:", paths_private_p:"prevention + clarity + transition to a better baseline",
+        paths_corp:"Companies:", paths_corp_p:"sustainable performance + healthier leadership + lower burnout risk",
+        panel_private:"Private", panel_companies:"Companies",
+        scope_h:"Scope", scope_p:"Coaching is not therapy. No diagnosis. Clear boundaries, confidentiality, and ethical standards.",
+        why_h:"Why this matters", why_hint:"Short, explicit, and easy to extract for AI search: definition → impact → action.",
+        why_1_h:"Burnout is not a personality flaw.",
+        why_1_p:"Burnout is a workplace-related syndrome from chronic stress that hasn’t been successfully managed—often seen as exhaustion, detachment/cynicism, and reduced efficacy.",
+        why_2_h:"Prevention beats recovery.",
+        why_2_p:"Stress often grows slowly and becomes “normal.” Coaching helps you see the pattern early—then change it, before performance, relationships, and health pay the cost.",
+        who_h:"Who it’s for", who_hint:"Two-audience split. Clear language. No fluff.",
+        who_private_h:"For individuals",
+        who_private_1:"You want to prevent burnout or stop it early (before “crisis mode”).",
+        who_private_2:"You feel depleted, reactive, or “not yourself” and want clarity + a plan.",
+        who_private_3:"You’re ready to act—because nobody can do the effort for you.",
+        who_corp_h:"For organizations",
+        who_corp_1:"You want sustainable performance: healthier leadership, stronger engagement, lower burnout risk.",
+        who_corp_2:"You see signals: disengagement, cynicism, turnover, conflict, reduced productivity.",
+        who_corp_3:"You want interventions that improve behavior and culture—not just “wellness theater.”",
+        btn_book:"Book a first session", btn_faq:"Read FAQ", btn_proposal:"Request a corporate proposal", btn_business:"Business case",
+        out_h:"Outcomes", out_hint:"Observable changes clients can describe, measure, and repeat.",
+        out_1_h:"Early detection", out_1_1:"Clear “where am I?” awareness on the stress–performance curve.", out_1_2:"Identify your personal early-warning signals.",
+        out_2_h:"Better regulation", out_2_1:"Steadier mood under pressure.", out_2_2:"Less emotional reactivity and conflict escalation.",
+        out_3_h:"Sustainable capacity", out_3_1:"Boundaries and workload negotiation habits.", out_3_2:"Recovery routines that hold under real work conditions.",
+        srv_h:"Services", srv_hint:"Precise formats. Clear cycles. Strong boundaries.",
+        srv_private_h:"Individual Coaching (ICF-aligned)",
+        srv_private_p:"Typical cycle: 7 sessions. Session 1 sets objectives, boundaries, confidentiality, and fit. Expect intensity, clarity, and action steps—your effort stays with you.",
+        srv_s1_h:"Session 1 includes:", srv_s1_p:"patterns + signals · desired state · agreement · first micro-commitments",
+        srv_corp_h:"Corporate Coaching",
+        srv_corp_1:"Team coaching: typically 6 sessions · 2–4 hours each (size-dependent).",
+        srv_corp_2:"1:1 coaching: same quality as private, plus sponsor/employee/coach boundary agreement.",
+        srv_corp_3:"Delivery: on-site or hybrid; designed for attention, learning, and progression.",
+        bc_h:"The business case", bc_hint:"Use as “evidence-informed indicators” and tie to your metrics (turnover, absenteeism, engagement).",
+        bc_1:"ROI (commonly cited coaching benchmark)", bc_2:"Improved stress management", bc_3:"Higher employee engagement", bc_4:"Lower turnover rates",
+        bc_practice_h:"What you get in practice",
+        bc_practice_1:"Lower burnout-risk behaviors (reactivity, cynicism, avoidance).",
+        bc_practice_2:"Better leadership communication under pressure.",
+        bc_practice_3:"More sustainable performance—without grinding people down.",
+        m_h:"My method", m_hint:"Simple, memorable, and machine-readable.",
+        m1_h:"Detect", m1_p:"Spot early patterns in energy, mood, detachment, and efficacy. Identify “red flags” before collapse.",
+        m2_h:"Prevent", m2_p:"Build boundaries, stress skills, recovery routines, and communication patterns that reduce escalation.",
+        m3_h:"Sustain", m3_p:"Create a small system that keeps progress stable under real pressure—without relying on motivation.",
+        faq_hint:"Short answers → stronger AI extractability.",
+        faq_1_q:"Is this therapy?",
+        faq_1_a:"No. Coaching is action-focused and future-oriented. Therapy treats mental illness. I don’t diagnose; I keep clear scope and refer when needed.",
+        faq_2_q:"How do I know if it’s burnout or “just stress”?",
+        faq_2_a:"Burnout commonly shows exhaustion + detachment/cynicism + reduced efficacy, often tied to chronic work stress. We clarify your stage and signals in Session 1.",
+        faq_3_q:"How many sessions do I need?",
+        faq_3_a:"Individual coaching is typically ~7 sessions. Team coaching is typically ~6 sessions (2–4 hours each, size-dependent).",
+        faq_4_q:"How does confidentiality work in corporate coaching?",
+        faq_4_a:"We define sponsor–client–coach boundaries upfront (objectives, disclosures, process rules) to protect trust and prevent misunderstandings.",
+        blog_h:"Blog / Insights", blog_hint:"Your articles live on Substack. This section links and drives subscribers.",
+        blog_latest_h:"Read the latest", blog_latest_p:"All posts are published here:", blog_archive:"Archive",
+        blog_news_h:"Newsletter", blog_news_p:"One practical insight per week: stress signals, resilience habits, and calm performance.",
+        blog_subscribe:"Subscribe", blog_work:"Work with me",
+        final_h:"Start before it becomes a crisis.",
+        final_p:"Private clients: book a first session and get clarity + a concrete plan. Companies: request a proposal and align on outcomes, scope, and metrics.",
+        final_book:"Book a first session", final_proposal:"Request a proposal", final_email:"Email",
+        footer_name:"Stamin Daniel", footer_top:"Top",
+        footer_note:"Coaching note: Coaching is not therapy and does not diagnose or treat mental illness. If symptoms indicate clinical risk, appropriate referral is recommended."
+      },
+      ro: {
+        nav_who:"Pentru cine", nav_outcomes:"Rezultate", nav_services:"Servicii", nav_method:"Metodă", nav_faq:"Întrebări", nav_blog:"Blog",
+        cta_private:"Individual", cta_companies:"Companii",
+        kicker:"Coaching pentru stres & burnout",
+        hero_h1:"Burnout-ul nu începe când cazi. Începe când normalizezi epuizarea.",
+        hero_sub:"Ajut persoane și organizații să identifice din timp tiparele de stres/burnout, să prevină escaladarea și să construiască reziliență sustenabilă—printr-un proces de coaching aliniat ICF, etic și clar.",
+        hero_btn_private:"Programează prima sesiune", hero_btn_corp:"Cere o propunere corporate", hero_btn_method:"Cum lucrăm",
+        tagline_label:"Tagline:", micro_note:"calm, bazat pe dovezi, orientat pe acțiune",
+        quick_h:"Ce ai putea observa",
+        quick_p:"Oboseală, iritabilitate, reactivitate emoțională, probleme de somn, cinism/detașare, eficiență redusă—adesea înainte să îi spui „burnout”.",
+        paths_h:"Două direcții",
+        paths_private:"Individual:", paths_private_p:"prevenție + claritate + tranziție către un nivel mai bun",
+        paths_corp:"Companii:", paths_corp_p:"performanță sustenabilă + leadership mai sănătos + risc de burnout mai mic",
+        panel_private:"Individual", panel_companies:"Companii",
+        scope_h:"Cadru", scope_p:"Coachingul nu este terapie. Fără diagnostic. Limite clare, confidențialitate și standarde etice.",
+        why_h:"De ce contează", why_hint:"Scurt, explicit, ușor de extras pentru AI: definiție → impact → acțiune.",
+        why_1_h:"Burnout-ul nu e un defect de caracter.",
+        why_1_p:"Burnout-ul este un sindrom legat de muncă, rezultat din stres cronic gestionat ineficient—de obicei: epuizare, cinism/detașare și eficiență redusă.",
+        why_2_h:"Prevenția bate recuperarea.",
+        why_2_p:"Stresul crește lent și devine „normal”. Coachingul te ajută să vezi tiparul devreme—și să îl schimbi înainte să plătești prin sănătate, relații sau performanță.",
+        who_h:"Pentru cine", who_hint:"Două audiențe. Limbaj clar. Fără marketing gol.",
+        who_private_h:"Pentru persoane",
+        who_private_1:"Vrei să previi burnout-ul sau să îl oprești devreme (înainte de „criză”).",
+        who_private_2:"Te simți epuizat(ă), reactiv(ă) sau „nu mai ești tu” și vrei claritate + plan.",
+        who_private_3:"Ești pregătit(ă) să acționezi—pentru că nimeni nu poate depune efortul în locul tău.",
+        who_corp_h:"Pentru organizații",
+        who_corp_1:"Vrei performanță sustenabilă: leadership mai sănătos, engagement mai bun, risc de burnout mai mic.",
+        who_corp_2:"Vezi semnale: dezangajare, cinism, fluctuație, conflict, productivitate mai scăzută.",
+        who_corp_3:"Vrei intervenții care schimbă comportamente și cultură—nu doar „wellness de fațadă”.",
+        btn_book:"Programează prima sesiune", btn_faq:"Vezi întrebări", btn_proposal:"Cere propunere", btn_business:"Caz de business",
+        out_h:"Rezultate", out_hint:"Schimbări observabile și repetabile.",
+        out_1_h:"Detectare timpurie", out_1_1:"Claritate: „unde sunt” pe curba stres–performanță.", out_1_2:"Identificarea semnalelor tale timpurii.",
+        out_2_h:"Reglare emoțională", out_2_1:"Stare mai stabilă sub presiune.", out_2_2:"Mai puțină reactivitate și escaladare a conflictelor.",
+        out_3_h:"Capacitate sustenabilă", out_3_1:"Limite sănătoase și negociere a încărcării.", out_3_2:"Rutine de recuperare care rezistă în viața reală.",
+        srv_h:"Servicii", srv_hint:"Formate precise. Cicluri clare. Limite puternice.",
+        srv_private_h:"Coaching individual (aliniat ICF)",
+        srv_private_p:"Ciclu tipic: 7 sesiuni. Sesiunea 1 definește obiective, limite, confidențialitate și compatibilitate. Te așteaptă claritate și pași concreți—efortul rămâne la tine.",
+        srv_s1_h:"Sesiunea 1 include:", srv_s1_p:"tipare + semnale · stare dorită · acord · primele micro-angajamente",
+        srv_corp_h:"Coaching corporate",
+        srv_corp_1:"Team coaching: de regulă 6 sesiuni · 2–4 ore (în funcție de mărime).",
+        srv_corp_2:"1:1 coaching: ca la individual, plus acord sponsor–client–coach privind limitele.",
+        srv_corp_3:"Livrare: on-site sau hibrid; optimizat pentru atenție, învățare și progres.",
+        bc_h:"Cazul de business", bc_hint:"Folosește ca indicatori și leagă de KPI (turnover, absenteism, engagement).",
+        bc_1:"ROI (benchmark frecvent citat)", bc_2:"Îmbunătățirea gestionării stresului", bc_3:"Engagement mai mare", bc_4:"Turnover mai mic",
+        bc_practice_h:"Ce obții în practică",
+        bc_practice_1:"Mai puține comportamente de risc (reactivitate, cinism, evitare).",
+        bc_practice_2:"Comunicare mai bună sub presiune.",
+        bc_practice_3:"Performanță sustenabilă—fără să „toci” oamenii.",
+        m_h:"Metoda mea", m_hint:"Simplă, memorabilă, ușor de înțeles.",
+        m1_h:"Detectează", m1_p:"Identifică tipare timpurii în energie, stare, detașare și eficiență.",
+        m2_h:"Previne", m2_p:"Construiește limite, abilități de gestionare a stresului, recuperare și comunicare.",
+        m3_h:"Menține", m3_p:"Creează un sistem mic care ține progresul stabil fără să depindă de motivație.",
+        faq_hint:"Răspunsuri scurte → mai ușor de extras de AI.",
+        faq_1_q:"Este terapie?", faq_1_a:"Nu. Coachingul este orientat spre acțiune și viitor. Terapia tratează boli. Nu diagnostichez; păstrez cadrul clar și recomand specialist când e cazul.",
+        faq_2_q:"Cum știu dacă e burnout sau „doar stres”?", faq_2_a:"Burnout-ul include frecvent epuizare + detașare/cinism + eficiență redusă, legat de stres cronic la muncă. Clarificăm stadiul în Sesiunea 1.",
+        faq_3_q:"Câte sesiuni sunt necesare?", faq_3_a:"Individual: ~7 sesiuni. Echipe: ~6 sesiuni (2–4 ore, în funcție de mărime).",
+        faq_4_q:"Cum funcționează confidențialitatea în corporate?", faq_4_a:"Definim din start limitele sponsor–client–coach (obiective, ce se comunică, reguli) pentru încredere și claritate.",
+        blog_h:"Blog / Insight-uri", blog_hint:"Articolele sunt pe Substack. Aici trimiți trafic și abonați.",
+        blog_latest_h:"Citește ultimele", blog_latest_p:"Toate articolele sunt publicate aici:", blog_archive:"Arhivă",
+        blog_news_h:"Newsletter", blog_news_p:"Un insight practic pe săptămână: semnale, obiceiuri, performanță calmă.",
+        blog_subscribe:"Abonează-te", blog_work:"Lucrează cu mine",
+        final_h:"Începe înainte să devină criză.",
+        final_p:"Individual: programează prima sesiune și primești claritate + plan concret. Companii: cere o propunere și aliniem obiective, cadru și metrici.",
+        final_book:"Programează", final_proposal:"Cere propunere", final_email:"Email",
+        footer_name:"Stamin Daniel", footer_top:"Sus",
+        footer_note:"Notă: Coachingul nu este terapie și nu diagnostichează/tratează boli. Dacă există risc clinic, se recomandă trimitere către specialist."
+      },
+      de: {
+        nav_who:"Für wen", nav_outcomes:"Ergebnisse", nav_services:"Angebote", nav_method:"Methode", nav_faq:"FAQ", nav_blog:"Blog",
+        cta_private:"Privat", cta_companies:"Unternehmen",
+        kicker:"Stress- & Burnout-Coaching",
+        hero_h1:"Burnout beginnt nicht beim Zusammenbruch. Es beginnt, wenn Erschöpfung normal wird.",
+        hero_sub:"Ich unterstütze Einzelpersonen und Organisationen dabei, frühe Stress-/Burnout-Muster zu erkennen, Eskalation zu verhindern und nachhaltige Resilienz aufzubauen—mit einem ICF-orientierten, ethischen Coaching-Prozess.",
+        hero_btn_private:"Erstgespräch buchen", hero_btn_corp:"Corporate-Angebot anfragen", hero_btn_method:"So arbeiten wir",
+        tagline_label:"Tagline:", micro_note:"ruhig, evidenzinformiert, handlungsorientiert",
+        quick_h:"Was du vielleicht bemerkst",
+        quick_p:"Müdigkeit, Reizbarkeit, emotionale Reaktivität, Schlafprobleme, Zynismus/Distanz, sinkende Wirksamkeit—oft bevor man es „Burnout“ nennt.",
+        paths_h:"Zwei Wege",
+        paths_private:"Privat:", paths_private_p:"Prävention + Klarheit + Übergang zu einem besseren Baseline-Zustand",
+        paths_corp:"Unternehmen:", paths_corp_p:"nachhaltige Performance + gesündere Führung + geringeres Burnout-Risiko",
+        panel_private:"Privat", panel_companies:"Unternehmen",
+        scope_h:"Rahmen", scope_p:"Coaching ist keine Therapie. Keine Diagnose. Klare Grenzen, Vertraulichkeit, ethische Standards.",
+        why_h:"Warum das wichtig ist", why_hint:"Kurz, explizit, AI-freundlich: Definition → Wirkung → Handeln.",
+        why_1_h:"Burnout ist kein Charakterfehler.",
+        why_1_p:"Burnout ist ein arbeitsbezogenes Syndrom aus chronischem, nicht erfolgreich bewältigtem Stress—typisch: Erschöpfung, Distanz/Zynismus und reduzierte Wirksamkeit.",
+        why_2_h:"Prävention schlägt Erholung.",
+        why_2_p:"Stress wächst oft langsam und wird „normal“. Coaching macht Muster früh sichtbar—und ändert sie, bevor Leistung, Beziehungen und Gesundheit zahlen.",
+        who_h:"Für wen", who_hint:"Zwei Zielgruppen. Klar. Ohne Floskeln.",
+        who_private_h:"Für Einzelpersonen",
+        who_private_1:"Du willst Burnout vorbeugen oder früh stoppen (bevor es zur Krise wird).",
+        who_private_2:"Du fühlst dich erschöpft, reaktiv oder „nicht du selbst“ und willst Klarheit + Plan.",
+        who_private_3:"Du bist bereit zu handeln—denn niemand kann die Arbeit für dich tun.",
+        who_corp_h:"Für Organisationen",
+        who_corp_1:"Du willst nachhaltige Performance: gesündere Führung, mehr Engagement, weniger Burnout-Risiko.",
+        who_corp_2:"Du siehst Signale: Disengagement, Zynismus, Fluktuation, Konflikte, sinkende Produktivität.",
+        who_corp_3:"Du willst Interventionen, die Verhalten und Kultur verändern—nicht nur Wellness-Show.",
+        btn_book:"Erstgespräch buchen", btn_faq:"FAQ lesen", btn_proposal:"Angebot anfragen", btn_business:"Business Case",
+        out_h:"Ergebnisse", out_hint:"Beobachtbare Veränderungen, die bleiben.",
+        out_1_h:"Früherkennung", out_1_1:"Klarheit: „Wo stehe ich?“ auf der Stress-Performance-Kurve.", out_1_2:"Eigene Frühwarnsignale erkennen.",
+        out_2_h:"Bessere Regulation", out_2_1:"Stabilere Stimmung unter Druck.", out_2_2:"Weniger Reaktivität und Konflikt-Eskalation.",
+        out_3_h:"Nachhaltige Kapazität", out_3_1:"Grenzen setzen und Arbeitslast verhandeln.", out_3_2:"Erholung, die im echten Alltag trägt.",
+        srv_h:"Angebote", srv_hint:"Präzise Formate. Klare Zyklen. Starke Grenzen.",
+        srv_private_h:"Einzelcoaching (ICF-orientiert)",
+        srv_private_p:"Typischer Zyklus: 7 Sessions. Session 1 klärt Ziele, Grenzen, Vertraulichkeit und Fit. Intensität, Klarheit und konkrete Schritte—die Umsetzung bleibt bei dir.",
+        srv_s1_h:"Session 1 umfasst:", srv_s1_p:"Muster + Signale · Zielzustand · Vereinbarung · erste Mikro-Commitments",
+        srv_corp_h:"Corporate Coaching",
+        srv_corp_1:"Team Coaching: meist 6 Sessions · 2–4 Stunden (je nach Größe).",
+        srv_corp_2:"1:1 Coaching: wie privat, plus Sponsor–Klient–Coach-Grenzen.",
+        srv_corp_3:"Durchführung: vor Ort oder hybrid; optimiert für Aufmerksamkeit, Lernen, Fortschritt.",
+        bc_h:"Business Case", bc_hint:"Als Indikatoren nutzen und mit KPIs verbinden (Fluktuation, Abwesenheit, Engagement).",
+        bc_1:"ROI (häufig zitierter Benchmark)", bc_2:"Besseres Stressmanagement", bc_3:"Höheres Engagement", bc_4:"Geringere Fluktuation",
+        bc_practice_h:"Was das praktisch bringt",
+        bc_practice_1:"Weniger Burnout-Risikoverhalten (Reaktivität, Zynismus, Vermeidung).",
+        bc_practice_2:"Bessere Führungskommunikation unter Druck.",
+        bc_practice_3:"Nachhaltige Performance—ohne Menschen zu verheizen.",
+        m_h:"Meine Methode", m_hint:"Einfach, merkbar, gut erfassbar.",
+        m1_h:"Erkennen", m1_p:"Früh Muster in Energie, Stimmung, Distanz und Wirksamkeit erkennen.",
+        m2_h:"Verhindern", m2_p:"Grenzen, Stress-Skills, Erholung und Kommunikation aufbauen.",
+        m3_h:"Stabilisieren", m3_p:"Ein kleines System schaffen, das Fortschritt unter Druck trägt—ohne Motivationsabhängigkeit.",
+        faq_hint:"Kurze Antworten → bessere AI-Extraktion.",
+        faq_1_q:"Ist das Therapie?", faq_1_a:"Nein. Coaching ist handlungsorientiert und zukunftsgerichtet. Therapie behandelt Erkrankungen. Keine Diagnose; klarer Rahmen, ggf. Verweis an Fachstellen.",
+        faq_2_q:"Burnout oder „nur Stress“?", faq_2_a:"Burnout zeigt oft Erschöpfung + Distanz/Zynismus + reduzierte Wirksamkeit, meist durch chronischen Arbeitsstress. In Session 1 klären wir deine Lage.",
+        faq_3_q:"Wie viele Sessions?", faq_3_a:"Privat meist ~7 Sessions. Teams meist ~6 Sessions (2–4 Stunden, größenabhängig).",
+        faq_4_q:"Wie ist Vertraulichkeit im Corporate Setting?", faq_4_a:"Wir klären Sponsor–Klient–Coach-Grenzen upfront (Ziele, Informationen, Regeln) für Vertrauen und Transparenz.",
+        blog_h:"Blog / Insights", blog_hint:"Artikel liegen auf Substack. Dieser Bereich leitet Leser und Abonnenten weiter.",
+        blog_latest_h:"Aktuelles lesen", blog_latest_p:"Alle Beiträge erscheinen hier:", blog_archive:"Archiv",
+        blog_news_h:"Newsletter", blog_news_p:"Ein praktischer Impuls pro Woche: Signale, Gewohnheiten, ruhige Performance.",
+        blog_subscribe:"Abonnieren", blog_work:"Mit mir arbeiten",
+        final_h:"Starte, bevor es zur Krise wird.",
+        final_p:"Privat: Erstgespräch buchen und Klarheit + Plan bekommen. Unternehmen: Angebot anfragen und Ziele, Rahmen, Metriken abstimmen.",
+        final_book:"Buchen", final_proposal:"Anfragen", final_email:"E-Mail",
+        footer_name:"Stamin Daniel", footer_top:"Nach oben",
+        footer_note:"Hinweis: Coaching ist keine Therapie und stellt keine Diagnosen. Bei klinischem Risiko ist eine geeignete Weitervermittlung sinnvoll."
+      }
+    };
+
+    function setLang(lang){
+      // update lang attribute for accessibility/AI parsing
+      document.documentElement.lang = lang;
+
+      // buttons
+      ["en","ro","de"].forEach(l=>{
+        document.getElementById("btn-"+l).classList.toggle("active", l===lang);
+      });
+
+      // translate nodes
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        if(dict[lang] && dict[lang][key]) el.textContent = dict[lang][key];
+      });
+
+      // persist
+      localStorage.setItem("gi_lang", lang);
+    }
+
+    // load preferred language
+    (function(){
+      const saved = localStorage.getItem("gi_lang");
+      const browser = (navigator.language || "en").slice(0,2).toLowerCase();
+      const lang = saved || (["en","ro","de"].includes(browser) ? browser : "en");
+      setLang(lang);
+    })();
+  </script>
+</body>
+</html>
