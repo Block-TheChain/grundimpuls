@@ -1139,6 +1139,15 @@ method:{
   });
 
   setLang("ro");
+    // FAQ: allow only one open at a time
+  document.querySelectorAll('#faq .faq details').forEach((d) => {
+    d.addEventListener('toggle', () => {
+      if (!d.open) return;
+      document.querySelectorAll('#faq .faq details').forEach((other) => {
+        if (other !== d) other.open = false;
+      });
+    });
+  });
 </script>
 </body>
 </html>
