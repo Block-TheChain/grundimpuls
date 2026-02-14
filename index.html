@@ -49,6 +49,7 @@
     }
     a{color:inherit}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+
     header{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
@@ -73,29 +74,28 @@
       box-shadow: 0 10px 28px rgba(0,0,0,.25);
     }
     .wordmark{display:flex; flex-direction:column; line-height:1.05}
-.wordmark strong{
-  letter-spacing:.6px;
-  font-size: 20px;          /* make GRUNDIMPULS bigger */
-  line-height: 1.05;
-}
+    .wordmark strong{
+      letter-spacing:.6px;
+      font-size: 20px;          /* make GRUNDIMPULS bigger */
+      line-height: 1.05;
+    }
+    .wordmark span{
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      display:block;
+      width:100%;               /* make tagline take full width */
+      text-align:justify;       /* spread words across width */
+      text-justify:inter-word;
+    }
+    /* small hack so justify works on a single line */
+    .wordmark span::after{
+      content:"";
+      display:inline-block;
+      width:100%;
+    }
 
-.wordmark span{
-  font-size:12px;
-  color:var(--muted);
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  display:block;
-  width:100%;               /* make tagline take full width */
-  text-align:justify;       /* spread words across width */
-  text-justify:inter-word;
-}
-
-/* small hack so justify works on a single line */
-.wordmark span::after{
-  content:"";
-  display:inline-block;
-  width:100%;
-}
     .right{
       display:flex; align-items:center; gap:10px; flex-wrap:wrap;
       justify-content:flex-end;
@@ -164,9 +164,8 @@
     h3{font-size:18px; margin:0 0 10px}
     p{margin:0 0 12px; color: var(--muted)}
     .lead{font-size:18px; color: var(--text); opacity:.95; margin-bottom: 18px}
-    .badges{
-      display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 6px
-    }
+
+    .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 6px }
     .badge{
       border:1px solid rgba(217,180,92,.28);
       background: rgba(217,180,92,.08);
@@ -251,76 +250,136 @@
       font-size:12px;
       color: rgba(217,180,92,.95);
     }
-/* My method block */
-.methodBlock{
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-}
 
-.methodHeader{
-  display:flex;
-  justify-content:space-between;
-  gap:14px;
-  align-items:baseline;
-  margin-bottom: 12px;
-}
+    /* My method block */
+    .methodBlock{
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .methodHeader{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:baseline;
+      margin-bottom: 12px;
+    }
+    .methodTitle{
+      margin:0;
+      font-size: 16px;
+      font-weight: 850;
+      color: var(--text);
+    }
+    .methodHint{
+      font-size: 12px;
+      color: var(--muted);
+      text-align:right;
+      max-width: 44ch;
+    }
+    .methodGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 900px){
+      .methodGrid{ grid-template-columns: 1fr; }
+      .methodHint{ text-align:left; }
+    }
+    .methodCard{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .methodNum{
+      width: 30px; height: 30px;
+      border-radius: 10px;
+      display:inline-flex;
+      align-items:center; justify-content:center;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      font-weight: 900;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .methodName{
+      font-weight: 900;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .methodDesc{
+      font-size: 13px;
+      color: var(--muted);
+    }
 
-.methodTitle{
-  margin:0;
-  font-size: 16px;
-  font-weight: 850;
-  color: var(--text);
-}
+    /* =========================
+       COMING SOON PLACEHOLDER
+       ========================= */
+    .comingSoonOverlay{
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none; /* JS turns this on */
+      align-items: center;
+      justify-content: center;
+      padding: 28px 16px;
+      background:
+        radial-gradient(1200px 700px at 15% 0%, rgba(63,169,245,.22), transparent 60%),
+        radial-gradient(1000px 700px at 85% 5%, rgba(217,180,92,.18), transparent 55%),
+        rgba(7,17,28,.94);
+      backdrop-filter: blur(10px);
+    }
+    .comingSoonOverlay .box{
+      width: min(680px, 100%);
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(14,34,54,.92), rgba(11,27,43,.86));
+      box-shadow: 0 24px 90px rgba(0,0,0,.55);
+      padding: 26px;
+      text-align: center;
+    }
+    .comingSoonOverlay .brandline{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      margin-bottom: 12px;
+    }
+    .comingSoonOverlay .logoMark{
+      width: 42px; height: 42px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, rgba(63,169,245,.25), rgba(217,180,92,.18));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 12px 32px rgba(0,0,0,.35);
+      flex:0 0 auto;
+    }
+    .comingSoonOverlay .title{
+      font-size: 44px;
+      line-height: 1.08;
+      margin: 8px 0 10px;
+      letter-spacing: .2px;
+    }
+    @media (max-width: 520px){
+      .comingSoonOverlay .title{font-size: 36px}
+    }
+    .comingSoonOverlay .sub{
+      margin: 0;
+      color: rgba(245,247,251,.82);
+      font-size: 16px;
+    }
+    .comingSoonOverlay .tiny{
+      margin-top: 14px;
+      font-size: 12px;
+      color: rgba(185,195,211,.9);
+    }
 
-.methodHint{
-  font-size: 12px;
-  color: var(--muted);
-  text-align:right;
-  max-width: 44ch;
-}
+    /* lock scrolling when placeholder is on */
+    body.coming-soon{ overflow: hidden; }
 
-.methodGrid{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-@media (max-width: 900px){
-  .methodGrid{ grid-template-columns: 1fr; }
-  .methodHint{ text-align:left; }
-}
-
-.methodCard{
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.04);
-  border-radius: 16px;
-  padding: 14px;
-}
-
-.methodNum{
-  width: 30px; height: 30px;
-  border-radius: 10px;
-  display:inline-flex;
-  align-items:center; justify-content:center;
-  border:1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.05);
-  font-weight: 900;
-  margin-bottom: 10px;
-  color: var(--text);
-}
-
-.methodName{
-  font-weight: 900;
-  margin-bottom: 6px;
-  color: var(--text);
-}
-
-.methodDesc{
-  font-size: 13px;
-  color: var(--muted);
-}
-
+    /* optional: hide header/footer while placeholder is on */
+    body.coming-soon header,
+    body.coming-soon footer{ display: none; }
   </style>
 
   <!-- Structured data (edit phone/email/address when you have them) -->
@@ -371,6 +430,32 @@
 </head>
 
 <body>
+  <!-- =========================
+       COMING SOON OVERLAY
+       Toggle via SETTINGS in JS
+       ========================= -->
+  <div class="comingSoonOverlay" id="comingSoon" aria-hidden="true">
+    <div class="box" role="dialog" aria-label="Grundimpuls coming soon">
+      <div class="brandline">
+        <div class="logoMark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2C8.2 7 6 9.8 6 13.1A6 6 0 0 0 12 19a6 6 0 0 0 6-5.9C18 9.8 15.8 7 12 2Z" stroke="rgba(245,247,251,.9)" stroke-width="1.6"/>
+            <path d="M14.7 12.2h1.3" stroke="rgba(245,247,251,.55)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="text-align:left">
+          <div style="font-weight:900; letter-spacing:.6px;">GRUNDIMPULS</div>
+          <div style="font-size:12px; color:rgba(185,195,211,.95); letter-spacing:.18em; text-transform:uppercase;">EXPLORE · LEARN · CREATE</div>
+        </div>
+      </div>
+
+      <div class="kicker">COMING SOON</div>
+      <div class="title">Grundimpuls is coming soon.</div>
+      <p class="sub">Stay tuned.<br>Patience.</p>
+      <div class="tiny">For now: the site is in private build mode.</div>
+    </div>
+  </div>
+
 <header>
   <div class="wrap">
     <div class="nav">
@@ -480,39 +565,40 @@
             <li data-i18n="coaching.burnout.out1">Outcomes: clearer boundaries, improved recovery, reduced irritability, better focus and decisions.</li>
             <li data-i18n="coaching.burnout.how1">Method: detect → prevent → integrate (habits + environment + leadership behaviors).</li>
           </ul>
-<!-- My method (Burnout) -->
-<div class="methodBlock">
-  <div class="methodHeader">
-    <h4 class="methodTitle" data-i18n="method.title">My method</h4>
-    <div class="methodHint" data-i18n="method.hint">Simple, memorable, and machine-readable.</div>
-  </div>
 
-  <div class="methodGrid">
-    <div class="methodCard">
-      <div class="methodNum">1</div>
-      <div class="methodName" data-i18n="method.detect.t">Detect</div>
-      <div class="methodDesc" data-i18n="method.detect.d">
-        Spot early patterns in energy, mood, detachment, and efficacy. Identify “red flags” before collapse.
-      </div>
-    </div>
+          <!-- My method (Burnout) -->
+          <div class="methodBlock">
+            <div class="methodHeader">
+              <h4 class="methodTitle" data-i18n="method.title">My method</h4>
+              <div class="methodHint" data-i18n="method.hint">Simple, memorable, and machine-readable.</div>
+            </div>
 
-    <div class="methodCard">
-      <div class="methodNum">2</div>
-      <div class="methodName" data-i18n="method.prevent.t">Prevent</div>
-      <div class="methodDesc" data-i18n="method.prevent.d">
-        Build boundaries, stress skills, recovery routines, and communication patterns that reduce escalation.
-      </div>
-    </div>
+            <div class="methodGrid">
+              <div class="methodCard">
+                <div class="methodNum">1</div>
+                <div class="methodName" data-i18n="method.detect.t">Detect</div>
+                <div class="methodDesc" data-i18n="method.detect.d">
+                  Spot early patterns in energy, mood, detachment, and efficacy. Identify “red flags” before collapse.
+                </div>
+              </div>
 
-    <div class="methodCard">
-      <div class="methodNum">3</div>
-      <div class="methodName" data-i18n="method.sustain.t">Sustain</div>
-      <div class="methodDesc" data-i18n="method.sustain.d">
-        Create a small system that keeps progress stable under real pressure—without relying on motivation.
-      </div>
-    </div>
-  </div>
-</div>
+              <div class="methodCard">
+                <div class="methodNum">2</div>
+                <div class="methodName" data-i18n="method.prevent.t">Prevent</div>
+                <div class="methodDesc" data-i18n="method.prevent.d">
+                  Build boundaries, stress skills, recovery routines, and communication patterns that reduce escalation.
+                </div>
+              </div>
+
+              <div class="methodCard">
+                <div class="methodNum">3</div>
+                <div class="methodName" data-i18n="method.sustain.t">Sustain</div>
+                <div class="methodDesc" data-i18n="method.sustain.d">
+                  Create a small system that keeps progress stable under real pressure—without relying on motivation.
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="ctaRow">
             <a class="btn primary" href="#contact" data-i18n="coaching.burnout.cta">Start with a diagnostic session</a>
@@ -706,7 +792,7 @@
         <p class="lead" data-i18n="cta.p">If you want clarity, calm execution, and measurable progress—start here.</p>
         <div class="ctaRow">
           <!-- Replace with your real booking link/email/WhatsApp when ready -->
-          <a class="btn primary" href="mailto:hello@grundimpuls.com" data-i18n="cta.email">Email: hello@grundimpuls.com</a>
+          <a class="btn primary" href="mailto:dropin@grundimpuls.com" data-i18n="cta.email">Email: dropin@grundimpuls.com</a>
           <a class="btn secondary" href="https://danielstamin.substack.com/" target="_blank" rel="noopener" data-i18n="cta.substack">Follow on Substack</a>
         </div>
         <p class="small" style="margin-top:12px" data-i18n="cta.legal">
@@ -728,6 +814,36 @@
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* =========================
+     SETTINGS (edit only this)
+     =========================
+     - COMING_SOON_MODE:
+         true  => public sees placeholder overlay
+         false => public sees the real site
+     - DEFAULT_LANG:
+         "ro" | "en" | "de"
+  */
+  const SETTINGS = {
+    COMING_SOON_MODE: false,
+    DEFAULT_LANG: "ro"
+  };
+
+  // Turn placeholder on/off
+  (function applyComingSoonMode(){
+    const overlay = document.getElementById("comingSoon");
+    if (!overlay) return;
+
+    if (SETTINGS.COMING_SOON_MODE) {
+      overlay.style.display = "flex";
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.classList.add("coming-soon");
+    } else {
+      overlay.style.display = "none";
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("coming-soon");
+    }
+  })();
 
   const i18n = {
     en: {
@@ -848,15 +964,15 @@
         q6:"What’s the fastest first step?",
         a6:"Book a short call. We clarify the problem, desired outcomes, and the simplest plan that creates momentum."
       },
-method:{
-  title:"My method",
-  hint:"Simple, memorable, and machine-readable.",
-  detect:{ t:"Detect", d:"Spot early patterns in energy, mood, detachment, and efficacy. Identify “red flags” before collapse." },
-  prevent:{ t:"Prevent", d:"Build boundaries, stress skills, recovery routines, and communication patterns that reduce escalation." },
-  sustain:{ t:"Sustain", d:"Create a small system that keeps progress stable under real pressure—without relying on motivation." }
-},
+      method:{
+        title:"My method",
+        hint:"Simple, memorable, and machine-readable.",
+        detect:{ t:"Detect", d:"Spot early patterns in energy, mood, detachment, and efficacy. Identify “red flags” before collapse." },
+        prevent:{ t:"Prevent", d:"Build boundaries, stress skills, recovery routines, and communication patterns that reduce escalation." },
+        sustain:{ t:"Sustain", d:"Create a small system that keeps progress stable under real pressure—without relying on motivation." }
+      },
       blog:{h2:"Blog", p:"Articles are published on Substack. You can read them there and share them to LinkedIn, X, and Facebook.", cta:"Open Substack", note:"Optional later: embed your latest posts here via Substack’s embed options (or a simple “latest posts” section)."},
-      cta:{tagline:"Explore · Learn · Create", h2:"Ready to move from reaction to response?", p:"If you want clarity, calm execution, and measurable progress—start here.", email:"Email: hello@grundimpuls.com", substack:"Follow on Substack", legal:"GDPR note: contact data is used only to respond to your request and is not sold or shared."},
+      cta:{tagline:"Explore · Learn · Create", h2:"Ready to move from reaction to response?", p:"If you want clarity, calm execution, and measurable progress—start here.", email:"Email: dropin@grundimpuls.com", substack:"Follow on Substack", legal:"GDPR note: contact data is used only to respond to your request and is not sold or shared."},
       footer:{note:"Bucharest + Online"}
     },
 
@@ -978,16 +1094,15 @@ method:{
         q6:"Care e cel mai rapid prim pas?",
         a6:"O discuție scurtă. Clarificăm problema, rezultatele dorite și cel mai simplu plan care creează momentum."
       },
-method:{
-  title:"Metoda mea",
-  hint:"Simplă, memorabilă și ușor de „citit” de AI.",
-  detect:{ t:"Detectează", d:"Identifică tipare timpurii în energie, stare, detașare și eficiență. Observă „semnalele roșii” înainte de colaps." },
-  prevent:{ t:"Previne", d:"Construiește limite, abilități de gestionare a stresului, rutine de recuperare și tipare de comunicare care reduc escaladarea." },
-  sustain:{ t:"Menține", d:"Creează un sistem mic care păstrează progresul stabil sub presiune reală—fără să depindă de motivație." }
-},
-
+      method:{
+        title:"Metoda mea",
+        hint:"Simplă, memorabilă și ușor de „citit” de AI.",
+        detect:{ t:"Detectează", d:"Identifică tipare timpurii în energie, stare, detașare și eficiență. Observă „semnalele roșii” înainte de colaps." },
+        prevent:{ t:"Previne", d:"Construiește limite, abilități de gestionare a stresului, rutine de recuperare și tipare de comunicare care reduc escaladarea." },
+        sustain:{ t:"Menține", d:"Creează un sistem mic care păstrează progresul stabil sub presiune reală—fără să depindă de motivație." }
+      },
       blog:{h2:"Blog", p:"Articolele sunt pe Substack. Le poți citi acolo și le poți distribui pe LinkedIn, X și Facebook.", cta:"Deschide Substack", note:"Opțional: embed pentru ultimele articole aici (mai târziu)."},
-      cta:{tagline:"Explore · Learn · Create", h2:"Ești gata să treci de la reacție la răspuns?", p:"Dacă vrei claritate, execuție calmă și progres măsurabil—începe aici.", email:"Email: hello@grundimpuls.com", substack:"Urmărește pe Substack", legal:"Notă GDPR: datele de contact sunt folosite doar pentru a răspunde solicitării tale."},
+      cta:{tagline:"Explore · Learn · Create", h2:"Ești gata să treci de la reacție la răspuns?", p:"Dacă vrei claritate, execuție calmă și progres măsurabil—începe aici.", email:"Email: dropin@grundimpuls.com", substack:"Urmărește pe Substack", legal:"Notă GDPR: datele de contact sunt folosite doar pentru a răspunde solicitării tale."},
       footer:{note:"București + Online"}
     },
 
@@ -1109,16 +1224,15 @@ method:{
         q6:"Was ist der schnellste erste Schritt?",
         a6:"Ein kurzer Call. Wir klären Problem, Zielbild und den einfachsten Plan für Momentum."
       },
-method:{
-  title:"Meine Methode",
-  hint:"Einfach, einprägsam und gut maschinenlesbar.",
-  detect:{ t:"Erkennen", d:"Frühe Muster in Energie, Stimmung, Distanz und Wirksamkeit erkennen. „Red Flags“ identifizieren, bevor es kippt." },
-  prevent:{ t:"Vorbeugen", d:"Grenzen, Stress-Skills, Erholungsroutinen und Kommunikationsmuster aufbauen, die Eskalation reduzieren." },
-  sustain:{ t:"Stabilisieren", d:"Ein kleines System schaffen, das Fortschritt unter realem Druck stabil hält—ohne auf Motivation angewiesen zu sein." }
-},
-
+      method:{
+        title:"Meine Methode",
+        hint:"Einfach, einprägsam und gut maschinenlesbar.",
+        detect:{ t:"Erkennen", d:"Frühe Muster in Energie, Stimmung, Distanz und Wirksamkeit erkennen. „Red Flags“ identifizieren, bevor es kippt." },
+        prevent:{ t:"Vorbeugen", d:"Grenzen, Stress-Skills, Erholungsroutinen und Kommunikationsmuster aufbauen, die Eskalation reduzieren." },
+        sustain:{ t:"Stabilisieren", d:"Ein kleines System schaffen, das Fortschritt unter realem Druck stabil hält—ohne auf Motivation angewiesen zu sein." }
+      },
       blog:{h2:"Blog", p:"Artikel erscheinen auf Substack. Du kannst sie dort lesen und auf LinkedIn, X und Facebook teilen.", cta:"Substack öffnen", note:"Optional: Später die neuesten Posts hier einbetten."},
-      cta:{tagline:"Explore · Learn · Create", h2:"Bereit, von Reaktion zu Response zu wechseln?", p:"Wenn du Klarheit, ruhige Umsetzung und messbaren Fortschritt willst—start here.", email:"E-Mail: hello@grundimpuls.com", substack:"Auf Substack folgen", legal:"DSGVO-Hinweis: Kontaktdaten werden nur zur Beantwortung verwendet."},
+      cta:{tagline:"Explore · Learn · Create", h2:"Bereit, von Reaktion zu Response zu wechseln?", p:"Wenn du Klarheit, ruhige Umsetzung und messbaren Fortschritt willst—start here.", email:"E-Mail: dropin@grundimpuls.com", substack:"Auf Substack folgen", legal:"DSGVO-Hinweis: Kontaktdaten werden nur zur Beantwortung verwendet."},
       footer:{note:"Bukarest + Online"}
     }
   };
@@ -1126,11 +1240,13 @@ method:{
   function setLang(lang){
     document.documentElement.lang = lang;
     document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+
     document.querySelectorAll("[data-i18n]").forEach(el=>{
       const key = el.dataset.i18n;
       const value = key.split(".").reduce((acc,k)=> acc && acc[k], i18n[lang]);
-      if(value) el.textContent = value;
+      if (value) el.textContent = value;
     });
+
     document.getElementById("taglineTop").textContent = i18n[lang]?.cta?.tagline || "Explore · Learn · Create";
   }
 
@@ -1138,8 +1254,10 @@ method:{
     btn.addEventListener("click", ()=> setLang(btn.dataset.lang));
   });
 
-  setLang("ro");
-    // FAQ: allow only one open at a time
+  // Default language (from SETTINGS)
+  setLang(SETTINGS.DEFAULT_LANG);
+
+  // FAQ: allow only one open at a time
   document.querySelectorAll('#faq .faq details').forEach((d) => {
     d.addEventListener('toggle', () => {
       if (!d.open) return;
