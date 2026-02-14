@@ -1,0 +1,1123 @@
+<!-- Save as: index.html  |  Then open it by double-clicking (or serve it locally) -->
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Grundimpuls | Stress & Burnout Coaching, Executive Coaching, CliftonStrengths | Bucharest + Online</title>
+  <meta name="description" content="Grundimpuls (Stamin Daniel) — coaching for stress & burnout prevention/recovery, executive & leadership coaching, and CliftonStrengths-based strengths coaching. For individuals and organizations. Bucharest + online." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://grundimpuls.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Grundimpuls | Coaching for Stress, Leadership & Strengths" />
+  <meta property="og:description" content="Coaching for individuals and organizations: stress & burnout, executive & leadership, CliftonStrengths." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://grundimpuls.com/" />
+  <!-- Set when you have it: -->
+  <!-- <meta property="og:image" content="https://grundimpuls.com/assets/og.jpg" /> -->
+
+  <!-- Performance hints -->
+  <meta name="theme-color" content="#0B1B2B" />
+
+  <style>
+    :root{
+      /* Requested: brighter pastel blue + more visible gold/orange */
+      --bg:#07111C;
+      --panel:#0B1B2B;
+      --panel2:#0E2236;
+      --text:#F5F7FB;
+      --muted:#B9C3D3;
+      --line:rgba(255,255,255,.10);
+      --blue:#3FA9F5;         /* brighter pastel blue */
+      --blueSoft:#8ED0FF;     /* pastel highlight */
+      --gold:#D9B45C;         /* matte gold */
+      --orange:#C86A2A;       /* dark orange */
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1120px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 15% 0%, rgba(63,169,245,.18), transparent 60%),
+                  radial-gradient(1000px 700px at 85% 5%, rgba(217,180,92,.16), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,17,28,.65);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+      min-width: 240px;
+    }
+    .mark{
+      width:38px; height:38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(63,169,245,.25), rgba(217,180,92,.18));
+      border:1px solid rgba(255,255,255,.10);
+      display:grid; place-items:center;
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+    }
+    .wordmark{display:flex; flex-direction:column; line-height:1.05}
+    .wordmark strong{letter-spacing:.6px}
+    .wordmark span{font-size:12px; color:var(--muted); letter-spacing:.16em; text-transform:uppercase}
+    .right{
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .lang{
+      display:flex; gap:6px; align-items:center;
+      border:1px solid var(--line); padding:6px; border-radius: 999px;
+      background: rgba(11,27,43,.7);
+    }
+    .lang button{
+      cursor:pointer;
+      border:0; background: transparent; color: var(--muted);
+      padding:8px 10px; border-radius: 999px;
+      font-weight:600; letter-spacing:.02em;
+    }
+    .lang button.active{
+      color:var(--text);
+      background: rgba(63,169,245,.18);
+      outline:1px solid rgba(63,169,245,.25);
+    }
+    .toplinks a{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:600;
+      padding:10px 10px;
+      border-radius: 999px;
+      border:1px solid transparent;
+    }
+    .toplinks a:hover{
+      color:var(--text);
+      border-color: rgba(217,180,92,.25);
+      background: rgba(217,180,92,.08);
+    }
+
+    /* Sections + spacing (more room between sections) */
+    section{padding: 72px 0}
+    section + section{border-top: 1px solid var(--line)}
+    .hero{padding: 64px 0 78px}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:26px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns: 1fr}
+      .brand{min-width:auto}
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(14,34,54,.92), rgba(11,27,43,.86));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+    .kicker{
+      color: var(--blueSoft);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    h1{font-size:44px; line-height:1.12; margin: 0 0 14px}
+    @media (max-width: 600px){ h1{font-size:36px} }
+    h2{font-size:30px; margin:0 0 14px}
+    h3{font-size:18px; margin:0 0 10px}
+    p{margin:0 0 12px; color: var(--muted)}
+    .lead{font-size:18px; color: var(--text); opacity:.95; margin-bottom: 18px}
+    .badges{
+      display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 6px
+    }
+    .badge{
+      border:1px solid rgba(217,180,92,.28);
+      background: rgba(217,180,92,.08);
+      color: var(--text);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight:700;
+      letter-spacing:.02em;
+    }
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      text-decoration:none;
+      font-weight: 800;
+      letter-spacing:.02em;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(63,169,245,.25), rgba(217,180,92,.18));
+      border-color: rgba(63,169,245,.25);
+    }
+    .btn.primary:hover{outline:1px solid rgba(217,180,92,.28)}
+    .btn.secondary:hover{outline:1px solid rgba(63,169,245,.22)}
+    .mini{
+      font-size:13px; color: var(--muted);
+      margin-top:12px;
+    }
+    .cols3{
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;
+      margin-top:18px;
+    }
+    @media (max-width: 900px){ .cols3{grid-template-columns: 1fr} }
+
+    ul{margin:10px 0 0 18px; color: var(--muted)}
+    li{margin:6px 0}
+    .accent{color: var(--text)}
+    .quote{
+      border-left: 3px solid rgba(217,180,92,.55);
+      padding-left: 12px;
+      margin-top: 10px;
+      color: var(--text);
+    }
+    .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .pill{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:10px 12px; border-radius: 999px;
+      color: var(--muted);
+      font-weight:700; font-size:12px;
+    }
+    .split{
+      display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-top:16px;
+    }
+    @media (max-width: 900px){ .split{grid-template-columns:1fr} }
+    .faq details{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding: 14px 14px;
+      margin: 10px 0;
+    }
+    .faq summary{
+      cursor:pointer;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .footer{
+      padding: 48px 0 70px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+    .small{font-size:12px}
+    .divider{height:1px; background: var(--line); margin: 14px 0}
+    .tagline{
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:12px;
+      color: rgba(217,180,92,.95);
+    }
+/* My method block */
+.methodBlock{
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.methodHeader{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:baseline;
+  margin-bottom: 12px;
+}
+
+.methodTitle{
+  margin:0;
+  font-size: 16px;
+  font-weight: 850;
+  color: var(--text);
+}
+
+.methodHint{
+  font-size: 12px;
+  color: var(--muted);
+  text-align:right;
+  max-width: 44ch;
+}
+
+.methodGrid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 900px){
+  .methodGrid{ grid-template-columns: 1fr; }
+  .methodHint{ text-align:left; }
+}
+
+.methodCard{
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.methodNum{
+  width: 30px; height: 30px;
+  border-radius: 10px;
+  display:inline-flex;
+  align-items:center; justify-content:center;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.05);
+  font-weight: 900;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.methodName{
+  font-weight: 900;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.methodDesc{
+  font-size: 13px;
+  color: var(--muted);
+}
+
+  </style>
+
+  <!-- Structured data (edit phone/email/address when you have them) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"Organization",
+        "@id":"https://grundimpuls.com/#org",
+        "name":"Grundimpuls",
+        "url":"https://grundimpuls.com/",
+        "sameAs":["https://danielstamin.substack.com/"],
+        "founder":{"@id":"https://grundimpuls.com/#person"}
+      },
+      {
+        "@type":"Person",
+        "@id":"https://grundimpuls.com/#person",
+        "name":"Stamin Daniel",
+        "jobTitle":"Executive, Leadership & Well-Being Coach",
+        "worksFor":{"@id":"https://grundimpuls.com/#org"}
+      },
+      {
+        "@type":"Service",
+        "@id":"https://grundimpuls.com/#svc-burnout",
+        "name":"Stress & Burnout Coaching",
+        "provider":{"@id":"https://grundimpuls.com/#org"},
+        "areaServed":"RO",
+        "audience":{"@type":"Audience","audienceType":"Individuals and Organizations"}
+      },
+      {
+        "@type":"Service",
+        "@id":"https://grundimpuls.com/#svc-exec",
+        "name":"Executive & Leadership Coaching",
+        "provider":{"@id":"https://grundimpuls.com/#org"},
+        "audience":{"@type":"Audience","audienceType":"Leaders and Managers"}
+      },
+      {
+        "@type":"Service",
+        "@id":"https://grundimpuls.com/#svc-strengths",
+        "name":"CliftonStrengths Coaching",
+        "provider":{"@id":"https://grundimpuls.com/#org"},
+        "audience":{"@type":"Audience","audienceType":"Individuals, Teams, Organizations"}
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="#top" aria-label="Grundimpuls home">
+        <div class="mark" aria-hidden="true">
+          <!-- Minimal placeholder mark; swap with your SVG logo when ready -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2C8.2 7 6 9.8 6 13.1A6 6 0 0 0 12 19a6 6 0 0 0 6-5.9C18 9.8 15.8 7 12 2Z" stroke="rgba(245,247,251,.9)" stroke-width="1.6"/>
+            <!-- subtle notch (G indicator) -->
+            <path d="M14.7 12.2h1.3" stroke="rgba(245,247,251,.55)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="wordmark">
+          <strong>GRUNDIMPULS</strong>
+          <span id="taglineTop">EXPLORE · LEARN · CREATE</span>
+        </div>
+      </a>
+
+      <div class="right">
+        <nav class="toplinks" aria-label="Top navigation">
+          <a href="#coaching" data-i18n="nav.coaching">Coaching</a>
+          <a href="#training" data-i18n="nav.training">Training</a>
+          <a href="#about" data-i18n="nav.about">About</a>
+          <a href="#faq" data-i18n="nav.faq">FAQ</a>
+          <a href="#blog" data-i18n="nav.blog">Blog</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
+        </nav>
+
+        <div class="lang" aria-label="Language switcher">
+          <button class="active" data-lang="ro">RO</button>
+          <button data-lang="en">EN</button>
+          <button data-lang="de">DE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="grid">
+        <div class="card">
+          <div class="kicker" data-i18n="hero.kicker">Coaching for individuals and organizations</div>
+          <h1 data-i18n="hero.h1">Prevent stress. Recognize burnout early. Redesign your reactions—before you pay the price.</h1>
+          <p class="lead" data-i18n="hero.lead">
+            Many people don’t notice stress and burnout building up because it grows slowly and creates a blind spot. I help you identify where you are, where you want to be, and move there—fast, clearly, and ethically.
+          </p>
+
+          <div class="badges">
+            <div class="badge" data-i18n="hero.badge1">ICF-aligned coaching process</div>
+            <div class="badge" data-i18n="hero.badge2">CliftonStrengths (Gallup) approach</div>
+            <div class="badge" data-i18n="hero.badge3">For leaders, teams, and high-performers</div>
+          </div>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="#contact" data-i18n="hero.cta1">Book a private session</a>
+            <a class="btn secondary" href="#contact" data-i18n="hero.cta2">Talk about a company program</a>
+          </div>
+
+          <p class="mini" data-i18n="hero.mini">
+            Coaching is action-oriented. I can’t do the work for you. I will make it hard to stay unclear.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="hero.businessTitle">Business case (for organizations)</h3>
+          <p data-i18n="hero.businessLead">Coaching is not a “nice-to-have.” It is measurable performance, resilience, and retention work.</p>
+          <ul>
+            <li data-i18n="hero.bc1">Average coaching ROI is reported around 7× in multiple industry sources.</li>
+            <li data-i18n="hero.bc2">Burnout is an occupational phenomenon tied to chronic workplace stress that is not successfully managed.</li>
+            <li data-i18n="hero.bc3">Globally, 12 billion working days are lost yearly to depression and anxiety (≈ US$1T productivity loss).</li>
+            <li data-i18n="hero.bc4">Strengths-based development is associated with higher engagement and lower attrition in Gallup’s reporting.</li>
+          </ul>
+          <div class="divider"></div>
+          <div class="pillRow">
+            <div class="pill" data-i18n="hero.pill1">1:1 leadership coaching</div>
+            <div class="pill" data-i18n="hero.pill2">Team coaching</div>
+            <div class="pill" data-i18n="hero.pill3">Workshops (4–16 hours)</div>
+          </div>
+          <p class="small" style="margin-top:12px" data-i18n="hero.disclaimer">
+            Evidence varies by context; claims are used as directional business framing and should be validated in your organization.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACHING -->
+  <section id="coaching">
+    <div class="wrap">
+      <h2 data-i18n="coaching.h2">Coaching services</h2>
+      <p data-i18n="coaching.p">Three core coaching offers. Same structure. Clear outcomes. No fluff.</p>
+
+      <div class="cols3">
+        <!-- Burnout -->
+        <div class="card">
+          <h3 data-i18n="coaching.burnout.title">1) Stress & Burnout Coaching</h3>
+          <p class="accent" data-i18n="coaching.burnout.oneLine">Recognize early signals, prevent escalation, and rebuild sustainable performance.</p>
+          <div class="quote" data-i18n="coaching.burnout.quote">
+            Burnout is linked to chronic workplace stress that has not been successfully managed—and it has three dimensions: exhaustion, mental distance/cynicism, and reduced efficacy.
+          </div>
+          <ul>
+            <li data-i18n="coaching.burnout.who1">For: high-performers, leaders, parents under load, teams in prolonged delivery pressure.</li>
+            <li data-i18n="coaching.burnout.out1">Outcomes: clearer boundaries, improved recovery, reduced irritability, better focus and decisions.</li>
+            <li data-i18n="coaching.burnout.how1">Method: detect → prevent → integrate (habits + environment + leadership behaviors).</li>
+          </ul>
+<!-- My method (Burnout) -->
+<div class="methodBlock">
+  <div class="methodHeader">
+    <h4 class="methodTitle" data-i18n="method.title">My method</h4>
+    <div class="methodHint" data-i18n="method.hint">Simple, memorable, and machine-readable.</div>
+  </div>
+
+  <div class="methodGrid">
+    <div class="methodCard">
+      <div class="methodNum">1</div>
+      <div class="methodName" data-i18n="method.detect.t">Detect</div>
+      <div class="methodDesc" data-i18n="method.detect.d">
+        Spot early patterns in energy, mood, detachment, and efficacy. Identify “red flags” before collapse.
+      </div>
+    </div>
+
+    <div class="methodCard">
+      <div class="methodNum">2</div>
+      <div class="methodName" data-i18n="method.prevent.t">Prevent</div>
+      <div class="methodDesc" data-i18n="method.prevent.d">
+        Build boundaries, stress skills, recovery routines, and communication patterns that reduce escalation.
+      </div>
+    </div>
+
+    <div class="methodCard">
+      <div class="methodNum">3</div>
+      <div class="methodName" data-i18n="method.sustain.t">Sustain</div>
+      <div class="methodDesc" data-i18n="method.sustain.d">
+        Create a small system that keeps progress stable under real pressure—without relying on motivation.
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="#contact" data-i18n="coaching.burnout.cta">Start with a diagnostic session</a>
+          </div>
+        </div>
+
+        <!-- Executive -->
+        <div class="card">
+          <h3 data-i18n="coaching.exec.title">2) Executive & Leadership Coaching</h3>
+          <p class="accent" data-i18n="coaching.exec.oneLine">Better decisions, clearer leadership behavior, less noise, stronger execution.</p>
+          <ul>
+            <li data-i18n="coaching.exec.who1">For: founders, executives, middle management, high-potentials.</li>
+            <li data-i18n="coaching.exec.out1">Outcomes: sharper priorities, stronger communication, conflict navigation, consistent follow-through.</li>
+            <li data-i18n="coaching.exec.how1">Focus: thinking quality + leadership presence + stress-resilient performance.</li>
+          </ul>
+          <div class="ctaRow">
+            <a class="btn primary" href="#contact" data-i18n="coaching.exec.cta">Discuss a leadership package</a>
+          </div>
+        </div>
+
+        <!-- Strengths -->
+        <div class="card">
+          <h3 data-i18n="coaching.str.title">3) Strengths Coaching (CliftonStrengths)</h3>
+          <p class="accent" data-i18n="coaching.str.oneLine">Turn talent into consistent strengths—then build roles, habits, and teamwork around them.</p>
+          <ul>
+            <li data-i18n="coaching.str.who1">For: individuals, leaders, teams that want clarity, energy, and collaboration.</li>
+            <li data-i18n="coaching.str.out1">Outcomes: higher engagement, clearer role fit, better collaboration patterns.</li>
+            <li data-i18n="coaching.str.how1">Tools: CliftonStrengths insights → applied action plan → habit loops + team agreements.</li>
+          </ul>
+          <div class="ctaRow">
+            <a class="btn primary" href="#contact" data-i18n="coaching.str.cta">Use Strengths strategically</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="split" style="margin-top:22px">
+        <div class="card">
+          <h3 data-i18n="coaching.process.title">How coaching works</h3>
+          <ol style="margin:10px 0 0 18px; color: var(--muted)">
+            <li data-i18n="coaching.process.s1"><span class="accent">Session 1:</span> clarify objectives, boundaries, confidentiality, and success criteria.</li>
+            <li data-i18n="coaching.process.s2">diagnose patterns (stress signals, assumptions, behaviors, context).</li>
+            <li data-i18n="coaching.process.s3">build a focused plan (experiments, habits, communication moves).</li>
+            <li data-i18n="coaching.process.s4">weekly iterations (what worked / what didn’t / what’s next).</li>
+            <li data-i18n="coaching.process.s5">integration: sustainable routines + measurable progress indicators.</li>
+          </ol>
+          <p class="mini" data-i18n="coaching.process.note">Coaching is not therapy. If clinical support is needed, I refer you appropriately.</p>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="coaching.proof.title">Proof & trust</h3>
+          <ul>
+            <li data-i18n="coaching.proof.p1">ICF-aligned coaching process and ethical boundaries.</li>
+            <li data-i18n="coaching.proof.p2">Mental well-being upskilling: “From Burnout to Balance” (2 CCE). </li>
+            <li data-i18n="coaching.proof.p3">Empathy + boundaries approach: present, non-judgmental, action-oriented.</li>
+          </ul>
+          <p class="small" data-i18n="coaching.proof.add">
+            Add testimonials and client logos only when permitted. Short case snapshots outperform generic claims.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINING -->
+  <section id="training">
+    <div class="wrap">
+      <h2 data-i18n="training.h2">Training (4–16 hours)</h2>
+      <p data-i18n="training.p">Three flagship workshop topics. Depth and format are adapted with the client (half-day to two days).</p>
+
+      <div class="cols3">
+        <div class="card">
+          <h3 data-i18n="training.mw.title">1) Mental Wellness in the Workplace</h3>
+          <p class="accent" data-i18n="training.mw.oneLine">A practical, stigma-free program to recognize overload early and build team resilience.</p>
+          <ul>
+            <li data-i18n="training.mw.point1">What changes: better self-awareness, healthier boundaries, manager “coach approach.”</li>
+            <li data-i18n="training.mw.point2">Why it matters: poor working environments and excessive workloads increase mental health risk.</li>
+            <li data-i18n="training.mw.point3">Includes: detection checklists, STOP method, life-balance exercise, resilience routines.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="training.ct.title">2) Critical Thinking (Business)</h3>
+          <p class="accent" data-i18n="training.ct.oneLine">Make better decisions under uncertainty: clearer problems, fewer biases, stronger reasoning.</p>
+          <ul>
+            <li data-i18n="training.ct.point1">Tools: problem framing, assumption testing, evidence grading, decision criteria.</li>
+            <li data-i18n="training.ct.point2">Outcomes: fewer avoidable errors, better alignment, faster decisions with higher quality.</li>
+            <li data-i18n="training.ct.point3">Use cases: strategy, product, finance, HR decisions, conflict and negotiation.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="training.nv.title">3) Non-Verbal Communication</h3>
+          <p class="accent" data-i18n="training.nv.oneLine">Presence, trust, and influence: align what you say with what people actually perceive.</p>
+          <ul>
+            <li data-i18n="training.nv.point1">Focus: posture, eye contact, micro-signals, voice tone, timing, space.</li>
+            <li data-i18n="training.nv.point2">Outcomes: increased credibility, better leadership signal, fewer misunderstandings.</li>
+            <li data-i18n="training.nv.point3">Practice-heavy: role plays, feedback loops, real scenarios from your workplace.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:22px">
+        <h3 data-i18n="training.custom.title">Other topics (available on request)</h3>
+        <p data-i18n="training.custom.p">
+          You have additional needs. I keep the homepage focused; in a discovery call we scope the exact agenda, examples, and deliverables.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <h2 data-i18n="about.h2">About</h2>
+      <div class="split">
+        <div class="card">
+          <h3 data-i18n="about.who.title">Stamin Daniel</h3>
+          <p data-i18n="about.who.p1">Executive & leadership coach with a structured, pragmatic style—focused on clarity, accountability, and sustainable performance.</p>
+          <p data-i18n="about.who.p2">I work with individuals and companies. Sessions are intense, often “aha-heavy,” and built around action and measurable progress.</p>
+          <div class="badges">
+            <div class="badge" data-i18n="about.badge1">Stress & burnout focus</div>
+            <div class="badge" data-i18n="about.badge2">Leadership & communication</div>
+            <div class="badge" data-i18n="about.badge3">CliftonStrengths</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 data-i18n="about.eeat.title">What makes this credible</h3>
+          <ul>
+            <li data-i18n="about.eeat.p1">Ethics and boundaries: coaching ≠ therapy; referral when needed.</li>
+            <li data-i18n="about.eeat.p2">Mental well-being is now a core competence expectation in coaching; I train and update continuously.</li>
+            <li data-i18n="about.eeat.p3">Practical tools: detection, prevention, integration—usable next day at work and at home.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <h2 data-i18n="faq.h2">FAQ</h2>
+      <div class="faq">
+        <details>
+          <summary data-i18n="faq.q1">Is coaching the same as therapy?</summary>
+          <p data-i18n="faq.a1">No. Coaching is forward-focused and action-oriented. I do not diagnose or treat mental illness. If clinical support is needed, I refer appropriately.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q2">How do I know if I’m stressed or burned out?</summary>
+          <p data-i18n="faq.a2">We assess symptoms and context. Burnout is occupational and typically includes exhaustion, cynicism/mental distance, and reduced efficacy.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q3">How long is a coaching cycle?</summary>
+          <p data-i18n="faq.a3">Typical individual cycles are 7 sessions. Teams often run 6 sessions of 2–4 hours (depending on group size and goals).</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q4">Do you work with companies?</summary>
+          <p data-i18n="faq.a4">Yes—leadership coaching, team coaching, and trainings (4–16 hours). We define scope, success criteria, and confidentiality boundaries upfront.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q5">Where do sessions happen?</summary>
+          <p data-i18n="faq.a5">Online or in-person (Bucharest). For corporate work: on-site or online.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q6">What’s the fastest first step?</summary>
+          <p data-i18n="faq.a6">Book a short call. We clarify the problem, desired outcomes, and the simplest plan that creates momentum.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="wrap">
+      <h2 data-i18n="blog.h2">Blog</h2>
+      <div class="card">
+        <p data-i18n="blog.p">Articles are published on Substack. You can read them there and share them to LinkedIn, X, and Facebook.</p>
+        <div class="ctaRow">
+          <a class="btn primary" href="https://danielstamin.substack.com/" target="_blank" rel="noopener" data-i18n="blog.cta">Open Substack</a>
+        </div>
+        <p class="small" data-i18n="blog.note">Optional later: embed your latest posts here via Substack’s embed options (or a simple “latest posts” section).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="card">
+        <div class="tagline" data-i18n="cta.tagline">Explore · Learn · Create</div>
+        <h2 style="margin-top:10px" data-i18n="cta.h2">Ready to move from reaction to response?</h2>
+        <p class="lead" data-i18n="cta.p">If you want clarity, calm execution, and measurable progress—start here.</p>
+        <div class="ctaRow">
+          <!-- Replace with your real booking link/email/WhatsApp when ready -->
+          <a class="btn primary" href="mailto:hello@grundimpuls.com" data-i18n="cta.email">Email: hello@grundimpuls.com</a>
+          <a class="btn secondary" href="https://danielstamin.substack.com/" target="_blank" rel="noopener" data-i18n="cta.substack">Follow on Substack</a>
+        </div>
+        <p class="small" style="margin-top:12px" data-i18n="cta.legal">
+          GDPR note: contact data is used only to respond to your request and is not sold or shared.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="small">
+      © <span id="year"></span> Grundimpuls — Stamin Daniel · <span data-i18n="footer.note">Bucharest + Online</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const i18n = {
+    en: {
+      nav:{coaching:"Coaching", training:"Training", about:"About", faq:"FAQ", blog:"Blog", contact:"Contact"},
+      hero:{
+        kicker:"Coaching for individuals and organizations",
+        h1:"Prevent stress. Recognize burnout early. Redesign your reactions—before you pay the price.",
+        lead:"Many people don’t notice stress and burnout building up because it grows slowly and creates a blind spot. I help you identify where you are, where you want to be, and move there—fast, clearly, and ethically.",
+        badge1:"ICF-aligned coaching process",
+        badge2:"CliftonStrengths (Gallup) approach",
+        badge3:"For leaders, teams, and high-performers",
+        cta1:"Book a private session",
+        cta2:"Talk about a company program",
+        mini:"Coaching is action-oriented. I can’t do the work for you. I will make it hard to stay unclear.",
+        businessTitle:"Business case (for organizations)",
+        businessLead:"Coaching is not a “nice-to-have.” It is measurable performance, resilience, and retention work.",
+        bc1:"Average coaching ROI is reported around 7× in multiple industry sources.",
+        bc2:"Burnout is an occupational phenomenon tied to chronic workplace stress that is not successfully managed.",
+        bc3:"Globally, 12 billion working days are lost yearly to depression and anxiety (≈ US$1T productivity loss).",
+        bc4:"Strengths-based development is associated with higher engagement and lower attrition in Gallup’s reporting.",
+        pill1:"1:1 leadership coaching",
+        pill2:"Team coaching",
+        pill3:"Workshops (4–16 hours)",
+        disclaimer:"Evidence varies by context; claims are used as directional business framing and should be validated in your organization."
+      },
+      coaching:{
+        h2:"Coaching services",
+        p:"Three core coaching offers. Same structure. Clear outcomes. No fluff.",
+        burnout:{
+          title:"1) Stress & Burnout Coaching",
+          oneLine:"Recognize early signals, prevent escalation, and rebuild sustainable performance.",
+          quote:"Burnout is linked to chronic workplace stress that has not been successfully managed—and it has three dimensions: exhaustion, mental distance/cynicism, and reduced efficacy.",
+          who1:"For: high-performers, leaders, parents under load, teams in prolonged delivery pressure.",
+          out1:"Outcomes: clearer boundaries, improved recovery, reduced irritability, better focus and decisions.",
+          how1:"Method: detect → prevent → integrate (habits + environment + leadership behaviors).",
+          cta:"Start with a diagnostic session"
+        },
+        exec:{
+          title:"2) Executive & Leadership Coaching",
+          oneLine:"Better decisions, clearer leadership behavior, less noise, stronger execution.",
+          who1:"For: founders, executives, middle management, high-potentials.",
+          out1:"Outcomes: sharper priorities, stronger communication, conflict navigation, consistent follow-through.",
+          how1:"Focus: thinking quality + leadership presence + stress-resilient performance.",
+          cta:"Discuss a leadership package"
+        },
+        str:{
+          title:"3) Strengths Coaching (CliftonStrengths)",
+          oneLine:"Turn talent into consistent strengths—then build roles, habits, and teamwork around them.",
+          who1:"For: individuals, leaders, teams that want clarity, energy, and collaboration.",
+          out1:"Outcomes: higher engagement, clearer role fit, better collaboration patterns.",
+          how1:"Tools: CliftonStrengths insights → applied action plan → habit loops + team agreements.",
+          cta:"Use Strengths strategically"
+        },
+        process:{
+          title:"How coaching works",
+          s1:"Session 1: clarify objectives, boundaries, confidentiality, and success criteria.",
+          s2:"diagnose patterns (stress signals, assumptions, behaviors, context).",
+          s3:"build a focused plan (experiments, habits, communication moves).",
+          s4:"weekly iterations (what worked / what didn’t / what’s next).",
+          s5:"integration: sustainable routines + measurable progress indicators.",
+          note:"Coaching is not therapy. If clinical support is needed, I refer you appropriately."
+        },
+        proof:{
+          title:"Proof & trust",
+          p1:"ICF-aligned coaching process and ethical boundaries.",
+          p2:"Mental well-being upskilling: “From Burnout to Balance” (2 CCE).",
+          p3:"Empathy + boundaries approach: present, non-judgmental, action-oriented.",
+          add:"Add testimonials and client logos only when permitted. Short case snapshots outperform generic claims."
+        }
+      },
+      training:{
+        h2:"Training (4–16 hours)",
+        p:"Three flagship workshop topics. Depth and format are adapted with the client (half-day to two days).",
+        mw:{
+          title:"1) Mental Wellness in the Workplace",
+          oneLine:"A practical, stigma-free program to recognize overload early and build team resilience.",
+          point1:"What changes: better self-awareness, healthier boundaries, manager “coach approach.”",
+          point2:"Why it matters: poor working environments and excessive workloads increase mental health risk.",
+          point3:"Includes: detection checklists, STOP method, life-balance exercise, resilience routines."
+        },
+        ct:{
+          title:"2) Critical Thinking (Business)",
+          oneLine:"Make better decisions under uncertainty: clearer problems, fewer biases, stronger reasoning.",
+          point1:"Tools: problem framing, assumption testing, evidence grading, decision criteria.",
+          point2:"Outcomes: fewer avoidable errors, better alignment, faster decisions with higher quality.",
+          point3:"Use cases: strategy, product, finance, HR decisions, conflict and negotiation."
+        },
+        nv:{
+          title:"3) Non-Verbal Communication",
+          oneLine:"Presence, trust, and influence: align what you say with what people actually perceive.",
+          point1:"Focus: posture, eye contact, micro-signals, voice tone, timing, space.",
+          point2:"Outcomes: increased credibility, better leadership signal, fewer misunderstandings.",
+          point3:"Practice-heavy: role plays, feedback loops, real scenarios from your workplace."
+        },
+        custom:{
+          title:"Other topics (available on request)",
+          p:"You have additional needs. I keep the homepage focused; in a discovery call we scope the exact agenda, examples, and deliverables."
+        }
+      },
+      about:{
+        h2:"About",
+        who:{title:"Stamin Daniel", p1:"Executive & leadership coach with a structured, pragmatic style—focused on clarity, accountability, and sustainable performance.", p2:"I work with individuals and companies. Sessions are intense, often “aha-heavy,” and built around action and measurable progress."},
+        badge1:"Stress & burnout focus", badge2:"Leadership & communication", badge3:"CliftonStrengths",
+        eeat:{title:"What makes this credible", p1:"Ethics and boundaries: coaching ≠ therapy; referral when needed.", p2:"Mental well-being is now a core competence expectation in coaching; I train and update continuously.", p3:"Practical tools: detection, prevention, integration—usable next day at work and at home."}
+      },
+      faq:{
+        h2:"FAQ",
+        q1:"Is coaching the same as therapy?",
+        a1:"No. Coaching is forward-focused and action-oriented. I do not diagnose or treat mental illness. If clinical support is needed, I refer appropriately.",
+        q2:"How do I know if I’m stressed or burned out?",
+        a2:"We assess symptoms and context. Burnout is occupational and typically includes exhaustion, cynicism/mental distance, and reduced efficacy.",
+        q3:"How long is a coaching cycle?",
+        a3:"Typical individual cycles are 7 sessions. Teams often run 6 sessions of 2–4 hours (depending on group size and goals).",
+        q4:"Do you work with companies?",
+        a4:"Yes—leadership coaching, team coaching, and trainings (4–16 hours). We define scope, success criteria, and confidentiality boundaries upfront.",
+        q5:"Where do sessions happen?",
+        a5:"Online or in-person (Bucharest). For corporate work: on-site or online.",
+        q6:"What’s the fastest first step?",
+        a6:"Book a short call. We clarify the problem, desired outcomes, and the simplest plan that creates momentum."
+      },
+method:{
+  title:"My method",
+  hint:"Simple, memorable, and machine-readable.",
+  detect:{ t:"Detect", d:"Spot early patterns in energy, mood, detachment, and efficacy. Identify “red flags” before collapse." },
+  prevent:{ t:"Prevent", d:"Build boundaries, stress skills, recovery routines, and communication patterns that reduce escalation." },
+  sustain:{ t:"Sustain", d:"Create a small system that keeps progress stable under real pressure—without relying on motivation." }
+},
+      blog:{h2:"Blog", p:"Articles are published on Substack. You can read them there and share them to LinkedIn, X, and Facebook.", cta:"Open Substack", note:"Optional later: embed your latest posts here via Substack’s embed options (or a simple “latest posts” section)."},
+      cta:{tagline:"Explore · Learn · Create", h2:"Ready to move from reaction to response?", p:"If you want clarity, calm execution, and measurable progress—start here.", email:"Email: hello@grundimpuls.com", substack:"Follow on Substack", legal:"GDPR note: contact data is used only to respond to your request and is not sold or shared."},
+      footer:{note:"Bucharest + Online"}
+    },
+
+    ro: {
+      nav:{coaching:"Coaching", training:"Training", about:"Despre", faq:"Întrebări", blog:"Blog", contact:"Contact"},
+      hero:{
+        kicker:"Coaching individual și pentru organizații",
+        h1:"Previi stresul. Recunoști burnout-ul devreme. Îți redesenezi reacțiile—înainte să plătești prețul.",
+        lead:"Mulți oameni nu observă stresul și burnout-ul cum se acumulează, pentru că se construiesc lent și creează un punct orb. Te ajut să vezi clar unde ești, unde vrei să ajungi și să faci tranziția—rapid, etic, fără dramatism.",
+        badge1:"Proces de coaching aliniat ICF",
+        badge2:"Abordare CliftonStrengths (Gallup)",
+        badge3:"Pentru lideri, echipe și high-performers",
+        cta1:"Programează o sesiune 1:1",
+        cta2:"Discută un program pentru companie",
+        mini:"Coaching-ul este orientat spre acțiune. Nu pot face efortul în locul tău. Pot face dificil să rămâi în neclaritate.",
+        businessTitle:"Business case (pentru organizații)",
+        businessLead:"Coaching-ul nu e „nice-to-have”. Este lucru măsurabil pe performanță, reziliență și retenție.",
+        bc1:"ROI-ul coaching-ului este raportat frecvent în jurul 7× în surse din industrie.",
+        bc2:"Burnout-ul este un fenomen ocupațional legat de stres cronic la locul de muncă, care nu a fost gestionat cu succes.",
+        bc3:"Global, se pierd anual 12 miliarde de zile de lucru din cauza depresiei și anxietății (≈ 1 trilion USD productivitate).",
+        bc4:"Dezvoltarea bazată pe puncte forte este asociată cu engagement mai mare și attrition mai mic în raportările Gallup.",
+        pill1:"Coaching leadership 1:1",
+        pill2:"Team coaching",
+        pill3:"Workshop-uri (4–16 ore)",
+        disclaimer:"Efectele diferă în funcție de context; afirmațiile sunt folosite ca argument de business și trebuie validate în organizația ta."
+      },
+      coaching:{
+        h2:"Servicii de coaching",
+        p:"Trei oferte centrale. Aceeași structură. Rezultate clare. Fără marketing gol.",
+        burnout:{
+          title:"1) Coaching pentru Stres & Burnout",
+          oneLine:"Identifici semnalele devreme, previi escaladarea și reconstruiești performanță sustenabilă.",
+          quote:"Burnout-ul este legat de stres cronic la muncă, care nu a fost gestionat cu succes—și are trei dimensiuni: epuizare, distanțare/cinism și eficacitate redusă.",
+          who1:"Pentru: high-performers, lideri, părinți sub presiune, echipe în livrare continuă.",
+          out1:"Rezultate: limite mai bune, recuperare mai bună, iritabilitate redusă, focus și decizii mai bune.",
+          how1:"Metodă: detectează → previne → integrează (obiceiuri + context + comportamente de leadership).",
+          cta:"Începe cu o sesiune de diagnostic"
+        },
+        exec:{
+          title:"2) Executive & Leadership Coaching",
+          oneLine:"Decizii mai bune, comportament de leadership mai clar, mai puțin zgomot, execuție mai puternică.",
+          who1:"Pentru: fondatori, executivi, middle management, high-potentials.",
+          out1:"Rezultate: priorități mai clare, comunicare mai puternică, gestionarea conflictelor, follow-through constant.",
+          how1:"Focus: calitatea gândirii + prezență de lider + performanță rezilientă la stres.",
+          cta:"Discută un pachet de leadership"
+        },
+        str:{
+          title:"3) Strengths Coaching (CliftonStrengths)",
+          oneLine:"Transformi talentul în puncte forte consistente—apoi construiești roluri, obiceiuri și colaborare pe baza lor.",
+          who1:"Pentru: persoane, lideri, echipe care vor claritate, energie și colaborare.",
+          out1:"Rezultate: engagement mai mare, potrivire mai bună rol–persoană, colaborare mai bună.",
+          how1:"Instrumente: insight-uri CliftonStrengths → plan aplicat → bucle de obiceiuri + acorduri de echipă.",
+          cta:"Folosește punctele forte strategic"
+        },
+        process:{
+          title:"Cum funcționează coaching-ul",
+          s1:"Sesiunea 1: obiective, limite, confidențialitate și criterii de succes.",
+          s2:"diagnostic: tipare (semnale de stres, convingeri, comportamente, context).",
+          s3:"plan simplu: experimente, obiceiuri, mișcări de comunicare.",
+          s4:"iterații săptămânale: ce a mers / ce nu / următorul pas.",
+          s5:"integrare: rutine sustenabile + indicatori de progres.",
+          note:"Coaching-ul nu este terapie. Dacă e nevoie de suport clinic, recomand către specialist."
+        },
+        proof:{
+          title:"Dovezi & încredere",
+          p1:"Proces aliniat ICF și limite etice clare.",
+          p2:"Upskilling mental well-being: „From Burnout to Balance” (2 CCE).",
+          p3:"Empatie + limite: prezent, fără judecată, orientat spre acțiune.",
+          add:"Adaugă testimoniale și logo-uri doar cu permisiune. Mini-cazurile reale bat afirmațiile generale."
+        }
+      },
+      training:{
+        h2:"Training (4–16 ore)",
+        p:"Trei workshop-uri principale. Profunzimea și formatul se adaptează cu clientul (jumătate de zi până la 2 zile).",
+        mw:{
+          title:"1) Mental Wellness la locul de muncă",
+          oneLine:"Program practic, fără stigmat, pentru a recunoaște suprasolicitarea devreme și a construi reziliență.",
+          point1:"Ce se schimbă: auto-observare mai bună, limite sănătoase, „coach approach” pentru manageri.",
+          point2:"De ce contează: mediile de lucru slabe și workload-ul excesiv cresc riscul de probleme de sănătate mintală.",
+          point3:"Include: checklist-uri de detecție, metoda STOP, exercițiu de life-balance, rutine de reziliență."
+        },
+        ct:{
+          title:"2) Gândire critică (Business)",
+          oneLine:"Decizii mai bune în incertitudine: probleme mai clare, mai puține bias-uri, raționament mai solid.",
+          point1:"Instrumente: problem framing, testarea presupunerilor, evaluarea evidenței, criterii de decizie.",
+          point2:"Rezultate: mai puține erori evitabile, aliniere mai bună, decizii mai rapide și mai bune.",
+          point3:"Aplicabil: strategie, produs, finance, HR, conflict și negociere."
+        },
+        nv:{
+          title:"3) Comunicare non-verbală",
+          oneLine:"Prezență, încredere și influență: aliniezi ce spui cu ce percep oamenii.",
+          point1:"Focus: postură, contact vizual, micro-semne, ton, timing, spațiu.",
+          point2:"Rezultate: credibilitate mai mare, semnal de leadership mai bun, mai puține neînțelegeri.",
+          point3:"Multă practică: role play, feedback, scenarii reale din companie."
+        },
+        custom:{
+          title:"Alte teme (la cerere)",
+          p:"Ai și alte nevoi. Păstrez homepage-ul focusat; în discovery call definim agenda, exemplele și livrabilele."
+        }
+      },
+      about:{
+        h2:"Despre",
+        who:{title:"Stamin Daniel", p1:"Coach executive & leadership, stil structurat și pragmatic—claritate, accountability și performanță sustenabilă.", p2:"Lucrez cu persoane și companii. Sesiunile sunt intense, cu insight-uri și acțiuni concrete."},
+        badge1:"Stres & burnout", badge2:"Leadership & comunicare", badge3:"CliftonStrengths",
+        eeat:{title:"De ce e credibil", p1:"Etică și limite: coaching ≠ terapie; referire când e necesar.", p2:"Mental well-being a devenit competență-cheie; mă formez și actualizez constant.", p3:"Instrumente practice: detectare, prevenție, integrare—utilizabile imediat."}
+      },
+      faq:{
+        h2:"Întrebări frecvente",
+        q1:"Coaching-ul e același lucru cu terapia?",
+        a1:"Nu. Coaching-ul e orientat spre viitor și acțiune. Nu diagnostichez și nu tratez tulburări. Dacă e nevoie de suport clinic, recomand specialist.",
+        q2:"Cum știu dacă e stres sau burnout?",
+        a2:"Evaluăm simptomele și contextul. Burnout-ul este ocupațional și include frecvent epuizare, distanțare/cinism și eficacitate redusă.",
+        q3:"Cât durează un ciclu de coaching?",
+        a3:"De regulă 7 sesiuni 1:1. Pentru echipe: adesea 6 sesiuni a câte 2–4 ore (în funcție de mărime și obiective).",
+        q4:"Lucrezi cu companii?",
+        a4:"Da—coaching de leadership, team coaching și training (4–16 ore). Definim scope, criterii de succes și confidențialitate de la început.",
+        q5:"Unde au loc sesiunile?",
+        a5:"Online sau fizic (București). Pentru companii: on-site sau online.",
+        q6:"Care e cel mai rapid prim pas?",
+        a6:"O discuție scurtă. Clarificăm problema, rezultatele dorite și cel mai simplu plan care creează momentum."
+      },
+method:{
+  title:"Metoda mea",
+  hint:"Simplă, memorabilă și ușor de „citit” de AI.",
+  detect:{ t:"Detectează", d:"Identifică tipare timpurii în energie, stare, detașare și eficiență. Observă „semnalele roșii” înainte de colaps." },
+  prevent:{ t:"Previne", d:"Construiește limite, abilități de gestionare a stresului, rutine de recuperare și tipare de comunicare care reduc escaladarea." },
+  sustain:{ t:"Menține", d:"Creează un sistem mic care păstrează progresul stabil sub presiune reală—fără să depindă de motivație." }
+},
+
+      blog:{h2:"Blog", p:"Articolele sunt pe Substack. Le poți citi acolo și le poți distribui pe LinkedIn, X și Facebook.", cta:"Deschide Substack", note:"Opțional: embed pentru ultimele articole aici (mai târziu)."},
+      cta:{tagline:"Explore · Learn · Create", h2:"Ești gata să treci de la reacție la răspuns?", p:"Dacă vrei claritate, execuție calmă și progres măsurabil—începe aici.", email:"Email: hello@grundimpuls.com", substack:"Urmărește pe Substack", legal:"Notă GDPR: datele de contact sunt folosite doar pentru a răspunde solicitării tale."},
+      footer:{note:"București + Online"}
+    },
+
+    de: {
+      nav:{coaching:"Coaching", training:"Training", about:"Über mich", faq:"FAQ", blog:"Blog", contact:"Kontakt"},
+      hero:{
+        kicker:"Coaching für Einzelpersonen und Organisationen",
+        h1:"Stress vorbeugen. Burnout früh erkennen. Reaktionen neu gestalten—bevor du den Preis zahlst.",
+        lead:"Viele merken nicht, wie sich Stress und Burnout aufbauen: langsam, schleichend, mit einem blinden Fleck. Ich helfe dir zu erkennen, wo du stehst, wohin du willst und wie du dorthin kommst—klar, schnell und ethisch.",
+        badge1:"ICF-orientierter Coaching-Prozess",
+        badge2:"CliftonStrengths (Gallup) Ansatz",
+        badge3:"Für Führungskräfte, Teams und High-Performer",
+        cta1:"Private Session buchen",
+        cta2:"Unternehmensprogramm besprechen",
+        mini:"Coaching ist handlungsorientiert. Ich kann die Arbeit nicht für dich tun. Ich kann es schwer machen, unklar zu bleiben.",
+        businessTitle:"Business Case (für Unternehmen)",
+        businessLead:"Coaching ist kein „Nice-to-have“. Es ist messbare Arbeit an Performance, Resilienz und Bindung.",
+        bc1:"Ein Coaching-ROI um 7× wird in mehreren Branchenquellen berichtet.",
+        bc2:"Burnout ist ein arbeitsbezogenes Phänomen: chronischer Stress am Arbeitsplatz, der nicht erfolgreich bewältigt wurde.",
+        bc3:"Weltweit gehen jährlich 12 Milliarden Arbeitstage durch Depression und Angst verloren (≈ 1 Bio. USD Produktivitätsverlust).",
+        bc4:"Stärkenbasierte Entwicklung wird bei Gallup mit höherem Engagement und geringerer Fluktuation verknüpft.",
+        pill1:"1:1 Leadership Coaching",
+        pill2:"Team Coaching",
+        pill3:"Workshops (4–16 Std.)",
+        disclaimer:"Wirkung ist kontextabhängig; Aussagen dienen als Business-Rahmung und sollten intern validiert werden."
+      },
+      coaching:{
+        h2:"Coaching-Angebote",
+        p:"Drei Kernangebote. Gleiche Struktur. Klare Ergebnisse. Kein Blabla.",
+        burnout:{
+          title:"1) Stress- & Burnout-Coaching",
+          oneLine:"Frühe Signale erkennen, Eskalation verhindern, nachhaltige Leistung wieder aufbauen.",
+          quote:"Burnout ist mit chronischem, nicht erfolgreich bewältigtem Arbeitsstress verknüpft—und umfasst drei Dimensionen: Erschöpfung, Distanz/Zynismus und reduzierte Wirksamkeit.",
+          who1:"Für: High-Performer, Führungskräfte, Eltern unter Dauerlast, Teams mit permanentem Druck.",
+          out1:"Ergebnisse: bessere Grenzen, bessere Regeneration, weniger Reizbarkeit, mehr Fokus und bessere Entscheidungen.",
+          how1:"Methode: erkennen → vorbeugen → integrieren (Gewohnheiten + Umfeld + Leadership-Verhalten).",
+          cta:"Mit einer Diagnose-Session starten"
+        },
+        exec:{
+          title:"2) Executive & Leadership Coaching",
+          oneLine:"Bessere Entscheidungen, klareres Führungsverhalten, weniger Lärm, stärkere Umsetzung.",
+          who1:"Für: Gründer, Executives, Middle Management, High Potentials.",
+          out1:"Ergebnisse: schärfere Prioritäten, bessere Kommunikation, Konfliktkompetenz, konsequentes Follow-through.",
+          how1:"Fokus: Denkqualität + Präsenz + stressresiliente Performance.",
+          cta:"Leadership-Paket besprechen"
+        },
+        str:{
+          title:"3) Stärken-Coaching (CliftonStrengths)",
+          oneLine:"Talent in stabile Stärken übersetzen—und Rollen, Gewohnheiten und Teamarbeit darauf aufbauen.",
+          who1:"Für: Einzelpersonen, Führungskräfte, Teams, die Klarheit, Energie und Zusammenarbeit wollen.",
+          out1:"Ergebnisse: höheres Engagement, bessere Rollenpassung, bessere Zusammenarbeit.",
+          how1:"Tools: CliftonStrengths Insights → Aktionsplan → Habit-Loops + Team-Agreements.",
+          cta:"Stärken strategisch nutzen"
+        },
+        process:{
+          title:"So läuft Coaching ab",
+          s1:"Session 1: Ziele, Grenzen, Vertraulichkeit und Erfolgskriterien klären.",
+          s2:"Muster diagnostizieren (Stresssignale, Annahmen, Verhalten, Kontext).",
+          s3:"Fokussierten Plan bauen (Experimente, Gewohnheiten, Kommunikationsmoves).",
+          s4:"Wöchentliche Iterationen (was wirkt / was nicht / nächster Schritt).",
+          s5:"Integration: nachhaltige Routinen + messbare Fortschrittsindikatoren.",
+          note:"Coaching ist keine Therapie. Wenn klinische Unterstützung nötig ist, verweise ich weiter."
+        },
+        proof:{
+          title:"Nachweise & Vertrauen",
+          p1:"ICF-orientierter Prozess und klare ethische Grenzen.",
+          p2:"Mental-Well-Being Upskilling: „From Burnout to Balance“ (2 CCE).",
+          p3:"Empathie + Grenzen: präsent, nicht wertend, handlungsorientiert.",
+          add:"Testimonials/Logos nur mit Erlaubnis. Kurze Case-Snippets schlagen generische Claims."
+        }
+      },
+      training:{
+        h2:"Training (4–16 Std.)",
+        p:"Drei Kern-Workshops. Tiefe und Format werden mit dem Kunden abgestimmt (Halbtag bis 2 Tage).",
+        mw:{
+          title:"1) Mental Well-Being am Arbeitsplatz",
+          oneLine:"Praktisch, stigmafrei: Überlastung früh erkennen und Team-Resilienz aufbauen.",
+          point1:"Was sich ändert: bessere Selbstwahrnehmung, gesunde Grenzen, Manager-„Coach Approach“.",
+          point2:"Warum es zählt: schlechte Arbeitsumgebungen und überhöhte Arbeitslast erhöhen mentale Risiken.",
+          point3:"Enthält: Checklisten, STOP-Methode, Life-Balance, Resilienz-Routinen."
+        },
+        ct:{
+          title:"2) Kritisches Denken (Business)",
+          oneLine:"Besser entscheiden unter Unsicherheit: klarere Probleme, weniger Bias, stärkeres Denken.",
+          point1:"Tools: Problem-Framing, Annahmen testen, Evidenz bewerten, Entscheidungskriterien.",
+          point2:"Ergebnisse: weniger vermeidbare Fehler, bessere Ausrichtung, schnellere bessere Entscheidungen.",
+          point3:"Use Cases: Strategie, Produkt, Finance, HR, Konflikt und Verhandlung."
+        },
+        nv:{
+          title:"3) Nonverbale Kommunikation",
+          oneLine:"Präsenz, Vertrauen, Wirkung: das Gesagte mit dem Wahrgenommenen in Einklang bringen.",
+          point1:"Fokus: Haltung, Blickkontakt, Mikrosignale, Stimme, Timing, Raum.",
+          point2:"Ergebnisse: mehr Glaubwürdigkeit, besseres Führungs-Signal, weniger Missverständnisse.",
+          point3:"Praxislastig: Rollenspiele, Feedback, reale Unternehmensszenarien."
+        },
+        custom:{
+          title:"Weitere Themen (auf Anfrage)",
+          p:"Es gibt weitere Bedarfe. Die Website bleibt fokussiert; im Gespräch definieren wir Agenda, Beispiele und Deliverables."
+        }
+      },
+      about:{
+        h2:"Über mich",
+        who:{title:"Stamin Daniel", p1:"Executive & Leadership Coach mit strukturiert-pragmatischem Stil—Klarheit, Accountability und nachhaltige Performance.", p2:"Ich arbeite mit Einzelpersonen und Unternehmen. Sessions sind intensiv, insight-lastig und auf konkrete Umsetzung gebaut."},
+        badge1:"Stress & Burnout", badge2:"Leadership & Kommunikation", badge3:"CliftonStrengths",
+        eeat:{title:"Warum das belastbar ist", p1:"Ethik und Grenzen: Coaching ≠ Therapie; Weiterverweisung wenn nötig.", p2:"Mental Well-Being wird zur Kernkompetenz im Coaching; kontinuierliches Training und Updates.", p3:"Praktische Tools: Erkennen, Vorbeugen, Integrieren—sofort nutzbar."}
+      },
+      faq:{
+        h2:"FAQ",
+        q1:"Ist Coaching dasselbe wie Therapie?",
+        a1:"Nein. Coaching ist zukunfts- und handlungsorientiert. Ich diagnostiziere oder behandle keine psychischen Erkrankungen. Bei Bedarf verweise ich weiter.",
+        q2:"Wie erkenne ich Stress vs. Burnout?",
+        a2:"Wir prüfen Symptome und Kontext. Burnout ist arbeitsbezogen und umfasst häufig Erschöpfung, Distanz/Zynismus und reduzierte Wirksamkeit.",
+        q3:"Wie lange dauert ein Coaching-Zyklus?",
+        a3:"Typisch sind 7 Einzel-Sessions. Teams: oft 6 Sessions à 2–4 Stunden (abhängig von Größe und Zielen).",
+        q4:"Arbeitest du mit Unternehmen?",
+        a4:"Ja—Leadership Coaching, Team Coaching und Trainings (4–16 Std.). Scope, Erfolgskriterien und Vertraulichkeit werden zu Beginn geklärt.",
+        q5:"Wo finden Sessions statt?",
+        a5:"Online oder vor Ort (Bukarest). Für Unternehmen: on-site oder online.",
+        q6:"Was ist der schnellste erste Schritt?",
+        a6:"Ein kurzer Call. Wir klären Problem, Zielbild und den einfachsten Plan für Momentum."
+      },
+method:{
+  title:"Meine Methode",
+  hint:"Einfach, einprägsam und gut maschinenlesbar.",
+  detect:{ t:"Erkennen", d:"Frühe Muster in Energie, Stimmung, Distanz und Wirksamkeit erkennen. „Red Flags“ identifizieren, bevor es kippt." },
+  prevent:{ t:"Vorbeugen", d:"Grenzen, Stress-Skills, Erholungsroutinen und Kommunikationsmuster aufbauen, die Eskalation reduzieren." },
+  sustain:{ t:"Stabilisieren", d:"Ein kleines System schaffen, das Fortschritt unter realem Druck stabil hält—ohne auf Motivation angewiesen zu sein." }
+},
+
+      blog:{h2:"Blog", p:"Artikel erscheinen auf Substack. Du kannst sie dort lesen und auf LinkedIn, X und Facebook teilen.", cta:"Substack öffnen", note:"Optional: Später die neuesten Posts hier einbetten."},
+      cta:{tagline:"Explore · Learn · Create", h2:"Bereit, von Reaktion zu Response zu wechseln?", p:"Wenn du Klarheit, ruhige Umsetzung und messbaren Fortschritt willst—start here.", email:"E-Mail: hello@grundimpuls.com", substack:"Auf Substack folgen", legal:"DSGVO-Hinweis: Kontaktdaten werden nur zur Beantwortung verwendet."},
+      footer:{note:"Bukarest + Online"}
+    }
+  };
+
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const key = el.dataset.i18n;
+      const value = key.split(".").reduce((acc,k)=> acc && acc[k], i18n[lang]);
+      if(value) el.textContent = value;
+    });
+    document.getElementById("taglineTop").textContent = i18n[lang]?.cta?.tagline || "Explore · Learn · Create";
+  }
+
+  document.querySelectorAll(".lang button").forEach(btn=>{
+    btn.addEventListener("click", ()=> setLang(btn.dataset.lang));
+  });
+
+  setLang("ro");
+</script>
+</body>
+</html>
