@@ -1,11 +1,111 @@
-<body style="margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:#0B1220; color:#EAF0FF;">
-  <main style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;">
-    <section style="max-width:680px; text-align:center; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.05); border-radius:22px; padding:34px 26px;">
-      <div style="letter-spacing:.18em; text-transform:uppercase; font-size:12px; color:rgba(234,240,255,.75);">Grundimpuls</div>
-      <h1 style="margin:14px 0 8px; font-size:44px; letter-spacing:-.02em;">Coming soon.</h1>
-      <p style="margin:0; font-size:16px; color:rgba(234,240,255,.72); line-height:1.5;">
-        Stay tuned.<br/>Patience.
-      </p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Grundimpuls — Coming Soon</title>
+
+  <style>
+    :root{
+      /* Millennial / modern palette */
+      --bg0:#070812;
+      --bg1:#0B0E1E;
+      --text:#F4F6FF;
+      --muted:rgba(244,246,255,.72);
+      --line:rgba(255,255,255,.12);
+      --glass1:rgba(255,255,255,.06);
+      --glass2:rgba(255,255,255,.10);
+      --shadow: 0 28px 120px rgba(0,0,0,.55);
+      --radius: 24px;
+
+      /* Aurora accents (RGB triples) */
+      --aqua: 88,182,255;
+      --violet: 155,123,255;
+      --pink: 255,103,196;
+      --lime: 122,255,205;
+
+      /* OPTIONAL background image (like hero/faq) */
+      --bgImage: url("assets/dropin.webp");
+      /* --bgImage: none; */ /* <- uncomment this line to disable image */
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background: var(--bg0);
+      overflow-x:hidden;
+    }
+
+    main{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:24px;
+
+      /* modern aurora + optional image */
+      background:
+        radial-gradient(1200px 700px at 18% 10%, rgba(var(--aqua),.22), transparent 60%),
+        radial-gradient(1000px 650px at 85% 12%, rgba(var(--violet),.18), transparent 55%),
+        radial-gradient(900px 650px at 25% 85%, rgba(var(--pink),.14), transparent 60%),
+        radial-gradient(850px 600px at 78% 88%, rgba(var(--lime),.10), transparent 60%),
+        linear-gradient(180deg, rgba(7,8,18,.55), rgba(7,8,18,.88)),
+        var(--bgImage),
+        linear-gradient(180deg, var(--bg1), var(--bg0));
+      background-size: auto, auto, auto, auto, auto, cover, auto;
+      background-position: center, center, center, center, center, center, center;
+      background-repeat: no-repeat;
+    }
+
+    section{
+      width:min(680px, 100%);
+      text-align:center;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, var(--glass2), var(--glass1));
+      border-radius: var(--radius);
+      padding: 34px 26px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .brand{
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:rgba(244,246,255,.78);
+    }
+
+    h1{
+      margin:14px 0 8px;
+      font-size:44px;
+      letter-spacing:-.02em;
+      line-height:1.05;
+    }
+
+    p{
+      margin:0;
+      font-size:16px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    @media (max-width:520px){
+      h1{font-size:36px}
+      section{padding:28px 18px}
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section>
+      <div class="brand">Grundimpuls</div>
+      <h1>Coming soon.</h1>
+      <p>Stay tuned.<br/>Patience.</p>
     </section>
   </main>
 </body>
+</html>
