@@ -95,18 +95,6 @@
       display:inline-block;
       width:100%;
     }
-    
-/* FAQ background image (like hero) */
-.faqBg{
-  position: relative;
-  background:
-    linear-gradient(180deg, rgba(7,17,28,.70), rgba(7,17,28,.85)),
-    url("assets/FAQ3.webp"); /* <- change filename if yours is different */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
 
     .right{
       display:flex; align-items:center; gap:10px; flex-wrap:wrap;
@@ -155,7 +143,6 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
 
   /* make it almost full screen */
   min-height: calc(100vh - 72px);
@@ -359,6 +346,19 @@
 #faq{
   min-height: 95vh;   /* try 70–95vh */
 }
+
+    
+/* FAQ background image (like hero) */
+.faqBg{
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(7,17,28,.70), rgba(7,17,28,.85)),
+    url("assets/FAQ3.webp"); /* <- change filename if yours is different */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 /* COACHING section background image (like hero/faq) */
 #coaching{
   position: relative;
@@ -368,7 +368,6 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
     /* =========================
