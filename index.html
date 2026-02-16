@@ -223,11 +223,16 @@
       margin-top:12px;
     }
 .cols3{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;
+  margin-top:18px;
+}
+    .cols1{
   display:grid;
-  grid-template-columns: 1fr;   /* <- one column = stacked */
+  grid-template-columns: 1fr;
   gap:16px;
   margin-top:18px;
 }
+
     @media (max-width: 900px){ .cols3{grid-template-columns: 1fr} }
 
     ul{margin:10px 0 0 18px; color: var(--muted)}
@@ -578,7 +583,7 @@
       <h2 data-i18n="coaching.h2">Coaching services</h2>
       <p data-i18n="coaching.p">Three core coaching offers. Same structure. Clear outcomes. No fluff.</p>
 
-      <div class="cols3">
+      <div class="cols1">
         <!-- Burnout -->
         <div class="card">
           <h3 data-i18n="coaching.burnout.title">1) Stress & Burnout Coaching</h3>
