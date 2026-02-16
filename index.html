@@ -133,7 +133,31 @@
     /* Sections + spacing (more room between sections) */
     section{padding: 72px 0}
     section + section{border-top: 1px solid var(--line)}
-    .hero{padding: 64px 0 78px}
+.hero{
+  padding: 64px 0 78px;
+
+  /* background image only for hero */
+  background:
+    linear-gradient(rgba(7,17,28,.72), rgba(7,17,28,.72)),
+    url("assets/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* make it almost full screen */
+  min-height: calc(100vh - 72px);
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+  overflow: hidden;
+}
+.hero .wrap{
+  position: relative;
+  z-index: 1;
+}
+
     .grid{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
