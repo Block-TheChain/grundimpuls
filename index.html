@@ -95,6 +95,17 @@
       display:inline-block;
       width:100%;
     }
+    
+/* FAQ background image (like hero) */
+.faqBg{
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(7,17,28,.70), rgba(7,17,28,.85)),
+    url("assets/FAQ1.webp"); /* <- change filename if yours is different */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
     .right{
       display:flex; align-items:center; gap:10px; flex-wrap:wrap;
@@ -768,11 +779,12 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq">
+  <section id="faq" class="faqBg">
     <div class="wrap">
       <h2 data-i18n="faq.h2">FAQ</h2>
-    <div class="split">
-      <!-- Image card -->
+    <div>
+
+      <!-- Image card
       <div class="card">
         <img
           src="assets/FAQ2.webp"
