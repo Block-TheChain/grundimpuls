@@ -222,10 +222,12 @@
       font-size:13px; color: var(--muted);
       margin-top:12px;
     }
-    .cols3{
-      display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;
-      margin-top:18px;
-    }
+.cols3{
+  display:grid;
+  grid-template-columns: 1fr;   /* <- one column = stacked */
+  gap:16px;
+  margin-top:18px;
+}
     @media (max-width: 900px){ .cols3{grid-template-columns: 1fr} }
 
     ul{margin:10px 0 0 18px; color: var(--muted)}
