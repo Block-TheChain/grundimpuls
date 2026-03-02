@@ -561,6 +561,30 @@
   .comingSoonOverlay .tiny{ margin-top:14px; font-size:12px; color:rgba(249,250,251,.45); }
   body.coming-soon{ overflow:hidden; }
   body.coming-soon header, body.coming-soon footer{ display:none; }
+  /* === FORCE credential logo sizes (override old .accredBadge img rule) === */
+#credentials .accredBadge { 
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* default size for PCC + IANLP */
+#credentials .accredBadge .certLogo{
+  width: 110px !important;
+  height: 110px !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain;
+  display: block;
+}
+
+/* GTCI bigger (2x-ish) */
+#credentials .accredBadge .certLogo.certLarge{
+  width: 150px !important;
+  height: 150px !important;
+}
 </style>
 
   <script type="application/ld+json">
