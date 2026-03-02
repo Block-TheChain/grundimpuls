@@ -94,10 +94,16 @@
     display:flex; align-items:center; justify-content:space-between;
     padding:13px 0; gap:14px;
   }
-  .brand{
-    display:flex; align-items:center; gap:11px;
-    text-decoration:none; color:var(--text);
+
+.brand{
+  display:flex;
+  align-items:flex-start;   /* instead of center */
+  gap:11px;
+  text-decoration:none; color:var(--text);
   }
+  .mark{
+  transform: translateY(3px);
+}
   .mark{
     width:38px; height:38px; border-radius:50%;
     display:grid; place-items:center;
