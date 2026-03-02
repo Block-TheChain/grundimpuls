@@ -44,8 +44,14 @@
   height: 35px;
   display: block;
 }
- .brand .mark { color: #111827; }  /* affects the SVG inside */
-
+.brand .mark { color: #111827; }  /* affects the SVG inside */
+/* Credential badge logos */
+.certLogo{
+  width: 72px;     /* change to 64 / 80 if you want */
+  height: 72px;    /* keep square for consistent cards */
+  object-fit: contain;
+  display: block;
+} 
 /* If you want slightly different sizes in different places: */
 .comingSoonOverlay .logo{ width: 26px; height: 26px; }
   *{ box-sizing:border-box }
@@ -817,30 +823,32 @@
       <div class="split" style="margin-top:28px">
         <div class="card">
           <div class="accredRow" style="margin-top:16px">
-            <!-- PCC / ICF -->
-            <div class="accredCard">
-              <div class="accredBadge" style="background:transparent;border:none;">
-                <img src="data:image/jpeg;base64,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" alt="PCC – Professional Certified Coach, ICF" style="width:80px;height:auto;object-fit:contain;">
-              </div>
-              <div class="accredName" data-i18n="proof.acc1.name">Professional Certified Coach</div>
-              <div class="accredSub" data-i18n="proof.acc1.sub">International Coaching Federation · Since 2018</div>
-            </div>
-            <!-- GTCI -->
-            <div class="accredCard">
-              <div class="accredBadge" style="background:transparent;border:none;width:auto;height:auto;padding:0;">
-<img class="logo" src="assets/Drop.svg" alt="Grundimpuls">
-              </div>
-              <div class="accredName" data-i18n="proof.acc2.name">Certified Practitioner in Team Coaching</div>
-              <div class="accredSub" data-i18n="proof.acc2.sub">Global Team Coaching Institute · Since 2023</div>
-            </div>
-            <!-- IANLP -->
-            <div class="accredCard">
-                            <div class="accredBadge" style="background:transparent;border:none;">
-<img class="logo" src="assets/Drop.svg" alt="Grundimpuls">
-              </div>
-              <div class="accredName" data-i18n="proof.acc3.name">NLP Master Practitioner</div>
-              <div class="accredSub" data-i18n="proof.acc3.sub">International Assoc. for NLP (IANLP) · Since 2019</div>
-            </div>
+<!-- PCC / ICF -->
+<div class="accredCard">
+  <div class="accredBadge" style="background:transparent;border:none;">
+    <img class="certLogo" src="assets/pcc.svg" alt="PCC – Professional Certified Coach (ICF)">
+  </div>
+  <div class="accredName" data-i18n="proof.acc1.name">Professional Certified Coach</div>
+  <div class="accredSub" data-i18n="proof.acc1.sub">International Coaching Federation · Since 2018</div>
+</div>
+
+<!-- GTCI -->
+<div class="accredCard">
+  <div class="accredBadge" style="background:transparent;border:none;width:auto;height:auto;padding:0;">
+    <img class="certLogo" src="assets/gtci.svg" alt="GTCI – Certified Practitioner in Team Coaching">
+  </div>
+  <div class="accredName" data-i18n="proof.acc2.name">Certified Practitioner in Team Coaching</div>
+  <div class="accredSub" data-i18n="proof.acc2.sub">Global Team Coaching Institute · Since 2023</div>
+</div>
+
+<!-- IANLP -->
+<div class="accredCard">
+  <div class="accredBadge" style="background:transparent;border:none;">
+    <img class="certLogo" src="assets/ianlp.svg" alt="IANLP – NLP Master Practitioner">
+  </div>
+  <div class="accredName" data-i18n="proof.acc3.name">NLP Master Practitioner</div>
+  <div class="accredSub" data-i18n="proof.acc3.sub">International Assoc. for NLP (IANLP) · Since 2019</div>
+</div>
           </div>
         </div>
         <div class="card">
