@@ -598,7 +598,41 @@
   object-fit: contain;
   display: block;
 }
+/* === Credentials card alignment fix === */
 
+/* Make each credential card stack nicely: badge -> name -> sub */
+.accredCard{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Give the logo area a consistent height so text aligns */
+.accredBadge{
+  width: 100%;
+  height: 110px;          /* adjust 100–130 if you want */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* Ensure images scale inside the fixed badge area */
+.accredBadge img.certLogo{
+  max-width: 140px;       /* overall logo size */
+  max-height: 90px;       /* keeps GTCI from pushing down */
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain;
+  display: block;
+}
+
+/* Optional: slightly larger GTCI without breaking alignment */
+.accredBadge img.certLarge{
+  max-width: 170px;
+  max-height: 95px;
+}
 /* GTCI bigger (2x-ish) */
 #credentials .accredBadge .certLogo.certLarge{
   width: 300px !important;
@@ -917,7 +951,7 @@
 
     <!-- GTCI -->
     <div class="accredCard">
-      <div class="accredBadge" style="background:transparent;border:none;width:auto;height:auto;padding:0;">
+      <div class="accredBadge" style="background:transparent;border:none;">
         <img class="certLogo certLarge" src="assets/gtci.svg" alt="GTCI – Certified Practitioner in Team Coaching">
       </div>
       <div class="accredName" data-i18n="proof.acc2.name">Certified Practitioner in Team Coaching</div>
