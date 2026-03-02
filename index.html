@@ -90,6 +90,16 @@
     border-bottom:1px solid var(--border);
     backdrop-filter: blur(14px);
   }
+  header{
+  position: sticky;
+  top: 0;
+  z-index: 999;          /* bump higher to be safe */
+}
+  @media (max-width: 900px){
+  header{
+    position: static;
+  }
+}
   .nav{
     display:flex; align-items:center; justify-content:space-between;
     padding:13px 0; gap:14px;
