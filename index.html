@@ -52,6 +52,23 @@
   object-fit: contain;
   display: block;
 } 
+.certLarge{
+  width:160px;
+  height:auto;
+}
+.accredBadge{
+  width:120px;
+  height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.certLogo{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
 /* If you want slightly different sizes in different places: */
 .comingSoonOverlay .logo{ width: 26px; height: 26px; }
   *{ box-sizing:border-box }
@@ -370,7 +387,7 @@
     box-shadow:var(--shadow2);
   }
   .accredBadge{
-    width:72px; height:72px;
+    width:120px; height:120px;
     border-radius:14px;
     display:grid; place-items:center;
     /* Replace with: <img src="assets/badge-icf.png" alt="ICF" style="width:72px"> */
@@ -835,7 +852,7 @@
 <!-- GTCI -->
 <div class="accredCard">
   <div class="accredBadge" style="background:transparent;border:none;width:auto;height:auto;padding:0;">
-    <img class="certLogo" src="assets/gtci.svg" alt="GTCI – Certified Practitioner in Team Coaching">
+    <img class="certLogo certLarge" src="assets/gtci.svg" alt="GTCI – Certified Practitioner in Team Coaching">
   </div>
   <div class="accredName" data-i18n="proof.acc2.name">Certified Practitioner in Team Coaching</div>
   <div class="accredSub" data-i18n="proof.acc2.sub">Global Team Coaching Institute · Since 2023</div>
