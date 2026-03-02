@@ -1280,7 +1280,7 @@
       const value = key.split(".").reduce((acc,k)=> acc && acc[k], i18n[lang]);
       if (value !== undefined) el.textContent = value;
     });
-    document.getElementById("taglineTop").textContent = i18n[lang]?.cta?.tagline || "Explore · Learn · Create";
+document.getElementById("taglineTop").textContent = "Explore · Learn · Create";  
   }
 
   document.querySelectorAll(".lang button").forEach(btn=>{
