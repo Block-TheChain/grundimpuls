@@ -588,12 +588,10 @@ header{
 }
 
 /* ===== Mobile menu panel ===== */
-.mobileMenu{
-  display:none;
-}
 
 @media (max-width:900px){
 .mobileMenu{
+  display:block;
   position: fixed;
   left:0;
   right:0;
@@ -615,11 +613,6 @@ body.menu-open .mobileMenu{
   transform: translateY(0);
   opacity:1;
   pointer-events:auto;
-}
-.mobileMenu a{
-  transform: translateY(-6px);
-  opacity:0;
-  transition: all .18s ease;
 }
 
 body.menu-open .mobileMenu a{
@@ -643,6 +636,9 @@ body.menu-open .mobileMenu a{
     color:var(--muted);
     border:1px solid transparent;
     text-align:right;      /* ← ADD THIS */
+    transform: translateY(-6px);
+    opacity:0;
+    transition: all .18s ease;
   }
 
   .mobileMenu a:hover{
