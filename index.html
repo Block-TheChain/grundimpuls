@@ -600,7 +600,7 @@ header{
     left:0; right:0;
     top: 74px;       /* must match main padding-top above */
     background:rgba(255,255,255,.97);
-    border-bottom:1px solid var(--border);
+    border-bottom:none;   /* ← fixed */
     backdrop-filter: blur(14px);
     transform-origin: top;
     max-height:0;
@@ -612,9 +612,12 @@ header{
     max-height:420px; /* enough to show links */
   }
 
-  .mobileMenu .wrap{
-    padding:12px 20px 18px;
-  }
+.mobileMenu .wrap{
+  padding:12px 20px 18px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+}
 
   .mobileMenu a{
     display:block;
@@ -624,6 +627,7 @@ header{
     font-weight:800;
     color:var(--muted);
     border:1px solid transparent;
+    text-align:right;      /* ← ADD THIS */
   }
 
   .mobileMenu a:hover{
