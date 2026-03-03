@@ -45,29 +45,7 @@
   display: block;
 }
 .brand .mark { color: #111827; }  /* affects the SVG inside */
-/* Credential badge logos */
-.certLogo{
-  width: 100px;     /* change to 64 / 80 if you want */
-  height: 100px;    /* keep square for consistent cards */
-  object-fit: contain;
-  display: block;
-} 
-.certLarge{
-  width:160px;
-  height:auto;
-}
-.accredBadge{
-  width:120px;
-  height:120px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.certLogo{
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
-}
+
 /* If you want slightly different sizes in different places: */
 .comingSoonOverlay .logo{ width: 26px; height: 26px; }
   *{ box-sizing:border-box }
@@ -89,11 +67,7 @@
     border-bottom:1px solid var(--border);
     backdrop-filter: blur(14px);
   }
-  header{
-  position: sticky;
-  top: 0;
-  z-index: 999;          /* bump higher to be safe */
-}
+
   @media (max-width: 900px){
   header{
     position: static;
@@ -410,11 +384,8 @@
     /* Replace with: <img src="assets/badge-icf.png" alt="ICF" style="width:72px"> */
     background:var(--bg-alt);
     border:1px solid var(--border);
-    overflow:hidden;
   }
-  .accredBadge img{
-    width:60px; height:60px; object-fit:contain;
-  }
+
   .accredName{
     font-weight:900; font-size:14px;
     color:var(--text); text-align:center;
@@ -578,63 +549,64 @@
   .comingSoonOverlay .tiny{ margin-top:14px; font-size:12px; color:rgba(249,250,251,.45); }
   body.coming-soon{ overflow:hidden; }
   body.coming-soon header, body.coming-soon footer{ display:none; }
-  /* === FORCE credential logo sizes (override old .accredBadge img rule) === */
-#credentials .accredBadge { 
-  width: 120px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* =========================
+   CLEAN: Header + Credentials
+   ========================= */
+
+/* Keep header always above content (desktop sticky works) */
+header{
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(255,255,255,.92);
+  border-bottom:1px solid var(--border);
+  backdrop-filter: blur(14px);
 }
 
-/* default size for PCC + IANLP */
-#credentials .accredBadge .certLogo{
-  width: 110px !important;
-  height: 110px !important;
-  max-width: none !important;
-  max-height: none !important;
-  object-fit: contain;
-  display: block;
+/* Your choice: not sticky on mobile */
+@media (max-width: 900px){
+  header{ position: static; }
 }
-/* === Credentials card alignment fix === */
 
-/* Make each credential card stack nicely: badge -> name -> sub */
+/* --- Credentials layout + alignment --- */
+
+/* Cards already use flex column, we keep it stable */
 .accredCard{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  text-align:center;
+  gap:10px;
 }
 
-/* Give the logo area a consistent height so text aligns */
+/* Fixed logo area so all titles/subtitles align */
 .accredBadge{
-  width: 100%;
-  height: 110px;          /* adjust 100–130 if you want */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
+  width:100%;
+  height:110px;               /* main control: logo area height */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:10px;
+  border-radius:14px;
+  background:transparent;      /* because you use inline border:none anyway */
+  border:none;
 }
 
-/* Ensure images scale inside the fixed badge area */
+/* Default logo sizing (PCC + IANLP) */
 .accredBadge img.certLogo{
-  max-width: 140px;       /* overall logo size */
-  max-height: 90px;       /* keeps GTCI from pushing down */
-  width: auto !important;
-  height: auto !important;
-  object-fit: contain;
-  display: block;
+  max-width:140px;
+  max-height:95px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  display:block;
 }
 
-/* Optional: slightly larger GTCI without breaking alignment */
-.accredBadge img.certLarge{
-  max-width: 170px;
-  max-height: 95px;
-}
-/* GTCI bigger (2x-ish) */
-#credentials .accredBadge .certLogo.certLarge{
-  width: 300px !important;
-  height: 300px !important;
+/* GTCI fix: it’s a wide logo with weird SVG canvas -> allow more width */
+.accredBadge img.certLogo.certLarge{
+  max-width:260px;            /* key change: more width */
+  max-height:95px;            /* keep height same so text doesn’t drop */
 }
 </style>
 
