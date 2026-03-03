@@ -67,12 +67,6 @@
     border-bottom:1px solid var(--border);
     backdrop-filter: blur(14px);
   }
-
-  @media (max-width: 900px){
-  header{
-    position: static;
-  }
-}
   .nav{
     display:flex; align-items:center; justify-content:space-between;
     padding:13px 0; gap:14px;
@@ -567,7 +561,78 @@ header{
 @media (max-width: 900px){
   header{ position: static; }
 }
+/* ===== Mobile hamburger ===== */
+.burger{
+  display:none;
+  border:1px solid var(--border);
+  background:var(--bg-alt);
+  border-radius:999px;
+  padding:9px 12px;
+  font-weight:900;
+  cursor:pointer;
+  line-height:1;
+}
 
+@media (max-width:900px){
+  .burger{ display:inline-flex; align-items:center; justify-content:center; }
+  .toplinks{ display:none; } /* keep desktop links hidden on mobile */
+}
+
+/* ===== Mobile menu panel ===== */
+.mobileMenu{
+  display:none;
+}
+
+@media (max-width:900px){
+  .mobileMenu{
+    display:block;
+    position:absolute;
+    left:0; right:0;
+    top:100%;
+    background:rgba(255,255,255,.97);
+    border-bottom:1px solid var(--border);
+    backdrop-filter: blur(14px);
+    transform-origin: top;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .22s ease;
+  }
+
+  body.menu-open .mobileMenu{
+    max-height:420px; /* enough to show links */
+  }
+
+  .mobileMenu .wrap{
+    padding:12px 20px 18px;
+  }
+
+  .mobileMenu a{
+    display:block;
+    padding:12px 10px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:800;
+    color:var(--muted);
+    border:1px solid transparent;
+  }
+
+  .mobileMenu a:hover{
+    color:var(--gold);
+    border-color:var(--gold-border);
+    background:var(--gold-bg);
+  }
+}
+
+/* ===== Smart hide/show header (mobile only) ===== */
+header{
+  transition: transform .18s ease;
+}
+
+@media (max-width:900px){
+  header.is-hidden{
+    transform: translateY(-110%);
+  }
+}
 /* --- Credentials layout + alignment --- */
 
 /* Cards already use flex column, we keep it stable */
@@ -667,6 +732,7 @@ header{
         <a href="#booking" data-i18n="nav.booking">Book</a>
           <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
+        <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" type="button">☰</button>
         <div class="lang" aria-label="Language switcher">
           <button class="active" data-lang="ro">RO</button>
           <button data-lang="en">EN</button>
@@ -675,6 +741,17 @@ header{
       </div>
     </div>
   </div>
+  <div class="mobileMenu" id="mobileMenu">
+  <div class="wrap">
+    <a href="#coaching">Coaching</a>
+    <a href="#training">Training</a>
+    <a href="#about">About</a>
+    <a href="#faq">FAQ</a>
+    <a href="#blog">Blog</a>
+    <a href="#booking">Book</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
 </header>
 
 <main id="top">
@@ -1353,6 +1430,92 @@ header{
   }
 
   loadSubstackPosts();
+</script>
+  <script>
+(function(){
+  // ----- Mobile hamburger menu -----
+  const burger = document.getElementById("burgerBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  function closeMenu(){
+    document.body.classList.remove("menu-open");
+    if (burger) burger.setAttribute("aria-expanded","false");
+  }
+
+  function toggleMenu(){
+    const isOpen = document.body.classList.toggle("menu-open");
+    if (burger) burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    // When menu opens, keep header visible
+    const header = document.querySelector("header");
+    if (header) header.classList.remove("is-hidden");
+  }
+
+  if (burger){
+    burger.addEventListener("click", toggleMenu);
+  }
+
+  // Close menu when clicking a link
+  if (mobileMenu){
+    mobileMenu.addEventListener("click", (e) => {
+      if (e.target && e.target.tagName === "A") closeMenu();
+    });
+  }
+
+  // Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  // Close if resized to desktop
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 900) closeMenu();
+  });
+
+  // ----- Smart hide/show header (MOBILE ONLY) -----
+  const header = document.querySelector("header");
+  let lastY = window.scrollY;
+
+  function onScroll(){
+    if (!header) return;
+
+    // Only run on mobile
+    if (window.innerWidth > 900) {
+      header.classList.remove("is-hidden");
+      return;
+    }
+
+    // If menu open, keep header visible
+    if (document.body.classList.contains("menu-open")) {
+      header.classList.remove("is-hidden");
+      lastY = window.scrollY;
+      return;
+    }
+
+    const y = window.scrollY;
+    const goingDown = y > lastY;
+    const delta = Math.abs(y - lastY);
+
+    // Always show near top
+    if (y < 10){
+      header.classList.remove("is-hidden");
+      lastY = y;
+      return;
+    }
+
+    // Ignore tiny jitter
+    if (delta < 6){
+      lastY = y;
+      return;
+    }
+
+    if (goingDown) header.classList.add("is-hidden");
+    else header.classList.remove("is-hidden");
+
+    lastY = y;
+  }
+
+  window.addEventListener("scroll", onScroll, { passive:true });
+})();
 </script>
 </body>
 </html>
