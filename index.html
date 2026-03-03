@@ -594,23 +594,39 @@ header{
 }
 
 @media (max-width:900px){
-  .mobileMenu{
-    display:block;
-    position:fixed;
-    left:0; right:0;
-    top: 74px;       /* must match main padding-top above */
-    background:rgba(255,255,255,.97);
-    border-bottom:none;   /* ← fixed */
-    backdrop-filter: blur(14px);
-    transform-origin: top;
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .22s ease;
-  }
+.mobileMenu{
+  position: fixed;
+  left:0;
+  right:0;
+  top:74px;              /* same value as before */
+  background:rgba(255,255,255,.97);
+  backdrop-filter: blur(14px);
 
-  body.menu-open .mobileMenu{
-    max-height:420px; /* enough to show links */
-  }
+  transform: translateY(-10px);
+  opacity:0;
+  pointer-events:none;
+
+  transition:
+    transform .22s ease,
+    opacity .18s ease;
+}
+
+/* When open */
+body.menu-open .mobileMenu{
+  transform: translateY(0);
+  opacity:1;
+  pointer-events:auto;
+}
+.mobileMenu a{
+  transform: translateY(-6px);
+  opacity:0;
+  transition: all .18s ease;
+}
+
+body.menu-open .mobileMenu a{
+  transform: translateY(0);
+  opacity:1;
+}
 
 .mobileMenu .wrap{
   padding:12px 20px 18px;
