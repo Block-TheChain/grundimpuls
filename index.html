@@ -692,7 +692,78 @@ header{
   object-fit:contain;
   display:block;
 }
+/* ===== Mobile language dropdown ===== */
+.langMobile{ display:none; position:relative; }
 
+@media (max-width:900px){
+  /* Hide desktop 3-button language switch on mobile */
+  .lang{ display:none; }
+
+  /* Show the new mobile dropdown */
+  .langMobile{ display:block; }
+
+  .langMobileBtn{
+    cursor:pointer;
+    border:1px solid var(--border);
+    background:var(--bg-alt);
+    color:var(--muted);
+    padding:9px 12px;
+    border-radius:999px;
+    font-weight:900;
+    font-size:12px;
+    letter-spacing:.03em;
+  }
+
+  .langMobileMenu{
+    position:absolute;
+    right:0;
+    top:calc(100% + 8px);
+    background:rgba(255,255,255,.97);
+    border:1px solid var(--border);
+    border-radius:14px;
+    box-shadow: var(--shadow);
+    padding:6px;
+    min-width:86px;
+
+    display:none;
+  }
+
+  body.lang-open .langMobileMenu{
+    display:block;
+  }
+
+  .langMobileMenu button{
+    width:100%;
+    text-align:right;
+    border:0;
+    background:transparent;
+    padding:10px 10px;
+    border-radius:10px;
+    font-weight:900;
+    color:var(--muted);
+    cursor:pointer;
+  }
+
+  .langMobileMenu button:hover{
+    background:var(--gold-bg);
+    color:var(--gold);
+  }
+}
+  @media (max-width:900px){
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    justify-content:flex-end;
+    flex-wrap:nowrap;
+  }
+}
 /* GTCI fix: it’s a wide logo with weird SVG canvas -> allow more width */
 .accredBadge img.certLogo.certLarge{
   max-width:260px;            /* key change: more width */
@@ -757,6 +828,18 @@ header{
         <a href="#booking" data-i18n="nav.booking">Book</a>
           <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
+        <!-- Mobile language dropdown -->
+<div class="langMobile" id="langMobile">
+  <button type="button" class="langMobileBtn" id="langMobileBtn" aria-expanded="false">
+    <span id="langMobileLabel">EN</span> ▾
+  </button>
+
+  <div class="langMobileMenu" id="langMobileMenu">
+    <button type="button" data-lang="ro">RO</button>
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="de">DE</button>
+  </div>
+</div>
         <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" type="button">☰</button>
         <div class="lang" aria-label="Language switcher">
           <button class="active" data-lang="ro">RO</button>
@@ -1207,7 +1290,7 @@ header{
       },
       proof:{
         acc1:{name:"Professional Certified Coach (PCC)",sub:"Certified by International Coaching Federation since 2018"},
-        acc2:{name:"Certified Practitioner in Team Coaching",sub:"Global Team Coaching Institute (GTCI) · Since 2023"},
+        acc2:{name:"Certified Practitioner in Team Coaching",sub:"Global Team Coaching Institute (GTCI) · Since 2022"},
         acc3:{name:"NLP Master Practitioner",sub:"International Association for NLP (IANLP) · Since 2019"}
       },
       training:{
@@ -1272,7 +1355,7 @@ header{
       },
       proof:{
         acc1:{name:"Professional Certified Coach (PCC)",sub:"Certificat la International Coaching Federation din 2018"},
-        acc2:{name:"Practitioner Certificat în Team Coaching",sub:"Global Team Coaching Institute (GTCI) · Din 2023"},
+        acc2:{name:"Practitioner Certificat în Team Coaching",sub:"Global Team Coaching Institute (GTCI) · Din 2022"},
         acc3:{name:"NLP Master Practitioner",sub:"International Association for NLP (IANLP) · Din 2019"}
       },
       training:{
@@ -1338,7 +1421,7 @@ header{
       },
       proof:{
         acc1:{name:"Professional Certified Coach (PCC)",sub:"Zertifiziert von International Coaching Federation seit 2018"},
-        acc2:{name:"Zertifizierter Praktiker im Team Coaching",sub:"Global Team Coaching Institute (GTCI) · Seit 2023"},
+        acc2:{name:"Zertifizierter Praktiker im Team Coaching",sub:"Global Team Coaching Institute (GTCI) · Seit 2022"},
         acc3:{name:"NLP Master Practitioner",sub:"International Association for NLP (IANLP) · Seit 2019"}
       },
       training:{
@@ -1456,61 +1539,95 @@ header{
 
   loadSubstackPosts();
 </script>
-  <script>
+<script>
 (function(){
-  // ----- Mobile hamburger menu -----
+
+  const body = document.body;
+
   const burger = document.getElementById("burgerBtn");
   const mobileMenu = document.getElementById("mobileMenu");
 
-  function closeMenu(){
-    document.body.classList.remove("menu-open");
+  const langBtn = document.getElementById("langMobileBtn");
+  const langMenu = document.getElementById("langMobileMenu");
+  const langLabel = document.getElementById("langMobileLabel");
+
+  const header = document.querySelector("header");
+
+  /* ========= CLOSE HELPERS ========= */
+
+  function closeBurger(){
+    body.classList.remove("menu-open");
     if (burger) burger.setAttribute("aria-expanded","false");
   }
 
-  function toggleMenu(){
-    const isOpen = document.body.classList.toggle("menu-open");
-    if (burger) burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    // When menu opens, keep header visible
-    const header = document.querySelector("header");
-    if (header) header.classList.remove("is-hidden");
+  function closeLang(){
+    body.classList.remove("lang-open");
+    if (langBtn) langBtn.setAttribute("aria-expanded","false");
   }
+
+  /* ========= BURGER ========= */
 
   if (burger){
-    burger.addEventListener("click", toggleMenu);
-  }
+    burger.addEventListener("click", () => {
+      const isOpen = body.classList.toggle("menu-open");
+      burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
 
-  // Close menu when clicking a link
-  if (mobileMenu){
-    mobileMenu.addEventListener("click", (e) => {
-      if (e.target && e.target.tagName === "A") closeMenu();
+      if (isOpen){
+        closeLang();
+        if (header) header.classList.remove("is-hidden");
+      }
     });
   }
 
-  // Close on Escape
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMenu();
-  });
+  if (mobileMenu){
+    mobileMenu.addEventListener("click", (e) => {
+      if (e.target.tagName === "A") closeBurger();
+    });
+  }
 
-  // Close if resized to desktop
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 900) closeMenu();
-  });
+  /* ========= LANGUAGE ========= */
 
-  // ----- Smart hide/show header (MOBILE ONLY) -----
-  const header = document.querySelector("header");
+  if (langBtn){
+    langBtn.addEventListener("click", () => {
+      const isOpen = body.classList.toggle("lang-open");
+      langBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+      if (isOpen){
+        closeBurger();
+      }
+    });
+  }
+
+  if (langMenu){
+    langMenu.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-lang]");
+      if (!btn) return;
+
+      const code = btn.dataset.lang;
+
+      const desktopBtn = document.querySelector(`.lang button[data-lang="${code}"]`);
+      if (desktopBtn) desktopBtn.click();
+
+      if (langLabel) langLabel.textContent = code.toUpperCase();
+
+      closeLang();
+    });
+  }
+
+  /* ========= SMART HEADER ========= */
+
   let lastY = window.scrollY;
 
   function onScroll(){
+
     if (!header) return;
 
-    // Only run on mobile
-    if (window.innerWidth > 900) {
+    if (window.innerWidth > 900){
       header.classList.remove("is-hidden");
       return;
     }
 
-    // If menu open, keep header visible
-    if (document.body.classList.contains("menu-open")) {
+    if (body.classList.contains("menu-open")){
       header.classList.remove("is-hidden");
       lastY = window.scrollY;
       return;
@@ -1520,14 +1637,12 @@ header{
     const goingDown = y > lastY;
     const delta = Math.abs(y - lastY);
 
-    // Always show near top
     if (y < 10){
       header.classList.remove("is-hidden");
       lastY = y;
       return;
     }
 
-    // Ignore tiny jitter
     if (delta < 6){
       lastY = y;
       return;
@@ -1540,6 +1655,21 @@ header{
   }
 
   window.addEventListener("scroll", onScroll, { passive:true });
+
+  /* ========= GLOBAL CLOSE ========= */
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest("#langMobile")) closeLang();
+    if (!e.target.closest("#mobileMenu") && !e.target.closest("#burgerBtn")) closeBurger();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape"){
+      closeLang();
+      closeBurger();
+    }
+  });
+
 })();
 </script>
 </body>
