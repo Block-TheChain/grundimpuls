@@ -556,10 +556,20 @@ header{
   border-bottom:1px solid var(--border);
   backdrop-filter: blur(14px);
 }
-
-/* Your choice: not sticky on mobile */
+/* Mobile: fixed header (so it can hide/show while you scroll) */
 @media (max-width: 900px){
-  header{ position: static; }
+  header{
+    position: fixed;     /* <- key change */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+  }
+
+  /* Push page content down so it doesn't hide under the fixed header */
+  main{
+    padding-top: 74px;   /* adjust to 68–86 if needed */
+  }
 }
 /* ===== Mobile hamburger ===== */
 .burger{
@@ -586,9 +596,9 @@ header{
 @media (max-width:900px){
   .mobileMenu{
     display:block;
-    position:absolute;
+    position:fixed;
     left:0; right:0;
-    top:100%;
+    top: 74px;       /* must match main padding-top above */
     background:rgba(255,255,255,.97);
     border-bottom:1px solid var(--border);
     backdrop-filter: blur(14px);
