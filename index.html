@@ -1635,7 +1635,11 @@ body.dark .brand .mark{
   const langLabel = document.getElementById("langMobileLabel");
 
   const header = document.querySelector("header");
-
+  /* ========= INIT MOBILE LANGUAGE LABEL ========= */
+  if (langLabel){
+    const current = (document.documentElement.lang || "ro").toUpperCase();
+    langLabel.textContent = current;
+  }
   /* ========= CLOSE HELPERS ========= */
 
   function closeBurger(){
