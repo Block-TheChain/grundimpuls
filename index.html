@@ -39,6 +39,33 @@
     --shadow2: 0 8px 40px rgba(0,0,0,.10);
     --max: 1120px;
   }
+  /* =========================
+   DARK MODE — Premium Slate
+   ========================= */
+body.dark{
+  --bg:       #0F1318;
+  --bg-alt:   #151A21;
+  --bg-warm:  #171C23;
+
+  --text:     #F3F5F7;
+  --muted:    #C2C7CF;
+  --muted2:   #8B93A1;
+
+  --border:   #242A33;
+
+  --gold:        #F0B43C;
+  --gold-light:  #FFC65A;
+  --gold-bg:     rgba(240,180,60,.10);
+  --gold-border: rgba(240,180,60,.28);
+
+  --shadow:  0 4px 24px rgba(0,0,0,.55);
+  --shadow2: 0 8px 40px rgba(0,0,0,.65);
+}
+
+/* Optional: smooth switching */
+body, header, section, .card{
+  transition: background .22s ease, color .22s ease, border-color .22s ease;
+}
 /* Logo sizing (controls the SVG drop everywhere) */
 .logo{
   width: 35px;
@@ -134,7 +161,22 @@
     background: linear-gradient(135deg, var(--gold), var(--orange));
     box-shadow: 0 2px 10px rgba(200,134,10,.30);
   }
+.themeBtn{
+  border:1px solid var(--border);
+  background:var(--bg-alt);
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:900;
+  cursor:pointer;
+  line-height:1;
+  color:var(--muted);
+}
 
+.themeBtn:hover{
+  border-color:var(--gold-border);
+  background:var(--gold-bg);
+  color:var(--gold);
+}
   @media(max-width:900px){
     .toplinks{ display:none; }
   }
@@ -845,6 +887,7 @@ header{
     <button type="button" data-lang="de">DE</button>
   </div>
 </div>
+        <button id="themeToggle" class="themeBtn" type="button" aria-label="Toggle dark mode" aria-pressed="false">☾</button>
         <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" type="button">☰</button>
         <div class="lang" aria-label="Language switcher">
           <button class="active" data-lang="ro">RO</button>
@@ -1569,7 +1612,28 @@ header{
     body.classList.remove("lang-open");
     if (langBtn) langBtn.setAttribute("aria-expanded","false");
   }
+/* ========= THEME TOGGLE (dark / light) ========= */
+const themeBtn = document.getElementById("themeToggle");
 
+function setTheme(mode){
+  const isDark = (mode === "dark");
+  document.body.classList.toggle("dark", isDark);
+  if (themeBtn){
+    themeBtn.setAttribute("aria-pressed", isDark ? "true" : "false");
+    themeBtn.textContent = isDark ? "☀" : "☾";
+  }
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+
+// Load saved theme (default: light)
+setTheme(localStorage.getItem("theme") === "dark" ? "dark" : "light");
+
+if (themeBtn){
+  themeBtn.addEventListener("click", () => {
+    const nowDark = !document.body.classList.contains("dark");
+    setTheme(nowDark ? "dark" : "light");
+  });
+}
   /* ========= BURGER ========= */
 
   if (burger){
