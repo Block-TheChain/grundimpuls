@@ -11,7 +11,7 @@
   <meta property="og:description" content="Coaching for individuals and organizations: stress & burnout, executive & leadership, CliftonStrengths." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://grundimpuls.com/" />
-  <meta name="theme-color" content="#FFFFFF" />
+  <meta name="theme-color" content="#FFFFFF" id="themeColor"/>
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
 <style>
@@ -816,6 +816,43 @@ header{
   max-width:260px;            /* key change: more width */
   max-height:95px;            /* keep height same so text doesn’t drop */
 }
+/* =========================
+   DARK MODE FIXES: header/footer + dropdowns
+   ========================= */
+
+/* Header surface in dark mode */
+body.dark header{
+  background: rgba(15,19,24,.92); /* matches --bg */
+}
+
+/* Mobile menu panel in dark mode */
+@media (max-width:900px){
+  body.dark .mobileMenu{
+    background: rgba(15,19,24,.97);
+    border-bottom: 1px solid var(--border);
+  }
+
+  body.dark .langMobileMenu{
+    background: rgba(15,19,24,.97);
+  }
+}
+
+/* Footer surface in dark mode */
+body.dark .footer{
+  background: var(--bg-alt);
+}
+
+/* The round icon “bubbles” (header mark + footer mark) */
+body.dark .mark,
+body.dark .footer .footerMark{
+  background: var(--bg);
+  border-color: var(--border);
+}
+
+/* Your SVG drop color was forced to a dark color */
+body.dark .brand .mark{
+  color: var(--text);
+}
 </style>
 
   <script type="application/ld+json">
@@ -899,13 +936,13 @@ header{
   </div>
   <div class="mobileMenu" id="mobileMenu">
   <div class="wrap">
-    <a href="#coaching">Coaching</a>
-    <a href="#training">Training</a>
-    <a href="#about">About</a>
-    <a href="#faq">FAQ</a>
-    <a href="#blog">Blog</a>
-    <a href="#booking">Book</a>
-    <a href="#contact">Contact</a>
+<a href="#coaching" data-i18n="nav.coaching">Coaching</a>
+<a href="#training" data-i18n="nav.training">Training</a>
+<a href="#about" data-i18n="nav.about">About</a>
+<a href="#faq" data-i18n="nav.faq">FAQ</a>
+<a href="#blog" data-i18n="nav.blog">Blog</a>
+<a href="#booking" data-i18n="nav.booking">Book</a>
+<a href="#contact" data-i18n="nav.contact">Contact</a>
   </div>
 </div>
 </header>
@@ -1434,7 +1471,6 @@ header{
         q9:"Totul e confidențial?",a9:"Da. Confidențialitatea este o parte esențială a acordului de coaching — din partea mea, este nelimitată în timp. Pentru mandate organizaționale, definim granițele de raportare de la început, explicit în contract."
       },
       method:{title:"Metoda mea",hint:"Dacă e prea simplu pentru tine, gândești prea complicat.",detect:{t:"Detectează",d:"Identifică tipare timpurii în energie, dispoziție, distanțare și eficacitate. Recunoaște semnalele de alarmă înainte de colaps."},prevent:{t:"Previne",d:"Construiește limite, abilități de gestionare a stresului, rutine de recuperare și tipare de comunicare care reduc escaladarea."},sustain:{t:"Susține",d:"Creează un sistem mic care menține progresul stabil sub presiune reală — fără să depinzi de motivație."}},
-      booking:{h2:"Book a session",p:"Select a time that works for you. Individual sessions run 50 minutes. The first session includes context-setting at no extra charge.",note:"For corporate programs and team coaching, reach out by email — scope and format are better defined in a short conversation first."},
       booking:{h2:"Programează o sesiune",p:"Alege un interval orar care ți se potrivește. Sesiunile individuale durează 50 de minute. Prima sesiune este pentru a ne cunoaste si stabilirea contextului, fără costuri suplimentare.",note:"Pentru programe corporate și team coaching, scrie-ne un email — scopul și formatul se definesc mai bine într-o discuție scurtă."},
       blog:{h2:"The DROP",p:"Publicat pe Substack. Articole despre stres, leadership, performanță și gândire clară — pentru cei care preferă substanța față de citate inspiraționale.",loading:"Se încarcă cele mai recente articole…",cta:"Deschide The DROP pe Substack",note:""},
       cta:{tagline:"Explorează · Învață · Creează",h2:"Scopul nu este să te recuperezi suficient pentru a te întoarce la ce te-a epuizat.",p:"Dacă vrei să înțelegi ce se întâmplă și să construiești ceva mai sustenabil — începe cu un apel de 30 de minute. Fără costuri. Fără angajament.",email:"contact@grundimpuls.com",substack:"The DROP pe Substack",legal:"Notă GDPR: datele de contact sunt folosite exclusiv pentru a răspunde solicitării tale și nu sunt vândute sau partajate."},
@@ -1500,7 +1536,6 @@ header{
         q9:"Ist alles vertraulich?",a9:"Ja. Vertraulichkeit ist ein zentraler Bestandteil der Coaching-Vereinbarung — auf meiner Seite zeitlich unbegrenzt. Bei Organisationsmandaten legen wir die Berichtsgrenzen zu Beginn fest, und sie sind explizit im Vertrag festgehalten."
       },
       method:{title:"Meine Methode",hint:"Wenn es dir zu einfach ist, denkst du zu kompliziert.",detect:{t:"Erkennen",d:"Frühe Muster in Energie, Stimmung, Distanz und Wirksamkeit identifizieren. Warnsignale erkennen, bevor es kippt."},prevent:{t:"Vorbeugen",d:"Grenzen, Stress-Kompetenzen, Erholungsroutinen und Kommunikationsmuster aufbauen, die Eskalation reduzieren."},sustain:{t:"Stabilisieren",d:"Ein kleines System schaffen, das Fortschritt unter realem Druck stabil hält — ohne von Motivation abhängig zu sein."}},
-      booking:{h2:"Book a session",p:"Select a time that works for you. Individual sessions run 50 minutes. The first session is to get to know each other and context-setting at no extra charge.",note:"For corporate programs and team coaching, reach out by email — scope and format are better defined in a short conversation first."},
       booking:{h2:"Session buchen",p:"Wähle einen Termin, der dir passt. Einzel-Sessions dauern 50 Minuten. Die erste Session ist um uns kennen zu lernen und Kontext-Klärung ohne zusätzliche Kosten.",note:"Für Firmenprogramme und Team Coaching kontaktiere mich per E-Mail — Umfang und Format lassen sich besser in einem kurzen Gespräch definieren."},
       blog:{h2:"The DROP",p:"Veröffentlicht auf Substack. Artikel über Stress, Leadership, Leistung und klares Denken — für Menschen, die Substanz gegenüber Inspirationszitaten bevorzugen.",loading:"Neueste Artikel werden geladen…",cta:"The DROP auf Substack öffnen",note:""},
       cta:{tagline:"Explore · Learn · Create",h2:"Das Ziel ist nicht, sich genug zu erholen, um zu dem zurückzukehren, was dich erschöpft hat.",p:"Wenn du verstehen willst, was passiert, und etwas Nachhaltigeres aufbauen möchtest — starte mit einem 30-Minuten-Gespräch. Kostenlos. Unverbindlich.",email:"contact@grundimpuls.com",substack:"The DROP auf Substack",legal:"DSGVO-Hinweis: Kontaktdaten werden ausschließlich zur Beantwortung deiner Anfrage verwendet und weder verkauft noch weitergegeben."},
@@ -1618,6 +1653,8 @@ const themeBtn = document.getElementById("themeToggle");
 function setTheme(mode){
   const isDark = (mode === "dark");
   document.body.classList.toggle("dark", isDark);
+  const meta = document.getElementById("themeColor");
+if (meta) meta.setAttribute("content", isDark ? "#0F1318" : "#FFFFFF");
   if (themeBtn){
     themeBtn.setAttribute("aria-pressed", isDark ? "true" : "false");
     themeBtn.textContent = isDark ? "☀" : "☾";
