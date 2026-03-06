@@ -858,27 +858,35 @@ body.dark .brand .mark{
   color: var(--text);
 }
 /* =========================
-   ABOUT CARD (photo layout)
+   ABOUT CARD — Premium layout
    ========================= */
 
 .aboutCard{
-  display:flex;
-  gap:28px;
-  align-items:flex-start;
+  position:relative;
+  padding-right:120px;   /* space reserved for portrait */
 }
 
-.aboutText{
-  flex:1;
+/* portrait container */
+
+.aboutPhoto{
+  position:absolute;
+  right:-30px;
+  top:26px;
 }
+
+/* portrait */
 
 .aboutPhoto img{
   width:120px;
   height:120px;
   border-radius:50%;
   object-fit:cover;
+
+  border:3px solid var(--bg);
+  box-shadow:var(--shadow);
 }
 
-/* show correct photo depending on theme */
+/* light / dark image switch */
 
 .photoDark{
   display:none;
@@ -892,12 +900,17 @@ body.dark .photoDark{
   display:block;
 }
 
-/* mobile layout */
+/* mobile version */
 
 @media (max-width:900px){
 
   .aboutCard{
-    flex-direction:column;
+    padding-right:24px;
+  }
+
+  .aboutPhoto{
+    position:static;
+    margin-bottom:10px;
   }
 
   .aboutPhoto img{
@@ -909,7 +922,10 @@ body.dark .photoDark{
 .aboutPhoto{
   margin-top:4px;
 }
-  
+.aboutPhoto img:hover{
+  border-color:var(--gold);
+}
+
 </style>
 
   <script type="application/ld+json">
