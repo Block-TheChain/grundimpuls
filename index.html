@@ -857,6 +857,59 @@ body.dark .footer .footerMark{
 body.dark .brand .mark{
   color: var(--text);
 }
+/* =========================
+   ABOUT CARD (photo layout)
+   ========================= */
+
+.aboutCard{
+  display:flex;
+  gap:28px;
+  align-items:flex-start;
+}
+
+.aboutText{
+  flex:1;
+}
+
+.aboutPhoto img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+/* show correct photo depending on theme */
+
+.photoDark{
+  display:none;
+}
+
+body.dark .photoLight{
+  display:none;
+}
+
+body.dark .photoDark{
+  display:block;
+}
+
+/* mobile layout */
+
+@media (max-width:900px){
+
+  .aboutCard{
+    flex-direction:column;
+  }
+
+  .aboutPhoto img{
+    width:90px;
+    height:90px;
+  }
+
+}
+.aboutPhoto{
+  margin-top:4px;
+}
+  
 </style>
 
   <script type="application/ld+json">
@@ -1130,12 +1183,39 @@ body.dark .brand .mark{
       <h2 data-i18n="about.h2">About</h2>
       <div class="split">
   <!-- Left: Stamin Daniel -->
-  <div class="card">
+<div class="card aboutCard">
+
+  <div class="aboutText">
+
     <h3 data-i18n="about.who.title">Stamin Daniel</h3>
-    <p data-i18n="about.who.p1">Twenty-five years of business experience across oil and gas, pharma, FMCG, finance, and a dozen other industries. Management consultant, trainer, coach. Probably overqualified to help you, definitely invested in doing it well.</p>
-    <p data-i18n="about.who.p2">After 14 years of experience training people in behavioral and leadership skills, I'm convinced that one of the most important skills is to stop applying pressure, slow down, and start listening. This insight is reinforced by all my coaching experience.</p>
-    <p data-i18n="about.who.p3">Over 1,000 hours of one-to-one and team coaching since 2015. I bring the structure of a consultant, the patience of a trainer, and the self-awareness of a recovering perfectionist who is still very much in recovery.</p>
+
+    <p data-i18n="about.who.p1">
+      Twenty-five years of business experience across oil and gas, pharma, FMCG, finance, and a dozen other industries. Management consultant, trainer, coach. Probably overqualified to help you, definitely invested in doing it well.
+    </p>
+
+    <p data-i18n="about.who.p2">
+      After 14 years of experience training people in behavioral and leadership skills, I'm convinced that one of the most important skills is to stop applying pressure, slow down, and start listening. This insight is reinforced by all my coaching experience.
+    </p>
+
+    <p data-i18n="about.who.p3">
+      Over 1,000 hours of one-to-one and team coaching since 2015. I bring the structure of a consultant, the patience of a trainer, and the self-awareness of a recovering perfectionist who is still very much in recovery.
+    </p>
+
   </div>
+
+  <div class="aboutPhoto">
+
+    <img class="photoLight"
+         src="assets/me_light.svg"
+         alt="Stamin Daniel">
+
+    <img class="photoDark"
+         src="assets/me_dark.svg"
+         alt="Stamin Daniel">
+
+  </div>
+
+</div>
 
   <!-- Right: What makes this credible -->
   <div class="card">
