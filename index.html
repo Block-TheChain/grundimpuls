@@ -858,20 +858,18 @@ body.dark .brand .mark{
   color: var(--text);
 }
 /* =========================
-   ABOUT CARD — Premium layout
+   ABOUT CARD — photo on right
    ========================= */
 
 .aboutCard{
   position:relative;
-  padding-right:120px;   /* space reserved for portrait */
+  padding-right:190px;   /* reserve space for the photo */
 }
-
-/* portrait container */
 
 .aboutPhoto{
   position:absolute;
-  right:-40px;
-  top:22px;
+  right:24px;
+  top:24px;
 }
 
 .aboutPhoto img{
@@ -881,29 +879,43 @@ body.dark .brand .mark{
   object-fit:cover;
   border:3px solid var(--bg);
   box-shadow:var(--shadow);
+  display:block;
 }
-/* mobile version */
 
+/* show only ONE photo depending on theme */
+.photoDark{
+  display:none;
+}
+
+body.dark .photoLight{
+  display:none;
+}
+
+body.dark .photoDark{
+  display:block;
+}
+
+/* mobile: keep photo in top-right, not at bottom */
 @media (max-width:900px){
 
   .aboutCard{
-    padding-right:24px;
+    position:relative;
+    padding-right:130px;
+    min-height:160px;
   }
 
   .aboutPhoto{
-    position:static;
-    margin-bottom:10px;
+    position:absolute;
+    right:20px;
+    top:20px;
   }
 
   .aboutPhoto img{
     width:110px;
     height:110px;
   }
+}
 
-}
-.aboutPhoto{
-  margin-top:4px;
-}
 .aboutPhoto img:hover{
   border-color:var(--gold);
 }
