@@ -1561,7 +1561,7 @@ function setLang(lang){
     const value = key.split(".").reduce((acc,k)=> acc && acc[k], i18n[lang]);
     if (value === undefined) return;
 
-    const htmlKeys = ["bc4"];
+    const htmlKeys = ["hero.bc4"];
     if (htmlKeys.includes(key)) el.innerHTML = value;
     else el.textContent = value;
   });
