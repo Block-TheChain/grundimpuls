@@ -2047,7 +2047,13 @@ if (themeBtn){
   window.addEventListener("scroll", onScroll, { passive:true });
 
   /* ========= GLOBAL CLOSE ========= */
-  
+
   document.addEventListener("click", (e) => {
     if (!e.target.closest("#langMobile")) closeLang();
-    if (!e
+    if (!e.target.closest("#burgerBtn") && !e.target.closest("#mobileMenu")) closeBurger();
+  });
+
+})();
+</script>
+</body>
+</html>
