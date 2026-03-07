@@ -1057,19 +1057,47 @@ body.dark .sectionArt .artDark{
 
   .sectionTop{
     flex-direction:column;
+    align-items:flex-start;
+    gap:18px;
   }
 
+  /* Put image above the title/text */
   .sectionArt{
-    align-self:flex-start;
+    order:-1;
+    align-self:stretch;
+    width:100%;
   }
 
   .blogArt{
-    align-self:flex-end;
+    align-self:stretch;
     margin-top:0;
   }
 
+  .contactArt{
+    align-self:stretch;
+    margin-bottom:0;
+  }
+
+  /* Make image as wide as the card / content area */
   .sectionArt img{
-    width:180px;
+    display:block;
+    width:100%;
+    max-width:none;
+    height:auto;
+  }
+
+  /* Keep titles left-aligned */
+  .sectionTopText{
+    width:100%;
+    text-align:left;
+  }
+
+  #contact .sectionTopText{
+    text-align:left;
+  }
+
+  #contact .sectionTop{
+    align-items:flex-start;
   }
 }
 
