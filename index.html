@@ -1001,6 +1001,78 @@ body.dark .aboutPhoto .photoDark{
 }
 .doorBack:hover{ color:var(--gold); }
 
+/* =========================
+   SECTION ART (Blog + Contact)
+   ========================= */
+
+.sectionTop{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.sectionTopText{
+  flex:1;
+  min-width:0;
+}
+
+.sectionArt{
+  flex:0 0 auto;
+}
+
+.sectionArt img{
+  display:block;
+  width:260px;
+  height:auto;
+  border-radius:18px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+/* light/dark switching */
+.sectionArt .artDark{
+  display:none;
+}
+
+body.dark .sectionArt .artLight{
+  display:none;
+}
+
+body.dark .sectionArt .artDark{
+  display:block;
+}
+
+/* specific alignment */
+.blogArt{
+  margin-top:6px;
+}
+
+.contactArt{
+  margin-bottom:18px;
+}
+
+/* mobile */
+@media (max-width:900px){
+
+  .sectionTop{
+    flex-direction:column;
+  }
+
+  .sectionArt{
+    align-self:flex-start;
+  }
+
+  .blogArt{
+    align-self:flex-end;
+    margin-top:0;
+  }
+
+  .sectionArt img{
+    width:180px;
+  }
+}
+
 </style>
 
   <script type="application/ld+json">
@@ -1487,11 +1559,21 @@ body.dark .aboutPhoto .photoDark{
   </section>
 
   <!-- BLOG -->
-  <section id="blog" class="alt">
-    <div class="wrap">
-      <div class="goldBar"></div>
-      <h2 data-i18n="blog.h2">The DROP</h2>
-      <p data-i18n="blog.p">Published on Substack. Articles on stress, leadership, performance, and clear thinking — for people who prefer substance over inspiration quotes.</p>
+<section id="blog" class="alt">
+  <div class="wrap">
+
+    <div class="sectionTop">
+      <div class="sectionTopText">
+        <div class="goldBar"></div>
+        <h2 data-i18n="blog.h2">The DROP</h2>
+        <p data-i18n="blog.p">Published on Substack. Articles on stress, leadership, performance, and clear thinking — for people who prefer substance over inspiration quotes.</p>
+      </div>
+
+      <div class="sectionArt blogArt">
+        <img class="artLight" src="assets/blog_light.svg" alt="Blog illustration">
+        <img class="artDark" src="assets/blog_dark.svg" alt="Blog illustration">
+      </div>
+    </div>
 
       <!-- Live posts injected here by JS; placeholders shown while loading -->
       <div class="blogGrid" id="blogPosts">
@@ -1526,9 +1608,15 @@ body.dark .aboutPhoto .photoDark{
   </section>
 
   <!-- FINAL CTA -->
-  <section id="contact" class="warm">
-    <div class="wrap">
-      <div class="card" style="border-color:var(--gold-border)">
+<section id="contact" class="warm">
+  <div class="wrap">
+
+    <div class="sectionArt contactArt">
+      <img class="artLight" src="assets/contact_light.svg" alt="Contact illustration">
+      <img class="artDark" src="assets/contact_dark.svg" alt="Contact illustration">
+    </div>
+
+    <div class="card" style="border-color:var(--gold-border)">
         <div class="kicker" data-i18n="cta.tagline">Explore · Learn · Create</div>
         <h2 style="margin-top:10px" data-i18n="cta.h2">The goal is not to recover enough to go back to what broke you.</h2>
         <p class="lead" data-i18n="cta.p">If you want to understand what is happening and build something more sustainable — start with a 30-minute call. No cost. No commitment.</p>
