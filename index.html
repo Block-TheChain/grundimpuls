@@ -935,6 +935,72 @@ body.dark .aboutPhoto .photoDark{
   border-color:var(--gold);
 }
 
+/* ====== TWO-DOOR MECHANIC ====== */
+.doorTopic{
+  display:block;
+  color:var(--gold); font-size:11px;
+  letter-spacing:.18em; text-transform:uppercase;
+  font-weight:900; margin-bottom:16px;
+}
+.doorQ{
+  font-size:18px; font-weight:950;
+  color:var(--text); margin:0 0 20px;
+  line-height:1.35; letter-spacing:-.01em;
+}
+.doorBtns{
+  display:flex; gap:10px; flex-wrap:wrap;
+}
+.doorBtn{
+  padding:11px 20px; border-radius:13px;
+  font-weight:900; font-size:13.5px; cursor:pointer;
+  border:1px solid var(--border);
+  background:var(--bg); color:var(--text);
+  transition: all .15s ease; line-height:1;
+  font-family: inherit;
+}
+.doorBtn:hover{
+  border-color:var(--gold-border);
+  background:var(--gold-bg); color:var(--gold);
+  transform:translateY(-1px);
+}
+.doorBtn.doorPrimary{
+  background:linear-gradient(135deg, var(--gold), var(--orange));
+  color:#fff; border-color:transparent;
+  box-shadow:0 4px 18px rgba(200,134,10,.28);
+}
+.doorBtn.doorPrimary:hover{
+  background:linear-gradient(135deg, var(--gold-light), var(--orange));
+  box-shadow:0 6px 24px rgba(200,134,10,.38);
+  color:#fff;
+}
+.doorResult{ display:none; }
+.doorResult.doorActive{
+  display:block;
+  animation: doorIn .26s ease;
+}
+@keyframes doorIn{
+  from{ opacity:0; transform:translateY(8px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+.doorFineText{
+  font-size:15px; color:var(--muted);
+  font-style:italic; line-height:1.65;
+  padding:2px 0 6px;
+}
+.doorOffContent p{
+  color:var(--muted); margin-bottom:14px; line-height:1.65;
+  font-size:15px;
+}
+.doorOffContent p:last-of-type{ margin-bottom:0; }
+.doorBack{
+  background:none; border:none; cursor:pointer;
+  color:var(--muted2); font-size:12px;
+  text-decoration:underline; text-underline-offset:3px;
+  padding:0; margin-top:16px; display:inline-block;
+  transition:color .15s ease; font-family:inherit;
+}
+.doorBack:hover{ color:var(--gold); }
+
 </style>
 
   <script type="application/ld+json">
@@ -1073,87 +1139,105 @@ body.dark .aboutPhoto .photoDark{
   <section id="coaching">
     <div class="wrap">
       <div class="goldBar"></div>
-      <h2 data-i18n="coaching.h2">What I do</h2>
-      <p data-i18n="coaching.p">I'm active in three main coaching areas. Each with its own process, tools, outcomes, and space to adapt to each client's uniqueness.</p>
+      <h2 data-i18n="coaching.h2">Coaching</h2>
+      <p data-i18n="coaching.p">I'm active in three main coaching areas. Each with its own process, tools, outcomes, and a lot of space to adapt to each client's uniqueness.</p>
 
       <div class="cols1">
+
+        <!-- BURNOUT -->
         <div class="card">
-          <h3 data-i18n="coaching.burnout.title">Stress & Burnout Coaching</h3>
-          <p class="accent" data-i18n="coaching.burnout.oneLine">For professionals who are still delivering — but recognize the early signals of strain.</p>
-          <div class="quote" data-i18n="coaching.burnout.quote">
-            The WHO classifies burnout as an occupational phenomenon resulting from chronic workplace stress that has not been successfully managed. It is not weakness. It is a measurable condition with three dimensions: exhaustion, cynicism, and reduced professional efficacy.
-          </div>
-          <ul>
-            <li data-i18n="coaching.burnout.who1">For: high-performers, leaders, teams in prolonged delivery pressure, any stress prone activity.</li>
-            <li data-i18n="coaching.burnout.out1">Outcomes: clearer boundaries, improved recovery, reduced irritability, better focus and decisions.</li>
-            <li data-i18n="coaching.burnout.how1">Method: detect → prevent → sustain (habits + environment + leadership behaviors).</li>
-          </ul>
-          <div class="methodBlock">
-            <div class="methodHeader">
-              <h4 class="methodTitle" data-i18n="method.title">My method</h4>
-              <div class="methodHint" data-i18n="method.hint">If it's too simple for you, you're thinking too complicated.</div>
-            </div>
-            <div class="methodGrid">
-              <div class="methodCard">
-                <div class="methodNum">1</div>
-                <div class="methodName" data-i18n="method.detect.t">Detect</div>
-                <div class="methodDesc" data-i18n="method.detect.d">Spot early patterns in energy, mood, detachment, and efficacy. Identify red flags before collapse.</div>
-              </div>
-              <div class="methodCard">
-                <div class="methodNum">2</div>
-                <div class="methodName" data-i18n="method.prevent.t">Prevent</div>
-                <div class="methodDesc" data-i18n="method.prevent.d">Build boundaries, stress skills, recovery routines, and communication patterns that reduce escalation.</div>
-              </div>
-              <div class="methodCard">
-                <div class="methodNum">3</div>
-                <div class="methodName" data-i18n="method.sustain.t">Sustain</div>
-                <div class="methodDesc" data-i18n="method.sustain.d">Create a small system that keeps progress stable under real pressure—without relying on motivation.</div>
-              </div>
+          <span class="doorTopic" data-i18n="coaching.burnout.title">Stress &amp; Burnout Coaching</span>
+          <div id="dq-burnout">
+            <p class="doorQ" data-i18n="coaching.burnout.doorQ">Is something off, or is everything fine?</p>
+            <div class="doorBtns">
+              <button class="doorBtn" onclick="openDoor('burnout','fine')" data-i18n="coaching.burnout.doorFine">Everything's fine</button>
+              <button class="doorBtn doorPrimary" onclick="openDoor('burnout','off')" data-i18n="coaching.burnout.doorOff">Something's off</button>
             </div>
           </div>
-          <div class="ctaRow">
-            <a class="btn primary" href="#contact" data-i18n="coaching.burnout.cta">Start with a diagnostic session</a>
+          <div class="doorResult" id="dr-burnout-fine">
+            <p class="doorFineText" data-i18n="coaching.burnout.fineResp">Good. You're either right, or you're not ready yet. Either way, you know where to find me.</p>
+            <button class="doorBack" onclick="resetDoor('burnout')" data-i18n="coaching.back">← Back</button>
+          </div>
+          <div class="doorResult" id="dr-burnout-off">
+            <div class="doorOffContent">
+              <p data-i18n="coaching.burnout.offP1">You don't need to name it precisely. Most people can't, at first.</p>
+              <p data-i18n="coaching.burnout.offP2">What they do know is that effort and output have stopped matching the way they used to. That recovery takes longer. That the version of themselves they're used to being feels further away than it should.</p>
+              <p data-i18n="coaching.burnout.offP3">That gap has a structure. And structure can be worked with. I work with people who are still functioning, still delivering, and quietly running a deficit they haven't told anyone about. Not because they're weak. Because they're the kind of person who figures things out alone. This is where we figure it out together. Faster. With less damage.</p>
+            </div>
+            <div class="ctaRow" style="margin-top:18px">
+              <a class="btn primary" href="#booking" data-i18n="coaching.burnout.cta">Book a first session</a>
+            </div>
+            <button class="doorBack" onclick="resetDoor('burnout')" data-i18n="coaching.back">← Back</button>
           </div>
         </div>
 
+        <!-- EXEC -->
         <div class="card">
-          <h3 data-i18n="coaching.exec.title">Executive & Leadership Coaching</h3>
-          <p class="accent" data-i18n="coaching.exec.oneLine">Better decisions, clearer leadership behavior, less noise, stronger execution.</p>
-          <ul>
-            <li data-i18n="coaching.exec.who1">For: founders, executives, middle management, high-potentials.</li>
-            <li data-i18n="coaching.exec.out1">Outcomes: sharper priorities, stronger communication, conflict navigation, consistent follow-through.</li>
-            <li data-i18n="coaching.exec.how1">Focus: thinking quality / critical thinking + leadership presence + stress-resilient performance.</li>
-          </ul>
-          <div class="ctaRow">
-            <a class="btn primary" href="#contact" data-i18n="coaching.exec.cta">Discuss a leadership package</a>
+          <span class="doorTopic" data-i18n="coaching.exec.title">Executive &amp; Leadership Coaching</span>
+          <div id="dq-exec">
+            <p class="doorQ" data-i18n="coaching.exec.doorQ">Are you leading well, or are you managing the appearance of it?</p>
+            <div class="doorBtns">
+              <button class="doorBtn" onclick="openDoor('exec','fine')" data-i18n="coaching.exec.doorFine">Leading well</button>
+              <button class="doorBtn doorPrimary" onclick="openDoor('exec','off')" data-i18n="coaching.exec.doorOff">Managing the appearance</button>
+            </div>
+          </div>
+          <div class="doorResult" id="dr-exec-fine">
+            <p class="doorFineText" data-i18n="coaching.exec.fineResp">Good. That's harder than most people admit. If the gap ever opens up between what you project and what you actually have, you know where to find me.</p>
+            <button class="doorBack" onclick="resetDoor('exec')" data-i18n="coaching.back">← Back</button>
+          </div>
+          <div class="doorResult" id="dr-exec-off">
+            <div class="doorOffContent">
+              <p data-i18n="coaching.exec.offP1">Most leadership problems don't announce themselves as leadership problems.</p>
+              <p data-i18n="coaching.exec.offP2">They show up as a team that executes slowly. A conversation that keeps happening without resolving. A decision you made well but couldn't explain clearly enough for others to trust it. A version of yourself in meetings that is competent but not quite present.</p>
+              <p data-i18n="coaching.exec.offP3">These are not personality problems. They are thinking and communication patterns. Specific, observable, and trainable. I work with executives and founders who are already good at what they do and have hit the ceiling that effort alone won't move. The work is precise: how you think, how you communicate under pressure, and where the gap is between your intent and your impact.</p>
+            </div>
+            <div class="ctaRow" style="margin-top:18px">
+              <a class="btn primary" href="#contact" data-i18n="coaching.exec.cta">Discuss a leadership program</a>
+            </div>
+            <button class="doorBack" onclick="resetDoor('exec')" data-i18n="coaching.back">← Back</button>
           </div>
         </div>
 
+        <!-- STRENGTHS -->
         <div class="card">
-          <h3 data-i18n="coaching.str.title">Strengths Coaching (CliftonStrengths)</h3>
-          <p class="accent" data-i18n="coaching.str.oneLine">Turn talent into consistent strengths—then build roles, habits, and teamwork around them.</p>
-          <ul>
-            <li data-i18n="coaching.str.who1">For: individuals, leaders, teams that want clarity, energy, and collaboration.</li>
-            <li data-i18n="coaching.str.out1">Outcomes: higher engagement, clearer role fit, better collaboration patterns.</li>
-            <li data-i18n="coaching.str.how1">Tools: CliftonStrengths insights → applied action plan → habit loops + team agreements.</li>
-          </ul>
-          <div class="ctaRow">
-            <a class="btn primary" href="#contact" data-i18n="coaching.str.cta">Use Strengths strategically</a>
+          <span class="doorTopic" data-i18n="coaching.str.title">Strengths Coaching (CliftonStrengths)</span>
+          <div id="dq-str">
+            <p class="doorQ" data-i18n="coaching.str.doorQ">Do you know what you're actually good at, or do you know what you've been told?</p>
+            <div class="doorBtns">
+              <button class="doorBtn" onclick="openDoor('str','fine')" data-i18n="coaching.str.doorFine">I know what I'm good at</button>
+              <button class="doorBtn doorPrimary" onclick="openDoor('str','off')" data-i18n="coaching.str.doorOff">I know what I've been told</button>
+            </div>
+          </div>
+          <div class="doorResult" id="dr-str-fine">
+            <p class="doorFineText" data-i18n="coaching.str.fineResp">Good. Most people confuse performance under pressure with genuine strength. If you ever want to test that distinction, you know where to find me.</p>
+            <button class="doorBack" onclick="resetDoor('str')" data-i18n="coaching.back">← Back</button>
+          </div>
+          <div class="doorResult" id="dr-str-off">
+            <div class="doorOffContent">
+              <p data-i18n="coaching.str.offP1">There's a difference between what you're capable of doing and what you do best.</p>
+              <p data-i18n="coaching.str.offP2">Most people spend most of their career in the first category. The second is where energy, speed, and quality converge without force. CliftonStrengths is a Gallup assessment that identifies your 34 talent themes in ranked order. Taking the assessment is not the work. Most people take it, read the report, and file it.</p>
+              <p data-i18n="coaching.str.offP3">The work is what comes after: understanding which of your strengths are actually driving your results, which are creating friction you've been attributing to other causes, and how to build your role, your habits, and your team interactions around what's genuinely there.</p>
+            </div>
+            <div class="ctaRow" style="margin-top:18px">
+              <a class="btn primary" href="#contact" data-i18n="coaching.str.cta">Start with your profile</a>
+            </div>
+            <button class="doorBack" onclick="resetDoor('str')" data-i18n="coaching.back">← Back</button>
           </div>
         </div>
+
       </div>
 
       <div class="card" style="margin-top:22px">
-          <h3 data-i18n="coaching.process.title">How coaching works</h3>
-          <ol style="margin:10px 0 0 18px; color:var(--muted)">
-            <li data-i18n="coaching.process.s1"><span class="accent" style="font-weight:800">Session 1:</span> clarify objectives, boundaries, confidentiality, and success criteria.</li>
-            <li data-i18n="coaching.process.s2"><span class="accent" style="font-weight:800">Sessions 2–3:</span> diagnose patterns (stress signals, assumptions, behaviors, context).</li>
-            <li data-i18n="coaching.process.s3"><span class="accent" style="font-weight:800">Session 4:</span> build a focused plan (experiments, habits, communication moves).</li>
-            <li data-i18n="coaching.process.s4"><span class="accent" style="font-weight:800">Sessions 5–6:</span> weekly iterations (what worked / what didn't / what's next).</li>
-            <li data-i18n="coaching.process.s5"><span class="accent" style="font-weight:800">Session 7:</span> integration — sustainable routines + measurable progress indicators.</li>
-          </ol>
-          <p class="mini" data-i18n="coaching.process.note">Coaching is not therapy. If clinical support is needed, I refer you appropriately.</p>
-        </div>
+        <h3 data-i18n="coaching.process.title">How coaching works</h3>
+        <ol style="margin:10px 0 0 18px; color:var(--muted)">
+          <li data-i18n="coaching.process.s1"><span class="accent" style="font-weight:800">Session 1:</span> clarify objectives, boundaries, confidentiality, and success criteria.</li>
+          <li data-i18n="coaching.process.s2"><span class="accent" style="font-weight:800">Sessions 2–3:</span> diagnose patterns (stress signals, assumptions, behaviors, context).</li>
+          <li data-i18n="coaching.process.s3"><span class="accent" style="font-weight:800">Session 4:</span> build a focused plan (experiments, habits, communication moves).</li>
+          <li data-i18n="coaching.process.s4"><span class="accent" style="font-weight:800">Sessions 5–6:</span> weekly iterations (what worked / what didn't / what's next).</li>
+          <li data-i18n="coaching.process.s5"><span class="accent" style="font-weight:800">Session 7:</span> integration — sustainable routines + measurable progress indicators.</li>
+        </ol>
+        <p class="mini" data-i18n="coaching.process.note">Coaching is not therapy. If clinical support is needed, I refer you appropriately.</p>
+      </div>
     </div>
   </section>
 
@@ -1165,33 +1249,88 @@ body.dark .aboutPhoto .photoDark{
       <p data-i18n="training.p">Three flagship topics. Depth and format are adapted with the client (half-day to two days).</p>
 
       <div class="cols3">
+
+        <!-- MENTAL WELLNESS -->
         <div class="card">
-          <h3 data-i18n="training.mw.title">1) Mental Wellness in the Workplace</h3>
-          <p class="accent" data-i18n="training.mw.oneLine">A practical, stigma-free program to recognize overload early and build team resilience.</p>
-          <ul>
-            <li data-i18n="training.mw.point1">What changes: better self-awareness, healthier boundaries, manager "coach approach."</li>
-            <li data-i18n="training.mw.point2">Why it matters: poor working environments and excessive workloads increase mental health risk.</li>
-            <li data-i18n="training.mw.point3">Includes: detection checklists, STOP method, life-balance exercise, resilience routines.</li>
-          </ul>
+          <span class="doorTopic" data-i18n="training.mw.title">Mental Wellness in the Workplace</span>
+          <div id="dq-mw">
+            <p class="doorQ" data-i18n="training.mw.doorQ">Does your team handle pressure well, or have they just stopped mentioning it?</p>
+            <div class="doorBtns">
+              <button class="doorBtn" onclick="openDoor('mw','fine')" data-i18n="training.mw.doorFine">They handle it well</button>
+              <button class="doorBtn doorPrimary" onclick="openDoor('mw','off')" data-i18n="training.mw.doorOff">They've stopped mentioning it</button>
+            </div>
+          </div>
+          <div class="doorResult" id="dr-mw-fine">
+            <p class="doorFineText" data-i18n="training.mw.fineResp">Good. That's either true, or it's what high-performing teams say until the numbers change. If the numbers change, you know where to find me.</p>
+            <button class="doorBack" onclick="resetDoor('mw')" data-i18n="coaching.back">← Back</button>
+          </div>
+          <div class="doorResult" id="dr-mw-off">
+            <div class="doorOffContent">
+              <p data-i18n="training.mw.offP1">Silence is not resilience. In most high-performing teams, the people carrying the most weight are also the least likely to raise their hand.</p>
+              <p data-i18n="training.mw.offP2">What you typically see instead: slower decisions, shorter tempers, the gradual exit of your best people for reasons that don't fully add up. By the time it's visible, it's already been building for months.</p>
+              <p data-i18n="training.mw.offP3">This training addresses three specific problems: how to recognize overload before it becomes absence, how to have direct conversations about pressure without it feeling like weakness, and how to build team habits that sustain performance without extracting it. No guided breathing. No motivational framework. Just tools that work on a Tuesday morning when the quarter is not going well.</p>
+            </div>
+            <div class="ctaRow" style="margin-top:18px">
+              <a class="btn primary" href="#contact" data-i18n="training.mw.cta">Talk about a company program</a>
+            </div>
+            <button class="doorBack" onclick="resetDoor('mw')" data-i18n="coaching.back">← Back</button>
+          </div>
         </div>
+
+        <!-- CRITICAL THINKING -->
         <div class="card">
-          <h3 data-i18n="training.ct.title">2) Critical Thinking (Business)</h3>
-          <p class="accent" data-i18n="training.ct.oneLine">Make better decisions under uncertainty: clearer problems, fewer biases, stronger reasoning.</p>
-          <ul>
-            <li data-i18n="training.ct.point1">Tools: problem framing, assumption testing, evidence grading, decision criteria.</li>
-            <li data-i18n="training.ct.point2">Outcomes: fewer avoidable errors, better alignment, faster decisions with higher quality.</li>
-            <li data-i18n="training.ct.point3">Use cases: strategy, product, finance, HR decisions, conflict and negotiation.</li>
-          </ul>
+          <span class="doorTopic" data-i18n="training.ct.title">Critical Thinking (Business)</span>
+          <div id="dq-ct">
+            <p class="doorQ" data-i18n="training.ct.doorQ">Does your team think well under pressure, or do you prefer to believe they do?</p>
+            <div class="doorBtns">
+              <button class="doorBtn" onclick="openDoor('ct','fine')" data-i18n="training.ct.doorFine">They think well</button>
+              <button class="doorBtn doorPrimary" onclick="openDoor('ct','off')" data-i18n="training.ct.doorOff">I prefer to believe they do</button>
+            </div>
+          </div>
+          <div class="doorResult" id="dr-ct-fine">
+            <p class="doorFineText" data-i18n="training.ct.fineResp">Good. That's rare. If you ever want to verify it, you know where to find me.</p>
+            <button class="doorBack" onclick="resetDoor('ct')" data-i18n="coaching.back">← Back</button>
+          </div>
+          <div class="doorResult" id="dr-ct-off">
+            <div class="doorOffContent">
+              <p data-i18n="training.ct.offP1">Most teams don't have a knowledge problem. They have a reasoning problem.</p>
+              <p data-i18n="training.ct.offP2">Smart people, good data, wrong conclusions. Decisions that made sense in the room and fell apart in practice. Problems solved efficiently that weren't the actual problem. Assumptions nobody questioned because everyone assumed someone else had.</p>
+              <p data-i18n="training.ct.offP3">This is not a failure of intelligence. It's what happens when thinking skills are never treated as trainable. One workshop won't close that gap permanently. It will show the team exactly where the gap is, and give them a framework to start closing it themselves.</p>
+            </div>
+            <div class="ctaRow" style="margin-top:18px">
+              <a class="btn primary" href="#contact" data-i18n="training.ct.cta">Talk about a company program</a>
+            </div>
+            <button class="doorBack" onclick="resetDoor('ct')" data-i18n="coaching.back">← Back</button>
+          </div>
         </div>
+
+        <!-- NON-VERBAL -->
         <div class="card">
-          <h3 data-i18n="training.nv.title">3) Non-Verbal Communication</h3>
-          <p class="accent" data-i18n="training.nv.oneLine">Presence, trust, and influence: align what you say with what people actually perceive.</p>
-          <ul>
-            <li data-i18n="training.nv.point1">Focus: posture, eye contact, micro-signals, voice tone, timing, space.</li>
-            <li data-i18n="training.nv.point2">Outcomes: increased credibility, better leadership signal, fewer misunderstandings.</li>
-            <li data-i18n="training.nv.point3">Practice-heavy: role plays, feedback loops, real scenarios from your workplace.</li>
-          </ul>
+          <span class="doorTopic" data-i18n="training.nv.title">Non-Verbal Communication</span>
+          <div id="dq-nv">
+            <p class="doorQ" data-i18n="training.nv.doorQ">Do people receive you the way you intend, or do you assume they do?</p>
+            <div class="doorBtns">
+              <button class="doorBtn" onclick="openDoor('nv','fine')" data-i18n="training.nv.doorFine">They receive me correctly</button>
+              <button class="doorBtn doorPrimary" onclick="openDoor('nv','off')" data-i18n="training.nv.doorOff">I assume they do</button>
+            </div>
+          </div>
+          <div class="doorResult" id="dr-nv-fine">
+            <p class="doorFineText" data-i18n="training.nv.fineResp">Good. Most leaders find out they're wrong about this at the worst possible moment. If that moment comes, you know where to find me.</p>
+            <button class="doorBack" onclick="resetDoor('nv')" data-i18n="coaching.back">← Back</button>
+          </div>
+          <div class="doorResult" id="dr-nv-off">
+            <div class="doorOffContent">
+              <p data-i18n="training.nv.offP1">Every leader has a gap between what they mean and what people perceive. The gap is rarely in the words.</p>
+              <p data-i18n="training.nv.offP2">It's in the two seconds of silence before you respond that reads as judgment. The posture in a difficult conversation that says you've already decided. The tone on a video call that communicates stress your message was trying to hide.</p>
+              <p data-i18n="training.nv.offP3">These signals follow patterns, and patterns can be identified, practiced, and changed. This training is practice-heavy by design: role plays, recorded feedback, real scenarios from your workplace. You will see yourself from the outside. That is uncomfortable. It is also the only way this changes.</p>
+            </div>
+            <div class="ctaRow" style="margin-top:18px">
+              <a class="btn primary" href="#contact" data-i18n="training.nv.cta">Talk about a company program</a>
+            </div>
+            <button class="doorBack" onclick="resetDoor('nv')" data-i18n="coaching.back">← Back</button>
+          </div>
         </div>
+
       </div>
 
       <div class="card" style="margin-top:20px">
@@ -1394,7 +1533,7 @@ body.dark .aboutPhoto .photoDark{
         <h2 style="margin-top:10px" data-i18n="cta.h2">The goal is not to recover enough to go back to what broke you.</h2>
         <p class="lead" data-i18n="cta.p">If you want to understand what is happening and build something more sustainable — start with a 30-minute call. No cost. No commitment.</p>
         <div class="ctaRow">
-          <a class="btn primary" href="mailto:contact@grundimpuls.com" data-i18n="cta.email">contact@grundimpuls.com</a>
+          <a class="btn primary" href="/cdn-cgi/l/email-protection#2c4f4342584d4f586c4b5e59424845415c59405f024f4341" data-i18n="cta.email"><span class="__cf_email__" data-cfemail="20434f4e54414354604752554e44494d50554c530e434f4d">[email&#160;protected]</span></a>
           <a class="btn" href="https://grundimpuls.substack.com/" target="_blank" rel="noopener" data-i18n="cta.substack">The DROP on Substack</a>
         </div>
         <p class="small" style="margin-top:12px" data-i18n="cta.legal">
@@ -1423,7 +1562,7 @@ body.dark .aboutPhoto .photoDark{
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
   /* ==========
@@ -1473,9 +1612,10 @@ body.dark .aboutPhoto .photoDark{
       },
       coaching:{
         h2:"Coaching",p:"I'm active in three main coaching areas. Each with its own process, tools, outcomes, and a lot of space to adapt to each client's uniqueness.",
-        burnout:{title:"Stress & Burnout Coaching",oneLine:"For professionals who are still delivering — but recognize the early signals of strain.",quote:"The WHO classifies burnout as an occupational phenomenon resulting from chronic workplace stress that has not been successfully managed. It is not weakness. It is a measurable condition with three dimensions: exhaustion, cynicism, and reduced professional efficacy.",who1:"For: high-performers, leaders, teams in prolonged delivery pressure, any stress prone activity.",out1:"Outcomes: clearer boundaries, improved recovery, reduced irritability, better focus and decisions.",how1:"Method: detect → prevent → sustain (habits + environment + leadership behaviors).",cta:"Start with a diagnostic session"},
-        exec:{title:"Executive & Leadership Coaching",oneLine:"Better decisions, clearer leadership behavior, less noise, stronger execution.",who1:"For: founders, executives, middle management, high-potentials.",out1:"Outcomes: sharper priorities, stronger communication, conflict navigation, consistent follow-through.",how1:"Focus: thinking quality / critical thinking + leadership presence + stress-resilient performance.",cta:"Discuss a leadership package"},
-        str:{title:"Strengths Coaching (CliftonStrengths)",oneLine:"Turn talent into consistent strengths—then build roles, habits, and teamwork around them.",who1:"For: individuals, leaders, teams that want clarity, energy, and collaboration.",out1:"Outcomes: higher engagement, clearer role fit, better collaboration patterns.",how1:"Tools: CliftonStrengths insights → applied action plan → habit loops + team agreements.",cta:"Use Strengths strategically"},
+        back:"← Back",
+        burnout:{title:"Stress & Burnout Coaching",doorQ:"Is something off, or is everything fine?",doorFine:"Everything's fine",doorOff:"Something's off",fineResp:"Good. You're either right, or you're not ready yet. Either way, you know where to find me.",offP1:"You don't need to name it precisely. Most people can't, at first.",offP2:"What they do know is that effort and output have stopped matching the way they used to. That recovery takes longer. That the version of themselves they're used to being feels further away than it should.",offP3:"That gap has a structure. And structure can be worked with. I work with people who are still functioning, still delivering, and quietly running a deficit they haven't told anyone about. Not because they're weak. Because they're the kind of person who figures things out alone. This is where we figure it out together. Faster. With less damage.",cta:"Book a first session"},
+        exec:{title:"Executive & Leadership Coaching",doorQ:"Are you leading well, or are you managing the appearance of it?",doorFine:"Leading well",doorOff:"Managing the appearance",fineResp:"Good. That's harder than most people admit. If the gap ever opens up between what you project and what you actually have, you know where to find me.",offP1:"Most leadership problems don't announce themselves as leadership problems.",offP2:"They show up as a team that executes slowly. A conversation that keeps happening without resolving. A decision you made well but couldn't explain clearly enough for others to trust it. A version of yourself in meetings that is competent but not quite present.",offP3:"These are not personality problems. They are thinking and communication patterns. Specific, observable, and trainable. I work with executives and founders who are already good at what they do and have hit the ceiling that effort alone won't move. The work is precise: how you think, how you communicate under pressure, and where the gap is between your intent and your impact.",cta:"Discuss a leadership program"},
+        str:{title:"Strengths Coaching (CliftonStrengths)",doorQ:"Do you know what you're actually good at, or do you know what you've been told?",doorFine:"I know what I'm good at",doorOff:"I know what I've been told",fineResp:"Good. Most people confuse performance under pressure with genuine strength. If you ever want to test that distinction, you know where to find me.",offP1:"There's a difference between what you're capable of doing and what you do best.",offP2:"Most people spend most of their career in the first category. The second is where energy, speed, and quality converge without force. CliftonStrengths is a Gallup assessment that identifies your 34 talent themes in ranked order. Taking the assessment is not the work. Most people take it, read the report, and file it.",offP3:"The work is what comes after: understanding which of your strengths are actually driving your results, which are creating friction you've been attributing to other causes, and how to build your role, your habits, and your team interactions around what's genuinely there.",cta:"Start with your profile"},
         process:{title:"How coaching works",s1:"Session 1: clarify objectives, boundaries, confidentiality, and success criteria.",s2:"Sessions 2–3: diagnose patterns (stress signals, assumptions, behaviors, context).",s3:"Session 4: build a focused plan (experiments, habits, communication moves).",s4:"Sessions 5–6: weekly iterations (what worked / what didn't / what's next).",s5:"Session 7: integration — sustainable routines + measurable progress indicators.",note:"Coaching is not therapy. If clinical support is needed, I refer you appropriately."},
         proof:{title:"Proof & trust",p1:"ICF-aligned coaching process and ethical boundaries.",p3:"Empathy + boundaries approach: present, non-judgmental, action-oriented.",add:"Testimonials and client logos added when permitted. Short case snapshots outperform generic claims."}
       },
@@ -1486,9 +1626,9 @@ body.dark .aboutPhoto .photoDark{
       },
       training:{
         h2:"Trainings",p:"Three flagship topics. Depth and format are adapted with the client (half-day to two days).",
-        mw:{title:"1) Mental Wellness in the Workplace",oneLine:"A practical, stigma-free program to recognize overload early and build team resilience.",point1:"What changes: better self-awareness, healthier boundaries, manager 'coach approach.'",point2:"Why it matters: poor working environments and excessive workloads increase mental health risk.",point3:"Includes: detection checklists, STOP method, life-balance exercise, resilience routines."},
-        ct:{title:"2) Critical Thinking (Business)",oneLine:"Make better decisions under uncertainty: clearer problems, fewer biases, stronger reasoning.",point1:"Tools: problem framing, assumption testing, evidence grading, decision criteria.",point2:"Outcomes: fewer avoidable errors, better alignment, faster decisions with higher quality.",point3:"Use cases: strategy, product, finance, HR decisions, conflict and negotiation."},
-        nv:{title:"3) Non-Verbal Communication",oneLine:"Presence, trust, and influence: align what you say with what people actually perceive.",point1:"Focus: posture, eye contact, micro-signals, voice tone, timing, space.",point2:"Outcomes: increased credibility, better leadership signal, fewer misunderstandings.",point3:"Practice-heavy: role plays, feedback loops, real scenarios from your workplace."},
+        mw:{title:"Mental Wellness in the Workplace",doorQ:"Does your team handle pressure well, or have they just stopped mentioning it?",doorFine:"They handle it well",doorOff:"They've stopped mentioning it",fineResp:"Good. That's either true, or it's what high-performing teams say until the numbers change. If the numbers change, you know where to find me.",offP1:"Silence is not resilience. In most high-performing teams, the people carrying the most weight are also the least likely to raise their hand.",offP2:"What you typically see instead: slower decisions, shorter tempers, the gradual exit of your best people for reasons that don't fully add up. By the time it's visible, it's already been building for months.",offP3:"This training addresses three specific problems: how to recognize overload before it becomes absence, how to have direct conversations about pressure without it feeling like weakness, and how to build team habits that sustain performance without extracting it. No guided breathing. No motivational framework. Just tools that work on a Tuesday morning when the quarter is not going well.",cta:"Talk about a company program"},
+        ct:{title:"Critical Thinking (Business)",doorQ:"Does your team think well under pressure, or do you prefer to believe they do?",doorFine:"They think well",doorOff:"I prefer to believe they do",fineResp:"Good. That's rare. If you ever want to verify it, you know where to find me.",offP1:"Most teams don't have a knowledge problem. They have a reasoning problem.",offP2:"Smart people, good data, wrong conclusions. Decisions that made sense in the room and fell apart in practice. Problems solved efficiently that weren't the actual problem. Assumptions nobody questioned because everyone assumed someone else had.",offP3:"This is not a failure of intelligence. It's what happens when thinking skills are never treated as trainable. One workshop won't close that gap permanently. It will show the team exactly where the gap is, and give them a framework to start closing it themselves.",cta:"Talk about a company program"},
+        nv:{title:"Non-Verbal Communication",doorQ:"Do people receive you the way you intend, or do you assume they do?",doorFine:"They receive me correctly",doorOff:"I assume they do",fineResp:"Good. Most leaders find out they're wrong about this at the worst possible moment. If that moment comes, you know where to find me.",offP1:"Every leader has a gap between what they mean and what people perceive. The gap is rarely in the words.",offP2:"It's in the two seconds of silence before you respond that reads as judgment. The posture in a difficult conversation that says you've already decided. The tone on a video call that communicates stress your message was trying to hide.",offP3:"These signals follow patterns, and patterns can be identified, practiced, and changed. This training is practice-heavy by design: role plays, recorded feedback, real scenarios from your workplace. You will see yourself from the outside. That is uncomfortable. It is also the only way this changes.",cta:"Talk about a company program"},
         custom:{title:"Other topics (available on request)",p:"You have additional needs. I keep the homepage focused; in a discovery call we scope the exact agenda, examples, and deliverables."}
       },
       about:{
@@ -1541,9 +1681,10 @@ body.dark .aboutPhoto .photoDark{
       },
       coaching:{
         h2:"Coaching",p:"Activez in trei domenii principale de coaching. Fiecare cu propriul proces, propriile instrumente, rezultate și cu mult spațiu de adaptare la unicitatea fiecărui client.",
-        burnout:{title:"Coaching Stres & Burnout",oneLine:"Pentru profesioniști care încă livrează — dar recunosc primele semnale de suprasolicitare.",quote:"OMS clasifică burnout-ul ca fenomen ocupațional rezultat din stres cronic la locul de muncă, gestionat fără succes. Nu este slăbiciune. Este o stare măsurabilă cu trei dimensiuni: epuizare, cinism și eficacitate profesională redusă.",who1:"Pentru: high-performeri, lideri, echipe sub presiune prelungită, orice activitate predispusă la stres.",out1:"Rezultate: limite mai clare, recuperare îmbunătățită, iritabilitate redusă, focus și decizii mai bune.",how1:"Metodă: detectează → previne → susține (obiceiuri + mediu + comportamente de leadership).",cta:"Începe cu o sesiune de diagnostic"},
-        exec:{title:"Coaching Executive & Leadership",oneLine:"Decizii mai bune, comportament de leadership mai clar, mai puțin zgomot, execuție mai solidă.",who1:"Pentru: fondatori, executivi, middle management, high-potentials.",out1:"Rezultate: priorități mai clare, comunicare mai puternică, gestionarea conflictelor, follow-through constant.",how1:"Focus: calitatea gândirii / gândire critică + prezență de lider + performanță rezilientă la stres.",cta:"Discută un pachet de leadership"},
-        str:{title:"Coaching pe Puncte Forte (CliftonStrengths)",oneLine:"Transformi talentul în puncte forte consistente — apoi construiești roluri, obiceiuri și colaborare pe baza lor.",who1:"Pentru: persoane, lideri, echipe care vor claritate, energie și colaborare.",out1:"Rezultate: engagement mai mare, potrivire mai bună rol–persoană, colaborare mai eficientă.",how1:"Instrumente: insight-uri CliftonStrengths → plan aplicat → obiceiuri + acorduri de echipă.",cta:"Folosește punctele forte strategic"},
+        back:"← Înapoi",
+        burnout:{title:"Coaching Stres & Burnout",doorQ:"Este ceva în neregulă, sau totul este în ordine?",doorFine:"Totul e în ordine",doorOff:"Ceva nu e în regulă",fineResp:"Bine. Fie ai dreptate, fie nu ești pregătit încă. Oricum, știi unde să mă găsești.",offP1:"Nu trebuie să-l numești cu precizie. Cei mai mulți oameni nu pot, la început.",offP2:"Ceea ce știu este că efortul și rezultatele au încetat să mai corespundă cum obișnuiau. Că recuperarea durează mai mult. Că versiunea lor obișnuită din trecut pare mai departe decât ar trebui.",offP3:"Acel decalaj are o structură. Iar structura poate fi lucrată. Lucrez cu oameni care încă funcționează, care încă livrează, și care acumulează în tăcere un deficit pe care nu l-au spus nimănui. Nu pentru că sunt slabi. Pentru că sunt genul de persoană care rezolvă lucrurile singur. Aici le rezolvăm împreună. Mai repede. Cu mai puțin cost.",cta:"Programează o primă sesiune"},
+        exec:{title:"Coaching Executive & Leadership",doorQ:"Conduci bine, sau gestionezi aparența că faci asta?",doorFine:"Conduc bine",doorOff:"Gestionez aparența",fineResp:"Bine. E mai greu decât recunosc cei mai mulți. Dacă decalajul se deschide vreodată între ce proiectezi și ce ai cu adevărat, știi unde să mă găsești.",offP1:"Cele mai multe probleme de leadership nu se anunță ca probleme de leadership.",offP2:"Apar ca o echipă care execută lent. O conversație care se repetă fără rezolvare. O decizie bine luată, dar imposibil de explicat suficient de clar pentru ca ceilalți să aibă încredere. O versiune a ta în ședințe care e competentă, dar nu pe deplin prezentă.",offP3:"Nu sunt probleme de personalitate. Sunt tipare de gândire și comunicare. Specifice, observabile și antrenabile. Lucrez cu directori și fondatori care sunt deja buni la ce fac și au atins plafonul pe care efortul singur nu-l poate mișca. Munca este precisă: cum gândești, cum comunici sub presiune și unde e decalajul dintre intenție și impact.",cta:"Discută un program de leadership"},
+        str:{title:"Coaching pe Puncte Forte (CliftonStrengths)",doorQ:"Știi la ce ești cu adevărat bun, sau știi ce ți s-a spus că ești bun?",doorFine:"Știu la ce sunt bun",doorOff:"Știu ce mi s-a spus",fineResp:"Bine. Cei mai mulți oameni confundă performanța sub presiune cu puterea autentică. Dacă vrei vreodată să testezi această distincție, știi unde să mă găsești.",offP1:"Există o diferență între ce ești capabil să faci și ce faci cel mai bine.",offP2:"Cei mai mulți oameni petrec cea mai mare parte a carierei în prima categorie. A doua este locul unde energie, viteză și calitate converg fără forță. CliftonStrengths este un instrument Gallup care îți identifică cele 34 de teme de talent în ordine. A completa evaluarea nu este munca. Cei mai mulți o completează, citesc raportul și îl arhivează.",offP3:"Munca vine după: înțelegerea care dintre punctele tale forte îți conduc cu adevărat rezultatele, care creează fricțiuni atribuite altor cauze, și cum să-ți construiești rolul, obiceiurile și interacțiunile cu echipa în jurul a ceea ce există cu adevărat.",cta:"Începe cu profilul tău"},
         process:{title:"Cum funcționează coaching-ul",s1:"Sesiunea 1: clarificarea obiectivelor, limitelor, confidențialității și criteriilor de succes.",s2:"Sesiunile 2–3: diagnostic — tipare (semnale de stres, presupuneri, comportamente, context).",s3:"Sesiunea 4: plan focusat (experimente, obiceiuri, mișcări de comunicare).",s4:"Sesiunile 5–6: iterații săptămânale (ce a funcționat / ce nu / ce urmează).",s5:"Sesiunea 7: integrare — rutine sustenabile + indicatori de progres măsurabili.",note:"Coaching-ul nu este terapie. Dacă e nevoie de suport clinic, recomand specialist."},
         proof:{title:"Credențiale",p1:"Proces aliniat ICF și limite etice.",p3:"Abordare empatie + limite: prezent, fără judecată, orientat spre acțiune.",add:"Testimoniale și logo-uri de clienți adăugate cu permisiune. Mini-cazurile reale depășesc afirmațiile generice."}
       },
@@ -1554,9 +1695,9 @@ body.dark .aboutPhoto .photoDark{
       },
       training:{
         h2:"Traininguri",p:"Trei teme principale. Profunzimea și formatul se adaptează cu clientul (jumătate de zi până la două zile).",
-        mw:{title:"Mental Wellness la Locul de Muncă",oneLine:"Un program practic, fără stigmat, pentru a recunoaște suprasolicitarea devreme și a construi reziliență de echipă.",point1:"Ce se schimbă: auto-observare mai bună, limite sănătoase, abordare de tip coach pentru manageri.",point2:"De ce contează: mediile de lucru slabe și volumul excesiv cresc riscul de probleme de sănătate mintală.",point3:"Include: checklist-uri de detecție, metoda STOP, exercițiu de echilibru viață-muncă, rutine de reziliență."},
-        ct:{title:"Gândire Critică (Business)",oneLine:"Decizii mai bune în incertitudine: probleme mai clare, mai puține bias-uri, raționament mai solid.",point1:"Instrumente: definirea problemei, testarea presupunerilor, evaluarea evidenței, criterii de decizie.",point2:"Rezultate: mai puține erori evitabile, aliniere mai bună, decizii mai rapide și de mai bună calitate.",point3:"Aplicabil în: strategie, produs, finanțe, HR, conflict și negociere."},
-        nv:{title:"Comunicare Non-Verbală",oneLine:"Prezență, credibilitate și influență: aliniezi ce spui cu ce percep oamenii de fapt.",point1:"Focus: postură, contact vizual, micro-semnale, ton vocal, timing, spațiu.",point2:"Rezultate: credibilitate mai mare, semnal de leadership mai clar, mai puține neînțelegeri.",point3:"Multă practică: role play, bucle de feedback, scenarii reale din compania ta."},
+        mw:{title:"Mental Wellness la Locul de Muncă",doorQ:"Echipa ta gestionează presiunea bine, sau pur și simplu au încetat să o mai menționeze?",doorFine:"Gestionează bine",doorOff:"Au încetat să o menționeze",fineResp:"Bine. Fie e adevărat, fie e ceea ce spun echipele performante până când cifrele se schimbă. Dacă cifrele se schimbă, știi unde să mă găsești.",offP1:"Tăcerea nu e reziliență. În cele mai performante echipe, oamenii care duc cel mai mult din greutate sunt și cei mai puțin dispuși să ridice mâna.",offP2:"Ce vezi în schimb: decizii mai lente, răbdare mai scurtă, plecarea treptată a oamenilor buni din motive care nu se adună complet. Până devine vizibil, s-a construit luni de zile.",offP3:"Acest training adresează trei probleme specifice: cum să recunoști suprasolicitarea înainte să devină absență, cum să ai conversații directe despre presiune fără să pară slăbiciune, și cum să construiești obiceiuri de echipă care susțin performanța fără s-o extragă. Fără respirație ghidată. Fără cadre motivaționale. Doar instrumente care funcționează într-o dimineață de marți când trimestrul nu merge bine.",cta:"Vorbim despre un program corporativ"},
+        ct:{title:"Gândire Critică (Business)",doorQ:"Echipa ta gândește bine sub presiune, sau preferi să crezi că da?",doorFine:"Gândesc bine",doorOff:"Prefer să cred că da",fineResp:"Bine. E rar. Dacă vrei vreodată să verifici, știi unde să mă găsești.",offP1:"Cele mai multe echipe nu au o problemă de cunoștințe. Au o problemă de raționament.",offP2:"Oameni buni, date bune, concluzii greșite. Decizii care aveau sens în sală și s-au destrămat în practică. Probleme rezolvate eficient care nu erau problema reală. Presupuneri pe care nimeni nu le-a chestionat pentru că toată lumea a presupus că altcineva a făcut-o.",offP3:"Nu e un eșec de inteligență. E ce se întâmplă când abilitățile de gândire nu sunt niciodată tratate ca antrenabile. Un workshop nu va închide acel decalaj definitiv. Va arăta echipei exact unde e decalajul și îi va da un cadru să înceapă să-l închidă singură.",cta:"Vorbim despre un program corporativ"},
+        nv:{title:"Comunicare Non-Verbală",doorQ:"Oamenii te primesc cum intenționezi, sau presupui că o fac?",doorFine:"Mă primesc corect",doorOff:"Presupun că o fac",fineResp:"Bine. Cei mai mulți lideri află că greșesc în legătură cu asta în cel mai prost moment posibil. Dacă acel moment vine, știi unde să mă găsești.",offP1:"Fiecare lider are un decalaj între ce înseamnă și ce percep oamenii. Decalajul e rareori în cuvinte.",offP2:"E în cele două secunde de tăcere înainte să răspunzi, care se citesc ca judecată. Postura într-o conversație dificilă care spune că ai decis deja. Tonul dintr-un apel video care comunică stres pe care mesajul tău încerca să-l ascundă.",offP3:"Aceste semnale urmează tipare, iar tiparele pot fi identificate, exersate și schimbate. Acest training e intens practic prin design: role play, feedback înregistrat, scenarii reale din compania ta. Te vei vedea din exterior. E incomod. E și singura cale prin care asta se schimbă.",cta:"Vorbim despre un program corporativ"},
         custom:{title:"Alte teme (la cerere)",p:"Ai și alte nevoi. Păstrez site-ul focusat; într-un discovery call definim exact agenda, exemplele și livrabilele."}
       },
       about:{
@@ -1609,9 +1750,10 @@ body.dark .aboutPhoto .photoDark{
       },
       coaching:{
         h2:"Coaching",p:"Ich habe drei große Coachingbereiche in denen ich aktiv bin. Jeder mit eigenem Prozess, eigenen Werkzeugen, Ergebnissen und viel Raum für Anpassung an die Einzigartigkeit jedes Klienten.",
-        burnout:{title:"Stress- & Burnout-Coaching",oneLine:"Für Fachkräfte, die noch liefern — aber die frühen Zeichen von Überlastung erkennen.",quote:"Die WHO klassifiziert Burnout als arbeitsbezogenes Phänomen, das durch chronischen, nicht erfolgreich bewältigten Arbeitsstress entsteht. Es ist keine Schwäche. Es ist ein messbarer Zustand mit drei Dimensionen: Erschöpfung, Zynismus und reduzierte berufliche Wirksamkeit.",who1:"Für: Hochleistungsträger, Führungskräfte, Teams im anhaltenden Lieferdruck, jede stressanfällige Aktivität.",out1:"Ergebnisse: klarere Grenzen, bessere Erholung, weniger Reizbarkeit, mehr Fokus und bessere Entscheidungen.",how1:"Methode: erkennen → vorbeugen → stabilisiern (Gewohnheiten + Umfeld + Führungsverhalten).",cta:"Mit einer Diagnose-Session starten"},
-        exec:{title:"Executive & Leadership Coaching",oneLine:"Bessere Entscheidungen, klareres Führungsverhalten, weniger Lärm, stärkere Umsetzung.",who1:"Für: Gründer, Führungskräfte, mittleres Management, High-Potentials.",out1:"Ergebnisse: schärfere Prioritäten, stärkere Kommunikation, Konfliktnavigation, konsequentes Follow-through.",how1:"Fokus: Denkqualität / kritisches Denken + Führungspräsenz + stressresistente Leistung.",cta:"Leadership-Paket besprechen"},
-        str:{title:"Stärken-Coaching (CliftonStrengths)",oneLine:"Talent in konsistente Stärken verwandeln — und dann Rollen, Gewohnheiten und Zusammenarbeit darauf aufbauen.",who1:"Für: Einzelpersonen, Führungskräfte, Teams, die Klarheit, Energie und Zusammenarbeit wollen.",out1:"Ergebnisse: höheres Engagement, klarere Passung von Rolle und Person, bessere Zusammenarbeit.",how1:"Tools: CliftonStrengths-Einblicke → angewandter Aktionsplan → Gewohnheitsschleifen + Teamvereinbarungen.",cta:"Stärken strategisch einsetzen"},
+        back:"← Zurück",
+        burnout:{title:"Stress- & Burnout-Coaching",doorQ:"Stimmt etwas nicht, oder ist alles in Ordnung?",doorFine:"Alles in Ordnung",doorOff:"Etwas stimmt nicht",fineResp:"Gut. Entweder hast du recht, oder du bist noch nicht bereit. So oder so weißt du, wo du mich findest.",offP1:"Du musst es nicht präzise benennen. Die meisten Menschen können das anfangs nicht.",offP2:"Was sie wissen: Aufwand und Ergebnis stimmen nicht mehr so überein wie früher. Die Erholung dauert länger. Die Version von sich selbst, die sie kennen, fühlt sich weiter entfernt an als sie sollte.",offP3:"Diese Lücke hat eine Struktur. Und Struktur lässt sich bearbeiten. Ich arbeite mit Menschen, die noch funktionieren, noch liefern, und still ein Defizit aufbauen, das sie niemandem gesagt haben. Nicht weil sie schwach sind. Weil sie die Art Mensch sind, die Dinge allein löst. Hier lösen wir es gemeinsam. Schneller. Mit weniger Schaden.",cta:"Erste Session buchen"},
+        exec:{title:"Executive & Leadership Coaching",doorQ:"Führst du gut, oder managst du den Anschein davon?",doorFine:"Ich führe gut",doorOff:"Ich manage den Anschein",fineResp:"Gut. Das ist schwerer als die meisten zugeben. Wenn sich die Lücke zwischen dem, was du projizierst, und dem, was du wirklich hast, öffnet, weißt du, wo du mich findest.",offP1:"Die meisten Führungsprobleme kündigen sich nicht als Führungsprobleme an.",offP2:"Sie zeigen sich als ein Team, das langsam umsetzt. Ein Gespräch, das sich wiederholt, ohne sich zu lösen. Eine Entscheidung, die du gut getroffen hast, aber nicht klar genug erklären konntest, damit andere ihr vertrauen. Eine Version von dir in Meetings, die kompetent, aber nicht wirklich präsent ist.",offP3:"Das sind keine Persönlichkeitsprobleme. Es sind Denk- und Kommunikationsmuster. Spezifisch, beobachtbar und trainierbar. Ich arbeite mit Führungskräften und Gründern, die bereits gut sind in dem, was sie tun, und die Decke erreicht haben, die Anstrengung allein nicht verschieben kann. Die Arbeit ist präzise: wie du denkst, wie du unter Druck kommunizierst und wo die Lücke zwischen deiner Absicht und deiner Wirkung ist.",cta:"Leadership-Programm besprechen"},
+        str:{title:"Stärken-Coaching (CliftonStrengths)",doorQ:"Weißt du, worin du wirklich gut bist, oder weißt du, was man dir gesagt hat?",doorFine:"Ich weiß, worin ich gut bin",doorOff:"Ich weiß, was man mir gesagt hat",fineResp:"Gut. Die meisten Menschen verwechseln Leistung unter Druck mit echter Stärke. Wenn du diese Unterscheidung jemals testen möchtest, weißt du, wo du mich findest.",offP1:"Es gibt einen Unterschied zwischen dem, wozu du fähig bist, und dem, was du am besten kannst.",offP2:"Die meisten Menschen verbringen den Großteil ihrer Karriere in der ersten Kategorie. Die zweite ist der Ort, wo Energie, Geschwindigkeit und Qualität ohne Kraft konvergieren. CliftonStrengths ist ein Gallup-Instrument, das deine 34 Talentthemen in Rangfolge identifiziert. Das Assessment zu machen ist nicht die Arbeit. Die meisten machen es, lesen den Bericht und legen ihn ab.",offP3:"Die Arbeit kommt danach: zu verstehen, welche deiner Stärken deine Ergebnisse wirklich antreiben, welche Reibung erzeugen, die du anderen Ursachen zugeschrieben hast, und wie du deine Rolle, deine Gewohnheiten und deine Teaminteraktionen um das aufbaust, was wirklich da ist.",cta:"Mit deinem Profil starten"},
         process:{title:"Wie Coaching funktioniert",s1:"Session 1: Ziele, Grenzen, Vertraulichkeit und Erfolgskriterien klären.",s2:"Sessions 2–3: Muster diagnostizieren (Stresssignale, Annahmen, Verhalten, Kontext).",s3:"Session 4: fokussierten Plan erstellen (Experimente, Gewohnheiten, Kommunikationsschritte).",s4:"Sessions 5–6: wöchentliche Iterationen (was funktioniert / was nicht / was als Nächstes).",s5:"Session 7: Integration — nachhaltige Routinen + messbare Fortschrittsindikatoren.",note:"Coaching ist keine Therapie. Wenn klinische Unterstützung nötig ist, verweise ich weiter."},
         proof:{title:"Nachweise",p1:"ICF-konformer Coaching-Prozess und ethische Grenzen.",p3:"Empathie + Grenzen: präsent, nicht wertend, handlungsorientiert.",add:"Testimonials und Kundenlogos werden nach Erlaubnis hinzugefügt. Kurze Fall-Snapshots schlagen generische Behauptungen."}
       },
@@ -1622,9 +1764,9 @@ body.dark .aboutPhoto .photoDark{
       },
       training:{
         h2:"Trainings",p:"Drei Kern-Themen. Tiefe und Format werden mit dem Kunden abgestimmt (Halbtag bis zwei Tage).",
-        mw:{title:"Mental Well-Being am Arbeitsplatz",oneLine:"Ein praxisnahes, stigmafreies Programm zur frühen Erkennung von Überlastung und zum Aufbau von Team-Resilienz.",point1:"Was sich ändert: bessere Selbstwahrnehmung, gesündere Grenzen, Coach-Ansatz für Führungskräfte.",point2:"Warum es zählt: schlechte Arbeitsumgebungen und überhöhte Arbeitslast erhöhen das Risiko psychischer Probleme.",point3:"Enthält: Erkennungs-Checklisten, STOP-Methode, Life-Balance-Übung, Resilienz-Routinen."},
-        ct:{title:"Kritisches Denken (Business)",oneLine:"Besser entscheiden unter Unsicherheit: klarere Problemdefinition, weniger Verzerrungen, stärkeres Denken.",point1:"Tools: Problemrahmung, Annahmen testen, Belege bewerten, Entscheidungskriterien definieren.",point2:"Ergebnisse: weniger vermeidbare Fehler, bessere Ausrichtung, schnellere und qualitativ hochwertigere Entscheidungen.",point3:"Anwendungsfälle: Strategie, Produkt, Finanzen, HR, Konflikt und Verhandlung."},
-        nv:{title:"Nonverbale Kommunikation",oneLine:"Präsenz, Glaubwürdigkeit und Wirkung: was du sagst und was andere wahrnehmen, in Einklang bringen.",point1:"Fokus: Körperhaltung, Blickkontakt, Mikrosignale, Stimme, Timing, Raum.",point2:"Ergebnisse: mehr Glaubwürdigkeit, klareres Führungssignal, weniger Missverständnisse.",point3:"Praxisorientiert: Rollenspiele, Feedback-Schleifen, reale Szenarien aus deinem Unternehmen."},
+        mw:{title:"Mental Well-Being am Arbeitsplatz",doorQ:"Geht dein Team gut mit Druck um, oder haben sie aufgehört, es zu erwähnen?",doorFine:"Sie kommen gut damit zurecht",doorOff:"Sie haben aufgehört, es zu erwähnen",fineResp:"Gut. Das ist entweder wahr, oder es ist das, was Hochleistungsteams sagen, bis sich die Zahlen ändern. Wenn sich die Zahlen ändern, weißt du, wo du mich findest.",offP1:"Stille ist keine Resilienz. In den meisten Hochleistungsteams sind die Menschen, die am meisten tragen, auch am wenigsten geneigt, die Hand zu heben.",offP2:"Was du stattdessen siehst: langsamere Entscheidungen, kürzere Geduld, das schrittweise Ausscheiden deiner besten Leute aus Gründen, die sich nicht ganz addieren. Bis es sichtbar wird, hat es sich schon monatelang aufgebaut.",offP3:"Dieses Training adressiert drei spezifische Probleme: wie man Überlastung erkennt, bevor sie zur Abwesenheit wird, wie man direkte Gespräche über Druck führt, ohne dass es wie Schwäche wirkt, und wie man Teamgewohnheiten aufbaut, die Leistung aufrechterhalten, ohne sie zu extrahieren. Keine geführte Atmung. Kein Motivationsrahmen. Nur Werkzeuge, die an einem Dienstagmorgen funktionieren, wenn das Quartal nicht gut läuft.",cta:"Über ein Firmenprogramm sprechen"},
+        ct:{title:"Kritisches Denken (Business)",doorQ:"Denkt dein Team gut unter Druck, oder glaubst du lieber, dass es das tut?",doorFine:"Sie denken gut",doorOff:"Ich glaube lieber, dass sie es tun",fineResp:"Gut. Das ist selten. Wenn du es jemals überprüfen möchtest, weißt du, wo du mich findest.",offP1:"Die meisten Teams haben kein Wissensproblem. Sie haben ein Denkproblem.",offP2:"Kluge Leute, gute Daten, falsche Schlussfolgerungen. Entscheidungen, die im Raum Sinn ergaben und in der Praxis scheiterten. Effizient gelöste Probleme, die nicht das eigentliche Problem waren. Annahmen, die niemand hinterfragt hat, weil jeder annahm, jemand anderes hätte es getan.",offP3:"Das ist kein Versagen der Intelligenz. Es ist das, was passiert, wenn Denkfähigkeiten nie als trainierbar behandelt werden. Ein Workshop wird diese Lücke nicht dauerhaft schließen. Er zeigt dem Team genau, wo die Lücke ist, und gibt ihnen einen Rahmen, sie selbst zu schließen.",cta:"Über ein Firmenprogramm sprechen"},
+        nv:{title:"Nonverbale Kommunikation",doorQ:"Empfangen die Menschen dich so, wie du es beabsichtigst, oder nimmst du an, dass sie es tun?",doorFine:"Sie empfangen mich richtig",doorOff:"Ich nehme an, dass sie es tun",fineResp:"Gut. Die meisten Führungskräfte finden heraus, dass sie damit falsch liegen, im denkbar schlechtesten Moment. Wenn dieser Moment kommt, weißt du, wo du mich findest.",offP1:"Jede Führungskraft hat eine Lücke zwischen dem, was sie meint, und dem, was die Menschen wahrnehmen. Die Lücke liegt selten in den Worten.",offP2:"Sie liegt in den zwei Sekunden Stille, bevor du antwortest, die als Urteil gelesen werden. Der Körperhaltung in einem schwierigen Gespräch, die sagt, dass du bereits entschieden hast. Der Tonlage in einem Video-Call, die Stress kommuniziert, den deine Nachricht verbergen wollte.",offP3:"Diese Signale folgen Mustern, und Muster können identifiziert, geübt und verändert werden. Dieses Training ist bewusst praxisorientiert: Rollenspiele, aufgezeichnetes Feedback, reale Szenarien aus deinem Unternehmen. Du wirst dich von außen sehen. Das ist unangenehm. Es ist auch der einzige Weg, wie sich das ändert.",cta:"Über ein Firmenprogramm sprechen"},
         custom:{title:"Weitere Themen (auf Anfrage)",p:"Es gibt weitere Bedarfe. Die Website bleibt fokussiert; im Gespräch definieren wir Agenda, Beispiele und Deliverables."}
       },
       about:{
@@ -1736,6 +1878,29 @@ function setLang(lang){
   }
 
   loadSubstackPosts();
+
+  /* ==========
+     TWO-DOOR MECHANIC
+     ========== */
+  function openDoor(id, choice) {
+    var q  = document.getElementById('dq-' + id);
+    var rf = document.getElementById('dr-' + id + '-fine');
+    var ro = document.getElementById('dr-' + id + '-off');
+    if (q)  q.style.display  = 'none';
+    if (rf) { rf.classList.remove('doorActive'); rf.style.display = 'none'; }
+    if (ro) { ro.classList.remove('doorActive'); ro.style.display = 'none'; }
+    var target = document.getElementById('dr-' + id + '-' + choice);
+    if (target) { target.style.display = 'block'; target.classList.add('doorActive'); }
+  }
+
+  function resetDoor(id) {
+    var q  = document.getElementById('dq-' + id);
+    var rf = document.getElementById('dr-' + id + '-fine');
+    var ro = document.getElementById('dr-' + id + '-off');
+    if (q)  q.style.display  = '';
+    if (rf) { rf.classList.remove('doorActive'); rf.style.display = 'none'; }
+    if (ro) { ro.classList.remove('doorActive'); ro.style.display = 'none'; }
+  }
 </script>
 <script>
 (function(){
@@ -1885,17 +2050,4 @@ if (themeBtn){
 
   document.addEventListener("click", (e) => {
     if (!e.target.closest("#langMobile")) closeLang();
-    if (!e.target.closest("#mobileMenu") && !e.target.closest("#burgerBtn")) closeBurger();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape"){
-      closeLang();
-      closeBurger();
-    }
-  });
-
-})();
-</script>
-</body>
-</html>
+    if (!e
