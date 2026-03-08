@@ -1139,28 +1139,36 @@ body.dark .sectionArt .artDark{
   transform:translateY(-6px);
 }
 
+.logoWrap,
+.mark,
+.logoMark,
+.footerMark{
+  position:relative;
+  width:38px;
+  height:38px;
+  flex-shrink:0;
+}
+
+.logo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
 .logo-light{ display:block; }
 .logo-dark{ display:none; }
 
 body.dark .logo-light{ display:none; }
 body.dark .logo-dark{ display:block; }
 
-.logo{
-  height:56px;
-  width:auto;
-  display:block;
-}
-
-.mark,
-.logoMark,
-.footerMark{
-  position:relative;
-  width:56px;
-  height:56px;
+.right{
   display:flex;
   align-items:center;
-  justify-content:center;
-  flex-shrink:0;
+  gap:10px;
+  flex-wrap:nowrap;
+  justify-content:flex-end;
 }
   
 </style>
