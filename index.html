@@ -1147,14 +1147,19 @@ body.dark .logo-dark{ display:block; }
 
 .logo{
   height:56px;
-  position:absolute;
-  left:0;
-  top:0;
-}
-.mark{
-  position:relative;
-  height:56px;
   width:auto;
+  display:block;
+}
+
+.mark,
+.logoMark{
+  position:relative;
+  width:56px;
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
 }
   
 </style>
@@ -1179,12 +1184,10 @@ body.dark .logo-dark{ display:block; }
   <div class="comingSoonOverlay" id="comingSoon" aria-hidden="true">
     <div class="box" role="dialog" aria-label="Grundimpuls coming soon">
       <div class="brandline">
-        <div class="logoMark">
 <div class="logoMark">
   <img class="logo logo-light" src="assets/drop_light.svg" alt="Grundimpuls">
   <img class="logo logo-dark" src="assets/drop_dark.svg" alt="Grundimpuls">
 </div>
-        </div>
         <div style="text-align:left">
           <div style="font-weight:900;letter-spacing:.6px;color:#F9FAFB">GRUNDIMPULS</div>
           <div style="font-size:11px;color:rgba(240,180,41,.85);letter-spacing:.18em;text-transform:uppercase">EXPLORE · LEARN · CREATE</div>
@@ -1201,12 +1204,10 @@ body.dark .logo-dark{ display:block; }
   <div class="wrap">
     <div class="nav">
       <a class="brand" href="#top" aria-label="Grundimpuls home">
-        <div class="mark">
 <div class="mark">
   <img class="logo logo-light" src="assets/drop_light.svg" alt="Grundimpuls">
   <img class="logo logo-dark" src="assets/drop_dark.svg" alt="Grundimpuls">
 </div>
-        </div>
         <div class="wordmark">
           <strong>GRUNDIMPULS</strong>
           <span id="taglineTop">EXPLORE · LEARN · CREATE</span>
