@@ -258,6 +258,16 @@ body, header, section, .card{
     font-weight:900;
     margin-bottom:10px;
   }
+  .ctaStack p{
+  font-size:18px;
+  line-height:1.55;
+  color:var(--text);
+  margin:0 0 14px;
+}
+
+.ctaStack p:last-child{
+  margin-bottom:0;
+}
   h1{ font-size:46px; line-height:1.06; margin:0 0 14px; letter-spacing:-.02em; }
   @media(max-width:600px){ h1{ font-size:36px } }
   h2{ font-size:32px; margin:0 0 12px; letter-spacing:-.01em; }
@@ -1253,7 +1263,7 @@ body.dark .sectionArt .artDark{
       <h2 data-i18n="coaching.h2">Coaching</h2>
       <p data-i18n="coaching.p">I'm active in three main coaching areas. Each with its own process, tools, outcomes, and a lot of space to adapt to each client's uniqueness.</p>
 
-      <div class="cols1">
+      <div class="cols3">
 
         <!-- BURNOUT -->
         <div class="card">
@@ -1665,10 +1675,18 @@ body.dark .sectionArt .artDark{
     </div>
 
     <div class="card" style="border-color:var(--gold-border)">
-        <div class="kicker" data-i18n="cta.tagline">Explore · Learn · Create</div>
-        <h2 style="margin-top:10px" data-i18n="cta.h2">The goal is not to recover enough to go back to what broke you.</h2>
-        <p class="lead" data-i18n="cta.p">If you want to understand what is happening and build something more sustainable — start with a 30-minute call. No cost. No commitment.</p>
-        <div class="ctaRow">
+<div class="kicker" data-i18n="cta.tagline">Explore · Learn · Create</div>
+<h2 style="margin-top:10px" data-i18n="cta.title">One thing before we talk</h2>
+
+<div class="ctaStack">
+  <p data-i18n="cta.l1">The goal of a coaching program should not be to recover enough to go back to what broke you in the first place.</p>
+  <p data-i18n="cta.l2">The ambition of a clear thinker should not be to outsmart their peers.</p>
+  <p data-i18n="cta.l3">The purpose of a good non-verbal communicator should not be to project a false image of who they are.</p>
+  <p data-i18n="cta.l4">If those are your reasons, we're not on the same ethical ground.</p>
+  <p data-i18n="cta.l5">If none of that describes you, I'm looking forward to meeting you.</p>
+</div>
+
+<div class="ctaRow">
           <a class="btn primary" href="/cdn-cgi/l/email-protection#2c4f4342584d4f586c4b5e59424845415c59405f024f4341" data-i18n="cta.email"><span class="__cf_email__" data-cfemail="20434f4e54414354604752554e44494d50554c530e434f4d">[email&#160;protected]</span></a>
           <a class="btn" href="https://grundimpuls.substack.com/" target="_blank" rel="noopener" data-i18n="cta.substack">The DROP on Substack</a>
         </div>
@@ -1790,8 +1808,19 @@ body.dark .sectionArt .artDark{
       method:{title:"My method",hint:"If it's too simple for you, you're thinking too complicated.",detect:{t:"Detect",d:"Spot early patterns in energy, mood, detachment, and efficacy. Identify red flags before collapse."},prevent:{t:"Prevent",d:"Build boundaries, stress skills, recovery routines, and communication patterns that reduce escalation."},sustain:{t:"Sustain",d:"Create a small system that keeps progress stable under real pressure—without relying on motivation."}},
       booking:{h2:"Book a session",p:"Select a time that works for you. Individual sessions run 50 minutes. The first session includes context-setting at no extra charge.",note:"For corporate programs and team coaching, reach out by email — scope and format are better defined in a short conversation first."},
       blog:{h2:"The DROP",p:"Published on Substack. Articles on stress, leadership, performance, and clear thinking — for people who prefer substance over inspiration quotes.",loading:"Loading latest articles…",cta:"Open The DROP on Substack",note:""},
-      cta:{tagline:"Explore · Learn · Create",h2:"The goal is not to recover enough to go back to what broke you.",p:"If you want to understand what is happening and build something more sustainable — start with a 30-minute call. No cost. No commitment.",email:"contact@grundimpuls.com",substack:"The DROP on Substack",legal:"GDPR note: contact data is used only to respond to your request and is not sold or shared."},
-      footer:{note:"Bucharest · Vienna · Online"}
+cta:{
+  tagline:"Explore · Learn · Create",
+  title:"One thing before we talk",
+  l1:"The goal of a coaching program should not be to recover enough to go back to what broke you in the first place.",
+  l2:"The ambition of a clear thinker should not be to outsmart their peers.",
+  l3:"The purpose of a good non-verbal communicator should not be to project a false image of who they are.",
+  l4:"If those are your reasons, we're not on the same ethical ground.",
+  l5:"If none of that describes you, I'm looking forward to meeting you.",
+  email:"contact@grundimpuls.com",
+  substack:"The DROP on Substack",
+  legal:"GDPR note: contact data is used only to respond to your request and is not sold or shared."
+}      
+  footer:{note:"Bucharest · Vienna · Online"}
     },
 
     ro: {
@@ -1859,8 +1888,19 @@ body.dark .sectionArt .artDark{
       method:{title:"Metoda mea",hint:"Dacă e prea simplu pentru tine, gândești prea complicat.",detect:{t:"Detectează",d:"Identifică tipare timpurii în energie, dispoziție, distanțare și eficacitate. Recunoaște semnalele de alarmă înainte de colaps."},prevent:{t:"Previne",d:"Construiește limite, abilități de gestionare a stresului, rutine de recuperare și tipare de comunicare care reduc escaladarea."},sustain:{t:"Susține",d:"Creează un sistem mic care menține progresul stabil sub presiune reală — fără să depinzi de motivație."}},
       booking:{h2:"Programează o sesiune",p:"Alege un interval orar care ți se potrivește. Sesiunile individuale durează 50 de minute. Prima sesiune este pentru a ne cunoaste si stabilirea contextului, fără costuri suplimentare.",note:"Pentru programe corporate și team coaching, scrie-ne un email — scopul și formatul se definesc mai bine într-o discuție scurtă."},
       blog:{h2:"The DROP",p:"Publicat pe Substack. Articole despre stres, leadership, performanță și gândire clară — pentru cei care preferă substanța față de citate inspiraționale.",loading:"Se încarcă cele mai recente articole…",cta:"Deschide The DROP pe Substack",note:""},
-      cta:{tagline:"Explorează · Învață · Creează",h2:"Scopul nu este să te recuperezi suficient pentru a te întoarce la ce te-a epuizat.",p:"Dacă vrei să înțelegi ce se întâmplă și să construiești ceva mai sustenabil — începe cu un apel de 30 de minute. Fără costuri. Fără angajament.",email:"contact@grundimpuls.com",substack:"The DROP pe Substack",legal:"Notă GDPR: datele de contact sunt folosite exclusiv pentru a răspunde solicitării tale și nu sunt vândute sau partajate."},
-      footer:{note:"București · Viena · Online"}
+cta:{
+  tagline:"Explorează · Învață · Creează",
+  title:"Un lucru înainte să vorbim",
+  l1:"Scopul unui program de coaching nu ar trebui să fie să te recuperezi suficient cât să te întorci la ceea ce te-a rupt în primul rând.",
+  l2:"Ambiția unui gânditor clar nu ar trebui să fie să-și depășească intelectual colegii.",
+  l3:"Scopul unui bun comunicator non-verbal nu ar trebui să fie să proiecteze o imagine falsă despre cine este.",
+  l4:"Dacă acestea sunt motivele tale, nu suntem pe același teren etic.",
+  l5:"Dacă nimic din toate acestea nu te descrie, abia aștept să ne cunoaștem.",
+  email:"contact@grundimpuls.com",
+  substack:"The DROP pe Substack",
+  legal:"Notă GDPR: datele de contact sunt folosite exclusiv pentru a răspunde solicitării tale și nu sunt vândute sau partajate."
+}      
+  footer:{note:"București · Viena · Online"}
     },
 
     de: {
@@ -1928,8 +1968,19 @@ body.dark .sectionArt .artDark{
       method:{title:"Meine Methode",hint:"Wenn es dir zu einfach ist, denkst du zu kompliziert.",detect:{t:"Erkennen",d:"Frühe Muster in Energie, Stimmung, Distanz und Wirksamkeit identifizieren. Warnsignale erkennen, bevor es kippt."},prevent:{t:"Vorbeugen",d:"Grenzen, Stress-Kompetenzen, Erholungsroutinen und Kommunikationsmuster aufbauen, die Eskalation reduzieren."},sustain:{t:"Stabilisieren",d:"Ein kleines System schaffen, das Fortschritt unter realem Druck stabil hält — ohne von Motivation abhängig zu sein."}},
       booking:{h2:"Session buchen",p:"Wähle einen Termin, der dir passt. Einzel-Sessions dauern 50 Minuten. Die erste Session ist um uns kennen zu lernen und Kontext-Klärung ohne zusätzliche Kosten.",note:"Für Firmenprogramme und Team Coaching kontaktiere mich per E-Mail — Umfang und Format lassen sich besser in einem kurzen Gespräch definieren."},
       blog:{h2:"The DROP",p:"Veröffentlicht auf Substack. Artikel über Stress, Leadership, Leistung und klares Denken — für Menschen, die Substanz gegenüber Inspirationszitaten bevorzugen.",loading:"Neueste Artikel werden geladen…",cta:"The DROP auf Substack öffnen",note:""},
-      cta:{tagline:"Explore · Learn · Create",h2:"Das Ziel ist nicht, sich genug zu erholen, um zu dem zurückzukehren, was dich erschöpft hat.",p:"Wenn du verstehen willst, was passiert, und etwas Nachhaltigeres aufbauen möchtest — starte mit einem 30-Minuten-Gespräch. Kostenlos. Unverbindlich.",email:"contact@grundimpuls.com",substack:"The DROP auf Substack",legal:"DSGVO-Hinweis: Kontaktdaten werden ausschließlich zur Beantwortung deiner Anfrage verwendet und weder verkauft noch weitergegeben."},
-      footer:{note:"Bukarest · Wien · Online"}
+cta:{
+  tagline:"Explore · Learn · Create",
+  title:"Eine Sache, bevor wir sprechen",
+  l1:"Das Ziel eines Coaching-Programms sollte nicht darin bestehen, sich gerade genug zu erholen, um zu dem zurückzukehren, was einen überhaupt erst gebrochen hat.",
+  l2:"Die Ambition eines klaren Denkers sollte nicht darin bestehen, seine Mitmenschen intellektuell auszustechen.",
+  l3:"Der Zweck guter nonverbaler Kommunikation sollte nicht darin bestehen, ein falsches Bild davon zu vermitteln, wer man ist.",
+  l4:"Wenn das deine Gründe sind, stehen wir ethisch nicht auf demselben Boden.",
+  l5:"Wenn nichts davon auf dich zutrifft, freue ich mich darauf, dich kennenzulernen.",
+  email:"contact@grundimpuls.com",
+  substack:"The DROP auf Substack",
+  legal:"DSGVO-Hinweis: Kontaktdaten werden ausschließlich zur Beantwortung deiner Anfrage verwendet und weder verkauft noch weitergegeben."
+}
+  footer:{note:"Bukarest · Wien · Online"}
     }
 
   };
