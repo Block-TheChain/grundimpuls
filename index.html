@@ -226,9 +226,37 @@ body, header, section, .card{
   }
   @media(max-width:900px){ .grid{ grid-template-columns:1fr } }
 
-  .cols3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:18px; }
-  @media(max-width:900px){ .cols3{ grid-template-columns:1fr; } }
+.cols3{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+  margin-top:18px;
+  align-items:stretch;
+}
 
+.cols3 > .card{
+  height:100%;
+}
+
+@media(max-width:900px){
+  .cols3{
+    grid-template-columns:1fr;
+  }
+}
+
+  .coachingGrid{
+  align-items:stretch;
+}
+
+.coachingGrid > .card{
+  display:flex;
+  flex-direction:column;
+}
+
+.coachingGrid .doorResult{
+  width:100%;
+}
+  
   .cols1{ display:grid; grid-template-columns:1fr; gap:16px; margin-top:18px; }
 
   .split{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px; }
