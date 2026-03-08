@@ -1139,6 +1139,12 @@ body.dark .sectionArt .artDark{
   transform:translateY(-6px);
 }
 
+.logo-light{ display:block; }
+.logo-dark{ display:none; }
+
+body.dark .logo-light{ display:none; }
+body.dark .logo-dark{ display:block; }
+  
 </style>
 
   <script type="application/ld+json">
@@ -1162,7 +1168,10 @@ body.dark .sectionArt .artDark{
     <div class="box" role="dialog" aria-label="Grundimpuls coming soon">
       <div class="brandline">
         <div class="logoMark">
-<img class="logo" src="assets/Drop round.svg" alt="Grundimpuls">
+<div class="logoMark">
+  <img class="logo logo-light" src="assets/drop_light.svg" alt="Grundimpuls">
+  <img class="logo logo-dark" src="assets/drop_dark.svg" alt="Grundimpuls">
+</div>
         </div>
         <div style="text-align:left">
           <div style="font-weight:900;letter-spacing:.6px;color:#F9FAFB">GRUNDIMPULS</div>
@@ -1181,7 +1190,10 @@ body.dark .sectionArt .artDark{
     <div class="nav">
       <a class="brand" href="#top" aria-label="Grundimpuls home">
         <div class="mark">
-<img class="logo" src="assets/Drop round.svg" alt="Grundimpuls">
+<div class="mark">
+  <img class="logo logo-light" src="assets/drop_light.svg" alt="Grundimpuls">
+  <img class="logo logo-dark" src="assets/drop_dark.svg" alt="Grundimpuls">
+</div>
         </div>
         <div class="wordmark">
           <strong>GRUNDIMPULS</strong>
