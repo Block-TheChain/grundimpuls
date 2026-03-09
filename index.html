@@ -751,7 +751,6 @@ header{
     transform: translateY(-110%);
   }
 }
-/* --- Credentials layout + alignment --- */
 
 /* Cards already use flex column, we keep it stable */
 .accredCard{
@@ -1204,6 +1203,12 @@ body.dark .logo-dark{ display:block; }
 .footerBrand:hover{
   text-decoration:none;
   color:inherit;
+}
+
+  @media (max-width:600px){
+  .brand{
+    gap:3px;
+  }
 }
   
 </style>
