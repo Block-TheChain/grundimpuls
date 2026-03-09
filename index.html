@@ -919,6 +919,14 @@ body.dark .brand .mark{
 .aboutTextTop{
   min-width:0;
 }
+  
+#about .card p:last-child{
+  margin-bottom:0;
+}
+#about .card h3{
+  margin-bottom:14px;
+}
+
 
 /* DESKTOP: photo overlaps card edge */
 .aboutPhoto{
@@ -1591,16 +1599,26 @@ body.dark .logo-dark{ display:block; }
 </div>
 
   <!-- Right: What makes this credible -->
-  <div class="card">
-    <h3 data-i18n="about.eeat.title">What makes this credible</h3>
-    <ul>
-      <li data-i18n="about.eeat.p1">Ethics and boundaries (coaching is not therapy; I refer when clinical support is needed).</li>
-      <li data-i18n="about.eeat.p2">ICF-aligned process and continuous professional development in mental well-being.</li>
-      <li data-i18n="about.eeat.p3">Practical tools built from real experience: detection, prevention, integration—usable from the next day.</li>
-      <li data-i18n="about.eeat.p4">14 years training professionals across industries; I understand the gap between knowing and doing.</li>
-    </ul>
+<div class="card">
+  <h3 data-i18n="about.eeat.title">I probably don't want you as my client</h3>
 
-      </div>
+  <p data-i18n="about.eeat.p1">
+    Most people who reach out already know what the problem is. They've known for a while. What they need is not insight — they have plenty of that. What they need is someone who will not let them leave the conversation with a comfortable half-truth.
+  </p>
+
+  <p data-i18n="about.eeat.p2">
+    That's what I do. I've been a consultant, a trainer, a coach. Three different job titles for the same uncomfortable function: making it harder to stay exactly where you are.
+  </p>
+
+  <p data-i18n="about.eeat.p3">
+    I don't take every client. Not because I'm selective in a marketing sense — because some people want to feel better about not changing, and I'm genuinely bad at providing that. If you need someone to validate comfortable yet harmful behaviours you've already decided on keeping, I'm the wrong person.
+  </p>
+
+  <p data-i18n="about.eeat.p4">
+    I keep confidences beyond what contracts require. I refer when someone needs a therapist. I say things in sessions that don't make it into reports. Some call that idealistic. Some call it counterproductive. I call it normal — if you have the right values.
+  </p>
+</div>
+
 <!-- Credentials card (moved under About) -->
 <div id="credentials" class="card" style="margin-top:20px; grid-column:1 / -1;">  
   <h3 data-i18n="credentials.h2">Credentials</h3>
@@ -1883,8 +1901,14 @@ Not all intention is equal
         h2:"About",
         who:{title:"Stamin Daniel",p1:"Twenty-five years of business experience across oil and gas, pharma, FMCG, finance, and a dozen other industries. Management consultant, trainer, coach.",p2:"After 14 years of experience training people in behavioral and leadership skills, I'm convinced that one of the most important skills is to stop applying pressure, slow down, and start listening. This insight is reinforced by all my coaching experience.",p3:"Over 1,000 hours of one-to-one and team coaching since 2015. I bring the structure of a consultant, the patience of a trainer, and the self-awareness of a recovering perfectionist who is still very much in recovery."},
         badge1:"Stress & burnout focus",badge2:"Leadership & communication",badge3:"CliftonStrengths",
-        eeat:{title:"As a coach I use…",p1:"Ethics and boundaries (coaching is not therapy; I refer when clinical support is needed).",p2:"ICF-aligned process and continuous professional development in mental well-being.",p3:"Practical tools built from real experience: detection, prevention, integration—usable from the next day.",p4:"14 years training professionals across industries; I understand the gap between knowing and doing."},
-        cred1:{num:"10+",label:"years consulting"},cred2:{num:"14+",label:"years training"},cred3:{num:"9+",label:"years coaching"},cred4:{num:"1000+",label:"coaching hours"}
+eeat:{
+  title:"I probably don't want you as my client",
+  p1:"Most people who reach out already know what the problem is. They've known for a while. What they need is not insight — they have plenty of that. What they need is someone who will not let them leave the conversation with a comfortable half-truth.",
+  p2:"That's what I do. I've been a consultant, a trainer, a coach. Three different job titles for the same uncomfortable function: making it harder to stay exactly where you are.",
+  p3:"I don't take every client. Not because I'm selective in a marketing sense — because some people want to feel better about not changing, and I'm genuinely bad at providing that. If you need someone to validate comfortable yet harmful behaviours you've already decided on keeping, I'm the wrong person.",
+  p4:"I keep confidences beyond what contracts require. I refer when someone needs a therapist. I say things in sessions that don't make it into reports. Some call that idealistic. Some call it counterproductive. I call it normal — if you have the right values."
+},
+  cred1:{num:"10+",label:"years consulting"},cred2:{num:"14+",label:"years training"},cred3:{num:"9+",label:"years coaching"},cred4:{num:"1000+",label:"coaching hours"}
       },
       credentials:{h2:"Credentials",p:"ICF-aligned process, ethical boundaries, and continuous professional development."},
       faq:{
@@ -1962,8 +1986,14 @@ cta:{
         h2:"Despre",
         who:{title:"Stamin Daniel",p1:"Douăzeci și cinci de ani de experiență în business: petrol și gaze, pharma, FMCG, finanțe și o duzină de alte industrii. Consultant de management, trainer, coach.",p2:"După 14 ani de munca în dezvoltarea abilităților comportamentale și de leadership a oamenilor, am convingerea că una dintre cele mai utile abilități este să știi cum să nu mai forțezi, să încetinești ritmul și să înveți să asculți. Această realizare este puternic susținută de tot ceea ce am învățat în rolul meu de coach.",p3:"Am acumulat peste 1.000 de ore de coaching individual și de echipă din 2015. Aduc structura unui consultant, răbdarea unui formator și autoreflecția unui fost perfecționist aflat încă în faza de recuperare."},
         badge1:"Stres & burnout",badge2:"Leadership & comunicare",badge3:"CliftonStrengths",
-        eeat:{title:"In rolul meu de coach folosesc...",p1:"Etică și limite (coaching nu este terapie; recomand specialist când e necesar).",p2:"Procese aliniate ICF și formare continuă în mental well-being la locul de muncă.",p3:"Instrumente practice construite din experiență reală: detectare, prevenție, integrare — aplicabile din ziua următoare.",p4:"14 ani de training cu profesioniști din industrii diverse; înțeleg distanța dintre a ști și a face."},
-        cred1:{num:"10+",label:"ani consultanță"},cred2:{num:"14+",label:"ani training"},cred3:{num:"9+",label:"ani coaching"},cred4:{num:"1000+",label:"ore coaching"}
+eeat:{
+  title:"Probabil nu vreau să fii clientul meu",
+  p1:"Majoritatea celor care mă contactează știu deja care este problema. O știu de ceva timp. Nu au nevoie de mai multă claritate — au destulă. Ceea ce le lipsește este cineva care să nu îi lase să plece din conversație cu un adevăr pe jumătate confortabil.",
+  p2:"Asta fac eu. Am fost consultant, trainer și coach. Trei titluri diferite pentru aceeași funcție incomodă: a face mai dificil să rămâi exact unde ești.",
+  p3:"Nu iau orice client. Nu pentru că aș fi selectiv într-un sens de marketing — ci pentru că unii oameni vor doar să se simtă mai bine fără să schimbe nimic, iar la asta sunt sincer foarte slab. Dacă ai nevoie de cineva care să îți valideze comportamente confortabile dar dăunătoare pe care ai decis deja să le păstrezi, eu nu sunt persoana potrivită.",
+  p4:"Păstrez confidențialitatea dincolo de ceea ce cer contractele. Trimit mai departe atunci când cineva are nevoie de un terapeut. Spun lucruri în sesiuni care nu apar niciodată în rapoarte. Unii numesc asta idealism. Alții spun că e contraproductiv. Eu îi spun normal — dacă ai valorile potrivite."
+},        
+  cred1:{num:"10+",label:"ani consultanță"},cred2:{num:"14+",label:"ani training"},cred3:{num:"9+",label:"ani coaching"},cred4:{num:"1000+",label:"ore coaching"}
       },
       credentials:{h2:"Credențiale",p:"Proces aliniat ICF, limite etice și formare profesională continuă."},
       faq:{
@@ -2041,8 +2071,14 @@ cta:{
         h2:"Über mich",
         who:{title:"Stamin Daniel",p1:"Fünfundzwanzig Jahre Berufserfahrung in Öl und Gas, Pharma, FMCG, Finanzen und einem Dutzend weiterer Branchen. Managementberater, Trainer, Coach.",p2:"Nach 14 Jahren Eerfahrung in Trainieren von Menschen in Verhaltens- und Führungskompetenzen bin ich überzeugt, dass eine der wichtigsten Fähigkeiten darin besteht, nicht mehr Druck auszuzuüben, die Geschwindigkeit herunter zu kurbeln und anfangen zuzuhören. Diese Erkenntnis wird durch meine gesamte Coaching-Erfahrung bestärkt.",p3:"Über 1.000 Stunden Einzel- und Teamcoaching seit 2015. Ich bringe die Struktur eines Beraters, die Geduld eines Trainers und die Selbstreflexion eines ehemaligen Perfektionisten mit, der sich immer noch in der Genesungsphase befindet."},
         badge1:"Stress & Burnout",badge2:"Leadership & Kommunikation",badge3:"CliftonStrengths",
-        eeat:{title:"Als Coach verwende ich...",p1:"Ethik und Grenzen (Coaching ist keine Therapie; Weiterverweisung wenn klinische Unterstützung nötig ist).",p2:"ICF-konforme Prozesse und kontinuierliche Weiterbildung in mental well-being am Arbeitsplatz.",p3:"Praktische Tools aus realer Erfahrung: Erkennen, Vorbeugen, Integrieren — ab dem nächsten Tag anwendbar.",p4:"14 Jahre Training mit Fachleuten aus verschiedenen Branchen; ich verstehe die Lücke zwischen Wissen und Tun."},
-        cred1:{num:"10+",label:"Jahre Beratung"},cred2:{num:"14+",label:"Jahre Training"},cred3:{num:"9+",label:"Jahre Coaching"},cred4:{num:"1000+",label:"Coaching-Stunden"}
+eeat:{
+  title:"Wahrscheinlich möchte ich Sie nicht als Klienten",
+  p1:"Die meisten Menschen, die sich bei mir melden, wissen bereits, was das Problem ist. Sie wissen es schon eine ganze Weile. Was ihnen fehlt, ist nicht Einsicht — davon haben sie genug. Was sie brauchen, ist jemand, der sie nicht mit einer bequemen Halbwahrheit aus dem Gespräch gehen lässt.",
+  p2:"Genau das ist meine Rolle. Ich war Berater, Trainer und Coach. Drei verschiedene Berufsbezeichnungen für dieselbe unbequeme Funktion: es schwieriger zu machen, genau dort zu bleiben, wo man gerade ist.",
+  p3:"Ich nehme nicht jeden Klienten an. Nicht, weil ich in einem Marketing-Sinn selektiv sein möchte — sondern weil manche Menschen sich einfach besser fühlen wollen, ohne wirklich etwas zu verändern, und darin bin ich ehrlich gesagt ziemlich schlecht. Wenn Sie jemanden suchen, der angenehme, aber schädliche Verhaltensweisen bestätigt, die Sie ohnehin beibehalten möchten, bin ich wahrscheinlich nicht die richtige Person.",
+  p4:"Ich behandle Vertraulichkeit strenger, als es Verträge verlangen. Ich verweise weiter, wenn jemand therapeutische Unterstützung braucht. Und ich sage in Sitzungen Dinge, die später in keinem Bericht stehen. Manche nennen das idealistisch. Andere nennen es unpraktisch. Ich nenne es normal — wenn die Werte stimmen."
+},        
+  cred1:{num:"10+",label:"Jahre Beratung"},cred2:{num:"14+",label:"Jahre Training"},cred3:{num:"9+",label:"Jahre Coaching"},cred4:{num:"1000+",label:"Coaching-Stunden"}
       },
       credentials:{h2:"Nachweise",p:"ICF-konformer Prozess, ethische Grenzen und kontinuierliche Weiterbildung."},
       faq:{
