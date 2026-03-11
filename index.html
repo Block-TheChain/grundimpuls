@@ -2470,5 +2470,24 @@ if (themeBtn){
     layout: "month_view"
   });
 </script>
+  
+  <script>
+function applyCalTheme(){
+  const theme = document.body.classList.contains("dark") ? "dark" : "light";
+
+  document.querySelectorAll("[data-cal-config]").forEach(btn=>{
+    const config = JSON.parse(btn.dataset.calConfig);
+    config.theme = theme;
+    btn.dataset.calConfig = JSON.stringify(config);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", applyCalTheme);
+
+document.querySelector(".themeBtn")?.addEventListener("click", ()=>{
+  setTimeout(applyCalTheme,150);
+});
+</script>
+  
 </body>
 </html>
