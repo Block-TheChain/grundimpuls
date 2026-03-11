@@ -1204,6 +1204,41 @@ body.dark .logo-dark{ display:block; }
   text-decoration:none;
   color:inherit;
 }
+
+.bookingChoice{
+  margin-top:28px;
+  padding:24px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:var(--bg-alt);
+}
+
+.bookingChoiceLead{
+  margin:0 0 16px;
+  color:var(--muted);
+  font-size:15px;
+}
+
+.bookingChoiceBtns{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+@media (max-width:600px){
+  .bookingChoice{
+    padding:18px;
+  }
+
+  .bookingChoiceBtns{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .bookingChoiceBtns .btn{
+    width:100%;
+  }
+}
   
 </style>
 
@@ -1742,10 +1777,31 @@ body.dark .logo-dark{ display:block; }
       <div class="goldBar"></div>
       <h2 data-i18n="booking.h2">Book a session</h2>
       <p data-i18n="booking.p">Select a time that works for you. Individual sessions run 50 minutes. The first session includes context-setting at no extra charge.</p>
-      <div style="margin-top:28px; border-radius:12px; overflow:hidden; border:1px solid var(--border);">
-        <div class="calendly-inline-widget" data-url="https://calendly.com/daniel-grundimpuls/coaching-session-individual" style="min-width:320px;height:700px;"></div>
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-      </div>
+<div class="bookingChoice">
+  <p class="bookingChoiceLead">
+    Choose the format that fits your need.
+  </p>
+
+  <div class="bookingChoiceBtns">
+    <button
+      type="button"
+      class="btn"
+      data-cal-link="daniel-grundimpuls/30min"
+      data-cal-namespace="30min"
+      data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>
+      30-minute discovery call
+    </button>
+
+    <button
+      type="button"
+      class="btn primary"
+      data-cal-link="daniel-grundimpuls/coaching-session"
+      data-cal-namespace="coaching-session"
+      data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>
+      50-minute coaching session
+    </button>
+  </div>
+</div>
       <p class="small" style="margin-top:14px;color:var(--muted2)" data-i18n="booking.note">For corporate programs and team coaching, reach out by email — scope and format are better defined in a short conversation first.</p>
     </div>
   </section>
@@ -2367,6 +2423,48 @@ if (themeBtn){
   });
 
 })();
+</script>
+  <script type="text/javascript">
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else {
+          p(cal, ar);
+        }
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", "30min", { origin: "https://app.cal.com" });
+  Cal.ns["30min"]("ui", {
+    hideEventTypeDetails: false,
+    layout: "month_view"
+  });
+
+  Cal("init", "coaching-session", { origin: "https://app.cal.com" });
+  Cal.ns["coaching-session"]("ui", {
+    hideEventTypeDetails: false,
+    layout: "month_view"
+  });
 </script>
 </body>
 </html>
