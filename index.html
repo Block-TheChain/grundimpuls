@@ -2467,6 +2467,22 @@ if (themeBtn){
     hideEventTypeDetails: false,
     layout: "month_view"
   });
+<script>
+function updateCalTheme(){
+  const theme = document.body.classList.contains("dark") ? "dark" : "light";
+
+  document.querySelectorAll("[data-cal-config]").forEach(el=>{
+    const config = JSON.parse(el.dataset.calConfig);
+    config.theme = theme;
+    el.dataset.calConfig = JSON.stringify(config);
+  });
+}
+
+updateCalTheme();
+
+document.querySelector(".themeBtn")?.addEventListener("click", ()=>{
+  setTimeout(updateCalTheme,200);
+});
 </script>
 </body>
 </html>
