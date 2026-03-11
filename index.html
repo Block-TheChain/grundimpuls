@@ -1784,25 +1784,27 @@ body.dark .logo-dark{ display:block; }
   </p>
   -->
 
-  <div class="bookingChoiceBtns">
-    <button
-      type="button"
-      class="btn"
-      data-cal-link="daniel-grundimpuls/30min"
-      data-cal-namespace="30min"
-      data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>
-      30-minute discovery call
-    </button>
+<div class="bookingChoiceBtns">
+  <button
+    id="calBtn30"
+    type="button"
+    class="btn"
+    data-cal-link="daniel-grundimpuls/30min"
+    data-cal-namespace="30min"
+    data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>
+    30-minute discovery call
+  </button>
 
-    <button
-      type="button"
-      class="btn primary"
-      data-cal-link="daniel-grundimpuls/coaching-session"
-      data-cal-namespace="coaching-session"
-      data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>
-      50-minute coaching session
-    </button>
-  </div>
+  <button
+    id="calBtn50"
+    type="button"
+    class="btn primary"
+    data-cal-link="daniel-grundimpuls/coaching-session"
+    data-cal-namespace="coaching-session"
+    data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>
+    50-minute coaching session
+  </button>
+</div>
 </div>
       <p class="small" style="margin-top:14px;color:var(--muted2)" data-i18n="booking.note">For corporate programs and team coaching, reach out by email — scope and format are better defined in a short conversation first.</p>
     </div>
@@ -2468,20 +2470,30 @@ if (themeBtn){
     layout: "month_view"
   });
 <script>
-function updateCalTheme(){
+function updateCalThemeConfig() {
   const theme = document.body.classList.contains("dark") ? "dark" : "light";
-
-  document.querySelectorAll("[data-cal-config]").forEach(el=>{
-    const config = JSON.parse(el.dataset.calConfig);
-    config.theme = theme;
-    el.dataset.calConfig = JSON.stringify(config);
+  const config = JSON.stringify({
+    layout: "month_view",
+    useSlotsViewOnSmallScreen: true,
+    theme: theme
   });
+
+  const btn30 = document.getElementById("calBtn30");
+  const btn50 = document.getElementById("calBtn50");
+
+  if (btn30) btn30.setAttribute("data-cal-config", config);
+  if (btn50) btn50.setAttribute("data-cal-config", config);
 }
 
-updateCalTheme();
+document.addEventListener("DOMContentLoaded", function () {
+  updateCalThemeConfig();
 
-document.querySelector(".themeBtn")?.addEventListener("click", ()=>{
-  setTimeout(updateCalTheme,200);
+  const themeBtn = document.getElementById("themeToggle");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      setTimeout(updateCalThemeConfig, 50);
+    });
+  }
 });
 </script>
 </body>
