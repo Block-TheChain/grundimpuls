@@ -2469,32 +2469,6 @@ if (themeBtn){
     hideEventTypeDetails: false,
     layout: "month_view"
   });
-<script>
-function updateCalThemeConfig() {
-  const theme = document.body.classList.contains("dark") ? "dark" : "light";
-  const config = JSON.stringify({
-    layout: "month_view",
-    useSlotsViewOnSmallScreen: true,
-    theme: theme
-  });
-
-  const btn30 = document.getElementById("calBtn30");
-  const btn50 = document.getElementById("calBtn50");
-
-  if (btn30) btn30.setAttribute("data-cal-config", config);
-  if (btn50) btn50.setAttribute("data-cal-config", config);
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  updateCalThemeConfig();
-
-  const themeBtn = document.getElementById("themeToggle");
-  if (themeBtn) {
-    themeBtn.addEventListener("click", function () {
-      setTimeout(updateCalThemeConfig, 50);
-    });
-  }
-});
 </script>
 </body>
 </html>
