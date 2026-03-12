@@ -1102,6 +1102,14 @@ body.dark .sectionArt .artDark{
   margin-bottom:18px;
 }
 
+.bookingArt{
+  margin-top:6px;
+}
+
+#booking .sectionTop{
+  align-items:center;
+}
+  
 /* mobile */
 @media (max-width:900px){
 
@@ -1772,11 +1780,23 @@ body.dark .logo-dark{ display:block; }
   </section>
 
   <!-- BOOKING -->
-  <section id="booking">
-    <div class="wrap">
-      <div class="goldBar"></div>
-      <h2 data-i18n="booking.h2">Book a session</h2>
-      <p data-i18n="booking.p">Choose the format that fits your need, then select a suitable time.</p>
+<section id="booking">
+  <div class="wrap">
+
+    <div class="sectionTop">
+
+      <div class="sectionTopText">
+        <div class="goldBar"></div>
+        <h2 data-i18n="booking.h2">Book a session</h2>
+        <p data-i18n="booking.p">Choose the format that fits your need, then select a suitable time.</p>
+      </div>
+
+      <div class="sectionArt bookingArt">
+        <img class="artLight" src="assets/cal_light.svg" alt="Booking illustration">
+        <img class="artDark" src="assets/cal_dark.svg" alt="Booking illustration">
+      </div>
+
+    </div>
 <div class="bookingChoice">
   <!--
   <p class="bookingChoiceLead">
