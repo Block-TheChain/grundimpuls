@@ -2225,18 +2225,19 @@ function setLang(lang){
      SUBSTACK RSS FEED — loads live
      ========== */
   async function loadSubstackPosts(){
-    const rssUrl = 'https://grundimpuls.substack.com/feed';
-    const apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl) + '&count=3';
 
-    try {
-      const resp = await fetch(apiUrl, { cache: 'no-cache' });
-      if (!resp.ok) throw new Error('network');
-      const data = await resp.json();
-      if (data.status !== 'ok' || !data.items || !data.items.length) throw new Error('no items');
+    const apiUrl = '/api/substack';
 
-      const posts = data.items.slice(0, 3);
-      const grid = document.getElementById('blogPosts');
+try {
+  const resp = await fetch(apiUrl, { cache: 'no-cache' });
+  if (!resp.ok) throw new Error('network');
 
+  const data = await resp.json();
+  if (!data.posts || !data.posts.length) throw new Error('no items');
+
+  const posts = data.posts.slice(0, 3);
+  const grid = document.getElementById('blogPosts');
+  
       posts.forEach(function(post, i){
         const date = post.pubDate ? new Date(post.pubDate).toLocaleDateString('en-GB',{year:'numeric',month:'short',day:'numeric'}) : '';
         const title = post.title || '';
