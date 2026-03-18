@@ -30,7 +30,18 @@
     .btn-primary:hover,.btn-secondary:hover{transform:translateY(-1px);opacity:.92}
     .pdf-frame{width:100%;height:78vh;border:0;border-top:1px solid rgba(200,134,10,.18);background:#fff}
     .note{margin-top:16px;font-size:11px;letter-spacing:1.3px;text-transform:uppercase;color:#9CA3AF;text-align:center}
-    @media (max-width:700px){h1{font-size:36px}.inner{padding:28px 22px 22px}.pdf-frame{height:68vh}}
+
+@media (max-width:700px){
+  h1{font-size:36px}
+  .inner{padding:28px 22px 22px}
+  .pdf-frame{display:none}
+}
+
+    @media (max-width: 700px){
+  .pdf-frame{
+    display:none;
+  }
+}
   </style>
 </head>
 <body>
