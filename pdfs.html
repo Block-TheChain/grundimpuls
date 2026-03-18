@@ -14,26 +14,46 @@
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
 
-    body{
-      font-family:'DM Sans',sans-serif;
-      background:#F0EDE8;
-      color:#111827;
-      padding:40px 18px;
-    }
+body{
+  font-family:'DM Sans',sans-serif;
+  padding:40px 18px;
+  transition:background .3s ease, color .3s ease;
+}
+
+body.light{
+  background:#F0EDE8;
+  color:#111827;
+}
+
+body.dark{
+  background:#080B0F;
+  color:#F3F5F7;
+}
 
     .wrap{
       max-width:920px;
       margin:0 auto;
     }
 
-    .card{
-      background:#fff;
-      border-radius:26px;
-      overflow:hidden;
-      box-shadow:
-        0 22px 90px rgba(0,0,0,.14),
-        0 2px 8px rgba(0,0,0,.06);
-    }
+.card{
+  border-radius:26px;
+  overflow:hidden;
+  transition:background .3s ease, box-shadow .3s ease;
+}
+
+body.light .card{
+  background:#fff;
+  box-shadow:
+    0 22px 90px rgba(0,0,0,.14),
+    0 2px 8px rgba(0,0,0,.06);
+}
+
+body.dark .card{
+  background:#0F1318;
+  box-shadow:
+    0 22px 90px rgba(0,0,0,.55),
+    0 2px 8px rgba(0,0,0,.35);
+}
 
     .top-accent{
       height:4px;
@@ -44,12 +64,21 @@
       padding:34px 32px 30px;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      margin-bottom:26px;
-    }
+.brand-name{
+  font-family:'Montserrat',sans-serif;
+  font-size:16px;
+  letter-spacing:1.7px;
+  text-transform:uppercase;
+  font-weight:600;
+}
+
+body.light .brand-name{
+  color:#111827;
+}
+
+body.dark .brand-name{
+  color:#F3F5F7;
+}
 
     .brand img{
       height:46px;
@@ -65,21 +94,36 @@
       color:#111827;
     }
 
-    h1{
-      font-family:'Cormorant Garamond',serif;
-      font-size:46px;
-      font-weight:500;
-      line-height:1.05;
-      margin-bottom:10px;
-    }
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:46px;
+  font-weight:500;
+  line-height:1.05;
+  margin-bottom:10px;
+}
 
-    .sub{
-      font-size:14px;
-      line-height:1.7;
-      color:#4B5563;
-      max-width:62ch;
-      margin-bottom:28px;
-    }
+body.light h1{
+  color:#111827;
+}
+
+body.dark h1{
+  color:#F3F5F7;
+}
+
+.sub{
+  font-size:14px;
+  line-height:1.7;
+  max-width:62ch;
+  margin-bottom:28px;
+}
+
+body.light .sub{
+  color:#4B5563;
+}
+
+body.dark .sub{
+  color:#8B93A1;
+}
 
     .list{
       display:flex;
@@ -87,52 +131,84 @@
       gap:14px;
     }
 
-    .item{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:18px 18px;
-      border:1px solid rgba(200,134,10,.16);
-      border-radius:16px;
-      background:#FFFCF8;
-    }
+.item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px 18px;
+  border-radius:16px;
+  transition:background .3s ease, border-color .3s ease;
+}
 
-    .item-title{
-      font-size:16px;
-      font-weight:500;
-      color:#111827;
-    }
+body.light .item{
+  border:1px solid rgba(200,134,10,.16);
+  background:#FFFCF8;
+}
 
-    .btn{
-      display:inline-block;
-      white-space:nowrap;
-      padding:11px 16px;
-      border-radius:12px;
-      background:linear-gradient(135deg,#C8860A,#E07320);
-      color:#fff;
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      text-decoration:none;
-      box-shadow:0 6px 24px rgba(200,134,10,.22);
-      transition:transform .15s ease, opacity .15s ease;
-    }
+body.dark .item{
+  border:1px solid rgba(240,180,60,.16);
+  background:#171C23;
+}
+
+.item-title{
+  font-size:16px;
+  font-weight:500;
+}
+
+body.light .item-title{
+  color:#111827;
+}
+
+body.dark .item-title{
+  color:#F3F5F7;
+}
+
+.btn{
+  display:inline-block;
+  white-space:nowrap;
+  padding:11px 16px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:transform .15s ease, opacity .15s ease, box-shadow .3s ease;
+}
+
+body.light .btn{
+  background:linear-gradient(135deg,#C8860A,#E07320);
+  color:#fff;
+  box-shadow:0 6px 24px rgba(200,134,10,.22);
+}
+
+body.dark .btn{
+  background:linear-gradient(135deg,#F0B43C,#E07320);
+  color:#0F1318;
+  box-shadow:0 6px 24px rgba(240,180,60,.18);
+}
 
     .btn:hover{
       transform:translateY(-1px);
       opacity:.92;
     }
 
-    .note{
-      margin-top:18px;
-      font-size:11px;
-      letter-spacing:1.3px;
-      text-transform:uppercase;
-      color:#9CA3AF;
-      text-align:center;
-    }
+.note{
+  margin-top:18px;
+  font-size:11px;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  text-align:center;
+}
+
+body.light .note{
+  color:#9CA3AF;
+}
+
+body.dark .note{
+  color:#4B5563;
+}
 
     @media (max-width:700px){
       h1{font-size:36px}
@@ -148,18 +224,71 @@
         text-align:center;
       }
     }
+
+.top-row{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:26px;
+}
+
+.theme-btn{
+  width:40px;
+  height:40px;
+  border-radius:999px;
+  border:1px solid;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-size:16px;
+  line-height:1;
+  flex-shrink:0;
+  transition:all .2s ease;
+}
+
+body.light .theme-btn{
+  border-color:#E5E7EB;
+  color:#C8860A;
+  background:#FFF8F0;
+}
+
+body.dark .theme-btn{
+  border-color:#242A33;
+  color:#F0B43C;
+  background:#171C23;
+}
+
+body.light .theme-btn:hover{
+  border-color:#C8860A;
+  background:rgba(200,134,10,.08);
+}
+
+body.dark .theme-btn:hover{
+  border-color:#F0B43C;
+  background:rgba(240,180,60,.10);
+}
+    
   </style>
 </head>
-<body>
+<body class="light">
   <div class="wrap">
     <div class="card">
       <div class="top-accent"></div>
 
       <div class="inner">
-        <div class="brand">
-          <img src="assets/drop_light.svg" alt="Grundimpuls">
-          <div class="brand-name">GRUNDIMPULS</div>
-        </div>
+<div class="top-row">
+  <div class="brand">
+    <img src="assets/drop_light.svg" alt="Grundimpuls">
+    <div class="brand-name">GRUNDIMPULS</div>
+  </div>
+
+  <button id="themeToggle" class="theme-btn" type="button" aria-label="Toggle theme" aria-pressed="false">
+    ☾
+  </button>
+</div>
 
         <h1>Which program serves you best now?</h1>
 
@@ -202,5 +331,34 @@
       </div>
     </div>
   </div>
+
+<script>
+function setMode(mode){
+  document.body.className = mode;
+
+  const themeBtn = document.getElementById('themeToggle');
+  if(themeBtn){
+    const isDark = mode === 'dark';
+    themeBtn.textContent = isDark ? '☀' : '☾';
+    themeBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+  }
+
+  localStorage.setItem('grundimpuls-pdfs-mode', mode);
+}
+
+function toggleMode(){
+  setMode(document.body.classList.contains('light') ? 'dark' : 'light');
+}
+
+document.getElementById('themeToggle').addEventListener('click', toggleMode);
+
+const saved = localStorage.getItem('grundimpuls-pdfs-mode');
+if(saved){
+  setMode(saved);
+} else {
+  setMode('light');
+}
+</script>
+  
 </body>
 </html>
