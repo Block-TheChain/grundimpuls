@@ -281,6 +281,23 @@ body.dark .brand .logo-dark{
         text-align:center;
       }
     }
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.brand{
+  transition:opacity .2s ease;
+}
+
+.brand:hover{
+  opacity:.8;
+}
+    
   </style>
 </head>
 <body class="light">
@@ -290,11 +307,11 @@ body.dark .brand .logo-dark{
 
       <div class="inner">
         <div class="top-row">
-          <div class="brand">
-            <img class="logo-light" src="assets/drop_light.svg" alt="Grundimpuls">
-            <img class="logo-dark" src="assets/drop_dark.svg" alt="Grundimpuls">
-            <div class="brand-name">GRUNDIMPULS</div>
-          </div>
+<a href="https://www.grundimpuls.com" class="brand" target="_blank" rel="noopener">
+  <img class="logo-light" src="assets/drop_light.svg" alt="Grundimpuls">
+  <img class="logo-dark" src="assets/drop_dark.svg" alt="Grundimpuls">
+  <div class="brand-name">GRUNDIMPULS</div>
+</a>
 
           <button id="themeToggle" class="theme-btn" type="button" aria-label="Toggle theme" aria-pressed="false">
             ☾
