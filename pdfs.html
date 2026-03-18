@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs & One-Pagers — Grundimpuls</title>
+  <meta name="description" content="Program one-pagers by Grundimpuls.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:'DM Sans',sans-serif;
+      background:#F0EDE8;
+      color:#111827;
+      padding:40px 18px;
+    }
+
+    .wrap{
+      max-width:920px;
+      margin:0 auto;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:26px;
+      overflow:hidden;
+      box-shadow:
+        0 22px 90px rgba(0,0,0,.14),
+        0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .top-accent{
+      height:4px;
+      background:linear-gradient(90deg,#C8860A,#E07320);
+    }
+
+    .inner{
+      padding:34px 32px 30px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:26px;
+    }
+
+    .brand img{
+      height:46px;
+      width:auto;
+    }
+
+    .brand-name{
+      font-family:'Montserrat',sans-serif;
+      font-size:16px;
+      letter-spacing:1.7px;
+      text-transform:uppercase;
+      font-weight:600;
+      color:#111827;
+    }
+
+    h1{
+      font-family:'Cormorant Garamond',serif;
+      font-size:46px;
+      font-weight:500;
+      line-height:1.05;
+      margin-bottom:10px;
+    }
+
+    .sub{
+      font-size:14px;
+      line-height:1.7;
+      color:#4B5563;
+      max-width:62ch;
+      margin-bottom:28px;
+    }
+
+    .list{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .item{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px 18px;
+      border:1px solid rgba(200,134,10,.16);
+      border-radius:16px;
+      background:#FFFCF8;
+    }
+
+    .item-title{
+      font-size:16px;
+      font-weight:500;
+      color:#111827;
+    }
+
+    .btn{
+      display:inline-block;
+      white-space:nowrap;
+      padding:11px 16px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#C8860A,#E07320);
+      color:#fff;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      text-decoration:none;
+      box-shadow:0 6px 24px rgba(200,134,10,.22);
+      transition:transform .15s ease, opacity .15s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      opacity:.92;
+    }
+
+    .note{
+      margin-top:18px;
+      font-size:11px;
+      letter-spacing:1.3px;
+      text-transform:uppercase;
+      color:#9CA3AF;
+      text-align:center;
+    }
+
+    @media (max-width:700px){
+      h1{font-size:36px}
+      .inner{padding:28px 22px 24px}
+
+      .item{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .btn{
+        width:100%;
+        text-align:center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top-accent"></div>
+
+      <div class="inner">
+        <div class="brand">
+          <img src="assets/drop_light.svg" alt="Grundimpuls">
+          <div class="brand-name">GRUNDIMPULS</div>
+        </div>
+
+        <h1>Programs & One-Pagers</h1>
+
+        <p class="sub">
+          A concise overview of selected coaching offers and training programs.
+        </p>
+
+        <div class="list">
+
+          <div class="item">
+            <div class="item-title">Executive Coaching</div>
+            <a class="btn" href="pdfs/Grundimpuls_Executive_Coaching_OnePager.pdf" target="_blank" rel="noopener">Open PDF</a>
+          </div>
+
+          <div class="item">
+            <div class="item-title">Burnout Coaching</div>
+            <a class="btn" href="pdfs/Grundimpuls_Burnout_Coaching_OnePager.pdf" target="_blank" rel="noopener">Open PDF</a>
+          </div>
+
+          <div class="item">
+            <div class="item-title">Critical Thinking Course</div>
+            <a class="btn" href="pdfs/Grundimpuls_CriticalThinking_COURSE_OnePager.pdf" target="_blank" rel="noopener">Open PDF</a>
+          </div>
+
+          <div class="item">
+            <div class="item-title">Mental Wellness Course</div>
+            <a class="btn" href="pdfs/Grundimpuls_MentalWellness_COURSE_OnePager.pdf" target="_blank" rel="noopener">Open PDF</a>
+          </div>
+
+          <div class="item">
+            <div class="item-title">Strengths Coaching</div>
+            <a class="btn" href="pdfs/Grundimpuls_Strengths_Coaching_OnePager.pdf" target="_blank" rel="noopener">Open PDF</a>
+          </div>
+
+        </div>
+
+        <div class="note">
+          Depth Over Speed. Humans Over Hustle.
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
