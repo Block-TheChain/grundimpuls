@@ -78,36 +78,41 @@
       gap:8px;
     }
 
-    .brand img{
-      height:40px;
-      width:auto;
-      display:block;
-    }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
 
-    .logo-dark{
-      display:none;
-    }
+.brand img{
+  height:40px;
+  width:auto;
+}
 
-body.dark .logo-light{ display:none; }
-body.dark .logo-dark{ display:inline-block; }
+.brand .logo-light{
+  display:block;
+}
 
-    .brand-name{
-      font-family:'Montserrat',sans-serif;
-      font-size:16px;
-      letter-spacing:1.7px;
-      text-transform:uppercase;
-      font-weight:600;
-      transform:translateY(1px);
-    }
+.brand .logo-dark{
+  display:none;
+}
 
-    body.light .brand-name{
-      color:#111827;
-    }
+body.dark .brand .logo-light{
+  display:none;
+}
 
-    body.dark .brand-name{
-      color:#F3F5F7;
-    }
+body.dark .brand .logo-dark{
+  display:block;
+}
 
+.brand-name{
+  font-family:'Montserrat',sans-serif;
+  font-size:16px;
+  letter-spacing:1.7px;
+  text-transform:uppercase;
+  font-weight:600;
+  transform:translateY(1px);
+}
     .theme-btn{
       width:40px;
       height:40px;
