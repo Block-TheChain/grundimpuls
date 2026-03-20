@@ -104,6 +104,8 @@ body, header, section, .card{
   display:flex;
   align-items:center;
   gap:7px;
+  min-width:0;
+  flex:1 1 auto;
 }
 .brand,
 .brand:visited,
@@ -119,6 +121,13 @@ body, header, section, .card{
     transition: border-color .18s ease, background .18s ease;
   }
   .brand:hover .mark{ border-color: var(--gold); }
+
+.brandScale{
+  transform-origin:left center;
+  flex:0 1 auto;
+  min-width:0;
+}
+  
 .wordmark{
   display:flex;
   flex-direction:column;
@@ -853,7 +862,7 @@ header{
     color:var(--gold);
   }
 }
-  @media (max-width:900px){
+@media (max-width:900px){
   .nav{
     display:flex;
     align-items:center;
@@ -866,6 +875,19 @@ header{
     gap:10px;
     justify-content:flex-end;
     flex-wrap:nowrap;
+    flex-shrink:0;
+  }
+
+  .brand{
+    min-width:0;
+    flex:1 1 auto;
+    gap:5px;
+  }
+
+  .brandScale{
+    transform:scale(clamp(0.72, 0.82 + 0.2vw, 1));
+    transform-origin:left center;
+    min-width:0;
   }
 }
 /* GTCI fix: it’s a wide logo with weird SVG canvas -> allow more width */
@@ -1301,16 +1323,19 @@ body.dark .logo-dark{ display:block; }
 <header>
   <div class="wrap">
     <div class="nav">
-      <a class="brand" href="#top" aria-label="Grundimpuls home">
-<div class="mark">
-  <img class="logo logo-light" src="assets/drop_light.svg" alt="Grundimpuls">
-  <img class="logo logo-dark" src="assets/drop_dark.svg" alt="Grundimpuls">
-</div>
-        <div class="wordmark">
-          <strong>GRUNDIMPULS</strong>
-          <span id="taglineTop">EXPLORE · LEARN · CREATE</span>
-        </div>
-      </a>
+<a class="brand" href="#top" aria-label="Grundimpuls home">
+  <div class="mark">
+    <img class="logo logo-light" src="assets/drop_light.svg" alt="Grundimpuls">
+    <img class="logo logo-dark" src="assets/drop_dark.svg" alt="Grundimpuls">
+  </div>
+
+  <div class="brandScale">
+    <div class="wordmark">
+      <strong>GRUNDIMPULS</strong>
+      <span id="taglineTop">EXPLORE · LEARN · CREATE</span>
+    </div>
+  </div>
+</a>
       <div class="right">
         <nav class="toplinks" aria-label="Top navigation">
           <a href="#coaching" data-i18n="nav.coaching">Coaching</a>
