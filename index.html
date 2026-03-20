@@ -131,7 +131,6 @@ body, header, section, .card{
 }
 
 .brandScale{
-  transform-origin:left center;
   min-width:0;
 }
 
@@ -904,7 +903,7 @@ header{
   .right{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
     justify-content:flex-end;
     flex-wrap:nowrap;
     flex-shrink:0;
@@ -917,20 +916,48 @@ header{
   }
 
   .brandScale{
-    transform-origin:left center;
     min-width:0;
+  }
+
+  .wordmark strong{
+    font-size:clamp(19px, 4.8vw, 25px);
+    letter-spacing:clamp(.035em, .05em, .06em);
+  }
+
+  .wordmark #taglineTop{
+    font-size:clamp(7.2px, 2vw, 9.5px);
+  }
+
+  .wordmark #taglineTop .tagDot{
+    margin:0 4px;
   }
 }
 
-@media (max-width:520px){
-  .brandScale{
-    transform:scale(clamp(0.72, 0.88 + 0.08vw, 1));
+  @media (max-width:430px){
+  .wordmark strong{
+    font-size:18px;
+    letter-spacing:.03em;
+  }
+
+  .wordmark #taglineTop{
+    font-size:7px;
+  }
+
+  .wordmark #taglineTop .tagDot{
+    margin:0 3px;
   }
 
   .right{
-    gap:8px;
+    gap:6px;
+  }
+
+  .langMobileBtn,
+  .themeBtn,
+  .burger{
+    padding:8px 10px;
   }
 }
+
 /* GTCI fix: it’s a wide logo with weird SVG canvas -> allow more width */
 .accredBadge img.certLogo.certLarge{
   max-width:260px;            /* key change: more width */
