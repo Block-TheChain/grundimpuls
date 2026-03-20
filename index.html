@@ -106,41 +106,35 @@ body, header, section, .card{
   gap:7px;
   min-width:0;
   flex:1 1 auto;
+  text-decoration:none;
 }
-.brand,
+
 .brand:visited,
 .brand:hover{
-  text-decoration: none;
+  text-decoration:none;
 }
-  .mark{
-    width:32px; height:38px; border-radius:50%;
-    display:grid; place-items:center;
+
+.mark{
+  width:32px;
+  height:38px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
   background:transparent;
   border:1.5px solid transparent;
-    flex-shrink:0;
-    transition: border-color .18s ease, background .18s ease;
-  }
-  .brand:hover .mark{ border-color: var(--gold); }
+  flex-shrink:0;
+  transition:border-color .18s ease, background .18s ease;
+}
+
+.brand:hover .mark{
+  border-color:var(--gold);
+}
 
 .brandScale{
   transform-origin:left center;
-  flex:0 1 auto;
   min-width:0;
 }
-  
-.wordmark{
-  display:flex;
-  flex-direction:column;
-  line-height:1.05;
-  transform: translateY(3px);
-}
-.wordmark strong{
-  font-family:'Montserrat', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-weight:600;
-  letter-spacing:.06em;
-  font-size:25px;
-  color:var(--text);
-}
+
 .wordmark{
   display:flex;
   flex-direction:column;
@@ -903,9 +897,14 @@ header{
   }
 
   .brandScale{
-    transform:scale(clamp(0.72, 0.82 + 0.2vw, 1));
     transform-origin:left center;
     min-width:0;
+  }
+}
+
+@media (max-width:430px){
+  .brandScale{
+    transform:scale(clamp(0.78, 0.92 + 0.08vw, 1));
   }
 }
 /* GTCI fix: it’s a wide logo with weird SVG canvas -> allow more width */
