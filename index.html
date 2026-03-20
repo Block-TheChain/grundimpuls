@@ -718,13 +718,42 @@ header{
 /* ===== Mobile hamburger ===== */
 .burger{
   display:none;
+  align-items:center;
+  justify-content:center;
   border:1px solid var(--border);
   background:var(--bg-alt);
   border-radius:999px;
   padding:9px 12px;
-  font-weight:900;
   cursor:pointer;
+  color:var(--gold);
   line-height:1;
+}
+
+.burgerIcon{
+  display:block;
+  position:relative;
+  width:18px;
+  height:12px;
+}
+
+.burgerIcon::before,
+.burgerIcon::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:18px;
+  height:2px;
+  background:currentColor;
+  border-radius:2px;
+}
+
+.burgerIcon::before{
+  top:0;
+  box-shadow:0 5px 0 currentColor;
+}
+
+.burgerIcon::after{
+  bottom:0;
 }
 
 @media (max-width:900px){
@@ -1455,7 +1484,9 @@ body.dark .logo-dark{ display:block; }
   </div>
 </div>
         <button id="themeToggle" class="themeBtn" type="button" aria-label="Toggle dark mode" aria-pressed="false">☾</button>
-        <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" type="button">☰</button>
+<button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" type="button">
+  <span class="burgerIcon" aria-hidden="true"></span>
+</button>
         <div class="lang" aria-label="Language switcher">
           <button class="active" data-lang="ro">RO</button>
           <button data-lang="en">EN</button>
