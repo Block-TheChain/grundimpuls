@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GRUNDIMPULS | Members Hub</title>
+  <meta name="description" content="Grundimpuls members hub for coaching and training participants." />
+  <meta name="robots" content="noindex,nofollow" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#FFFFFF;
+      --bg-alt:#FAFAF8;
+      --bg-warm:#FFF8F0;
+      --text:#111827;
+      --muted:#4B5563;
+      --muted2:#9CA3AF;
+      --border:#E5E7EB;
+      --gold:#C8860A;
+      --gold-light:#F0B429;
+      --gold-bg:rgba(200,134,10,.08);
+      --gold-border:rgba(200,134,10,.22);
+      --orange:#E07320;
+      --radius:18px;
+      --radius2:24px;
+      --shadow:0 4px 24px rgba(0,0,0,.07);
+      --shadow2:0 8px 40px rgba(0,0,0,.10);
+      --max:1120px;
+    }
+
+    body.dark{
+      --bg:#0F1318;
+      --bg-alt:#151A21;
+      --bg-warm:#171C23;
+      --text:#F3F5F7;
+      --muted:#C2C7CF;
+      --muted2:#8B93A1;
+      --border:#242A33;
+      --gold:#F0B43C;
+      --gold-light:#FFC65A;
+      --gold-bg:rgba(240,180,60,.10);
+      --gold-border:rgba(240,180,60,.28);
+      --shadow:0 4px 24px rgba(0,0,0,.55);
+      --shadow2:0 8px 40px rgba(0,0,0,.65);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      line-height:1.6;
+      transition:background .22s ease,color .22s ease;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 12px}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(255,255,255,.92);
+      border-bottom:1px solid var(--border);
+      backdrop-filter:blur(14px);
+      transition:background .22s ease,border-color .22s ease;
+    }
+    body.dark header{ background:rgba(15,19,24,.92); }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:13px 0;
+    }
+
+    .brand,
+    .brand:visited,
+    .brand:hover{
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      min-width:0;
+      flex:1 1 auto;
+    }
+
+    .mark{
+      width:36px;
+      height:36px;
+      position:relative;
+      flex-shrink:0;
+      overflow:visible;
+      border:1.5px solid transparent;
+      border-radius:50%;
+      transition:border-color .18s ease;
+    }
+    .brand:hover .mark{ border-color:var(--gold); }
+    .logo{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      transform:scale(2);
+      transform-origin:center;
+    }
+    .logo-light{display:block}
+    .logo-dark{display:none}
+    body.dark .logo-light{display:none}
+    body.dark .logo-dark{display:block}
+
+    .wordmark{
+      display:inline-flex;
+      flex-direction:column;
+      line-height:1;
+      transform:translateY(2px);
+      min-width:0;
+    }
+    .wordmark strong{
+      font-family:'Montserrat', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-weight:600;
+      letter-spacing:.06em;
+      font-size:25px;
+      color:var(--text);
+      display:block;
+    }
+    .taglineTop{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      margin-top:5px;
+      font-size:9.5px;
+      color:var(--muted2);
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .right{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;justify-content:flex-end}
+
+    .themeBtn,
+    .navLink{
+      border:1px solid var(--border);
+      background:var(--bg-alt);
+      color:var(--muted);
+      border-radius:999px;
+      padding:9px 12px;
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+      transition:all .15s ease;
+    }
+    .themeBtn:hover,
+    .navLink:hover{
+      border-color:var(--gold-border);
+      background:var(--gold-bg);
+      color:var(--gold);
+    }
+
+    section{padding:80px 0}
+    section.alt{background:var(--bg-alt)}
+    section.warm{background:var(--bg-warm)}
+    section + section{border-top:1px solid var(--border)}
+
+    .hero{
+      padding:86px 0 100px;
+      background:var(--bg);
+      border-bottom:3px solid var(--gold);
+      min-height:calc(100vh - 68px);
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      top:-120px;
+      right:-120px;
+      width:600px;
+      height:600px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(200,134,10,.07) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .hero .wrap{position:relative;z-index:1}
+
+    .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:stretch}
+    .cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px;align-items:stretch}
+    .cols2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px;align-items:stretch}
+    .cols1{display:grid;grid-template-columns:1fr;gap:16px;margin-top:18px}
+
+    .card{
+      border-radius:var(--radius2);
+      border:1px solid var(--border);
+      background:var(--bg);
+      box-shadow:var(--shadow);
+      padding:24px;
+      transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease,background .22s ease,color .22s ease;
+    }
+    .card:hover{
+      transform:translateY(-2px);
+      border-color:var(--gold-border);
+      box-shadow:var(--shadow2);
+    }
+
+    .goldBar{
+      width:40px;
+      height:3px;
+      background:linear-gradient(90deg,var(--gold),var(--orange));
+      border-radius:2px;
+      margin-bottom:14px;
+    }
+    .kicker{
+      color:var(--gold);
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-size:11.5px;
+      font-weight:900;
+      margin-bottom:10px;
+    }
+    .tagline{
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      font-size:11px;
+      color:var(--gold);
+      font-weight:900;
+    }
+    h1{font-size:46px;line-height:1.06;margin:0 0 14px;letter-spacing:-.02em}
+    h2{font-size:32px;margin:0 0 12px;letter-spacing:-.01em}
+    h3{font-size:18px;margin:0 0 9px;letter-spacing:-.005em}
+    p{margin:0 0 12px;color:var(--muted)}
+    .lead{font-size:18px;color:var(--text);margin-bottom:18px}
+    .mini{font-size:13px;color:var(--muted2)}
+    .small{font-size:12px;color:var(--muted2)}
+
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 10px}
+    .badge{
+      border:1px solid var(--border);
+      background:var(--bg-alt);
+      color:var(--text);
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:12px 18px;
+      border-radius:13px;
+      text-decoration:none;
+      font-weight:900;
+      font-size:14px;
+      letter-spacing:.01em;
+      cursor:pointer;
+      border:1px solid var(--border);
+      background:var(--bg);
+      color:var(--text);
+      transition:all .15s ease;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:var(--gold-border);
+      background:var(--gold-bg);
+      box-shadow:var(--shadow);
+    }
+    .btn.primary{
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      color:#fff;
+      border-color:transparent;
+      box-shadow:0 4px 18px rgba(200,134,10,.28);
+    }
+    .btn.primary:hover{
+      background:linear-gradient(135deg,var(--gold-light),var(--orange));
+      box-shadow:0 6px 24px rgba(200,134,10,.38);
+    }
+
+    .quickList,
+    .plainList{margin:10px 0 0 18px;color:var(--muted)}
+    .quickList li,
+    .plainList li{margin:6px 0}
+
+    .hubLink{
+      display:block;
+      border:1px solid var(--border);
+      background:var(--bg-alt);
+      border-radius:16px;
+      padding:16px;
+      text-decoration:none;
+      transition:all .15s ease;
+    }
+    .hubLink:hover{
+      border-color:var(--gold-border);
+      background:var(--gold-bg);
+      transform:translateY(-1px);
+    }
+    .hubLink strong{
+      display:block;
+      font-size:16px;
+      color:var(--text);
+      margin-bottom:6px;
+    }
+    .hubLink span{
+      display:block;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .footer{
+      padding:36px 0 44px;
+      background:var(--bg-alt);
+      color:var(--muted);
+      border-top:2px solid var(--border);
+    }
+    .footerInner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+    .footerBrand,
+    .footerBrand:visited,
+    .footerBrand:hover{
+      text-decoration:none;
+      color:inherit;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .footerName{
+      font-family:'Montserrat',sans-serif;
+      font-weight:600;
+      letter-spacing:.06em;
+      font-size:15px;
+      color:var(--text);
+    }
+    .footerSub{
+      font-size:11px;
+      color:var(--muted2);
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin-left:18px;
+    }
+
+    @media(max-width:900px){
+      .grid,
+      .cols3,
+      .cols2{grid-template-columns:1fr}
+      h1{font-size:36px}
+      .wordmark strong{font-size:clamp(19px,4.8vw,25px);letter-spacing:clamp(.035em,.05em,.06em)}
+      .taglineTop{font-size:clamp(7.2px,2vw,9.5px)}
+      header{position:fixed;top:0;left:0;right:0}
+      main{padding-top:74px}
+      .hero{min-height:auto}
+    }
+
+    @media(max-width:430px){
+      .wordmark strong{font-size:18px;letter-spacing:.03em}
+      .taglineTop{font-size:7px;gap:4px}
+      .themeBtn,.navLink{padding:8px 10px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="/" aria-label="Grundimpuls home">
+        <div class="mark">
+          <img class="logo logo-light" src="/assets/drop_light.svg" alt="Grundimpuls">
+          <img class="logo logo-dark" src="/assets/drop_dark.svg" alt="Grundimpuls">
+        </div>
+        <div class="wordmark">
+          <strong>GRUNDIMPULS</strong>
+          <span class="taglineTop">
+            <span>EXPLORE</span>
+            <span>·</span>
+            <span>LEARN</span>
+            <span>·</span>
+            <span>CREATE</span>
+          </span>
+        </div>
+      </a>
+
+      <div class="right">
+        <a class="navLink" href="/">Public site</a>
+        <button id="themeToggle" class="themeBtn" type="button" aria-label="Toggle dark mode" aria-pressed="false">☾</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="grid">
+        <div class="card">
+          <div class="kicker">Members Hub</div>
+          <h1>Useful things for people who want clarity under pressure.</h1>
+          <p class="lead">This is the private Grundimpuls resource hub for coaching and training participants. It is built for actual use in difficult weeks, not for passive reading.</p>
+          <p>Start with the situation you are in. Then use one tool. Not five.</p>
+
+          <div class="badges">
+            <span class="badge">Assessments</span>
+            <span class="badge">Tools</span>
+            <span class="badge">Exercises</span>
+            <span class="badge">Weekly Members Notes</span>
+            <span class="badge">Downloads</span>
+          </div>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="#start">Start here</a>
+            <a class="btn" href="#members-notes">Weekly notes</a>
+          </div>
+
+          <p class="mini" style="margin-top:14px">Protected with Cloudflare Access. Access is limited to approved participant email addresses.</p>
+        </div>
+
+        <div class="card">
+          <h3>What to use right now</h3>
+          <ul class="quickList">
+            <li>If your capacity feels lower than usual, start with <strong>Burnout early warning check</strong>.</li>
+            <li>If you are overloaded, use <strong>Weekly overload triage</strong>.</li>
+            <li>If a conversation is stuck, use <strong>Difficult conversation prep</strong>.</li>
+            <li>If decisions feel noisy, use <strong>Decision journal</strong>.</li>
+            <li>If you are functional but flat, use <strong>Recovery plan for 7 days</strong>.</li>
+          </ul>
+          <div class="goldBar" style="margin-top:18px"></div>
+          <p class="small">Version 1 principle: less content, more utility.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="start" class="alt">
+    <div class="wrap">
+      <div class="goldBar"></div>
+      <h2>Start with your situation</h2>
+      <p>People do not usually need a library. They need the right thing at the right time.</p>
+
+      <div class="cols3">
+        <a class="hubLink" href="#assessments">
+          <strong>I feel overloaded</strong>
+          <span>Burnout check, overload triage, recovery plan, boundary reset.</span>
+        </a>
+        <a class="hubLink" href="#tools">
+          <strong>I need clarity</strong>
+          <span>Decision journal, meeting filter, assumption audit, thinking tools.</span>
+        </a>
+        <a class="hubLink" href="#exercises">
+          <strong>I need to lead a difficult conversation</strong>
+          <span>Conversation prep, feedback framing, debrief prompts, scripts.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="assessments">
+    <div class="wrap">
+      <div class="goldBar"></div>
+      <h2>Assessments</h2>
+      <p>These should be short, practical, and followed by a clear recommendation.</p>
+
+      <div class="cols3">
+        <div class="card">
+          <div class="tagline">Burnout</div>
+          <h3>Burnout early warning check</h3>
+          <p>A short self-check for exhaustion, cynicism, and reduced efficacy.</p>
+          <div class="ctaRow"><a class="btn" href="#">Open assessment</a></div>
+        </div>
+        <div class="card">
+          <div class="tagline">Leadership</div>
+          <h3>Leadership friction audit</h3>
+          <p>Spot where communication, delegation, alignment, or influence are breaking down.</p>
+          <div class="ctaRow"><a class="btn" href="#">Open assessment</a></div>
+        </div>
+        <div class="card">
+          <div class="tagline">Decision quality</div>
+          <h3>Thinking under pressure check</h3>
+          <p>Test for overload, cognitive shortcuts, assumption drift, and problem-definition errors.</p>
+          <div class="ctaRow"><a class="btn" href="#">Open assessment</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools" class="warm">
+    <div class="wrap">
+      <div class="goldBar"></div>
+      <h2>Tools</h2>
+      <p>These are the things people should actually reuse.</p>
+
+      <div class="cols3">
+        <div class="card">
+          <h3>Weekly overload triage</h3>
+          <p>What must be done, what can move, what should stop, what needs a conversation.</p>
+          <div class="ctaRow"><a class="btn" href="#">Open tool</a></div>
+        </div>
+        <div class="card">
+          <h3>Difficult conversation prep</h3>
+          <p>Clarify objective, reality, likely resistance, and the one sentence that must be said clearly.</p>
+          <div class="ctaRow"><a class="btn" href="#">Open tool</a></div>
+        </div>
+        <div class="card">
+          <h3>Decision journal</h3>
+          <p>Capture assumptions, alternatives, signal quality, and why you chose one path.</p>
+          <div class="ctaRow"><a class="btn" href="#">Open tool</a></div>
+        </div>
+      </div>
+
+      <div class="cols2">
+        <div class="card">
+          <h3>Boundary reset planner</h3>
+          <p>Identify one place where the boundary is weak, what keeps weakening it, and what to say next time.</p>
+          <div class="ctaRow"><a class="btn" href="#">Open tool</a></div>
+        </div>
+        <div class="card">
+          <h3>Meeting usefulness filter</h3>
+          <p>Decide whether a meeting is needed, who must be present, and what outcome makes it worth the time.</p>
+          <div class="ctaRow"><a class="btn" href="#">Open tool</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="exercises" class="alt">
+    <div class="wrap">
+      <div class="goldBar"></div>
+      <h2>Exercises</h2>
+      <p>Short interventions for bad days, heavy weeks, and mentally noisy moments.</p>
+
+      <div class="cols3">
+        <div class="card">
+          <h3>5-minute reset</h3>
+          <p>Stop the drift, reduce mental noise, and re-establish the next useful move.</p>
+        </div>
+        <div class="card">
+          <h3>Pre-conversation grounding</h3>
+          <p>Use before conflict, feedback, or a high-stakes meeting.</p>
+        </div>
+        <div class="card">
+          <h3>Post-pressure review</h3>
+          <p>What happened, what cost more than it should, what to change next time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="members-notes">
+    <div class="wrap">
+      <div class="goldBar"></div>
+      <h2>Weekly Members Notes</h2>
+      <p>This section should later point to your members-only Substack notes. For now, use it as a placeholder on the hub.</p>
+
+      <div class="cols3">
+        <div class="card">
+          <div class="tagline">Latest note</div>
+          <h3>How to know when overload is becoming structural</h3>
+          <p>One short note, one practical tool, one reflection question.</p>
+          <div class="ctaRow"><a class="btn primary" href="#">Read note</a></div>
+        </div>
+        <div class="card">
+          <div class="tagline">Recent note</div>
+          <h3>Better decisions when you do not have enough data</h3>
+          <p>Use this when certainty is unavailable but delay is also expensive.</p>
+          <div class="ctaRow"><a class="btn" href="#">Read note</a></div>
+        </div>
+        <div class="card">
+          <div class="tagline">Recent note</div>
+          <h3>How to prepare for a conversation you are already avoiding</h3>
+          <p>A practical framework before pressure turns into damage.</p>
+          <div class="ctaRow"><a class="btn" href="#">Read note</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="downloads" class="warm">
+    <div class="wrap">
+      <div class="goldBar"></div>
+      <h2>Downloads</h2>
+      <p>Easy wins: printable PDFs, simple worksheets, and one-page checklists.</p>
+
+      <div class="cols2">
+        <div class="card">
+          <h3>Suggested first downloads</h3>
+          <ul class="plainList">
+            <li>Burnout early warning one-pager</li>
+            <li>Weekly overload triage worksheet</li>
+            <li>Difficult conversation preparation sheet</li>
+            <li>7-day recovery planning sheet</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Recommended rollout order</h3>
+          <ul class="plainList">
+            <li>Start with 4 PDFs.</li>
+            <li>Add 3 simple tools.</li>
+            <li>Add 1 weekly members note.</li>
+            <li>Only then expand the library.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footerInner">
+    <a class="footerBrand" href="/">
+      <div class="mark">
+        <img class="logo logo-light" src="/assets/drop_light.svg" alt="Grundimpuls">
+        <img class="logo logo-dark" src="/assets/drop_dark.svg" alt="Grundimpuls">
+      </div>
+      <div>
+        <div class="footerName">GRUNDIMPULS</div>
+        <div class="footerSub">Members Hub</div>
+      </div>
+    </a>
+
+    <div class="small">Private resource area for approved participants.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const body = document.body;
+  const themeToggle = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('grundimpuls-theme');
+
+  if(savedTheme === 'dark'){
+    body.classList.add('dark');
+    themeToggle.textContent = '☀';
+    themeToggle.setAttribute('aria-pressed', 'true');
+  }
+
+  themeToggle.addEventListener('click', function(){
+    body.classList.toggle('dark');
+    const dark = body.classList.contains('dark');
+    localStorage.setItem('grundimpuls-theme', dark ? 'dark' : 'light');
+    themeToggle.textContent = dark ? '☀' : '☾';
+    themeToggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+  });
+})();
+</script>
+
+</body>
+</html>
