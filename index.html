@@ -2305,7 +2305,7 @@ cta:{
         businessLead:"In die Entwicklung von Führungskräften, Coaching und den Aufbau von Kompetenzen zu investieren ist keine Wohlfahrtsmaßnahme. Es ist eine Leistungsentscheidung.",
         bc1:"Coaching erzeugt messbare Ergebnisse. Organisationen, die finanzielle Resultate verfolgten, berichteten von einer mittleren Rendite von 5x - 7× der Investition. (ICF / PwC Global Coaching Client Study)",
         bc2:"Psychische Gesundheit beeinflusst direkt die Produktivität. Depressionen und Angststörungen kosten die Weltwirtschaft jährlich 12 Milliarden verlorene Arbeitstage — rund 1 Trill. USD an Produktivität. (WHO / ILO)",
-        bc3:"Burnout ist kein westliches Problem. In Rumänien berichteten 2 von 3 Arbeitnehmer Burnout erlebt zu haben oder kurz davor zu stehen — der zweithöchste Wert in Europa. Das Problem ist hier und es bekommt nicht die Aufmerksamkeit, die es verdient. (Statista, europäische Umfragedaten, 2022)",
+        bc3:"Burnout ist kein westliches Problem. In Rumänien berichteten zwei von drei Beschäftigten Burnout erlebt zu haben oder kurz davor zu stehen — der zweithöchste Wert in Europa. Das Problem ist hier und es bekommt nicht die Aufmerksamkeit, die es verdient. (Statista, europäische Umfragedaten, 2022)",
         bc4:"<em>Disengagement</em> ist ein makroökonomisches Problem. Geringes Mitarbeiterengagement kostet die Weltwirtschaft jährlich 8,9 Bio. USD — rund 9% des globalen BIP. (Gallup State of the Global Workplace)",
         bc5:"Führungsverhalten prägt das Engagement. Manager sind für rund 70% der Varianz im Teamengagement verantwortlich. Führungsqualität ist daher ein zentraler Leistungshebel. (Gallup workplace research)",
         bc6:"Kompetenzlücken beeinträchtigen bereits die Leistung. 70% der Führungskräfte berichten, dass Kompetenzdefizite die Geschäftsergebnisse negativ beeinflussen, wobei strategisches und kritisches Denken als dringendster Entwicklungsbedarf genannt wird, gefolgt von Problemlösung und Entscheidungsfindung. (Springboard Workforce Skills Gap Report)",
@@ -2363,7 +2363,7 @@ q10:"Was ist Coachability?",a10:"Coachability ist die Fähigkeit und Bereitschaf
       method:{title:"Meine Methode",hint:"Wenn es dir zu einfach ist, denkst du zu kompliziert.",detect:{t:"Erkennen",d:"Frühe Muster in Energie, Stimmung, Distanz und Wirksamkeit identifizieren. Warnsignale erkennen, bevor es kippt."},prevent:{t:"Vorbeugen",d:"Grenzen, Stress-Kompetenzen, Erholungsroutinen und Kommunikationsmuster aufbauen, die Eskalation reduzieren."},sustain:{t:"Stabilisieren",d:"Ein kleines System schaffen, das Fortschritt unter realem Druck stabil hält — ohne von Motivation abhängig zu sein."}},
   booking:{
   h2:"Session buchen",
-  p:"Wähle das Format, das deinen Bedürfnissen entspricht, und wähle dann einen passenden Zeitpunkt.",
+  p:"Wähle das Format, das deinen Bedürfnissen entspricht, und anschließend einen passenden Zeitpunkt.",
   btn30:"30-minütiger Discovery Call",
   btn50:"50-minütige Coaching-Session",
   note:"Für Firmenprogramme und Team Coaching kontaktiere mich per E-Mail — Umfang und Format lassen sich besser in einem kurzen Gespräch definieren."
@@ -2386,6 +2386,8 @@ cta:{
   };
 function setLang(lang){
   document.documentElement.lang = lang;
+const langLabel = document.getElementById("langMobileLabel");
+if (langLabel) langLabel.textContent = lang.toUpperCase();
   document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
   document.querySelectorAll("[data-i18n]").forEach(el=>{
     const key = el.dataset.i18n;
