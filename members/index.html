@@ -44,7 +44,7 @@
       --shadow2:0 8px 40px rgba(0,0,0,.65);
     }
 
-    *{box-sizing:border-box}
+    *,*::before,*::after{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
@@ -54,7 +54,7 @@
       line-height:1.6;
       transition:background .22s ease,color .22s ease;
     }
-    a{color:inherit}
+    a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--max);margin:0 auto;padding:0 12px}
 
     header{
@@ -76,9 +76,7 @@
       padding:13px 0;
     }
 
-    .brand,
-    .brand:visited,
-    .brand:hover{
+    .brand,.brand:visited,.brand:hover{
       text-decoration:none;
       display:flex;
       align-items:center;
@@ -139,9 +137,7 @@
     }
 
     .right{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;justify-content:flex-end}
-
-    .themeBtn,
-    .navLink{
+    .themeBtn,.navLink{
       border:1px solid var(--border);
       background:var(--bg-alt);
       color:var(--muted);
@@ -151,9 +147,9 @@
       text-decoration:none;
       cursor:pointer;
       transition:all .15s ease;
+      font-family:inherit;
     }
-    .themeBtn:hover,
-    .navLink:hover{
+    .themeBtn:hover,.navLink:hover{
       border-color:var(--gold-border);
       background:var(--gold-bg);
       color:var(--gold);
@@ -190,7 +186,8 @@
     .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:stretch}
     .cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px;align-items:stretch}
     .cols2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px;align-items:stretch}
-    .cols1{display:grid;grid-template-columns:1fr;gap:16px;margin-top:18px}
+    .gridAssess{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}
+    .gridTools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}
 
     .card{
       border-radius:var(--radius2);
@@ -264,6 +261,7 @@
       background:var(--bg);
       color:var(--text);
       transition:all .15s ease;
+      font-family:inherit;
     }
     .btn:hover{
       transform:translateY(-1px);
@@ -281,11 +279,10 @@
       background:linear-gradient(135deg,var(--gold-light),var(--orange));
       box-shadow:0 6px 24px rgba(200,134,10,.38);
     }
+    .btn.sm{padding:8px 14px;font-size:12px}
 
-    .quickList,
-    .plainList{margin:10px 0 0 18px;color:var(--muted)}
-    .quickList li,
-    .plainList li{margin:6px 0}
+    .quickList,.plainList{margin:10px 0 0 18px;color:var(--muted)}
+    .quickList li,.plainList li{margin:6px 0}
 
     .hubLink{
       display:block;
@@ -301,59 +298,59 @@
       background:var(--gold-bg);
       transform:translateY(-1px);
     }
-    .hubLink strong{
-      display:block;
-      font-size:16px;
-      color:var(--text);
-      margin-bottom:6px;
+    .hubLink strong{display:block;font-size:16px;color:var(--text);margin-bottom:6px}
+    .hubLink span{display:block;font-size:13px;color:var(--muted)}
+
+    .assessBody{display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--border)}
+    .assessBody.open{display:block}
+    .question{margin-bottom:22px}
+    .question p{font-size:14px;color:var(--text);margin-bottom:10px;font-weight:600}
+    .scaleRow{display:flex;gap:6px;flex-wrap:wrap}
+    .scaleRow label{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;flex:1 0 auto}
+    .scaleRow input[type="radio"]{accent-color:var(--gold);width:16px;height:16px}
+    .scaleRow span{font-size:11px;color:var(--muted2);text-align:center;max-width:72px;line-height:1.3}
+    .result{margin-top:20px;padding:22px;border-radius:var(--radius);border:1px solid var(--gold-border);background:var(--gold-bg);display:none}
+    .result.show{display:block}
+    .result .score{font-size:38px;font-weight:900;color:var(--gold);line-height:1}
+    .result .rlabel{font-size:15px;font-weight:700;color:var(--text);margin:8px 0 4px}
+    .result .rdesc{font-size:13px;color:var(--muted);margin:0}
+
+    .prepForm label{display:block;font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px}
+    .prepForm textarea,.toolArea{
+      width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius);
+      background:var(--bg-alt);color:var(--text);font-family:inherit;font-size:14px;resize:vertical;
+      transition:border-color .15s;outline:none;margin-bottom:14px;
     }
-    .hubLink span{
-      display:block;
-      font-size:13px;
-      color:var(--muted);
+    .prepForm textarea:focus,.toolArea:focus{border-color:var(--gold-border)}
+    .copyMsg{font-size:12px;color:var(--gold);font-weight:700;display:none}
+    .copyMsg.show{display:inline}
+
+    .breatheWrap{display:flex;flex-direction:column;align-items:center;gap:18px;padding:20px 0 8px}
+    .breatheCircle{
+      width:128px;height:128px;border-radius:50%;background:linear-gradient(135deg,var(--gold-bg), rgba(200,134,10,.14));
+      border:2px solid var(--gold-border);display:flex;align-items:center;justify-content:center;flex-direction:column;transition:transform .8s ease;
     }
+    .breathePhase{font-size:11px;font-weight:900;color:var(--gold);text-transform:uppercase;letter-spacing:.12em}
+    .breatheCount{font-size:36px;font-weight:900;color:var(--text);line-height:1}
+    .breatheInstruction{font-size:13px;color:var(--muted);text-align:center;max-width:260px;min-height:36px}
+    .breatheProgress{font-size:12px;color:var(--muted2)}
+    .breatheComplete{text-align:center;display:none;padding:16px 0 8px}
+    .breatheComplete.show{display:block}
+
+    .reflectionCard{background:var(--gold-bg);border-color:var(--gold-border);max-width:760px;margin-top:24px}
+    .reflectionPrompt{font-size:19px;font-weight:700;color:var(--text);font-style:italic;line-height:1.55;margin:12px 0 16px}
+    .reflectionWeek{font-size:12px;color:var(--muted2)}
 
     .footer{
-      padding:36px 0 44px;
-      background:var(--bg-alt);
-      color:var(--muted);
-      border-top:2px solid var(--border);
+      padding:36px 0 44px;background:var(--bg-alt);color:var(--muted);border-top:2px solid var(--border);
     }
-    .footerInner{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:14px;
-    }
-    .footerBrand,
-    .footerBrand:visited,
-    .footerBrand:hover{
-      text-decoration:none;
-      color:inherit;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    .footerName{
-      font-family:'Montserrat',sans-serif;
-      font-weight:600;
-      letter-spacing:.06em;
-      font-size:15px;
-      color:var(--text);
-    }
-    .footerSub{
-      font-size:11px;
-      color:var(--muted2);
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      margin-left:18px;
-    }
+    .footerInner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+    .footerBrand,.footerBrand:visited,.footerBrand:hover{text-decoration:none;color:inherit;display:flex;align-items:center;gap:8px}
+    .footerName{font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.06em;font-size:15px;color:var(--text)}
+    .footerSub{font-size:11px;color:var(--muted2);letter-spacing:.14em;text-transform:uppercase;margin-left:18px}
 
     @media(max-width:900px){
-      .grid,
-      .cols3,
-      .cols2{grid-template-columns:1fr}
+      .grid,.cols3,.cols2,.gridAssess,.gridTools{grid-template-columns:1fr}
       h1{font-size:36px}
       .wordmark strong{font-size:clamp(19px,4.8vw,25px);letter-spacing:clamp(.035em,.05em,.06em)}
       .taglineTop{font-size:clamp(7.2px,2vw,9.5px)}
@@ -361,7 +358,6 @@
       main{padding-top:74px}
       .hero{min-height:auto}
     }
-
     @media(max-width:430px){
       .wordmark strong{font-size:18px;letter-spacing:.03em}
       .taglineTop{font-size:7px;gap:4px}
@@ -381,16 +377,9 @@
         </div>
         <div class="wordmark">
           <strong>GRUNDIMPULS</strong>
-          <span class="taglineTop">
-            <span>EXPLORE</span>
-            <span>·</span>
-            <span>LEARN</span>
-            <span>·</span>
-            <span>CREATE</span>
-          </span>
+          <span class="taglineTop"><span>EXPLORE</span><span>·</span><span>LEARN</span><span>·</span><span>CREATE</span></span>
         </div>
       </a>
-
       <div class="right">
         <a class="navLink" href="/">Public site</a>
         <button id="themeToggle" class="themeBtn" type="button" aria-label="Toggle dark mode" aria-pressed="false">☾</button>
@@ -408,31 +397,26 @@
           <h1>Useful things for people who want clarity under pressure.</h1>
           <p class="lead">This is the private Grundimpuls resource hub for coaching and training participants. It is built for actual use in difficult weeks, not for passive reading.</p>
           <p>Start with the situation you are in. Then use one tool. Not five.</p>
-
           <div class="badges">
-            <span class="badge">Assessments</span>
+            <span class="badge">Self-Assessments</span>
             <span class="badge">Tools</span>
-            <span class="badge">Exercises</span>
-            <span class="badge">Weekly Members Notes</span>
-            <span class="badge">Downloads</span>
+            <span class="badge">Weekly Reflection</span>
           </div>
-
           <div class="ctaRow">
             <a class="btn primary" href="#start">Start here</a>
-            <a class="btn" href="#members-notes">Weekly notes</a>
+            <a class="btn" href="#reflection">Weekly reflection</a>
           </div>
-
           <p class="mini" style="margin-top:14px">Protected with Cloudflare Access. Access is limited to approved participant email addresses.</p>
         </div>
 
         <div class="card">
           <h3>What to use right now</h3>
           <ul class="quickList">
-            <li>If your capacity feels lower than usual, start with <strong>Burnout early warning check</strong>.</li>
-            <li>If you are overloaded, use <strong>Weekly overload triage</strong>.</li>
-            <li>If a conversation is stuck, use <strong>Difficult conversation prep</strong>.</li>
+            <li>If your capacity feels lower than usual, start with <strong>Burnout screening</strong>.</li>
+            <li>If you are overloaded, use <strong>Overload triage worksheet</strong>.</li>
+            <li>If a conversation is stuck, use <strong>Difficult conversation prep tool</strong>.</li>
             <li>If decisions feel noisy, use <strong>Decision journal</strong>.</li>
-            <li>If you are functional but flat, use <strong>Recovery plan for 7 days</strong>.</li>
+            <li>If you need to reset, use <strong>3-minute breathing exercise</strong>.</li>
           </ul>
           <div class="goldBar" style="margin-top:18px"></div>
           <p class="small">Version 1 principle: less content, more utility.</p>
@@ -446,19 +430,18 @@
       <div class="goldBar"></div>
       <h2>Start with your situation</h2>
       <p>People do not usually need a library. They need the right thing at the right time.</p>
-
       <div class="cols3">
         <a class="hubLink" href="#assessments">
-          <strong>I feel overloaded</strong>
-          <span>Burnout check, overload triage, recovery plan, boundary reset.</span>
+          <strong>I want a clearer snapshot</strong>
+          <span>Use one self-assessment to see where you are right now.</span>
         </a>
         <a class="hubLink" href="#tools">
-          <strong>I need clarity</strong>
-          <span>Decision journal, meeting filter, assumption audit, thinking tools.</span>
+          <strong>I need something practical</strong>
+          <span>Use a tool before, during, or between sessions.</span>
         </a>
-        <a class="hubLink" href="#exercises">
-          <strong>I need to lead a difficult conversation</strong>
-          <span>Conversation prep, feedback framing, debrief prompts, scripts.</span>
+        <a class="hubLink" href="#reflection">
+          <strong>I need to think more honestly</strong>
+          <span>Use the weekly reflection to slow down and look properly.</span>
         </a>
       </div>
     </div>
@@ -467,27 +450,88 @@
   <section id="assessments">
     <div class="wrap">
       <div class="goldBar"></div>
-      <h2>Assessments</h2>
-      <p>These should be short, practical, and followed by a clear recommendation.</p>
+      <h2>Self-Assessments</h2>
+      <p>These are practical self-checks. They give you a structured snapshot and a direction for reflection.</p>
 
-      <div class="cols3">
+      <div class="gridAssess">
         <div class="card">
-          <div class="tagline">Burnout</div>
-          <h3>Burnout early warning check</h3>
-          <p>A short self-check for exhaustion, cynicism, and reduced efficacy.</p>
-          <div class="ctaRow"><a class="btn" href="#">Open assessment</a></div>
+          <div class="tagline">Coachability Assessment</div>
+          <h3>How coachable are you right now?</h3>
+          <p>20 questions across mindset, ego, learning, adaptability, accountability, and baseline functioning.</p>
+          <button class="btn sm" onclick="toggleAssess('coachability')">Start assessment</button>
+          <div class="assessBody" id="assess-coachability">
+            <div id="questions-coachability"></div>
+            <button class="btn primary sm" onclick="calcScore('coachability')">See my result</button>
+            <div class="result" id="result-coachability">
+              <div class="score" id="score-coachability"></div>
+              <div class="rlabel" id="label-coachability"></div>
+              <div class="rdesc" id="desc-coachability"></div>
+            </div>
+          </div>
         </div>
+
         <div class="card">
-          <div class="tagline">Leadership</div>
-          <h3>Leadership friction audit</h3>
-          <p>Spot where communication, delegation, alignment, or influence are breaking down.</p>
-          <div class="ctaRow"><a class="btn" href="#">Open assessment</a></div>
+          <div class="tagline">Leadership Inventory</div>
+          <h3>Leadership self-check</h3>
+          <p>10 questions across direction, communication, feedback, composure, ownership, and self-awareness.</p>
+          <button class="btn sm" onclick="toggleAssess('leadership')">Start assessment</button>
+          <div class="assessBody" id="assess-leadership">
+            <div id="questions-leadership"></div>
+            <button class="btn primary sm" onclick="calcScore('leadership')">See my result</button>
+            <div class="result" id="result-leadership">
+              <div class="score" id="score-leadership"></div>
+              <div class="rlabel" id="label-leadership"></div>
+              <div class="rdesc" id="desc-leadership"></div>
+            </div>
+          </div>
         </div>
+
         <div class="card">
-          <div class="tagline">Decision quality</div>
-          <h3>Thinking under pressure check</h3>
-          <p>Test for overload, cognitive shortcuts, assumption drift, and problem-definition errors.</p>
-          <div class="ctaRow"><a class="btn" href="#">Open assessment</a></div>
+          <div class="tagline">Burnout Screening</div>
+          <h3>Burnout risk check</h3>
+          <p>9 questions across exhaustion, cynicism, and reduced efficacy.</p>
+          <button class="btn sm" onclick="toggleAssess('burnout')">Start assessment</button>
+          <div class="assessBody" id="assess-burnout">
+            <div id="questions-burnout"></div>
+            <button class="btn primary sm" onclick="calcScore('burnout')">See my result</button>
+            <div class="result" id="result-burnout">
+              <div class="score" id="score-burnout"></div>
+              <div class="rlabel" id="label-burnout"></div>
+              <div class="rdesc" id="desc-burnout"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="tagline">Mental Wellness Assessment</div>
+          <h3>Mental wellness and integration</h3>
+          <p>18 questions covering vitality, focus, safety, resilience, meaning, and emotional integration.</p>
+          <button class="btn sm" onclick="toggleAssess('mentalwellness')">Start assessment</button>
+          <div class="assessBody" id="assess-mentalwellness">
+            <div id="questions-mentalwellness"></div>
+            <button class="btn primary sm" onclick="calcScore('mentalwellness')">See my result</button>
+            <div class="result" id="result-mentalwellness">
+              <div class="score" id="score-mentalwellness"></div>
+              <div class="rlabel" id="label-mentalwellness"></div>
+              <div class="rdesc" id="desc-mentalwellness"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="tagline">Resilience Check</div>
+          <h3>Resilience profile</h3>
+          <p>8 questions on recovery, adaptability, support, and purpose.</p>
+          <button class="btn sm" onclick="toggleAssess('resilience')">Start assessment</button>
+          <div class="assessBody" id="assess-resilience">
+            <div id="questions-resilience"></div>
+            <button class="btn primary sm" onclick="calcScore('resilience')">See my result</button>
+            <div class="result" id="result-resilience">
+              <div class="score" id="score-resilience"></div>
+              <div class="rlabel" id="label-resilience"></div>
+              <div class="rdesc" id="desc-resilience"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -497,118 +541,102 @@
     <div class="wrap">
       <div class="goldBar"></div>
       <h2>Tools</h2>
-      <p>These are the things people should actually reuse.</p>
+      <p>Use these before, during, or between sessions.</p>
 
-      <div class="cols3">
+      <div class="gridTools">
         <div class="card">
-          <h3>Weekly overload triage</h3>
-          <p>What must be done, what can move, what should stop, what needs a conversation.</p>
-          <div class="ctaRow"><a class="btn" href="#">Open tool</a></div>
+          <div class="kicker">Before each session</div>
+          <h3>Session prep</h3>
+          <p>Fill this in before your coaching session. It takes 5 minutes and makes the session sharper.</p>
+          <div class="prepForm" style="margin-top:18px">
+            <label>What has changed or shifted since our last session?</label>
+            <textarea id="prep1" rows="2" placeholder="Observations, events, reactions, things you noticed..."></textarea>
+            <label>What is the most important topic for today?</label>
+            <textarea id="prep2" rows="2" placeholder="Be as specific as possible..."></textarea>
+            <label>What outcome do you want from this session?</label>
+            <textarea id="prep3" rows="2" placeholder="What would make this session worthwhile?"></textarea>
+            <label>What might get in the way?</label>
+            <textarea id="prep4" rows="2" placeholder="Internal resistance, distractions, time pressure..."></textarea>
+            <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:4px">
+              <button class="btn primary" onclick="copyPrep()">Copy to clipboard</button>
+              <button class="btn" onclick="clearPrep()">Clear</button>
+              <span class="copyMsg" id="copyMsg">Copied.</span>
+            </div>
+          </div>
         </div>
+
         <div class="card">
-          <h3>Difficult conversation prep</h3>
+          <div class="kicker">Acute stress regulation</div>
+          <h3>3 minute breathing exercise</h3>
+          <p>Box breathing: 4 seconds in, 4 hold, 4 out, 4 hold. Use it when you need to regulate quickly.</p>
+          <div class="breatheWrap" id="breatheWrap">
+            <div class="breatheCircle" id="breatheCircle">
+              <span class="breathePhase" id="breathePhase">Ready</span>
+              <span class="breatheCount" id="breatheCount">—</span>
+            </div>
+            <div class="breatheInstruction" id="breatheInstruction">Find a comfortable position. Press Start when you are ready.</div>
+            <div class="breatheProgress" id="breatheProgress">4 cycles · ~1 minute 20 seconds</div>
+            <div style="display:flex;gap:8px">
+              <button class="btn primary" id="breatheStartBtn" onclick="startBreathing()">Start</button>
+              <button class="btn" id="breatheResetBtn" onclick="resetBreathing()" style="display:none">Reset</button>
+            </div>
+          </div>
+          <div class="breatheComplete" id="breatheComplete">
+            <div style="font-size:32px">✓</div>
+            <div style="font-size:16px;font-weight:700;color:var(--text);margin:8px 0 4px">Done.</div>
+            <div style="font-size:13px;color:var(--muted)">Notice how you feel now compared to when you started.</div>
+            <button class="btn sm" style="margin-top:14px" onclick="resetBreathing()">Go again</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Overload triage worksheet</h3>
+          <p>Clarify what must be done, what can move, what should stop, and what needs a conversation.</p>
+          <textarea class="toolArea" rows="8" placeholder="Must happen this week&#10;Can move&#10;Should stop&#10;Needs a conversation"></textarea>
+        </div>
+
+        <div class="card">
+          <h3>Difficult conversation prep tool</h3>
           <p>Clarify objective, reality, likely resistance, and the one sentence that must be said clearly.</p>
-          <div class="ctaRow"><a class="btn" href="#">Open tool</a></div>
+          <textarea class="toolArea" rows="8" placeholder="What needs to be said?&#10;What am I avoiding?&#10;What outcome matters most?&#10;What resistance do I expect?"></textarea>
         </div>
+
         <div class="card">
           <h3>Decision journal</h3>
-          <p>Capture assumptions, alternatives, signal quality, and why you chose one path.</p>
-          <div class="ctaRow"><a class="btn" href="#">Open tool</a></div>
+          <p>Capture assumptions, alternatives, risks, and why you chose one path.</p>
+          <textarea class="toolArea" rows="8" placeholder="Decision&#10;Context&#10;Alternatives considered&#10;Assumptions&#10;What would prove me wrong?"></textarea>
         </div>
-      </div>
 
-      <div class="cols2">
         <div class="card">
-          <h3>Boundary reset planner</h3>
-          <p>Identify one place where the boundary is weak, what keeps weakening it, and what to say next time.</p>
-          <div class="ctaRow"><a class="btn" href="#">Open tool</a></div>
+          <h3>7-day recovery planner</h3>
+          <p>Plan recovery deliberately instead of hoping it happens on its own.</p>
+          <textarea class="toolArea" rows="8" placeholder="Sleep&#10;Movement&#10;Boundaries&#10;Recovery windows&#10;What I will stop this week"></textarea>
         </div>
-        <div class="card">
-          <h3>Meeting usefulness filter</h3>
-          <p>Decide whether a meeting is needed, who must be present, and what outcome makes it worth the time.</p>
-          <div class="ctaRow"><a class="btn" href="#">Open tool</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="exercises" class="alt">
-    <div class="wrap">
-      <div class="goldBar"></div>
-      <h2>Exercises</h2>
-      <p>Short interventions for bad days, heavy weeks, and mentally noisy moments.</p>
-
-      <div class="cols3">
-        <div class="card">
-          <h3>5-minute reset</h3>
-          <p>Stop the drift, reduce mental noise, and re-establish the next useful move.</p>
-        </div>
         <div class="card">
           <h3>Pre-conversation grounding</h3>
           <p>Use before conflict, feedback, or a high-stakes meeting.</p>
+          <textarea class="toolArea" rows="6" placeholder="What am I feeling?&#10;What story am I telling myself?&#10;What matters most in this conversation?"></textarea>
         </div>
+
         <div class="card">
           <h3>Post-pressure review</h3>
-          <p>What happened, what cost more than it should, what to change next time.</p>
+          <p>What happened, what cost more than it should, and what to change next time.</p>
+          <textarea class="toolArea" rows="6" placeholder="What happened?&#10;What did it cost?&#10;What did I miss?&#10;What will I do differently next time?"></textarea>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="members-notes">
+  <section id="reflection" class="alt">
     <div class="wrap">
       <div class="goldBar"></div>
-      <h2>Weekly Members Notes</h2>
-      <p>This section should later point to your members-only Substack notes. For now, use it as a placeholder on the hub.</p>
-
-      <div class="cols3">
-        <div class="card">
-          <div class="tagline">Latest note</div>
-          <h3>How to know when overload is becoming structural</h3>
-          <p>One short note, one practical tool, one reflection question.</p>
-          <div class="ctaRow"><a class="btn primary" href="#">Read note</a></div>
-        </div>
-        <div class="card">
-          <div class="tagline">Recent note</div>
-          <h3>Better decisions when you do not have enough data</h3>
-          <p>Use this when certainty is unavailable but delay is also expensive.</p>
-          <div class="ctaRow"><a class="btn" href="#">Read note</a></div>
-        </div>
-        <div class="card">
-          <div class="tagline">Recent note</div>
-          <h3>How to prepare for a conversation you are already avoiding</h3>
-          <p>A practical framework before pressure turns into damage.</p>
-          <div class="ctaRow"><a class="btn" href="#">Read note</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="downloads" class="warm">
-    <div class="wrap">
-      <div class="goldBar"></div>
-      <h2>Downloads</h2>
-      <p>Easy wins: printable PDFs, simple worksheets, and one-page checklists.</p>
-
-      <div class="cols2">
-        <div class="card">
-          <h3>Suggested first downloads</h3>
-          <ul class="plainList">
-            <li>Burnout early warning one-pager</li>
-            <li>Weekly overload triage worksheet</li>
-            <li>Difficult conversation preparation sheet</li>
-            <li>7-day recovery planning sheet</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Recommended rollout order</h3>
-          <ul class="plainList">
-            <li>Start with 4 PDFs.</li>
-            <li>Add 3 simple tools.</li>
-            <li>Add 1 weekly members note.</li>
-            <li>Only then expand the library.</li>
-          </ul>
-        </div>
+      <h2>Weekly reflection</h2>
+      <p>A different question each week. Take 10 minutes with it. The goal is not a polished answer. The goal is honesty.</p>
+      <div class="card reflectionCard">
+        <div class="reflectionWeek" id="weekLabel"></div>
+        <div class="reflectionPrompt" id="reflectionPrompt"></div>
+        <p style="font-size:13px;margin:0">Write in a notebook, a note app, or record a voice message to yourself. Come back to it before your next session.</p>
       </div>
     </div>
   </section>
@@ -626,23 +654,333 @@
         <div class="footerSub">Members Hub</div>
       </div>
     </a>
-
     <div class="small">Private resource area for approved participants.</div>
   </div>
 </footer>
 
 <script>
+const assessments = {
+  burnout: {
+    scale: ['Never', 'Rarely', 'Sometimes', 'Often', 'Very often'],
+    questions: [
+      'I feel emotionally drained by my work.',
+      'I feel used up at the end of the workday.',
+      'I feel tired when I get up and have to face another day at work.',
+      'I have become more indifferent about my work.',
+      'I doubt the value of what I do professionally.',
+      'I feel less engaged with the people I work with.',
+      'I struggle to accomplish what I plan to get done.',
+      'Problems at work pile up faster than I can address them.',
+      'I feel like I am not making a meaningful contribution.'
+    ],
+    interpret(score) {
+      if (score <= 15) return { label: 'Low risk', desc: "You're managing well. Keep the habits that are working, and stay attentive to early signals." };
+      if (score <= 24) return { label: 'Moderate risk', desc: 'Some warning signals are present. Worth discussing in your next session.' };
+      if (score <= 32) return { label: 'High risk', desc: "Clear burnout indicators. Don't wait for the next scheduled session — reach out directly." };
+      return { label: 'Very high risk', desc: 'You are likely burned out. Reach out directly and consider professional support.' };
+    }
+  },
+  leadership: {
+    scale: ['Disagree', 'Mostly disagree', 'Neutral', 'Mostly agree', 'Agree'],
+    questions: [
+      'I give my team a clear sense of direction and purpose.',
+      'My decisions connect my team\'s daily work to longer-term goals.',
+      'I listen actively before responding in difficult conversations.',
+      'I communicate feedback in a way my team finds genuinely useful.',
+      'I stay composed when facing urgent or high-stakes decisions.',
+      'I take clear responsibility for outcomes without shifting blame.',
+      'I actively develop the capabilities of the people I lead.',
+      'I remove obstacles for my team and give credit where it is due.',
+      'I am aware of how my mood and behavior affect others.',
+      'I actively seek feedback and adjust my approach based on what I hear.'
+    ],
+    interpret(score) {
+      if (score >= 40) return { label: 'Strong foundation', desc: 'You have a strong leadership base. The work is about consistency under pressure.' };
+      if (score >= 28) return { label: 'Developing', desc: 'Good foundation with clear areas to build.' };
+      return { label: 'Significant opportunity', desc: 'There are meaningful gaps here. This is a starting point, not a judgment.' };
+    }
+  },
+  coachability: {
+    scale: ['Not at all', 'Slightly', 'Moderately', 'Very much', 'Totally'],
+    groups: [
+      { label: 'Mindset and Openness to Feedback', count: 4 },
+      { label: 'Ego and Self-Awareness', count: 4 },
+      { label: 'Continuous Learning and Development', count: 3 },
+      { label: 'Adaptability and Interpersonal Skills', count: 3 },
+      { label: 'Motivation and Accountability', count: 3 },
+      { label: 'Performance and Baseline Functioning', count: 3 }
+    ],
+    questions: [
+      'How open are you when people give you advice or constructive feedback?',
+      'How well do you respond to feedback that points out a mistake you made, using it as an opportunity to learn rather than getting defensive?',
+      'How frequently do you actively seek out advice and feedback from your manager, peers, or direct reports?',
+      'How willing are you to step out of your comfort zone, try new ideas, and experiment with new behaviors?',
+      'How effectively do you keep your ego in check, remaining confident without feeling entitled to special treatment?',
+      'How willing are you to admit your mistakes, apologize, and make amends when appropriate?',
+      'How well do you separate your personal self-worth from your job title and past achievements?',
+      'How aware are you of your own internal thoughts, feelings, and impulses during high-stress situations?',
+      'How focused are you on constant learning and ongoing professional and personal development?',
+      'How willing are you to engage in an honest, rigorous self-assessment of your strengths and weaknesses?',
+      'How committed are you to dedicating personal time to read, attend workshops, or network to improve your professional capabilities?',
+      'How aware are you of communication and leadership styles that differ from your own?',
+      'How readily do you adapt your own style to build rapport and work effectively with different people?',
+      'How effectively do you manage potentially disruptive emotions and impulses when interacting with others?',
+      'How internally motivated are you to participate in coaching and make personal changes, as opposed to doing it because someone else suggested it?',
+      'How committed are you to completing agreed-upon assignments and action steps on time between coaching sessions?',
+      'How willing are you to eliminate distractions and be fully present during coaching sessions?',
+      'How consistently do you maintain positive, collaborative workplace relationships free from severe interpersonal conflicts?',
+      'How effectively are you currently meeting the technical requirements and performance objectives of your role?',
+      'How capable are you of managing your daily functioning without being impaired by severe stress, anxiety, or depression?'
+    ],
+    interpret(score) {
+      if (score >= 85) return { label: 'Excellent coachability', desc: 'High motivation, low derailment risk, and a strong commitment to growth.' };
+      if (score >= 70) return { label: 'Good coachability', desc: 'Open, engaged, and likely to convert feedback into action.' };
+      if (score >= 55) return { label: 'Average coachability', desc: 'Some warning signals are present. Genuine buy-in will matter.' };
+      if (score >= 40) return { label: 'Poor coachability', desc: 'Self-awareness or accountability gaps may interfere with progress.' };
+      return { label: 'Not the right moment for coaching', desc: 'Another form of support may need to come first.' };
+    }
+  },
+  resilience: {
+    scale: ['Not at all', 'Rarely', 'Sometimes', 'Usually', 'Consistently'],
+    questions: [
+      'After a difficult week, I recover my energy within a day or two.',
+      'I bounce back from setbacks without prolonged rumination.',
+      'When my plans fail, I adjust without losing momentum.',
+      'I approach uncertainty with curiosity rather than anxiety.',
+      'I have people I can talk to honestly when I am struggling.',
+      'I actively maintain relationships that restore my energy.',
+      'I feel that what I do matters, even on difficult days.',
+      'I have a clear sense of what I am working toward.'
+    ],
+    interpret(score) {
+      if (score >= 32) return { label: 'High resilience', desc: 'Strong foundations are in place.' };
+      if (score >= 22) return { label: 'Moderate resilience', desc: 'Some areas are solid, others need attention.' };
+      return { label: 'Building resilience', desc: 'This is where structured work can create durable change.' };
+    }
+  },
+  mentalwellness: {
+    scale: ['Not at all', 'Rarely', 'Somewhat', 'Frequently', 'Totally'],
+    groups: [
+      { label: 'Energy & Focus', count: 2 },
+      { label: 'Safety, Optimism & Motivation', count: 3 },
+      { label: 'Connection & Emotional Regulation', count: 2 },
+      { label: 'Growth, Boundaries & Purpose', count: 3 },
+      { label: 'Feedback, Flow & Support', count: 3 },
+      { label: 'Strengths, Empathy & Integration', count: 3 }
+    ],
+    questions: [
+      'I wake up feeling physically energized and mentally vital when I think about the workday ahead.',
+      'I can effectively focus on my priorities without feeling constantly overwhelmed by interruptions.',
+      'I feel comfortable admitting mistakes, asking for help, and speaking up about challenges.',
+      'When faced with an unexpected setback at work, I view it as a temporary, solvable challenge.',
+      'I find inherent satisfaction in my daily work tasks.',
+      'I feel a strong sense of authentic connection and belonging with my colleagues.',
+      'I can maintain emotional balance during high-pressure situations.',
+      'I actively seek out new challenges and adapt flexibly to change.',
+      'I am able to detach from work during off-hours, using personal time for genuine recovery.',
+      'I feel my daily work contributes to a larger, meaningful objective that aligns with my values.',
+      'When I receive critical feedback or face disagreement, I process it objectively.',
+      'I frequently experience moments of flow at work.',
+      'I feel actively supported by my manager and we have regular conversations about well-being and workload.',
+      'When a project derails, I can let go of the original plan and search for new approaches.',
+      'I have the opportunity to regularly use my unique talents and strengths in my daily role.',
+      'I can perceive when a colleague is struggling and respond with genuine support.',
+      'I maintain realistic expectations of myself and others, avoiding black-and-white thinking.',
+      'Overall, my mind feels clear, organized, and adaptable.'
+    ],
+    interpret(score) {
+      if (score <= 29) return { label: 'Severe strain', desc: 'Your system is likely treating the workplace as a constant threat.' };
+      if (score <= 41) return { label: 'Survival state', desc: 'You may be swinging between overwhelm and paralysis.' };
+      if (score <= 53) return { label: 'Languishing', desc: 'Functional but flat. Not crisis, but not thriving.' };
+      if (score <= 65) return { label: 'Functional but fragile', desc: 'You manage reasonably well, but disruptions still cost too much.' };
+      if (score <= 77) return { label: 'Integrated and adaptive', desc: 'You are operating with flexibility and coherence.' };
+      return { label: 'Self-actualized', desc: 'High level of integration and wellness. Protect it deliberately.' };
+    }
+  }
+};
+
+function toggleAssess(id){
+  const body = document.getElementById('assess-' + id);
+  const wasOpen = body.classList.contains('open');
+  document.querySelectorAll('.assessBody').forEach(b => b.classList.remove('open'));
+  if(!wasOpen){
+    body.classList.add('open');
+    if(!document.getElementById('questions-' + id).innerHTML){ renderQuestions(id); }
+    body.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function renderQuestions(id){
+  const a = assessments[id];
+  const container = document.getElementById('questions-' + id);
+  if(a.groups){
+    let html = '';
+    let qi = 0;
+    a.groups.forEach(group => {
+      html += `<div style="font-size:12px;font-weight:900;color:var(--gold);text-transform:uppercase;letter-spacing:.14em;margin:18px 0 10px;padding-top:14px;border-top:1px solid var(--border)">${group.label}</div>`;
+      for(let g = 0; g < group.count; g++){
+        const q = a.questions[qi];
+        html += `<div class="question"><p>${qi + 1}. ${q}</p><div class="scaleRow">${[1,2,3,4,5].map((v, vi) => `<label><input type="radio" name="${id}_q${qi}" value="${v}"><span>${a.scale[vi]}</span></label>`).join('')}</div></div>`;
+        qi++;
+      }
+    });
+    container.innerHTML = html;
+  } else {
+    container.innerHTML = a.questions.map((q, i) => `<div class="question"><p>${i + 1}. ${q}</p><div class="scaleRow">${[1,2,3,4,5].map((v, vi) => `<label><input type="radio" name="${id}_q${i}" value="${v}"><span>${a.scale[vi]}</span></label>`).join('')}</div></div>`).join('');
+  }
+}
+
+function calcScore(id){
+  const a = assessments[id];
+  let score = 0;
+  let unanswered = false;
+  a.questions.forEach((_, i) => {
+    const checked = document.querySelector(`input[name="${id}_q${i}"]:checked`);
+    if(!checked){ unanswered = true; return; }
+    score += parseInt(checked.value, 10);
+  });
+  if(unanswered){ alert('Please answer all questions before seeing your result.'); return; }
+  const { label, desc } = a.interpret(score);
+  const max = a.questions.length * 5;
+  document.getElementById('score-' + id).textContent = score + ' / ' + max;
+  document.getElementById('label-' + id).textContent = label;
+  document.getElementById('desc-' + id).textContent = desc;
+  const el = document.getElementById('result-' + id);
+  el.classList.add('show');
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function copyPrep(){
+  const fields = [
+    { label: 'Since our last session:', id: 'prep1' },
+    { label: 'Most important topic today:', id: 'prep2' },
+    { label: 'Outcome I want from this session:', id: 'prep3' },
+    { label: 'What might get in the way:', id: 'prep4' }
+  ];
+  const text = fields.map(f => {
+    const val = document.getElementById(f.id).value.trim();
+    return val ? f.label + '\n' + val : '';
+  }).filter(Boolean).join('\n\n');
+  if(!text){ alert('Fill in at least one field first.'); return; }
+
+  function showCopied(){
+    const msg = document.getElementById('copyMsg');
+    msg.classList.add('show');
+    setTimeout(() => msg.classList.remove('show'), 2200);
+  }
+
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(showCopied).catch(() => fallbackCopy(text, showCopied));
+  } else {
+    fallbackCopy(text, showCopied);
+  }
+}
+
+function fallbackCopy(text, callback){
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); callback(); }
+  catch(e){ alert('Copy failed. Please copy manually.'); }
+  document.body.removeChild(ta);
+}
+
+function clearPrep(){ ['prep1','prep2','prep3','prep4'].forEach(id => document.getElementById(id).value = ''); }
+
+let breatheTimer = null;
+let breatheCycle = 0;
+const TOTAL_CYCLES = 4;
+const phases = [
+  { name: 'Inhale', duration: 4, scale: 1.18, instruction: 'Breathe in slowly and steadily through your nose.' },
+  { name: 'Hold', duration: 4, scale: 1.18, instruction: 'Hold. Stay still. Let the air settle.' },
+  { name: 'Exhale', duration: 4, scale: 0.88, instruction: 'Breathe out slowly through your mouth.' },
+  { name: 'Hold', duration: 4, scale: 0.88, instruction: 'Hold. Empty. Let go of the tension.' }
+];
+
+function startBreathing(){
+  document.getElementById('breatheStartBtn').style.display = 'none';
+  document.getElementById('breatheResetBtn').style.display = 'inline-flex';
+  breatheCycle = 0;
+  runPhase(0);
+}
+
+function runPhase(phaseIndex){
+  if(breatheCycle >= TOTAL_CYCLES){ finishBreathing(); return; }
+  const phase = phases[phaseIndex];
+  document.getElementById('breatheCircle').style.transform = `scale(${phase.scale})`;
+  document.getElementById('breathePhase').textContent = phase.name;
+  document.getElementById('breatheInstruction').textContent = phase.instruction;
+  document.getElementById('breatheProgress').textContent = `Cycle ${breatheCycle + 1} of ${TOTAL_CYCLES}`;
+  let count = phase.duration;
+  document.getElementById('breatheCount').textContent = count;
+  breatheTimer = setInterval(() => {
+    count--;
+    document.getElementById('breatheCount').textContent = count > 0 ? count : '';
+    if(count <= 0){
+      clearInterval(breatheTimer);
+      const next = (phaseIndex + 1) % phases.length;
+      if(next === 0) breatheCycle++;
+      setTimeout(() => runPhase(next), 200);
+    }
+  }, 1000);
+}
+
+function finishBreathing(){
+  document.getElementById('breatheWrap').style.display = 'none';
+  document.getElementById('breatheComplete').classList.add('show');
+}
+
+function resetBreathing(){
+  clearInterval(breatheTimer);
+  breatheCycle = 0;
+  document.getElementById('breatheWrap').style.display = 'flex';
+  document.getElementById('breatheComplete').classList.remove('show');
+  document.getElementById('breathePhase').textContent = 'Ready';
+  document.getElementById('breatheCount').textContent = '—';
+  document.getElementById('breatheInstruction').textContent = 'Find a comfortable position. Press Start when you are ready.';
+  document.getElementById('breatheProgress').textContent = '4 cycles · ~1 minute 20 seconds';
+  document.getElementById('breatheCircle').style.transform = 'scale(1)';
+  document.getElementById('breatheStartBtn').style.display = 'inline-flex';
+  document.getElementById('breatheResetBtn').style.display = 'none';
+}
+
+const prompts = [
+  'Where am I holding back, and what would it cost me to stop?',
+  'What feedback have I been avoiding, and what does that say about me?',
+  'Where is my energy going that is not aligned with what I say matters to me?',
+  'What am I tolerating that I should be addressing?',
+  'When was the last time I was genuinely challenged? What did I do with it?',
+  'What does success look like for me in 90 days? Is my current behavior moving me there?',
+  'Where do I perform well, and where do I perform for an audience?',
+  'What is one belief about myself that might be limiting my next step?',
+  'Who do I need to have a difficult conversation with? What am I waiting for?',
+  'What would I do differently if I was not concerned about how it would look?',
+  'Where am I the bottleneck — in my work, my team, or my own development?',
+  'What has changed in me over the last three months? Is that the direction I want?'
+];
+
+function setWeeklyPrompt(){
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 1);
+  const week = Math.ceil(((now - start) / 86400000 + start.getDay() + 1) / 7);
+  const prompt = prompts[(week - 1) % prompts.length];
+  document.getElementById('reflectionPrompt').textContent = '“' + prompt + '”';
+  document.getElementById('weekLabel').textContent = 'Week ' + week + ' · ' + now.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+}
+
 (function(){
   const body = document.body;
   const themeToggle = document.getElementById('themeToggle');
   const savedTheme = localStorage.getItem('grundimpuls-theme');
-
   if(savedTheme === 'dark'){
     body.classList.add('dark');
     themeToggle.textContent = '☀';
     themeToggle.setAttribute('aria-pressed', 'true');
   }
-
   themeToggle.addEventListener('click', function(){
     body.classList.toggle('dark');
     const dark = body.classList.contains('dark');
@@ -650,8 +988,9 @@
     themeToggle.textContent = dark ? '☀' : '☾';
     themeToggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
   });
+  setWeeklyPrompt();
 })();
 </script>
-
 </body>
 </html>
+
