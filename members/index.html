@@ -680,10 +680,18 @@ function refreshValuesDiscovery(options = {}) {
   const root = document.getElementById('valuesToolRoot');
   if(!root) return;
   const modalBody = document.querySelector('#modalShell .modalBody');
-  const scrollTop = modalBody ? modalBody.scrollTop : 0;
+  const valuesGrid = document.getElementById('valuesGrid');
+  const modalScrollTop = modalBody ? modalBody.scrollTop : 0;
+  const gridScrollTop = valuesGrid ? valuesGrid.scrollTop : 0;
+  const gridScrollLeft = valuesGrid ? valuesGrid.scrollLeft : 0;
   root.innerHTML = buildValuesDiscoveryInnerHTML();
   requestAnimationFrame(() => {
-    if(modalBody) modalBody.scrollTop = scrollTop;
+    if(modalBody) modalBody.scrollTop = modalScrollTop;
+    const nextGrid = document.getElementById('valuesGrid');
+    if(nextGrid) {
+      nextGrid.scrollTop = gridScrollTop;
+      nextGrid.scrollLeft = gridScrollLeft;
+    }
     if(options.focusSearch) {
       const input = document.getElementById('valuesSearch');
       if(input) {
@@ -734,7 +742,7 @@ function buildValuesDiscoveryInnerHTML() {
           <div class="valuesMeta">${query ? (lang === 'ro' ? `Se afișează ${filtered.length} din ${valuesList.length} valori` : `Showing ${filtered.length} of ${valuesList.length} values`) : (lang === 'ro' ? `${valuesList.length} valori în listă` : `${valuesList.length} values in the list`)}</div>
           <button class="btn sm" type="button" onclick="clearValuesTool()">${t.clearAll}</button>
         </div>
-        <div class="valuesGrid" style="margin-top:12px">${filtered.length ? filtered.map(value => `<button type="button" class="valueChip${state.picked.includes(value) ? ' active' : ''}" onclick='toggleValueSelection(${JSON.stringify(value)})'>${escapeHtml(value)}</button>`).join('') : `<div class="valuesEmpty">${t.searchNoResults}</div>`}</div>
+        <div id="valuesGrid" class="valuesGrid" style="margin-top:12px">${filtered.length ? filtered.map(value => `<button type="button" class="valueChip${state.picked.includes(value) ? ' active' : ''}" onclick='toggleValueSelection(${JSON.stringify(value)})'>${escapeHtml(value)}</button>`).join('') : `<div class="valuesEmpty">${t.searchNoResults}</div>`}</div>
       </div>
       <div class="valuesPanel">
         <div class="valuesPanelHead">
