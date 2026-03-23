@@ -183,6 +183,41 @@
     .breatheProgress{font-size:12px;color:var(--muted2)}
     .breatheComplete{text-align:center;display:none;padding:16px 0 8px}.breatheComplete.show{display:block}
     #summaryDock .btn{padding:9px 12px}
+
+    .valuesTool{display:flex;flex-direction:column;gap:18px}
+    .valuesIntro{color:var(--muted);font-size:15px;line-height:1.65;margin-bottom:0}
+    .valuesSearchRow{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+    .valuesSearch{flex:1 1 260px;width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--bg-alt);color:var(--text);font-family:inherit;font-size:14px;outline:none;transition:border-color .15s, box-shadow .15s}
+    .valuesSearch:focus{border-color:var(--accent-border);box-shadow:0 0 0 3px rgba(59,116,190,.08)}
+    .valuesMeta{font-size:12px;color:var(--muted2)}
+    .valuesPanel{border:1px solid var(--border);background:var(--bg-alt);border-radius:20px;padding:18px}
+    .valuesPanelHead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+    .valuesPanelHead h3{margin:0;font-size:18px}
+    .valuesPanelHead p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+    .valuesCount{display:inline-flex;align-items:center;justify-content:center;min-width:34px;padding:6px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--border);font-size:12px;font-weight:900;color:var(--accent-dark)}
+    .valuesGrid{display:flex;flex-wrap:wrap;gap:8px;max-height:320px;overflow:auto;padding-right:4px}
+    .valueChip{appearance:none;border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:999px;padding:8px 12px;font:inherit;font-size:13px;font-weight:700;line-height:1.2;cursor:pointer;transition:all .15s ease}
+    .valueChip:hover{border-color:var(--accent-border);background:var(--accent-bg)}
+    .valueChip.active{background:linear-gradient(135deg,#A5C0E3,#3B74BE);color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(59,116,190,.18)}
+    .valueChip.subtle{background:var(--bg-alt)}
+    .valueChip.ghost{background:transparent}
+    .valuesHint{font-size:13px;color:var(--muted2);margin:0}
+    .valuesEmpty{font-size:14px;color:var(--muted2);padding:14px 0}
+    .valuesSelected{display:flex;flex-wrap:wrap;gap:8px}
+    .valuesCandidateList{display:flex;flex-direction:column;gap:8px}
+    .valuesCandidate{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--border);background:var(--bg);border-radius:16px}
+    .valuesCandidate strong{font-size:14px}
+    .valuesTopList{display:flex;flex-direction:column;gap:10px}
+    .valuesTopItem{display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--border);background:var(--bg);border-radius:16px}
+    .valuesRank{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--accent-bg);color:var(--accent-dark);font-weight:900;font-size:14px;border:1px solid var(--accent-border)}
+    .valuesTopName{font-size:15px;font-weight:800;color:var(--text)}
+    .valuesTopActions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+    .miniBtn{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;padding:0 10px;border-radius:12px;border:1px solid var(--border);background:var(--bg-alt);color:var(--text);font:inherit;font-size:13px;font-weight:900;cursor:pointer;transition:all .15s ease}
+    .miniBtn:hover{border-color:var(--accent-border);background:var(--accent-bg)}
+    .miniBtn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+    .valuesToolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+    @media(max-width:700px){.valuesGrid{max-height:260px}.valuesCandidate,.valuesTopItem{grid-template-columns:1fr;align-items:flex-start}.valuesTopActions{justify-content:flex-start}.valuesToolbar{align-items:flex-start}.valuesSearchRow{align-items:stretch}}
+
     @media(max-width:900px){header{position:fixed;top:0;left:0;right:0}main{padding-top:74px}.grid,.cols3,.gridAssess,.gridTools{grid-template-columns:1fr}h1{font-size:36px}.brand{gap:6px}.mark{width:34px;height:34px}.wordmarkLine{gap:8px;align-items:flex-start}.wordmark strong{font-size:clamp(19px,4.8vw,25px);letter-spacing:clamp(.035em,.05em,.06em)}.wordmarkCore{width:max-content}.hubSuffix{font-size:13px;transform:translateY(1px)}.taglineTop{font-size:clamp(8px,2vw,10px);letter-spacing:.11em}.siteReturn{display:none}.burger{display:inline-flex}.lang{display:none}.langMobile{display:block}.mobileMenu{display:block;position:absolute;right:10px;top:calc(100% + 8px);background:rgba(244,248,252,.97);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(14px);padding:8px;min-width:196px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .22s ease,opacity .18s ease}body.dark .mobileMenu{background:rgba(17,22,29,.97)}body.menu-open .mobileMenu{transform:translateY(0);opacity:1;pointer-events:auto}.mobileMenu .wrap{padding:0;display:flex;flex-direction:column;align-items:stretch}.mobileMenu .publicLink{display:flex;align-items:center;justify-content:flex-end;gap:10px;color:var(--gold);background:var(--gold-bg);border-color:var(--gold-border)}.mobileMenu .publicLink:hover{background:rgba(200,134,10,.16);border-color:rgba(200,134,10,.46);color:var(--gold-light)}.mobileMenu .publicDrop{width:20px;height:20px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(200,134,10,.28))}.hero{min-height:auto}.modalShell{padding:12px}.modalPanel{max-height:calc(100vh - 24px);border-radius:22px}.modalHead{padding:18px 18px 14px}.modalBody{padding:18px}#summaryDock{left:12px;right:12px;bottom:12px;max-width:none}}
     @media(max-width:430px){.nav{gap:10px}.brand{gap:5px}.mark{width:32px;height:32px}.wordmark{transform:translateY(1px)}.wordmarkLine{gap:7px}.wordmark strong{font-size:17px;letter-spacing:.028em}.hubSuffix{font-size:10px;flex-direction:column;align-items:flex-start;gap:1px;line-height:.92;transform:translateY(1px)}.taglineTop{font-size:7.6px;letter-spacing:.09em}.taglineTop .tagDot{margin:0 3px}.right{gap:6px}.langMobileBtn,.themeBtn,.burger{padding:8px 10px}.modalHeadText h2{font-size:24px}}
   </style>
@@ -278,6 +313,7 @@
       <p data-i18n="tools.lead">Use these before, during, or between sessions.</p>
       <div class="gridTools">
         <div class="card"><div class="tagline" data-i18n="toolcards.prep.kicker">Before each session</div><h3 data-i18n="toolcards.prep.title">Session prep</h3><p data-i18n="toolcards.prep.desc">Fill this in before your coaching session. It takes 5 minutes and makes the session sharper.</p><div class="tileActions"><button class="btn primary sm" onclick="openModal('session-prep')" data-i18n="common.openTool">Open tool</button></div></div>
+        <div class="card"><div class="tagline" data-i18n="toolcards.values.kicker">Values clarification</div><h3 data-i18n="toolcards.values.title">Value discovery tool</h3><p data-i18n="toolcards.values.desc">Choose the values that matter, then narrow them to your top 5 and rank them.</p><div class="tileActions"><button class="btn primary sm" onclick="openModal('values')" data-i18n="common.openTool">Open tool</button></div></div>
         <div class="card"><div class="tagline" data-i18n="toolcards.breath.kicker">Acute stress regulation</div><h3 data-i18n="toolcards.breath.title">3 minute breathing exercise</h3><p data-i18n="toolcards.breath.desc">Box breathing: 4 seconds in, 4 hold, 4 out, 4 hold. Use it when you need to regulate quickly.</p><div class="tileActions"><button class="btn primary sm" onclick="openModal('breathing')" data-i18n="common.openTool">Open tool</button></div></div>
         <div class="card"><h3 data-i18n="toolcards.overload.title">Overload triage worksheet</h3><p data-i18n="toolcards.overload.desc">Clarify what must be done, what can move, what should stop, and what needs a conversation.</p><div class="tileActions"><button class="btn primary sm" onclick="openModal('overload')" data-i18n="common.openTool">Open tool</button></div></div>
         <div class="card"><h3 data-i18n="toolcards.difficult.title">Difficult conversation prep tool</h3><p data-i18n="toolcards.difficult.desc">Clarify objective, reality, likely resistance, and the one sentence that must be said clearly.</p><div class="tileActions"><button class="btn primary sm" onclick="openModal('difficult')" data-i18n="common.openTool">Open tool</button></div></div>
@@ -360,7 +396,8 @@ const i18n = {
       decision:{title:'Decision journal',desc:'Capture assumptions, alternatives, risks, and why you chose one path.',placeholder:'Decision\nContext\nAlternatives considered\nAssumptions\nWhat would prove me wrong?'},
       recovery:{title:'7-day recovery planner',desc:'Plan recovery deliberately instead of hoping it happens on its own.',placeholder:'Sleep\nMovement\nBoundaries\nRecovery windows\nWhat I will stop this week'},
       grounding:{title:'Pre-conversation grounding',desc:'Use before conflict, feedback, or a high-stakes meeting.',placeholder:'What am I feeling?\nWhat story am I telling myself?\nWhat matters most in this conversation?'},
-      review:{title:'Post-pressure review',desc:'What happened, what cost more than it should, and what to change next time.',placeholder:'What happened?\nWhat did it cost?\nWhat did I miss?\nWhat will I do differently next time?'}
+      review:{title:'Post-pressure review',desc:'What happened, what cost more than it should, and what to change next time.',placeholder:'What happened?\nWhat did it cost?\nWhat did I miss?\nWhat will I do differently next time?'},
+      values:{kicker:'Values clarification',title:'Value discovery tool',desc:'Choose the values that matter, then narrow them to your top 5 and rank them.',intro:'Use the full values list below. First select every value that feels genuinely important to you. Then narrow that list to only 5 and put them in order.',searchPlaceholder:'Search values…',step1Title:'Step 1 · Build your longer list',step1Lead:'Click every value that feels real for you — not the ones that merely sound admirable.',step2Title:'Step 2 · Choose only 5 and rank them',step2Lead:'From your selected values, choose your 5 core values and order them from most important to least important.',selectedLabel:'Selected values',selectedEmpty:'No values selected yet.',candidatesLabel:'Eligible for top 5',candidatesEmpty:'Select values first, then choose your top 5 from that list.',topLabel:'Your ranked top 5',topEmpty:'Choose up to 5 values from your selected list.',pickTop:'Add to top 5',alreadyChosen:'In top 5',remove:'Remove',clearAll:'Clear all',moveUp:'↑',moveDown:'↓',doneHint:'When you have 5 ranked values, they will be added to your visit summary email.',progressHint:'You can save a partial list, but the email is most useful once you have a full ranked top 5.',entrySelected:'Selected values',entryTopFive:'Ranked top 5 values',searchNoResults:'No values match this search.',selectedCount:'Selected',topCount:'Top 5'}
     },
     reflection:{title:'Weekly reflection',lead:'A different question each week. Take 10 minutes with it. The goal is not a polished answer. The goal is honesty.',note:'Write in a notebook, a note app, or record a voice message to yourself. Come back to it before your next session.'},
     summary:{kicker:'Visit summary',title:'You can email yourself a summary of the tools and assessments used in this visit.',composeTitle:'Email your summary',composeDesc:'Send yourself the results and notes from this visit so you can bring them to coaching, training, or review them later.',emailLabel:'Your email address',noteLabel:'Optional note',emailBtn:'Email me my summary',clearBtn:'Clear summary',sendBtn:'Send summary',cancelBtn:'Cancel'},
@@ -390,7 +427,8 @@ const i18n = {
       decision:{title:'Jurnal de decizie',desc:'Notează presupuneri, alternative, riscuri și de ce ai ales o cale.',placeholder:'Decizie\nContext\nAlternative luate în calcul\nPresupuneri\nCe mi-ar demonstra că greșesc?'},
       recovery:{title:'Plan de recuperare pe 7 zile',desc:'Planifică recuperarea deliberat, în loc să speri că se va întâmpla de la sine.',placeholder:'Somn\nMișcare\nLimite\nFerestre de recuperare\nCe voi opri săptămâna aceasta'},
       grounding:{title:'Ancorare înainte de conversație',desc:'Folosește înainte de conflict, feedback sau o întâlnire cu miză mare.',placeholder:'Ce simt?\nCe poveste îmi spun?\nCe contează cel mai mult în această conversație?'},
-      review:{title:'Revizuire după presiune',desc:'Ce s-a întâmplat, ce a costat mai mult decât trebuia și ce vei schimba data viitoare.',placeholder:'Ce s-a întâmplat?\nCe a costat?\nCe mi-a scăpat?\nCe voi face diferit data viitoare?'}
+      review:{title:'Revizuire după presiune',desc:'Ce s-a întâmplat, ce a costat mai mult decât trebuia și ce vei schimba data viitoare.',placeholder:'Ce s-a întâmplat?\nCe a costat?\nCe mi-a scăpat?\nCe voi face diferit data viitoare?'},
+      values:{kicker:'Clarificare valori',title:'Instrument de descoperire a valorilor',desc:'Alege valorile care contează, apoi restrânge lista la top 5 și ordonează-le.',intro:'Folosește lista completă de mai jos. Mai întâi selectează toate valorile care simți că sunt cu adevărat importante pentru tine. Apoi restrânge lista la doar 5 și pune-le în ordine.',searchPlaceholder:'Caută valori…',step1Title:'Pasul 1 · Construiește lista mai lungă',step1Lead:'Dă click pe fiecare valoare care simți că este real importantă pentru tine — nu doar pe cele care sună bine.',step2Title:'Pasul 2 · Alege doar 5 și ordonează-le',step2Lead:'Din valorile selectate, alege cele 5 valori de bază și ordonează-le de la cea mai importantă la cea mai puțin importantă.',selectedLabel:'Valori selectate',selectedEmpty:'Nu ai selectat încă nicio valoare.',candidatesLabel:'Eligibile pentru top 5',candidatesEmpty:'Selectează mai întâi valori, apoi alege top 5 din acea listă.',topLabel:'Top 5 ordonat',topEmpty:'Alege până la 5 valori din lista selectată.',pickTop:'Adaugă în top 5',alreadyChosen:'În top 5',remove:'Elimină',clearAll:'Șterge tot',moveUp:'↑',moveDown:'↓',doneHint:'Când ai 5 valori ordonate, ele vor fi adăugate în emailul cu rezumatul vizitei.',progressHint:'Poți salva și o listă parțială, dar emailul este cel mai util când ai un top 5 complet ordonat.',entrySelected:'Valori selectate',entryTopFive:'Top 5 valori ordonat',searchNoResults:'Nicio valoare nu corespunde acestei căutări.',selectedCount:'Selectate',topCount:'Top 5'}
     },
     reflection:{title:'Reflecție săptămânală',lead:'O întrebare diferită în fiecare săptămână. Acordă-i 10 minute. Scopul nu este un răspuns elegant. Scopul este onestitatea.',note:'Scrie într-un caiet, într-o aplicație de notițe sau înregistrează-ți un mesaj vocal. Revino la el înainte de următoarea sesiune.'},
     summary:{kicker:'Rezumat vizită',title:'Îți poți trimite pe email un rezumat al instrumentelor și evaluărilor folosite în această vizită.',composeTitle:'Trimite-ți rezumatul',composeDesc:'Trimite-ți rezultatele și notițele din această vizită, ca să le poți aduce la coaching, training sau reciti mai târziu.',emailLabel:'Adresa ta de email',noteLabel:'Notă opțională',emailBtn:'Trimite-mi rezumatul',clearBtn:'Șterge rezumatul',sendBtn:'Trimite rezumatul',cancelBtn:'Anulează'},
@@ -594,6 +632,7 @@ const modalMeta = {
   resilience:   () => ({ kicker:i18n[currentLang()].cards.resilience.tag,   title:i18n[currentLang()].cards.resilience.title,   desc:i18n[currentLang()].cards.resilience.desc }),
   strategic:    () => ({ kicker:i18n[currentLang()].cards.strategic.tag,    title:i18n[currentLang()].cards.strategic.title,    desc:i18n[currentLang()].cards.strategic.desc }),
   'session-prep': () => ({ kicker:i18n[currentLang()].toolcards.prep.kicker,   title:i18n[currentLang()].toolcards.prep.title,   desc:i18n[currentLang()].toolcards.prep.desc }),
+  values:       () => ({ kicker:i18n[currentLang()].toolcards.values.kicker, title:i18n[currentLang()].toolcards.values.title, desc:i18n[currentLang()].toolcards.values.desc }),
   breathing:    () => ({ kicker:i18n[currentLang()].toolcards.breath.kicker,  title:i18n[currentLang()].toolcards.breath.title,  desc:i18n[currentLang()].toolcards.breath.desc }),
   overload:     () => ({ kicker:i18n[currentLang()].tools.title, title:i18n[currentLang()].toolcards.overload.title, desc:i18n[currentLang()].toolcards.overload.desc }),
   difficult:    () => ({ kicker:i18n[currentLang()].tools.title, title:i18n[currentLang()].toolcards.difficult.title, desc:i18n[currentLang()].toolcards.difficult.desc }),
@@ -604,6 +643,95 @@ const modalMeta = {
 };
 
 let currentModalId = null, breatheTimer = null, breatheCycle = 0; const TOTAL_CYCLES = 4;
+
+let valuesSearch = '';
+const VALUES_MASTER_LIST = ["Abundance", "Acceptance", "Accessibility", "Accomplishment", "Accuracy", "Achievement", "Acknowledgement", "Activeness", "Adaptability", "Adoration", "Adroitness", "Adventure", "Affection", "Affluence", "Aggressiveness", "Agility", "Alertness", "Altruism", "Ambition", "Amusement", "Anticipation", "Appreciation", "Approachability", "Articulacy", "Assertiveness", "Assurance", "Attentiveness", "Attractiveness", "Audacity", "Availability", "Awareness", "Awe", "Balance", "Beauty", "Being the best", "Belonging", "Benevolence", "Bliss", "Boldness", "Bravery", "Brilliance", "Buoyancy", "Calmness", "Camaraderie", "Candor", "Capability", "Care", "Carefulness", "Celebrity", "Certainty", "Challenge", "Charity", "Charm", "Chastity", "Cheerfulness", "Clarity", "Cleanliness", "Clear-mindedness", "Cleverness", "Closeness", "Comfort", "Commitment", "Compassion", "Completion", "Composure", "Concentration", "Confidence", "Conformity", "Congruency", "Connection", "Consciousness", "Consistency", "Contentment", "Continuity", "Contribution", "Control", "Conviction", "Conviviality", "Coolness", "Cooperation", "Cordiality", "Correctness", "Courage", "Courtesy", "Craftiness", "Creativity", "Credibility", "Cunning", "Curiosity", "Daring", "Decisiveness", "Decorum", "Deference", "Delight", "Dependability", "Depth", "Desire", "Determination", "Devotion", "Devoutness", "Dexterity", "Dignity", "Diligence", "Direction", "Directness", "Discipline", "Discovery", "Discretion", "Diversity", "Dominance", "Dreaming", "Drive", "Duty", "Dynamism", "Eagerness", "Economy", "Ecstasy", "Education", "Effectiveness", "Efficiency", "Elation", "Elegance", "Empathy", "Encouragement", "Endurance", "Energy", "Enjoyment", "Entertainment", "Enthusiasm", "Excellence", "Excitement", "Exhilaration", "Expectancy", "Expediency", "Experience", "Expertise", "Exploration", "Expressiveness", "Extravagance", "Extroversion", "Exuberance", "Fairness", "Faith", "Fame", "Family", "Fascination", "Fashion", "Fearlessness", "Ferocity", "Fidelity", "Fierceness", "Financial independence", "Firmness", "Fitness", "Flexibility", "Flow", "Fluency", "Focus", "Fortitude", "Frankness", "Freedom", "Friendliness", "Frugality", "Fun", "Gallantry", "Generosity", "Gentility", "Giving", "Grace", "Gratitude", "Gregariousness", "Growth", "Guidance", "Happiness", "Harmony", "Health", "Heart", "Helpfulness", "Heroism", "Holiness", "Honesty", "Honor", "Hopefulness", "Hospitality", "Humility", "Humor", "Hygiene", "Imagination", "Impact", "Impartiality", "Independence", "Industry", "Ingenuity", "Inquisitiveness", "Insightfulness", "Inspiration", "Integrity", "Intelligence", "Intensity", "Intimacy", "Intrepidness", "Introversion", "Intuition", "Intuitiveness", "Inventiveness", "Investing", "Joy", "Judiciousness", "Justice", "Keenness", "Kindness", "Knowledge", "Leadership", "Learning", "Liberation", "Liberty", "Liveliness", "Logic", "Longevity", "Looking good", "Love", "Loyalty", "Majesty", "Making a difference", "Mastery", "Maturity", "Meekness", "Mellowness", "Meticulousness", "Mindfulness", "Modesty", "Motivation", "Mysteriousness", "Nature", "Neatness", "Nerve", "Obedience", "Open-mindedness", "Openness", "Optimism", "Order", "Organization", "Originality", "Outlandishness", "Outrageousness", "Passion", "Peace", "Perceptiveness", "Perfection", "Perkiness", "Perseverance", "Persistence", "Persuasiveness", "Philanthropy", "Piety", "Playfulness", "Pleasantness", "Pleasure", "Poise", "Polish", "Popularity", "Potency", "Power", "Practicality", "Pragmatism", "Precision", "Preparedness", "Presence", "Privacy", "Proactivity", "Professionalism", "Prosperity", "Prudence", "Punctuality", "Purity", "Realism", "Reason", "Reasonableness", "Recognition", "Recreation", "Refinement", "Reflection", "Relaxation", "Reliability", "Religiousness", "Resilience", "Resolution", "Resolve", "Resourcefulness", "Respect", "Rest", "Restraint", "Reverence", "Richness", "Rigor", "Ritual", "Sacredness", "Sacrifice", "Sagacity", "Saintliness", "Sanguinity", "Satisfaction", "Security", "Self-control", "Selflessness", "Self-reliance", "Sensitivity", "Sensuality", "Serenity", "Service", "Sexuality", "Sharing", "Shrewdness", "Significance", "Silence", "Silliness", "Simplicity", "Sincerity", "Skillfulness", "Solidarity", "Solitude", "Soundness", "Speed", "Spirit", "Spirituality", "Spontaneity", "Spunk", "Stability", "Stealth", "Stillness", "Strength", "Structure", "Success", "Support", "Supremacy", "Surprise", "Sympathy", "Synergy", "Teamwork", "Temperance", "Thankfulness", "Thoroughness", "Thoughtfulness", "Thrift", "Tidiness", "Timeliness", "Traditionalism", "Tranquility", "Transcendence", "Trust", "Trustworthiness", "Truth", "Understanding", "Unflappability", "Uniqueness", "Unity", "Usefulness", "Utility", "Valor", "Variety", "Victory", "Vigor", "Virtue", "Vision", "Vitality", "Vivacity", "Warmth", "Watchfulness", "Wealth", "Willfulness", "Willingness", "Winning", "Wisdom", "Wittiness", "Wonder", "Youthfulness", "Zeal"];
+function normalizeValuesToolState(state) {
+  const picked = Array.from(new Set((state?.picked || []).filter(v => VALUES_MASTER_LIST.includes(v))));
+  const topFive = Array.from(new Set((state?.topFive || []).filter(v => picked.includes(v)))).slice(0,5);
+  return { picked, topFive };
+}
+function getValuesToolState() { return normalizeValuesToolState(memberSessionSummary.tools.values?.state || { picked:[], topFive:[] }); }
+function saveValuesToolState(state) {
+  const lang = currentLang();
+  const t = i18n[lang].toolcards.values;
+  const normalized = normalizeValuesToolState(state);
+  const selectedText = normalized.picked.join(', ');
+  const topText = normalized.topFive.map((value, index) => `${index + 1}. ${value}`).join('\n');
+  memberSessionSummary.tools.values = {
+    label: t.title,
+    content: [selectedText ? `${t.entrySelected}: ${selectedText}` : '', topText ? `${t.entryTopFive}:\n${topText}` : ''].filter(Boolean).join('\n\n'),
+    entries: [{ label:t.entrySelected, value:selectedText }, { label:t.entryTopFive, value:topText }],
+    state: normalized,
+    completed: normalized.topFive.length === 5,
+    updatedAt: new Date().toISOString()
+  };
+  memberSessionSummary.updatedAt = new Date().toISOString();
+  updateSummaryDock();
+}
+function refreshValuesDiscovery() { const root = document.getElementById('valuesToolRoot'); if(root) root.innerHTML = buildValuesDiscoveryInnerHTML(); }
+function updateValuesSearch(value) { valuesSearch = value || ''; refreshValuesDiscovery(); const input = document.getElementById('valuesSearch'); if(input) { input.focus(); input.setSelectionRange(valuesSearch.length, valuesSearch.length); } }
+function toggleValueSelection(value) {
+  const state = getValuesToolState();
+  if (state.picked.includes(value)) {
+    state.picked = state.picked.filter(v => v !== value);
+    state.topFive = state.topFive.filter(v => v !== value);
+  } else {
+    state.picked = VALUES_MASTER_LIST.filter(v => state.picked.includes(v) || v === value);
+  }
+  saveValuesToolState(state);
+  refreshValuesDiscovery();
+}
+function addValueToTopFive(value) { const state = getValuesToolState(); if(!state.picked.includes(value) || state.topFive.includes(value) || state.topFive.length >= 5) return; state.topFive = [...state.topFive, value]; saveValuesToolState(state); refreshValuesDiscovery(); }
+function removeTopFiveValue(value) { const state = getValuesToolState(); state.topFive = state.topFive.filter(v => v !== value); saveValuesToolState(state); refreshValuesDiscovery(); }
+function moveTopFiveValue(index, direction) { const state = getValuesToolState(); const target = index + direction; if(target < 0 || target >= state.topFive.length) return; [state.topFive[index], state.topFive[target]] = [state.topFive[target], state.topFive[index]]; saveValuesToolState(state); refreshValuesDiscovery(); }
+function clearValuesTool() { saveValuesToolState({ picked:[], topFive:[] }); valuesSearch = ''; refreshValuesDiscovery(); }
+function buildValuesDiscoveryInnerHTML() {
+  const lang = currentLang();
+  const t = i18n[lang].toolcards.values;
+  const state = getValuesToolState();
+  const query = valuesSearch.trim().toLowerCase();
+  const filtered = VALUES_MASTER_LIST.filter(value => value.toLowerCase().includes(query));
+  const candidates = state.picked.filter(value => !state.topFive.includes(value));
+  return `
+    <div class="valuesTool">
+      <p class="valuesIntro">${t.intro}</p>
+      <div class="valuesSearchRow">
+        <input id="valuesSearch" class="valuesSearch" type="text" value="${escapeHtml(valuesSearch)}" placeholder="${escapeHtml(t.searchPlaceholder)}" oninput="updateValuesSearch(this.value)">
+        <div class="valuesMeta">${query ? `${filtered.length} / ${VALUES_MASTER_LIST.length}` : `${VALUES_MASTER_LIST.length} values`}</div>
+      </div>
+      <div class="valuesPanel">
+        <div class="valuesPanelHead">
+          <div><h3>${t.step1Title}</h3><p>${t.step1Lead}</p></div>
+          <div class="valuesCount">${t.selectedCount}: ${state.picked.length}</div>
+        </div>
+        <div class="valuesToolbar">
+          <div class="valuesMeta">${query ? (lang === 'ro' ? `Se afișează ${filtered.length} din ${VALUES_MASTER_LIST.length} valori` : `Showing ${filtered.length} of ${VALUES_MASTER_LIST.length} values`) : (lang === 'ro' ? `${VALUES_MASTER_LIST.length} valori în listă` : `${VALUES_MASTER_LIST.length} values in the list`)}</div>
+          <button class="btn sm" type="button" onclick="clearValuesTool()">${t.clearAll}</button>
+        </div>
+        <div class="valuesGrid" style="margin-top:12px">${filtered.length ? filtered.map(value => `<button type="button" class="valueChip${state.picked.includes(value) ? ' active' : ''}" onclick='toggleValueSelection(${JSON.stringify(value)})'>${escapeHtml(value)}</button>`).join('') : `<div class="valuesEmpty">${t.searchNoResults}</div>`}</div>
+      </div>
+      <div class="valuesPanel">
+        <div class="valuesPanelHead">
+          <div><h3>${t.selectedLabel}</h3><p>${t.step2Lead}</p></div>
+          <div class="valuesCount">${t.topCount}: ${state.topFive.length}/5</div>
+        </div>
+        ${state.picked.length ? `<div class="valuesSelected">${state.picked.map(value => `<button type="button" class="valueChip subtle${state.topFive.includes(value) ? ' active' : ''}" onclick='toggleValueSelection(${JSON.stringify(value)})' title="${escapeHtml(t.remove)}">${escapeHtml(value)}</button>`).join('')}</div>` : `<div class="valuesEmpty">${t.selectedEmpty}</div>`}
+      </div>
+      <div class="valuesPanel">
+        <div class="valuesPanelHead">
+          <div><h3>${t.step2Title}</h3><p>${t.step2Lead}</p></div>
+          <div class="valuesCount">${state.topFive.length}/5</div>
+        </div>
+        ${candidates.length ? `<div class="valuesCandidateList">${candidates.map(value => `<div class="valuesCandidate"><strong>${escapeHtml(value)}</strong><button class="btn sm" type="button" onclick='addValueToTopFive(${JSON.stringify(value)})'${state.topFive.length >= 5 ? ' disabled' : ''}>${t.pickTop}</button></div>`).join('')}</div>` : `<div class="valuesEmpty">${t.candidatesEmpty}</div>`}
+        <div style="height:14px"></div>
+        <div class="valuesTopList">${state.topFive.length ? state.topFive.map((value, index) => `<div class="valuesTopItem"><div class="valuesRank">${index + 1}</div><div class="valuesTopName">${escapeHtml(value)}</div><div class="valuesTopActions"><button class="miniBtn" type="button" onclick="moveTopFiveValue(${index}, -1)"${index === 0 ? ' disabled' : ''} title="${escapeHtml(t.moveUp)}">↑</button><button class="miniBtn" type="button" onclick="moveTopFiveValue(${index}, 1)"${index === state.topFive.length - 1 ? ' disabled' : ''} title="${escapeHtml(t.moveDown)}">↓</button><button class="miniBtn" type="button" onclick='removeTopFiveValue(${JSON.stringify(value)})' title="${escapeHtml(t.remove)}">×</button></div></div>`).join('') : `<div class="valuesEmpty">${t.topEmpty}</div>`}</div>
+        <p class="valuesHint" style="margin-top:14px">${state.topFive.length === 5 ? t.doneHint : t.progressHint}</p>
+      </div>
+    </div>`;
+}
+function renderValuesDiscovery() { return `<div id="valuesToolRoot">${buildValuesDiscoveryInnerHTML()}</div>`; }
+
 const phases = [
   { name:{ en:'Inhale', ro:'Inspiră' }, duration:4, scale:1.18, instruction:{ en:'Breathe in slowly and steadily through your nose.', ro:'Inspiră lent și constant pe nas.' } },
   { name:{ en:'Hold', ro:'Ține' }, duration:4, scale:1.18, instruction:{ en:'Hold. Stay still. Let the air settle.', ro:'Ține. Rămâi nemișcat.' } },
@@ -1446,7 +1574,7 @@ function saveToolValue(id, content, label){ memberSessionSummary.tools[id] = { c
 function saveStructuredTool(id, entries, label){ memberSessionSummary.tools[id] = { entries, label, updatedAt:new Date().toISOString() }; memberSessionSummary.updatedAt = new Date().toISOString(); updateSummaryDock(); }
 function markToolCompleted(id, label){ memberSessionSummary.tools[id] = { ...(memberSessionSummary.tools[id] || {}), completed:true, label, updatedAt:new Date().toISOString() }; memberSessionSummary.updatedAt = new Date().toISOString(); updateSummaryDock(); }
 function clearVisitSummary(){ memberSessionSummary.assessments = {}; memberSessionSummary.tools = {}; memberSessionSummary.reflection = {}; memberSessionSummary.updatedAt = null; updateSummaryDock(); closeSummaryComposer(); }
-function buildSummaryPreviewHTML(){ const lang = currentLang(); const assessmentsList = Object.values(memberSessionSummary.assessments); const toolsList = Object.values(memberSessionSummary.tools).filter(item => item && ((item.content && item.content.trim()) || item.completed || (item.entries && item.entries.some(e => e.value && e.value.trim())))); let html = `<div style="font-size:12px;color:var(--muted2);margin-bottom:8px;">${lang === 'ro' ? 'Previzualizare' : 'Preview'}</div>`; html += `<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">${lang === 'ro' ? 'Evaluări' : 'Assessments'}</div>`; html += assessmentsList.length ? '<ul style="margin:0 0 14px 18px;color:var(--muted);">' + assessmentsList.map(item => `<li><strong style="color:var(--text);">${escapeHtml(item.title)}</strong> — ${escapeHtml(item.scoreText)} · ${escapeHtml(item.label)}</li>`).join('') + '</ul>' : `<div class="small" style="margin-bottom:14px;">${lang === 'ro' ? 'Nicio evaluare completată încă.' : 'No completed assessments yet.'}</div>`; html += `<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">${lang === 'ro' ? 'Instrumente' : 'Tools'}</div>`; html += toolsList.length ? '<ul style="margin:0 0 0 18px;color:var(--muted);">' + toolsList.map(item => `<li><strong style="color:var(--text);">${escapeHtml(item.label || '')}</strong></li>`).join('') + '</ul>' : `<div class="small">${lang === 'ro' ? 'Niciun instrument înregistrat încă.' : 'No recorded tools yet.'}</div>`; return html; }
+function buildSummaryPreviewHTML(){ const lang = currentLang(); const assessmentsList = Object.values(memberSessionSummary.assessments); const toolsList = Object.values(memberSessionSummary.tools).filter(item => item && ((item.content && item.content.trim()) || item.completed || (item.entries && item.entries.some(e => e.value && e.value.trim())))); let html = `<div style="font-size:12px;color:var(--muted2);margin-bottom:8px;">${lang === 'ro' ? 'Previzualizare' : 'Preview'}</div>`; html += `<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">${lang === 'ro' ? 'Evaluări' : 'Assessments'}</div>`; html += assessmentsList.length ? '<ul style="margin:0 0 14px 18px;color:var(--muted);">' + assessmentsList.map(item => `<li><strong style="color:var(--text);">${escapeHtml(item.title)}</strong> — ${escapeHtml(item.scoreText)} · ${escapeHtml(item.label)}</li>`).join('') + '</ul>' : `<div class="small" style="margin-bottom:14px;">${lang === 'ro' ? 'Nicio evaluare completată încă.' : 'No completed assessments yet.'}</div>`; html += `<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">${lang === 'ro' ? 'Instrumente' : 'Tools'}</div>`; html += toolsList.length ? '<ul style="margin:0 0 0 18px;color:var(--muted);">' + toolsList.map(item => { const topEntry = item.entries?.find(e => /top 5/i.test(e.label || '')); const extra = topEntry?.value ? ' — ' + escapeHtml(topEntry.value.replace(/\n/g, ' · ')) : ''; return `<li><strong style="color:var(--text);">${escapeHtml(item.label || '')}</strong>${extra}</li>`; }).join('') + '</ul>' : `<div class="small">${lang === 'ro' ? 'Niciun instrument înregistrat încă.' : 'No recorded tools yet.'}</div>`; return html; }
 function openSummaryComposer(){ document.getElementById('summaryPreview').innerHTML = buildSummaryPreviewHTML(); document.getElementById('summaryEmail').value = memberSessionSummary.lastEmail || ''; document.getElementById('summaryStatus').textContent = ''; document.getElementById('summaryComposerShell').classList.add('open'); document.body.classList.add('modal-open'); }
 function closeSummaryComposer(){ document.getElementById('summaryComposerShell').classList.remove('open'); if(!currentModalId) document.body.classList.remove('modal-open'); }
 async function sendVisitSummary(){ const email = document.getElementById('summaryEmail').value.trim(); const note = document.getElementById('summaryNote').value.trim(); const status = document.getElementById('summaryStatus'); const btn = document.getElementById('summarySendBtn'); if(!email){ status.textContent = currentLang() === 'ro' ? 'Te rog introdu o adresă de email.' : 'Please enter an email address.'; return; } btn.disabled = true; status.textContent = currentLang() === 'ro' ? 'Se trimite…' : 'Sending…'; try { const response = await fetch('/api/email-summary', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email, note, language:currentLang(), visitedAt: memberSessionSummary.updatedAt || new Date().toISOString(), assessments: memberSessionSummary.assessments, tools: memberSessionSummary.tools, reflection: memberSessionSummary.reflection, page: location.href }) }); const data = await response.json().catch(() => ({})); if(!response.ok) throw new Error(data.error || 'Request failed'); memberSessionSummary.lastEmail = email; status.textContent = currentLang() === 'ro' ? 'Rezumatul a fost trimis.' : 'Summary sent.'; } catch(err){ status.textContent = (currentLang() === 'ro' ? 'Trimiterea a eșuat. ' : 'Sending failed. ') + (err.message || ''); } finally { btn.disabled = false; } }
@@ -1489,6 +1617,7 @@ function getModalHTML(id) {
   switch(id) {
     case 'coachability': case 'leadership': case 'burnout': case 'mentalwellness': case 'resilience': case 'strategic': return renderAssessment(id);
     case 'session-prep': return renderSessionPrep();
+    case 'values': return renderValuesDiscovery();
     case 'breathing': return renderBreathing();
     case 'overload':  return renderSimpleTextarea('overload',  i18n[currentLang()].toolcards.overload.placeholder,  i18n[currentLang()].toolcards.overload.title);
     case 'difficult': return renderSimpleTextarea('difficult', i18n[currentLang()].toolcards.difficult.placeholder, i18n[currentLang()].toolcards.difficult.title);
@@ -1500,7 +1629,7 @@ function getModalHTML(id) {
   }
 }
 
-function openModal(id, rerender=false){ currentModalId = id; const meta = modalMeta[id](); document.getElementById('modalKicker').textContent = meta.kicker; document.getElementById('modalTitle').textContent = meta.title; document.getElementById('modalDesc').textContent = meta.desc; document.getElementById('modalContent').innerHTML = getModalHTML(id); document.getElementById('modalShell').classList.add('open'); document.body.classList.add('modal-open'); if(!rerender) location.hash = id; if(id === 'breathing') resetBreathing(); }
+function openModal(id, rerender=false){ if(id === 'values' && !rerender) valuesSearch = ''; currentModalId = id; const meta = modalMeta[id](); document.getElementById('modalKicker').textContent = meta.kicker; document.getElementById('modalTitle').textContent = meta.title; document.getElementById('modalDesc').textContent = meta.desc; document.getElementById('modalContent').innerHTML = getModalHTML(id); document.getElementById('modalShell').classList.add('open'); document.body.classList.add('modal-open'); if(!rerender) location.hash = id; if(id === 'breathing') resetBreathing(); }
 function closeModal(updateHash=true){ currentModalId = null; clearInterval(breatheTimer); document.getElementById('modalShell').classList.remove('open'); if(!document.getElementById('summaryComposerShell').classList.contains('open')) document.body.classList.remove('modal-open'); if(updateHash && location.hash) history.replaceState('', document.title, window.location.pathname + window.location.search); }
 window.addEventListener('hashchange', () => { const hash = location.hash.replace('#',''); if(modalMeta[hash]) openModal(hash); else if(currentModalId) closeModal(false); });
 window.addEventListener('keydown', e => { if(e.key === 'Escape'){ if(currentModalId) closeModal(); if(document.getElementById('summaryComposerShell').classList.contains('open')) closeSummaryComposer(); } });
