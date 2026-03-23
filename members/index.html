@@ -162,6 +162,11 @@
     .result .score{font-size:38px;font-weight:900;color:var(--accent-dark);line-height:1}
     .result .rlabel{font-size:15px;font-weight:700;color:var(--text);margin:8px 0 4px}
     .result .rdesc{font-size:13px;color:var(--muted);margin:0}
+    .result .rblock{margin-top:16px;padding-top:14px;border-top:1px solid var(--accent-border)}
+    .result .rhead{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-dark);margin:0 0 8px}
+    .result .rtext{font-size:13px;color:var(--text);margin:0;line-height:1.65}
+    .result .rlist{margin:0 0 0 18px;padding:0;color:var(--text)}
+    .result .rlist li{margin:0 0 8px 0;line-height:1.55}
     .formLabel{display:block;font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px}
     .toolArea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--bg-alt);color:var(--text);font-family:inherit;font-size:14px;resize:vertical;transition:border-color .15s;outline:none;margin-bottom:14px}
     .toolArea:focus{border-color:var(--accent-border)}
@@ -325,7 +330,7 @@ const i18n = {
   en:{
     brand:{hub:'Members Hub'},
     nav:{start:'Start',assessments:'Self-Assessments',tools:'Tools',reflection:'Weekly reflection'},
-    common:{openAssessment:'Open assessment',openTool:'Open tool',seeResult:'See my result',copy:'Copy to clipboard',clear:'Clear',copied:'Copied.',start:'Start',reset:'Reset',ready:'Ready',pleaseAnswerAll:'Please answer all questions before seeing your result.',fillField:'Fill in at least one field first.',copyFailed:'Copy failed. Please copy manually.'},
+    common:{openAssessment:'Open assessment',openTool:'Open tool',seeResult:'See my result',copy:'Copy to clipboard',clear:'Clear',copied:'Copied.',start:'Start',reset:'Reset',ready:'Ready',pleaseAnswerAll:'Please answer all questions before seeing your result.',fillField:'Fill in at least one field first.',copyFailed:'Copy failed. Please copy manually.',resultDescription:'Description',resultBlindSpots:'Blind spots',resultActionSteps:'Action steps'},
     hero:{kicker:'Members Hub',h1:'Useful things for people who want clarity under pressure.',lead:'This is the private Grundimpuls resource hub for coaching and training participants. It is built for actual use in difficult weeks, not for passive reading.',sub:'Start with the situation you are in. Then use one tool. Not five.',badge1:'Self-Assessments',badge2:'Tools',badge3:'Weekly Reflection',cta1:'Start here',cta2:'Weekly reflection',note:'Access is limited to approved participant email addresses.',nowTitle:'What to use right now',now1:'If your capacity feels lower than usual, start with <strong>Burnout screening</strong>.',now2:'If you are overloaded, use <strong>Overload triage worksheet</strong>.',now3:'If a conversation is stuck, use <strong>Difficult conversation prep tool</strong>.',now4:'If decisions feel noisy, use <strong>Decision journal</strong>.',now5:'If you need to reset, use <strong>3-minute breathing exercise</strong>.',small:'Version 1 principle: less content, more utility.'},
     start:{title:'Start with your situation',lead:'People do not usually need a library. They need the right thing at the right time.',card1t:'I want a clearer snapshot',card1d:'Use one self-assessment to see where you are right now.',card2t:'I need something practical',card2d:'Use a tool before, during, or between sessions.',card3t:'I need to think more honestly',card3d:'Use the weekly reflection to slow down and look properly.'},
     assess:{title:'Self-Assessments',lead:'These are practical self-checks. They give you a structured snapshot and a direction for reflection.'},
@@ -355,7 +360,7 @@ const i18n = {
   ro:{
     brand:{hub:'Hub Membri'},
     nav:{start:'Start',assessments:'Autoevaluări',tools:'Instrumente',reflection:'Reflecție săptămânală'},
-    common:{openAssessment:'Deschide evaluarea',openTool:'Deschide instrumentul',seeResult:'Vezi rezultatul',copy:'Copiază',clear:'Șterge',copied:'Copiat.',start:'Start',reset:'Reset',ready:'Pregătit',pleaseAnswerAll:'Te rog răspunde la toate întrebările înainte să vezi rezultatul.',fillField:'Completează cel puțin un câmp mai întâi.',copyFailed:'Copierea a eșuat. Te rog copiază manual.'},
+    common:{openAssessment:'Deschide evaluarea',openTool:'Deschide instrumentul',seeResult:'Vezi rezultatul',copy:'Copiază',clear:'Șterge',copied:'Copiat.',start:'Start',reset:'Reset',ready:'Pregătit',pleaseAnswerAll:'Te rog răspunde la toate întrebările înainte să vezi rezultatul.',fillField:'Completează cel puțin un câmp mai întâi.',copyFailed:'Copierea a eșuat. Te rog copiază manual.',resultDescription:'Descriere',resultBlindSpots:'Puncte oarbe',resultActionSteps:'Pași de acțiune'},
     hero:{kicker:'Hub Membri',h1:'Lucruri utile pentru oameni care vor claritate sub presiune.',lead:'Acesta este hubul privat Grundimpuls pentru participanții la coaching și training. Este construit pentru utilizare reală în săptămâni dificile, nu pentru lectură pasivă.',sub:'Începe cu situația în care te afli. Apoi folosește un singur instrument. Nu cinci.',badge1:'Autoevaluări',badge2:'Instrumente',badge3:'Reflecție săptămânală',cta1:'Începe aici',cta2:'Reflecția săptămânii',note:'Accesul este limitat la adresele de e-mail aprobate.',nowTitle:'Ce să folosești acum',now1:'Dacă simți că ai mai puțină capacitate decât de obicei, începe cu <strong>screeningul de burnout</strong>.',now2:'Dacă ești supraîncărcat, folosește <strong>fișa de triere a suprasolicitării</strong>.',now3:'Dacă o conversație este blocată, folosește <strong>instrumentul de pregătire pentru conversații dificile</strong>.',now4:'Dacă deciziile par zgomotoase, folosește <strong>jurnalul de decizie</strong>.',now5:'Dacă ai nevoie de resetare, folosește <strong>exercițiul de respirație de 3 minute</strong>.',small:'Principiul versiunii 1: mai puțin conținut, mai multă utilitate.'},
     start:{title:'Începe cu situația ta',lead:'De obicei, oamenii nu au nevoie de o bibliotecă. Au nevoie de lucrul potrivit la momentul potrivit.',card1t:'Vreau o imagine mai clară',card1d:'Folosește o autoevaluare pentru a vedea unde te afli acum.',card2t:'Am nevoie de ceva practic',card2d:'Folosește un instrument înainte, în timpul sau între sesiuni.',card3t:'Am nevoie să gândesc mai onest',card3d:'Folosește reflecția săptămânală ca să încetinești și să privești mai atent.'},
     assess:{title:'Autoevaluări',lead:'Acestea sunt verificări practice. Îți oferă o imagine structurată și o direcție pentru reflecție.'},
@@ -600,6 +605,832 @@ function currentLang(){ return localStorage.getItem('grundimpuls-members-lang') 
 function applyLanguage(lang){ document.documentElement.lang = lang; document.querySelectorAll('[data-i18n]').forEach(el => { const path = el.dataset.i18n.split('.'); let value = i18n[lang]; path.forEach(k => value = value?.[k]); if(value != null) el.innerHTML = value; }); document.querySelectorAll('.lang button[data-lang], .langMobileMenu button[data-lang]').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang)); document.getElementById('langMobileLabel').textContent = lang.toUpperCase(); localStorage.setItem('grundimpuls-members-lang', lang); updateSummaryDock(); setWeeklyPrompt(lang); if(currentModalId) openModal(currentModalId, true); }
 function setWeeklyPrompt(lang='en'){ const now = new Date(); const start = new Date(now.getFullYear(),0,1); const week = Math.ceil((((now-start)/86400000)+start.getDay()+1)/7); const prompt = reflectionPrompts[(week-1)%reflectionPrompts.length]; document.getElementById('reflectionPrompt').textContent = '“' + prompt[lang] + '”'; const monthYear = now.toLocaleDateString(lang === 'ro' ? 'ro-RO' : 'en-GB', { month:'long', year:'numeric' }); document.getElementById('weekLabel').textContent = (lang === 'ro' ? 'Săptămâna ' : 'Week ') + week + ' · ' + monthYear; }
 function escapeHtml(v){ return String(v || '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s])); }
+const assessmentResultDetails = {
+  "burnout": {
+    "Low risk": {
+      "desc": {
+        "en": "Your answers suggest that you are still coping reasonably well with current demands. That is not a reason for complacency. It means you still have enough recovery capacity and functional stability to protect what is working before strain starts to accumulate.",
+        "ro": "Răspunsurile tale sugerează că încă faci față rezonabil cerințelor actuale. Acesta nu este un motiv de complacere. Înseamnă că încă ai suficientă capacitate de recuperare și stabilitate funcțională pentru a proteja ceea ce merge bine înainte ca presiunea să se acumuleze."
+      },
+      "blind": {
+        "en": [
+          "Because you are still functioning, you may ignore subtle warning signs such as irritability, poorer recovery, or growing cynicism.",
+          "You may assume the habits that currently stabilize you will continue automatically even if workload or conflict increases.",
+          "A low-risk score can still hide overexertion if staying well already costs more effort than it used to."
+        ],
+        "ro": [
+          "Pentru că încă funcționezi bine, poți ignora semnale subtile precum iritabilitate, recuperare mai slabă sau cinism în creștere.",
+          "Poți presupune că obiceiurile care te stabilizează acum vor continua automat chiar dacă volumul de muncă sau conflictele cresc.",
+          "Un scor de risc scăzut poate ascunde totuși suprasolicitare dacă a rămâne bine costă deja mai mult efort decât înainte."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Identify the two or three routines that protect you most clearly right now and preserve them deliberately.",
+          "Set one weekly check-in question for yourself: what changed in my energy, patience, and sense of meaning this week?",
+          "Use this result as a baseline in coaching so future shifts can be compared against something concrete."
+        ],
+        "ro": [
+          "Identifică cele două sau trei rutine care te protejează cel mai clar acum și păstrează-le deliberat.",
+          "Stabilește o întrebare de verificare săptămânală: ce s-a schimbat săptămâna aceasta în energia, răbdarea și sensul meu?",
+          "Folosește acest rezultat ca reper de bază în coaching, astfel încât schimbările viitoare să poată fi comparate cu ceva concret."
+        ]
+      }
+    },
+    "Moderate risk": {
+      "desc": {
+        "en": "You are not in full breakdown territory, but the pattern is no longer neutral. Some combination of exhaustion, detachment, or reduced effectiveness is already present. This is often the most workable moment for intervention because the system is strained but still responsive.",
+        "ro": "Nu ești într-o zonă de colaps complet, dar tiparul nu mai este neutru. O combinație de epuizare, detașare sau eficiență redusă este deja prezentă. Adesea acesta este cel mai bun moment pentru intervenție, fiindcă sistemul este tensionat, dar încă receptiv."
+      },
+      "blind": {
+        "en": [
+          "You may normalize strain by telling yourself that everyone is tired and this is just a busy phase.",
+          "You may focus on getting things done while ignoring the quality of your inner state.",
+          "Because you are still delivering, others may not see the cost you are paying to maintain performance."
+        ],
+        "ro": [
+          "Poți normaliza presiunea spunându-ți că toată lumea este obosită și că aceasta este doar o fază aglomerată.",
+          "Te poți concentra pe a termina lucrurile ignorând calitatea stării tale interioare.",
+          "Pentru că încă livrezi, ceilalți pot să nu vadă costul pe care îl plătești pentru a menține performanța."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Name the main driver explicitly: workload, role ambiguity, lack of recovery, relationship tension, or loss of meaning.",
+          "Reduce one recurring drain this week instead of adding another coping trick.",
+          "Bring this score into the next session and compare it with your calendar, sleep, and emotional reactivity."
+        ],
+        "ro": [
+          "Numește explicit factorul principal: volum de muncă, ambiguitate de rol, lipsă de recuperare, tensiune relațională sau pierdere de sens.",
+          "Redu un factor de consum recurent săptămâna aceasta în loc să mai adaugi un truc de coping.",
+          "Adu acest scor în următoarea sesiune și compară-l cu ceea ce arată calendarul, somnul și reactivitatea ta emoțională."
+        ]
+      }
+    },
+    "High risk": {
+      "desc": {
+        "en": "This score points to a meaningful burnout pattern rather than ordinary tiredness. The issue is not simply that you need a weekend off. Your energy, motivation, and professional functioning are already being impaired in a way that can worsen quickly if nothing changes.",
+        "ro": "Acest scor indică un tipar de burnout semnificativ, nu doar oboseală obișnuită. Problema nu este pur și simplu că ai nevoie de un weekend liber. Energia, motivația și funcționarea ta profesională sunt deja afectate într-un mod care se poate agrava rapid dacă nimic nu se schimbă."
+      },
+      "blind": {
+        "en": [
+          "You may still believe that pushing harder will solve a state created by chronic overextension.",
+          "You may confuse responsibility with self-abandonment and keep protecting work outcomes while your own capacity collapses.",
+          "At this level, your self-assessment may already be less reliable because the state has become familiar."
+        ],
+        "ro": [
+          "Poți încă să crezi că a împinge mai tare va rezolva o stare creată de suprasolicitare cronică.",
+          "Poți confunda responsabilitatea cu abandonarea de sine și să continui să protejezi rezultatele muncii în timp ce propria capacitate se prăbușește.",
+          "La acest nivel, autoevaluarea ta poate fi deja mai puțin fiabilă pentru că starea a devenit familiară."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Contact Stamin directly rather than waiting for the next ordinary check-in.",
+          "Stabilize the basics immediately: sleep, food, hydration, medical check if relevant, and non-negotiable downtime.",
+          "Identify one serious boundary intervention now, such as workload triage or temporary de-prioritization."
+        ],
+        "ro": [
+          "Contactează-l direct pe Stamin în loc să aștepți următorul check-in obișnuit.",
+          "Stabilizează imediat elementele de bază: somn, hrană, hidratare, control medical dacă este relevant și timp de refacere nenegociabil.",
+          "Identifică acum o intervenție serioasă de limitare, precum trierea volumului de muncă sau deprioritizarea temporară."
+        ]
+      }
+    },
+    "Very high risk": {
+      "desc": {
+        "en": "This result suggests you may already be in a severe burnout state. The priority is no longer optimization. It is containment, recovery, and proper support. Continuing to operate as if this were a normal dip can be actively harmful.",
+        "ro": "Acest rezultat sugerează că este posibil să fii deja într-o stare severă de burnout. Prioritatea nu mai este optimizarea. Este limitarea deteriorării, recuperarea și suportul adecvat. A continua ca și cum ar fi doar o perioadă proastă poate fi activ dăunător."
+      },
+      "blind": {
+        "en": [
+          "You may still compare yourself to an even worse imagined version of burnout and delay action.",
+          "Shame can make you hide the seriousness of what is happening, especially if your identity is tied to competence.",
+          "Your nervous system may already be overloaded enough to compromise concentration, patience, and judgment."
+        ],
+        "ro": [
+          "Poți încă să te compari cu o versiune imaginară și mai gravă a burnoutului și să amâni acțiunea.",
+          "Rușinea te poate face să ascunzi gravitatea a ceea ce se întâmplă, mai ales dacă identitatea ta este legată de competență.",
+          "Sistemul tău nervos poate fi deja suficient de supraîncărcat încât să îți afecteze concentrarea, răbdarea și judecata."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Reach out to Stamin as soon as possible and do not treat this as a result to revisit later.",
+          "If you need immediate mental-health support, contact a qualified clinician or emergency support in your local system.",
+          "Strip obligations down to essentials for the next days and involve another person in the support plan."
+        ],
+        "ro": [
+          "Contactează-l pe Stamin cât mai curând posibil și nu trata acest rezultat ca pe ceva de revizitat mai târziu.",
+          "Dacă ai nevoie de sprijin imediat pentru sănătatea mintală, contactează un clinician calificat sau serviciile de urgență din sistemul tău local.",
+          "Redu obligațiile la esențial pentru următoarele zile și implică o altă persoană în planul de sprijin."
+        ]
+      }
+    }
+  },
+  "leadership": {
+    "Strong foundation": {
+      "desc": {
+        "en": "You appear to have a credible leadership base across direction, ownership, communication, and self-awareness. At this level, the question is usually not whether you know what good leadership looks like, but whether you remain consistent when pressure, ambiguity, fatigue, or interpersonal tension rise.",
+        "ro": "Se pare că ai o bază credibilă de leadership în direcție, asumare, comunicare și conștientizare de sine. La acest nivel, întrebarea nu este de obicei dacă știi cum arată leadershipul bun, ci dacă rămâi consecvent când cresc presiunea, ambiguitatea, oboseala sau tensiunea interpersonală."
+      },
+      "blind": {
+        "en": [
+          "Strong leaders often overestimate how visible their intentions are; what is clear in your head may still feel unclear to your team.",
+          "Because you are relatively capable, others may compensate for your weaker moments instead of confronting them directly.",
+          "You may invest more in reliability and execution than in deliberate development of others."
+        ],
+        "ro": [
+          "Liderii puternici supraestimează adesea cât de vizibile sunt intențiile lor; ceea ce este clar în mintea ta poate rămâne neclar pentru echipă.",
+          "Pentru că ești relativ capabil, ceilalți pot compensa momentele tale mai slabe în loc să te confrunte direct.",
+          "Poți investi mai mult în fiabilitate și execuție decât în dezvoltarea deliberată a celorlalți."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Identify the situations in which your leadership degrades most predictably: urgency, conflict, underperformance, executive pressure, or uncertainty.",
+          "Ask two trusted people where your impact is strongest and where your good intentions fail to land as intended.",
+          "Choose one capability to sharpen intentionally over the next month instead of relying on general competence."
+        ],
+        "ro": [
+          "Identifică situațiile în care leadershipul tău se degradează cel mai previzibil: urgență, conflict, subperformanță, presiune executivă sau incertitudine.",
+          "Întreabă două persoane de încredere unde impactul tău este cel mai puternic și unde intențiile bune nu ajung așa cum vrei.",
+          "Alege o abilitate pe care să o rafinezi intenționat în următoarea lună, în loc să te bazezi doar pe competența generală."
+        ]
+      }
+    },
+    "Developing": {
+      "desc": {
+        "en": "You have enough leadership capacity to build on, but the pattern is uneven. Some behaviors are already useful and credible; others likely break down under stress or are not yet consistent enough to create trust, clarity, and momentum around you.",
+        "ro": "Ai suficientă capacitate de leadership pe care să construiești, dar tiparul este inegal. Unele comportamente sunt deja utile și credibile; altele probabil cedează sub stres sau nu sunt încă suficient de consecvente pentru a crea în jurul tău încredere, claritate și impuls."
+      },
+      "blind": {
+        "en": [
+          "You may assume that intention equals impact: wanting to be clear or supportive is not the same as being experienced that way by others.",
+          "You may focus on technical competence and execution while underestimating the relational side of leadership.",
+          "Because some areas are solid, you may postpone work on the weaker ones even though those are what the team feels most strongly."
+        ],
+        "ro": [
+          "Poți presupune că intenția este egală cu impactul: a vrea să fii clar sau sprijinitor nu este același lucru cu a fi perceput astfel de ceilalți.",
+          "Te poți concentra pe competența tehnică și execuție, subestimând latura relațională a leadershipului.",
+          "Pentru că unele zone sunt solide, poți amâna lucrul asupra celor mai slabe, deși tocmai acelea sunt resimțite cel mai puternic de echipă."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Choose one leadership behavior that would create disproportionate improvement if strengthened now.",
+          "Use one live situation this week as practice instead of theory; leadership changes when behavior changes under real pressure.",
+          "Bring one recent leadership moment to coaching and dissect it in detail: intention, behavior, and likely impact."
+        ],
+        "ro": [
+          "Alege un comportament de leadership care ar produce o îmbunătățire disproporționată dacă este întărit acum.",
+          "Folosește săptămâna aceasta o situație reală ca exercițiu, nu doar teoria; leadershipul se schimbă când se schimbă comportamentul sub presiune reală.",
+          "Adu în coaching un moment recent de leadership și disecă-l în detaliu: intenție, comportament și impact probabil."
+        ]
+      }
+    },
+    "Significant opportunity": {
+      "desc": {
+        "en": "This result points to meaningful leadership gaps, but also to significant upside. The implication is not that you are incapable of leading. It is that others may currently experience inconsistency, unclear direction, weak feedback, or low containment when things become difficult.",
+        "ro": "Acest rezultat indică lacune semnificative de leadership, dar și un potențial important de creștere. Implicația nu este că ești incapabil să conduci. Este că ceilalți pot experimenta în prezent inconsistență, direcție neclară, feedback slab sau puțină capacitate de containment când lucrurile devin dificile."
+      },
+      "blind": {
+        "en": [
+          "You may interpret relational friction as other people being difficult rather than as feedback about your current pattern.",
+          "Under pressure, you may move into avoidance, blame shifting, or overcontrol without recognizing it fast enough.",
+          "If your role is senior, people may adapt around these gaps instead of naming them directly."
+        ],
+        "ro": [
+          "Poți interpreta fricțiunea relațională ca fiind problema altora, nu ca feedback despre tiparul tău actual.",
+          "Sub presiune, poți intra în evitare, transfer de vină sau control excesiv fără să observi suficient de repede.",
+          "Dacă rolul tău este senior, oamenii se pot adapta în jurul acestor lacune în loc să le numească direct."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Do not treat this as an abstract development topic; pick one repeated leadership problem currently costing trust or speed.",
+          "Collect grounded feedback from at least two people using concrete examples rather than general impressions.",
+          "Use coaching to build one repeatable operating pattern for difficult moments: how you clarify, decide, communicate, and repair."
+        ],
+        "ro": [
+          "Nu trata acest rezultat ca pe un subiect abstract de dezvoltare; alege o problemă repetată de leadership care costă acum încredere sau viteză.",
+          "Colectează feedback ancorat în exemple concrete de la cel puțin două persoane, nu impresii generale.",
+          "Folosește coachingul pentru a construi un tipar repetabil de operare în momente dificile: cum clarifici, decizi, comunici și repari."
+        ]
+      }
+    }
+  },
+  "coachability": {
+    "Group 5 · Excellent Coachability": {
+      "desc": {
+        "en": "You are highly ready for demanding coaching. The pattern suggests strong ownership, openness to feedback, willingness to experiment, and enough internal motivation to turn insight into action. At this level the work can move quickly because resistance is present mostly as nuance, not as a structural blocker.",
+        "ro": "Ești foarte pregătit pentru coaching exigent. Tiparul sugerează asumare puternică, deschidere la feedback, disponibilitate de a experimenta și suficientă motivație internă pentru a transforma insightul în acțiune. La acest nivel, munca poate avansa rapid pentru că rezistența apare mai degrabă ca nuanță, nu ca blocaj structural."
+      },
+      "blind": {
+        "en": [
+          "Because you are coachable, you may underestimate the importance of pacing and take on too many changes at once.",
+          "You may overidentify with being growth-oriented and become impatient with slower or messier parts of development.",
+          "High coachability can hide a subtler issue: using self-improvement as another performance arena instead of integrating change deeply."
+        ],
+        "ro": [
+          "Pentru că ești coachable, poți subestima importanța ritmului și poți încerca prea multe schimbări simultan.",
+          "Te poți identifica prea mult cu imaginea de persoană orientată spre creștere și poți deveni nerăbdător cu părțile mai lente sau mai dezordonate ale dezvoltării.",
+          "Un nivel ridicat de coachability poate ascunde o problemă mai subtilă: folosirea autoîmbunătățirii ca încă o arenă de performanță, în loc de integrare profundă."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Use coaching for sharper goals, not generic exploration; choose the highest-leverage edge now.",
+          "Track execution between sessions ruthlessly so strong intent becomes visible behavioral change.",
+          "Invite more difficult feedback than feels comfortable; at your level, challenge is usually more valuable than reassurance."
+        ],
+        "ro": [
+          "Folosește coachingul pentru obiective mai precise, nu pentru explorare generică; alege acum muchia cu cel mai mare efect.",
+          "Urmărește execuția dintre sesiuni cu rigoare, astfel încât intenția puternică să devină schimbare comportamentală vizibilă.",
+          "Invită feedback mai dificil decât este confortabil; la nivelul tău, provocarea este de obicei mai valoroasă decât reasigurarea."
+        ]
+      }
+    },
+    "Group 4 · Good Coachability": {
+      "desc": {
+        "en": "You are a good candidate for coaching and likely to benefit substantially from it. The pattern suggests openness and baseline readiness, with some remaining comfort-zone behavior, selective defensiveness, or inconsistent follow-through that can slow deeper change if left unaddressed.",
+        "ro": "Ești un candidat bun pentru coaching și probabil vei beneficia substanțial de el. Tiparul sugerează deschidere și pregătire de bază, cu unele comportamente de zonă de confort, defensivitate selectivă sau execuție inconsecventă care pot încetini schimbarea mai profundă dacă rămân neadresate."
+      },
+      "blind": {
+        "en": [
+          "You may think willingness alone is enough, while the real issue is whether you execute when discomfort becomes real.",
+          "You may accept feedback intellectually but translate only part of it into changed behavior.",
+          "Because you are generally cooperative, others may assume you are more self-aware than you really are in weaker zones."
+        ],
+        "ro": [
+          "Poți crede că disponibilitatea este suficientă, când problema reală este dacă execuți atunci când disconfortul devine real.",
+          "Poți accepta feedbackul la nivel intelectual, dar să traduci doar o parte din el în comportament schimbat.",
+          "Pentru că ești în general cooperant, ceilalți pot presupune că ești mai conștient de sine decât ești de fapt în zonele mai slabe."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Name the one pattern you already know about but keep not changing consistently.",
+          "Agree one concrete between-session experiment with clear evidence of completion.",
+          "Spend less time explaining yourself well and more time exposing where you resist, delay, or rationalize."
+        ],
+        "ro": [
+          "Numește acel tipar pe care îl cunoști deja, dar pe care continui să nu-l schimbi consecvent.",
+          "Stabilește un experiment concret între sesiuni, cu dovezi clare de finalizare.",
+          "Petrece mai puțin timp explicându-te bine și mai mult timp expunând unde reziști, amâni sau raționalizezi."
+        ]
+      }
+    },
+    "Group 3 · Average Coachability": {
+      "desc": {
+        "en": "This score suggests mixed readiness. Some ingredients for coaching are present, but there are also clear obstacles such as guardedness, inconsistent accountability, ego involvement, or low intrinsic motivation. Progress is possible, but it will depend on honesty and repeated behavioral proof, not on verbal agreement.",
+        "ro": "Acest scor sugerează o pregătire mixtă. Unele ingrediente pentru coaching sunt prezente, dar există și obstacole clare precum defensivitate, responsabilitate inconsecventă, implicare a ego-ului sau motivație internă scăzută. Progresul este posibil, dar va depinde de onestitate și de dovezi comportamentale repetate, nu de acord verbal."
+      },
+      "blind": {
+        "en": [
+          "You may interpret challenge as lack of understanding instead of as useful friction required for growth.",
+          "You may overvalue insight and undervalue repetition, structure, and follow-through.",
+          "You may still be partly in coaching because it sounds right, not because you have fully decided to change."
+        ],
+        "ro": [
+          "Poți interpreta provocarea ca lipsă de înțelegere, nu ca fricțiune utilă necesară pentru creștere.",
+          "Poți supraevalua insightul și subevalua repetiția, structura și execuția.",
+          "Poți fi încă parțial în coaching pentru că sună bine, nu pentru că ai decis pe deplin să te schimbi."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Clarify why you are in coaching and what cost you are no longer willing to pay for staying the same.",
+          "Start with one narrow behavior change where accountability is easy to verify.",
+          "Expect coaching to feel more confronting than comfortable when the work begins to touch something real."
+        ],
+        "ro": [
+          "Clarifică de ce ești în coaching și ce cost nu mai ești dispus să plătești pentru a rămâne la fel.",
+          "Începe cu o singură schimbare comportamentală îngustă, unde responsabilitatea poate fi verificată ușor.",
+          "Așteaptă-te ca coachingul să fie mai confruntativ decât confortabil atunci când începe să atingă ceva real."
+        ]
+      }
+    },
+    "Group 2 · Poor Coachability": {
+      "desc": {
+        "en": "This result points to major obstacles to productive coaching right now. The barriers are likely not intellectual capacity, but defensiveness, low ownership, resistance to feedback, unstable baseline functioning, or a large gap between self-image and externally visible behavior.",
+        "ro": "Acest rezultat indică obstacole majore pentru un coaching productiv în acest moment. Barierele probabil nu țin de capacitatea intelectuală, ci de defensivitate, asumare scăzută, rezistență la feedback, funcționare de bază instabilă sau un decalaj mare între imaginea de sine și comportamentul vizibil pentru ceilalți."
+      },
+      "blind": {
+        "en": [
+          "You may experience direct feedback as unfairness or disrespect rather than as information.",
+          "You may assume that because your intentions are good, others should evaluate you by intention rather than impact.",
+          "At this level, self-perception is often less reliable than external pattern data."
+        ],
+        "ro": [
+          "Poți trăi feedbackul direct ca nedreptate sau lipsă de respect, nu ca informație utilă.",
+          "Poți presupune că, pentru că intențiile tale sunt bune, ceilalți ar trebui să te evalueze după intenție, nu după impact.",
+          "La acest nivel, autopercepția este adesea mai puțin fiabilă decât datele despre tiparele externe."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Begin with radical specificity: one repeated behavior, one context, one consequence.",
+          "Ask for examples from others and listen without defending or litigating the details in the moment.",
+          "Use coaching first to build baseline accountability and self-observation before expecting large transformation."
+        ],
+        "ro": [
+          "Începe cu specificitate radicală: un comportament repetat, un context, o consecință.",
+          "Cere exemple de la ceilalți și ascultă fără să te aperi sau să dezbați detaliile pe moment.",
+          "Folosește coachingul mai întâi pentru a construi responsabilitate de bază și autoobservare, înainte de a aștepta transformări mari."
+        ]
+      }
+    },
+    "Group 1 · Not the Right Moment for Coaching": {
+      "desc": {
+        "en": "This score suggests that coaching, in its normal performance-and-growth format, may not be the right primary intervention right now. The immediate issue may be severe stress, emotional destabilization, or compromised day-to-day functioning that needs more stabilizing support first.",
+        "ro": "Acest scor sugerează că coachingul, în formatul lui obișnuit de performanță și creștere, poate să nu fie intervenția principală potrivită acum. Problema imediată poate fi stres sever, destabilizare emoțională sau afectarea funcționării zilnice, care au nevoie mai întâi de suport de stabilizare."
+      },
+      "blind": {
+        "en": [
+          "You may still judge yourself by what you should be capable of rather than by what your system can actually sustain now.",
+          "High-achieving people often try to solve dysregulation with more effort and discipline, which usually fails.",
+          "Shame may tempt you to hide how impaired or overloaded you currently feel."
+        ],
+        "ro": [
+          "Poți continua să te judeci după ceea ce ar trebui să poți face, nu după ce poate susține de fapt sistemul tău acum.",
+          "Persoanele cu performanță ridicată încearcă adesea să rezolve dereglarea prin mai mult efort și disciplină, ceea ce de obicei eșuează.",
+          "Rușinea te poate tenta să ascunzi cât de afectat sau supraîncărcat te simți acum."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Reach out to Stamin to discuss what kind of support is actually appropriate right now instead of forcing a standard coaching agenda.",
+          "Prioritize stabilization: sleep, safety, daily structure, medical or therapeutic support if needed, and reduction of avoidable pressure.",
+          "Treat this result as a signal to adjust the intervention, not as a personal failure."
+        ],
+        "ro": [
+          "Contactează-l pe Stamin pentru a discuta ce fel de suport este de fapt potrivit acum, în loc să forțezi o agendă standard de coaching.",
+          "Prioritizează stabilizarea: somn, siguranță, structură zilnică, suport medical sau terapeutic dacă este nevoie și reducerea presiunii evitabile.",
+          "Tratează acest rezultat ca pe un semnal de ajustare a intervenției, nu ca pe un eșec personal."
+        ]
+      }
+    }
+  },
+  "resilience": {
+    "High resilience": {
+      "desc": {
+        "en": "Your current pattern suggests strong recovery capacity, psychological flexibility, and the ability to stay functional under pressure. The opportunity now is not basic repair, but protecting this capacity and making sure it remains available when context becomes harsher.",
+        "ro": "Tiparul tău actual sugerează capacitate bună de recuperare, flexibilitate psihologică și abilitatea de a rămâne funcțional sub presiune. Oportunitatea acum nu este repararea de bază, ci protejarea acestei capacități și asigurarea că rămâne disponibilă când contextul devine mai dur."
+      },
+      "blind": {
+        "en": [
+          "Because you are resilient, others may rely on you too heavily and you may silently accept that role.",
+          "You may underestimate how much your resilience depends on conditions you currently take for granted.",
+          "High resilience can drift into overfunctioning: being the one who absorbs what others do not."
+        ],
+        "ro": [
+          "Pentru că ești rezilient, ceilalți se pot baza prea mult pe tine și poți accepta acest rol în tăcere.",
+          "Poți subestima cât de mult depinde reziliența ta de condiții pe care acum le iei ca de la sine înțelese.",
+          "Reziliența ridicată poate aluneca în suprafuncționare: să fii cel care absoarbe ceea ce ceilalți nu duc."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Identify what specifically sustains your resilience and protect it in your calendar before pressure grows.",
+          "Notice where you are carrying more than is necessary simply because you can.",
+          "Use coaching to stress-test your resilience in harder scenarios rather than only admiring the current baseline."
+        ],
+        "ro": [
+          "Identifică exact ce îți susține reziliența și protejează acele lucruri în calendar înainte să crească presiunea.",
+          "Observă unde duci mai mult decât este necesar doar pentru că poți.",
+          "Folosește coachingul pentru a testa reziliența ta în scenarii mai dificile, nu doar pentru a admira nivelul actual."
+        ]
+      }
+    },
+    "Moderate resilience": {
+      "desc": {
+        "en": "You have some resilient capacities, but they are not yet fully stable across contexts. Certain pressures, disruptions, or relationship dynamics likely deplete you faster than they should. This is a strong zone for practical coaching because targeted habits can shift outcomes noticeably.",
+        "ro": "Ai anumite capacități de reziliență, dar ele nu sunt încă pe deplin stabile în toate contextele. Anumite presiuni, perturbări sau dinamici relaționale probabil te consumă mai repede decât ar trebui. Aceasta este o zonă bună pentru coaching practic, deoarece obiceiurile țintite pot schimba vizibil rezultatele."
+      },
+      "blind": {
+        "en": [
+          "You may think resilience means simply enduring, when in fact recovery, adaptation, and boundary-setting are part of it.",
+          "You may know what helps you recover but fail to do it consistently when workload rises.",
+          "You may misread repeated depletion as a motivation problem rather than a systems problem."
+        ],
+        "ro": [
+          "Poți crede că reziliența înseamnă pur și simplu să înduri, când de fapt recuperarea, adaptarea și setarea limitelor fac parte din ea.",
+          "Poți ști ce te ajută să te refaci, dar să nu aplici consecvent când crește volumul de muncă.",
+          "Poți interpreta consumul repetat ca problemă de motivație, nu ca problemă de sistem."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Pick one concrete resilience lever to strengthen now: recovery routine, support network, workload triage, or emotional regulation under stress.",
+          "Track the contexts that deplete you disproportionately so resilience work becomes specific rather than inspirational.",
+          "Use one weekly review to ask not only what got done, but what restored capacity."
+        ],
+        "ro": [
+          "Alege acum o pârghie concretă de reziliență pe care să o întărești: rutină de recuperare, rețea de sprijin, trierea volumului de muncă sau reglare emoțională sub stres.",
+          "Urmărește contextele care te epuizează disproporționat, astfel încât munca pe reziliență să devină specifică, nu inspirațională.",
+          "Folosește o revizuire săptămânală pentru a întreba nu doar ce s-a făcut, ci și ce a refăcut capacitatea."
+        ]
+      }
+    },
+    "Building resilience": {
+      "desc": {
+        "en": "This score suggests resilience is currently underbuilt or under-supported. That does not mean you lack character. It means your current system for recovery, adaptation, and support is not yet strong enough to absorb normal pressure well, especially when multiple stressors hit at once.",
+        "ro": "Acest scor sugerează că reziliența este în prezent insuficient construită sau insuficient susținută. Asta nu înseamnă că îți lipsește caracterul. Înseamnă că sistemul tău actual de recuperare, adaptare și sprijin nu este încă suficient de puternic pentru a absorbi bine presiunea normală, mai ales când apar mai mulți stresori simultan."
+      },
+      "blind": {
+        "en": [
+          "You may judge yourself morally for struggling instead of examining the conditions and habits that leave you exposed.",
+          "You may rely on emergency coping after depletion instead of building repeatable protective structure beforehand.",
+          "You may expect resilience to appear once motivation returns, instead of building it behaviorally now."
+        ],
+        "ro": [
+          "Poți să te judeci moral pentru faptul că te lupți, în loc să examinezi condițiile și obiceiurile care te lasă expus.",
+          "Poți să te bazezi pe coping de urgență după epuizare, în loc să construiești din timp o structură protectivă repetabilă.",
+          "Poți aștepta ca reziliența să apară odată ce revine motivația, în loc să o construiești comportamental acum."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Start with fundamentals rather than complexity: sleep, breaks, movement, social support, and clearer prioritization.",
+          "Choose one stress pattern that repeatedly knocks you down and design a response before it happens again.",
+          "Treat resilience as a trainable operating system, not as a verdict about who you are."
+        ],
+        "ro": [
+          "Începe cu fundamentalele, nu cu complexitatea: somn, pauze, mișcare, sprijin social și prioritizare mai clară.",
+          "Alege un tipar de stres care te doboară repetat și proiectează un răspuns înainte să se întâmple din nou.",
+          "Tratează reziliența ca pe un sistem de operare antrenabil, nu ca pe un verdict despre cine ești."
+        ]
+      }
+    }
+  },
+  "strategic": {
+    "The Reactive Operator": {
+      "desc": {
+        "en": "You rely heavily on fast, intuitive thinking driven by emotion and immediate instinct. You tend to assume that knowledge is straightforward and defer to authority figures rather than questioning the basis of their conclusions.",
+        "ro": "Te bazezi puternic pe gândirea rapidă, intuitivă, condusă de emoție și de instinctul imediat. Tinzi să presupui că lucrurile sunt simple și să te bazezi pe autoritate, în loc să pui sub semnul întrebării baza concluziilor formulate de alții."
+      },
+      "blind": {
+        "en": [
+          "You accept assumptions as facts.",
+          "You rarely verify the credibility of your sources.",
+          "You may struggle to separate your sense of self from your ideas, so disagreements can feel like personal attacks."
+        ],
+        "ro": [
+          "Accepți ușor ipotezele ca fapte.",
+          "Rareori verifici credibilitatea surselor tale.",
+          "Îți poate fi greu să îți separi identitatea de ideile tale, astfel încât dezacordurile pot părea atacuri personale."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Begin with the pause.",
+          "Before making a decision or reacting, ask yourself: “What assumptions am I making right now, and what is the actual evidence supporting them?”",
+          "Use that question repeatedly until it becomes a habit rather than an emergency correction."
+        ],
+        "ro": [
+          "Începe cu pauza.",
+          "Înainte să iei o decizie sau să reacționezi, întreabă-te: „Ce ipoteze fac acum și care sunt dovezile reale care le susțin?”",
+          "Repetă această întrebare până când devine un obicei, nu doar o corecție de urgență."
+        ]
+      }
+    },
+    "The Passive Reactor": {
+      "desc": {
+        "en": "You recognize that problems can be solved in more than one way, but you frequently fall into cognitive traps such as confirmation bias and groupthink. You may believe that because people disagree, all opinions carry roughly equal weight.",
+        "ro": "Recunoști că problemele pot fi rezolvate în mai multe moduri, dar cazi frecvent în capcane cognitive precum biasul de confirmare și groupthink-ul. Poți ajunge să crezi că, dacă oamenii nu sunt de acord între ei, atunci toate opiniile au cam aceeași greutate."
+      },
+      "blind": {
+        "en": [
+          "Your critical thinking is easily disrupted by emotional pressure.",
+          "When stressed, your thinking narrows toward immediate relief or survival.",
+          "That can cause you to jump to conclusions and bypass logical evaluation."
+        ],
+        "ro": [
+          "Gândirea ta critică este ușor perturbată de presiunea emoțională.",
+          "Când ești stresat, gândirea ta se îngustează spre ușurare imediată sau supraviețuire.",
+          "Asta te poate face să sari la concluzii și să ocolești evaluarea logică."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Focus on emotional regulation.",
+          "Practice separating how you feel about a situation from the objective facts within it.",
+          "Evaluate arguments based on the evidence presented, independent of who is presenting them."
+        ],
+        "ro": [
+          "Concentrează-te pe reglarea emoțională.",
+          "Exersează separarea modului în care te simți față de o situație de faptele obiective din ea.",
+          "Evaluează argumentele pe baza dovezilor prezentate, independent de cine le prezintă."
+        ]
+      }
+    },
+    "The Emerging Scout": {
+      "desc": {
+        "en": "You are developing awareness of your own cognitive biases and are beginning to seek truth rather than just defend your existing position. You understand how to recognize assumptions, evaluate arguments, and draw conclusions, but you apply this inconsistently.",
+        "ro": "Începi să devii conștient de propriile tale biasuri cognitive și să cauți adevărul, nu doar să îți aperi poziția actuală. Înțelegi cum să identifici ipoteze, să evaluezi argumente și să tragi concluzii, dar aplici aceste lucruri în mod inconsecvent."
+      },
+      "blind": {
+        "en": [
+          "While you know how to evaluate evidence, you may lose follow-through when problems become highly complex or ambiguous.",
+          "You might default to conventional wisdom when the stakes rise.",
+          "You may also rely too heavily on past experience when a situation actually requires fresh analysis."
+        ],
+        "ro": [
+          "Deși știi cum să evaluezi dovezile, poți pierde rigoarea atunci când problemele devin foarte complexe sau ambigue.",
+          "Poți reveni la înțelepciunea convențională atunci când miza crește.",
+          "Te poți baza prea mult pe experiența trecută într-o situație care ar cere, de fapt, analiză proaspătă."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Build intellectual courage.",
+          "Practice holding your own hypotheses loosely.",
+          "Actively invite challenge into your decision-making process and appoint a devil’s advocate before finalizing important decisions."
+        ],
+        "ro": [
+          "Construiește curaj intelectual.",
+          "Exersează să îți ții ipotezele cu lejeritate, nu cu rigiditate.",
+          "Invită activ provocarea în procesul tău decizional și numește un avocat al diavolului înainte de a finaliza deciziile importante."
+        ]
+      }
+    },
+    "The Developing Analyst": {
+      "desc": {
+        "en": "You understand that some viewpoints are objectively stronger than others because they are supported by better reasoning and evidence. You regularly use probing questions to test for clarity and uncover root causes.",
+        "ro": "Înțelegi că unele puncte de vedere sunt obiectiv mai solide decât altele, pentru că sunt susținute de un raționament și de dovezi mai bune. Folosești în mod regulat întrebări de sondare pentru a testa claritatea și pentru a descoperi cauzele de bază."
+      },
+      "blind": {
+        "en": [
+          "You are a capable thinker, but you may sometimes use your analytical skills to defend your own agenda.",
+          "You may challenge other people’s arguments more rigorously than your own.",
+          "That can leave your fundamental beliefs less examined than you assume."
+        ],
+        "ro": [
+          "Ești un gânditor capabil, dar uneori îți poți folosi abilitățile analitice pentru a-ți apăra propria agendă.",
+          "Poți analiza argumentele altora mai riguros decât pe ale tale.",
+          "Asta poate lăsa convingerile tale fundamentale mai puțin examinate decât presupui."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Turn your analytical skills inward.",
+          "Practice reconstructing opposing viewpoints so accurately that the person holding them would confirm you have understood them correctly.",
+          "Only then begin your critique."
+        ],
+        "ro": [
+          "Întoarce-ți abilitățile analitice și spre interior.",
+          "Exersează să reconstruiești punctele de vedere opuse atât de fidel încât persoana care le susține să confirme că ai înțeles corect poziția ei.",
+          "Abia după aceea începe critica."
+        ]
+      }
+    },
+    "The Integrative Analyst": {
+      "desc": {
+        "en": "You possess strong emotional intelligence and good metacognition — the ability to observe and adjust your own thinking in real time. You blend analytical rigor with practical execution and are comfortable holding opposing ideas simultaneously while working toward a synthesis.",
+        "ro": "Ai inteligență emoțională puternică și o bună metacogniție — capacitatea de a-ți observa și ajusta gândirea în timp real. Combini rigoarea analitică cu execuția practică și poți susține idei opuse simultan în timp ce lucrezi spre o sinteză."
+      },
+      "blind": {
+        "en": [
+          "Your main challenge is maintaining this level of cognitive discipline under extreme pressure.",
+          "Time constraints can push you to shorten your analysis prematurely.",
+          "That may cause you to bypass a fuller evaluation of second- and third-order consequences."
+        ],
+        "ro": [
+          "Provocarea ta principală este să menții acest nivel de disciplină cognitivă sub presiune extremă.",
+          "Constrângerile de timp te pot împinge să scurtezi analiza prea devreme.",
+          "Asta te poate face să sari peste o evaluare mai completă a consecințelor de ordinul al doilea și al treilea."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Standardize your process.",
+          "Build decision-making checklists that preserve your critical thinking under fatigue and severe time pressure.",
+          "Use them precisely when the environment makes disciplined thinking hardest to sustain."
+        ],
+        "ro": [
+          "Standardizează-ți procesul.",
+          "Construiește checklist-uri de decizie care îți păstrează gândirea critică și atunci când ești obosit sau sub presiune severă de timp.",
+          "Folosește-le exact în momentele în care mediul face cel mai greu de susținut disciplina cognitivă."
+        ]
+      }
+    },
+    "The Strategic Mind": {
+      "desc": {
+        "en": "You apply rigorous intellectual standards to your own worldview just as fiercely as you do to others. You break complex challenges down to their fundamental truths rather than relying on analogy or precedent. This level is intentionally narrow because consistently applying clarity, accuracy, precision, depth, breadth, relevance, logic, and fairness across your thinking is genuinely rare.",
+        "ro": "Aplici standarde intelectuale riguroase propriei tale viziuni asupra lumii la fel de ferm cum le aplici și altora. Descompui provocările complexe până la adevărurile lor fundamentale, în loc să te bazezi pe analogie sau precedent. Acest nivel este intenționat îngust, pentru că aplicarea consecventă a clarității, acurateței, preciziei, profunzimii, amplitudinii, relevanței, logicii și echității este cu adevărat rară."
+      },
+      "blind": {
+        "en": [
+          "At this level, the blind spots are more subtle than obvious: you may assume your private rigor automatically scales into team or organizational rigor.",
+          "You may underestimate how much translation and structure other people need in order to think with the same discipline.",
+          "Your risk is not weak analysis, but failing to make rigorous thinking reproducible around you."
+        ],
+        "ro": [
+          "La acest nivel, punctele oarbe sunt mai subtile decât evidente: poți presupune că rigoarea ta personală se transferă automat în rigoare de echipă sau organizațională.",
+          "Poți subestima cât de multă traducere și structură au nevoie ceilalți pentru a gândi cu aceeași disciplină.",
+          "Riscul tău nu este analiza slabă, ci faptul că nu faci gândirea riguroasă reproductibilă în jurul tău."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Shift your focus from self-improvement to systemic influence.",
+          "Teach these thinking habits to your teams and build a culture where psychological safety allows anyone to challenge assumptions.",
+          "Make rigorous thinking a shared organizational habit rather than an individual trait."
+        ],
+        "ro": [
+          "Mută-ți focusul de la autoîmbunătățire la influență sistemică.",
+          "Predă aceste obiceiuri de gândire echipelor tale și construiește o cultură în care siguranța psihologică le permite tuturor să conteste ipotezele.",
+          "Transformă gândirea riguroasă într-un obicei organizațional comun, nu doar într-o trăsătură individuală."
+        ]
+      }
+    }
+  },
+  "mentalwellness": {
+    "Category 1 · Severe Psychological Entropy": {
+      "desc": {
+        "en": "This score suggests your internal system is significantly overloaded and under-recovered. Work may currently feel more like chronic threat than meaningful challenge. At this level, the priority is stabilization and support, not asking more of yourself through willpower or discipline.",
+        "ro": "Acest scor sugerează că sistemul tău intern este semnificativ supraîncărcat și insuficient recuperat. Munca poate părea acum mai degrabă o amenințare cronică decât o provocare semnificativă. La acest nivel, prioritatea este stabilizarea și sprijinul, nu a cere mai mult de la tine prin voință sau disciplină."
+      },
+      "blind": {
+        "en": [
+          "You may still be trying to solve a nervous-system problem as if it were a productivity problem.",
+          "You may be so adapted to survival mode that genuine depletion now feels normal.",
+          "Isolation and shame can make you minimize what is happening and avoid asking for help."
+        ],
+        "ro": [
+          "Poți încerca încă să rezolvi o problemă de sistem nervos ca și cum ar fi o problemă de productivitate.",
+          "Poți fi atât de adaptat la modul de supraviețuire încât epuizarea reală îți pare normală.",
+          "Izolarea și rușinea te pot face să minimizezi ceea ce se întâmplă și să eviți să ceri ajutor."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Reach out to Stamin to discuss immediate support and whether additional professional care is appropriate.",
+          "Reduce non-essential demands quickly; containment matters more than maintaining image right now.",
+          "Stabilize basics first: sleep, nourishment, medical attention if relevant, calm structure, and supportive contact."
+        ],
+        "ro": [
+          "Contactează-l pe Stamin pentru a discuta sprijinul imediat și dacă este potrivit și ajutor profesional suplimentar.",
+          "Redu rapid cerințele neesențiale; limitarea deteriorării contează mai mult decât menținerea imaginii acum.",
+          "Stabilizează mai întâi elementele de bază: somn, hrană, atenție medicală dacă este relevant, structură calmă și contact de sprijin."
+        ]
+      }
+    },
+    "Category 2 · Survival State": {
+      "desc": {
+        "en": "You are likely operating in a sustained high-stress mode. The system is still functioning, but often by narrowing attention, shrinking recovery, and sacrificing flexibility. That can make you look operational from the outside while feeling internally brittle and overloaded.",
+        "ro": "Probabil funcționezi într-un mod susținut de stres ridicat. Sistemul încă funcționează, dar adesea prin îngustarea atenției, micșorarea recuperării și sacrificarea flexibilității. Asta te poate face să pari operațional din exterior, în timp ce în interior te simți fragil și supraîncărcat."
+      },
+      "blind": {
+        "en": [
+          "You may confuse functioning with wellness because you are still getting things done.",
+          "You may underestimate how much chronic activation is distorting judgment, patience, and relationships.",
+          "Short-term coping may now be crowding out the slower habits that actually restore you."
+        ],
+        "ro": [
+          "Poți confunda funcționarea cu starea de bine pentru că încă reușești să faci lucrurile.",
+          "Poți subestima cât de mult îți distorsionează activarea cronică judecata, răbdarea și relațiile.",
+          "Copingul pe termen scurt poate înlocui acum obiceiurile mai lente care te refac cu adevărat."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Create more structure, not more mental pressure: capture, prioritize, and reduce open loops.",
+          "Learn your earliest stress markers so you intervene before you are already hijacked.",
+          "Bring one concrete survival-pattern example to coaching and work on the triggers, not only the symptoms."
+        ],
+        "ro": [
+          "Creează mai multă structură, nu mai multă presiune mentală: capturează, prioritizează și redu buclele deschise.",
+          "Învață-ți cei mai timpurii markeri de stres pentru a interveni înainte să fii deja acaparat.",
+          "Adu în coaching un exemplu concret de tipar de supraviețuire și lucrează pe declanșatori, nu doar pe simptome."
+        ]
+      }
+    },
+    "Category 3 · Languishing": {
+      "desc": {
+        "en": "This result suggests you are still functioning, but without enough vitality, meaning, or psychological lift. The danger here is subtle erosion: life and work continue, yet energy, curiosity, and engagement gradually flatten. People often stay in this zone longer than they realize because it is not dramatic enough to force change.",
+        "ro": "Acest rezultat sugerează că încă funcționezi, dar fără suficientă vitalitate, sens sau susținere psihologică. Pericolul aici este eroziunea subtilă: viața și munca continuă, dar energia, curiozitatea și implicarea se aplatizează treptat. Oamenii rămân adesea în această zonă mai mult decât își dau seama, fiindcă nu este suficient de dramatică încât să forțeze schimbarea."
+      },
+      "blind": {
+        "en": [
+          "You may call this boredom or just a phase, while missing the fact that your system has disengaged more broadly.",
+          "You may wait for inspiration to return on its own instead of changing the conditions that are flattening you.",
+          "Because nothing is collapsing, you may tolerate too much meaninglessness for too long."
+        ],
+        "ro": [
+          "Poți numi această stare plictiseală sau doar o fază, ratând faptul că sistemul tău s-a dezangajat mai larg.",
+          "Poți aștepta să revină inspirația de la sine în loc să schimbi condițiile care te aplatizează.",
+          "Pentru că nimic nu se prăbușește, poți tolera prea multă lipsă de sens pentru prea mult timp."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Examine fit directly: workload, strengths use, meaning, relationships, and autonomy.",
+          "Reintroduce one source of aliveness deliberately this week instead of waiting for mood to improve first.",
+          "Use coaching to distinguish fatigue from misalignment; the interventions are not the same."
+        ],
+        "ro": [
+          "Examinează direct potrivirea: volum de muncă, folosirea punctelor forte, sens, relații și autonomie.",
+          "Reintrodu intenționat o sursă de vitalitate săptămâna aceasta în loc să aștepți mai întâi să se îmbunătățească dispoziția.",
+          "Folosește coachingul pentru a distinge oboseala de nealiniere; intervențiile nu sunt aceleași."
+        ]
+      }
+    },
+    "Category 4 · Functional but Fragile": {
+      "desc": {
+        "en": "You have enough stability to function, but the system still gets knocked off balance too easily by disruption, overload, or uncertainty. You are no longer in obvious trouble, yet the foundations are not robust enough to make pressure feel manageable consistently.",
+        "ro": "Ai suficientă stabilitate ca să funcționezi, dar sistemul încă este dezechilibrat prea ușor de perturbare, suprasolicitare sau incertitudine. Nu mai ești într-o zonă de pericol evident, dar fundațiile nu sunt încă suficient de robuste pentru ca presiunea să pară gestionabilă în mod consecvent."
+      },
+      "blind": {
+        "en": [
+          "You may take your current functioning as proof that deeper maintenance is unnecessary.",
+          "You may still live reactively, repairing after disruption instead of preventing avoidable depletion.",
+          "Others may see you as fine while you privately know how narrow your margin actually is."
+        ],
+        "ro": [
+          "Poți lua funcționarea actuală ca dovadă că o întreținere mai profundă nu este necesară.",
+          "Poți trăi încă reactiv, reparând după perturbare în loc să previi consumul evitabil.",
+          "Ceilalți te pot vedea ca fiind bine, în timp ce tu știi în privat cât de îngustă este de fapt marja ta."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Build preventive rituals, not only recovery rituals: sleep protection, workload boundaries, transition routines, and clearer planning.",
+          "Track what reliably destabilizes you and design friction against it in advance.",
+          "Shift the question from How do I recover faster? to How do I protect capacity earlier?"
+        ],
+        "ro": [
+          "Construiește ritualuri preventive, nu doar ritualuri de recuperare: protejarea somnului, limite de volum de muncă, rutine de tranziție și planificare mai clară.",
+          "Urmărește ce te destabilizează în mod fiabil și proiectează din timp fricțiune împotriva acelor factori.",
+          "Mută întrebarea de la Cum mă recuperez mai repede? la Cum protejez capacitatea mai devreme?"
+        ]
+      }
+    },
+    "Category 5 · Integrated and Adaptive": {
+      "desc": {
+        "en": "Your responses suggest a healthy degree of internal coherence, emotional regulation, and adaptability. You are able to remain yourself under pressure more often than not. The developmental focus now is maintaining this quality while complexity rises and using it to improve the environment for others as well.",
+        "ro": "Răspunsurile tale sugerează un grad sănătos de coerență internă, reglare emoțională și adaptabilitate. Reușești să rămâi tu însuți sub presiune mai des decât nu. Focusul de dezvoltare acum este menținerea acestei calități pe măsură ce crește complexitatea și folosirea ei pentru a îmbunătăți și mediul celorlalți."
+      },
+      "blind": {
+        "en": [
+          "Because you are relatively integrated, you may not notice slow drift until pressure has already accumulated substantially.",
+          "You may become the emotional stabilizer for others and carry more than is healthy.",
+          "What feels sustainable now may depend on conditions that could change quickly."
+        ],
+        "ro": [
+          "Pentru că ești relativ integrat, poți să nu observi deriva lentă până când presiunea nu s-a acumulat deja semnificativ.",
+          "Poți deveni stabilizatorul emoțional pentru ceilalți și să duci mai mult decât este sănătos.",
+          "Ceea ce pare sustenabil acum poate depinde de condiții care se pot schimba rapid."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Protect the habits and boundaries that are quietly maintaining your integration.",
+          "Notice where your steadiness can be translated into better team norms, not just personal benefit.",
+          "Use coaching for refinement: harder contexts, bigger roles, and more systemic influence."
+        ],
+        "ro": [
+          "Protejează obiceiurile și limitele care îți mențin discret integrarea.",
+          "Observă unde stabilitatea ta poate fi tradusă în norme mai bune de echipă, nu doar în beneficiu personal.",
+          "Folosește coachingul pentru rafinare: contexte mai grele, roluri mai mari și influență mai sistemică."
+        ]
+      }
+    },
+    "Category 6 · Self-Actualized": {
+      "desc": {
+        "en": "This score reflects unusually strong alignment across energy, meaning, regulation, connection, and adaptive functioning. You appear to be operating from integration rather than compensation. The developmental question is no longer whether you can function well, but how deliberately you can preserve and transmit this level of functioning.",
+        "ro": "Acest scor reflectă o aliniere neobișnuit de puternică între energie, sens, reglare, conexiune și funcționare adaptativă. Pari să operezi din integrare, nu din compensare. Întrebarea de dezvoltare nu mai este dacă poți funcționa bine, ci cât de deliberat poți păstra și transmite acest nivel de funcționare."
+      },
+      "blind": {
+        "en": [
+          "You may underestimate how rare this state is and communicate from too advanced a baseline for others.",
+          "You may neglect active protection because things currently feel natural and self-reinforcing.",
+          "The risk is not obvious dysfunction but slow dilution through overcommitment or poor boundaries."
+        ],
+        "ro": [
+          "Poți subestima cât de rară este această stare și să comunici de la un nivel de bază prea avansat pentru ceilalți.",
+          "Poți neglija protecția activă pentru că lucrurile par acum naturale și auto-susținute.",
+          "Riscul nu este disfuncția evidentă, ci diluarea lentă prin supra-angajare sau limite slabe."
+        ]
+      },
+      "actions": {
+        "en": [
+          "Protect this state deliberately with boundaries equal to the value of what you are protecting.",
+          "Translate your personal wellness practices into leadership and environmental design where relevant.",
+          "Use coaching to explore how to scale this level of functioning without losing its integrity."
+        ],
+        "ro": [
+          "Protejează această stare deliberat, cu limite proporționale cu valoarea a ceea ce protejezi.",
+          "Tradu practicile tale personale de wellbeing în leadership și design de mediu acolo unde este relevant.",
+          "Folosește coachingul pentru a explora cum poți scala acest nivel de funcționare fără să-i pierzi integritatea."
+        ]
+      }
+    }
+  }
+};
+function enrichAssessmentResult(id, result){ const detail = assessmentResultDetails[id]?.[result.label?.en]; return detail ? { ...result, ...detail } : result; }
+function renderBulletList(items){ return '<ul class="rlist">' + (items || []).map(item => `<li>${escapeHtml(item)}</li>`).join('') + '</ul>'; }
 function updateSummaryDock(){ const assessmentsCount = Object.keys(memberSessionSummary.assessments).length; const toolsCount = Object.keys(memberSessionSummary.tools).filter(k => { const item = memberSessionSummary.tools[k]; return item && ((item.content && item.content.trim()) || item.completed || (item.entries && item.entries.some(e => e.value && e.value.trim()))); }).length; const total = assessmentsCount + toolsCount; const dock = document.getElementById('summaryDock'); dock.style.display = total > 0 ? 'block' : 'none'; document.getElementById('summaryDockMeta').textContent = currentLang() === 'ro' ? `${total} elemente înregistrate` : `${total} items recorded`; }
 function recordAssessmentResult(id, payload){ memberSessionSummary.assessments[id] = payload; memberSessionSummary.updatedAt = new Date().toISOString(); updateSummaryDock(); }
 function saveToolValue(id, content, label){ memberSessionSummary.tools[id] = { content, label, updatedAt:new Date().toISOString() }; memberSessionSummary.updatedAt = new Date().toISOString(); updateSummaryDock(); }
@@ -630,11 +1461,11 @@ function renderAssessment(id) {
     html = a.questions.map((q, i) => `<div class="question"><p>${i + 1}. ${q[lang]}</p><div class="scaleRow">${[1,2,3,4,5].map((v, vi) => `<label><input type="radio" name="${id}_q${i}" value="${v}"><span>${scale[vi]}</span></label>`).join('')}</div></div>`).join('');
   }
 
-  html += `<button class="btn primary" onclick="calcScore('${id}')">${i18n[lang].common.seeResult}</button><div class="result" id="result-${id}"><div class="score" id="score-${id}"></div><div class="rlabel" id="label-${id}"></div><div class="rdesc" id="desc-${id}"></div></div>`;
+  html += `<button class="btn primary" onclick="calcScore('${id}')">${i18n[lang].common.seeResult}</button><div class="result" id="result-${id}"><div class="score" id="score-${id}"></div><div class="rlabel" id="label-${id}"></div><div class="rblock"><div class="rhead">${i18n[lang].common.resultDescription}</div><div class="rtext" id="desc-${id}"></div></div><div class="rblock"><div class="rhead">${i18n[lang].common.resultBlindSpots}</div><div id="blind-${id}"></div></div><div class="rblock"><div class="rhead">${i18n[lang].common.resultActionSteps}</div><div id="actions-${id}"></div></div></div>`;
   return html;
 }
 
-function calcScore(id){ const a = assessments[id]; let score = 0, unanswered = false; a.questions.forEach((_, i) => { const checked = document.querySelector(`input[name="${id}_q${i}"]:checked`); if(!checked){ unanswered = true; return; } score += parseInt(checked.value, 10); }); if(unanswered){ alert(i18n[currentLang()].common.pleaseAnswerAll); return; } const result = a.interpret(score); const max = a.questions.length * 5; const scoreText = score + ' / ' + max; document.getElementById('score-' + id).textContent = scoreText; document.getElementById('label-' + id).textContent = result.label[currentLang()]; document.getElementById('desc-' + id).textContent = result.desc[currentLang()]; document.getElementById('result-' + id).classList.add('show'); const meta = modalMeta[id](); recordAssessmentResult(id, { id, title: meta.title, score, scoreText, label: result.label[currentLang()], description: result.desc[currentLang()] }); }
+function calcScore(id){ const a = assessments[id]; let score = 0, unanswered = false; a.questions.forEach((_, i) => { const checked = document.querySelector(`input[name="${id}_q${i}"]:checked`); if(!checked){ unanswered = true; return; } score += parseInt(checked.value, 10); }); if(unanswered){ alert(i18n[currentLang()].common.pleaseAnswerAll); return; } const result = enrichAssessmentResult(id, a.interpret(score)); const max = a.questions.length * 5; const scoreText = score + ' / ' + max; const lang = currentLang(); document.getElementById('score-' + id).textContent = scoreText; document.getElementById('label-' + id).textContent = result.label[lang]; document.getElementById('desc-' + id).textContent = result.desc[lang]; document.getElementById('blind-' + id).innerHTML = renderBulletList(result.blind?.[lang] || []); document.getElementById('actions-' + id).innerHTML = renderBulletList(result.actions?.[lang] || []); document.getElementById('result-' + id).classList.add('show'); const meta = modalMeta[id](); recordAssessmentResult(id, { id, title: meta.title, score, scoreText, label: result.label[lang], description: result.desc[lang], blindSpots: result.blind?.[lang] || [], actionSteps: result.actions?.[lang] || [] }); }
 function renderSessionPrep(){ const t = i18n[currentLang()].toolcards.prep; return `<label class="formLabel">${t.l1}</label><textarea id="prep1" class="toolArea" rows="2" placeholder="${t.p1}" oninput="updateSessionPrepSummary()"></textarea><label class="formLabel">${t.l2}</label><textarea id="prep2" class="toolArea" rows="2" placeholder="${t.p2}" oninput="updateSessionPrepSummary()"></textarea><label class="formLabel">${t.l3}</label><textarea id="prep3" class="toolArea" rows="2" placeholder="${t.p3}" oninput="updateSessionPrepSummary()"></textarea><label class="formLabel">${t.l4}</label><textarea id="prep4" class="toolArea" rows="2" placeholder="${t.p4}" oninput="updateSessionPrepSummary()"></textarea><div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:4px"><button class="btn primary" onclick="copyPrep()">${i18n[currentLang()].common.copy}</button><button class="btn" onclick="clearPrep()">${i18n[currentLang()].common.clear}</button><span class="copyMsg" id="copyMsg">${i18n[currentLang()].common.copied}</span></div>`; }
 function updateSessionPrepSummary(){ const lang = currentLang(); const labels = [i18n[lang].toolcards.prep.l1,i18n[lang].toolcards.prep.l2,i18n[lang].toolcards.prep.l3,i18n[lang].toolcards.prep.l4]; const ids = ['prep1','prep2','prep3','prep4']; const entries = ids.map((id, index) => ({ label: labels[index], value: (document.getElementById(id)?.value || '').trim() })); saveStructuredTool('session-prep', entries, i18n[lang].toolcards.prep.title); }
 function copyPrep(){ const lang = currentLang(); const labels = lang === 'ro' ? ['De la ultima noastră sesiune:','Cel mai important subiect azi:','Rezultatul pe care îl vreau din această sesiune:','Ce ar putea sta în cale:'] : ['Since our last session:','Most important topic today:','Outcome I want from this session:','What might get in the way:']; const fields = ['prep1','prep2','prep3','prep4']; const text = fields.map((id, i) => { const val = (document.getElementById(id)?.value || '').trim(); return val ? labels[i] + '\n' + val : ''; }).filter(Boolean).join('\n\n'); if(!text){ alert(i18n[lang].common.fillField); return; } navigator.clipboard.writeText(text).then(() => { const msg = document.getElementById('copyMsg'); if(msg){ msg.classList.add('show'); setTimeout(() => msg.classList.remove('show'), 2200); } }).catch(() => alert(i18n[lang].common.copyFailed)); }
