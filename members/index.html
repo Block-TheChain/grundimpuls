@@ -222,7 +222,6 @@
     @media(max-width:900px){header{position:fixed;top:0;left:0;right:0}main{padding-top:74px}.grid,.cols3,.gridAssess,.gridTools{grid-template-columns:1fr}h1{font-size:36px}.brand{gap:6px}.mark{width:34px;height:34px}.wordmarkLine{gap:8px;align-items:flex-start}.wordmark strong{font-size:clamp(19px,4.8vw,25px);letter-spacing:clamp(.035em,.05em,.06em)}.wordmarkCore{width:max-content}.hubSuffix{font-size:13px;transform:translateY(1px)}.taglineTop{font-size:clamp(8px,2vw,10px);letter-spacing:.11em}.siteReturn{display:none}.burger{display:inline-flex}.lang{display:none}.langMobile{display:block}.mobileMenu{display:block;position:absolute;right:10px;top:calc(100% + 8px);background:rgba(244,248,252,.97);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(14px);padding:8px;min-width:196px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .22s ease,opacity .18s ease}body.dark .mobileMenu{background:rgba(17,22,29,.97)}body.menu-open .mobileMenu{transform:translateY(0);opacity:1;pointer-events:auto}.mobileMenu .wrap{padding:0;display:flex;flex-direction:column;align-items:stretch}.mobileMenu .publicLink{display:flex;align-items:center;justify-content:flex-end;gap:10px;color:var(--gold);background:var(--gold-bg);border-color:var(--gold-border)}.mobileMenu .publicLink:hover{background:rgba(200,134,10,.16);border-color:rgba(200,134,10,.46);color:var(--gold-light)}.mobileMenu .publicDrop{width:20px;height:20px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(200,134,10,.28))}.hero{min-height:auto}.modalShell{padding:12px}.modalPanel{max-height:calc(100vh - 24px);border-radius:22px}.modalHead{padding:18px 18px 14px}.modalBody{padding:18px}#summaryDock{left:12px;right:12px;bottom:12px;max-width:none}}
     @media(max-width:430px){.nav{gap:10px}.brand{gap:5px}.mark{width:32px;height:32px}.wordmark{transform:translateY(1px)}.wordmarkLine{gap:7px}.wordmark strong{font-size:17px;letter-spacing:.028em}.hubSuffix{font-size:10px;flex-direction:column;align-items:flex-start;gap:1px;line-height:.92;transform:translateY(1px)}.taglineTop{font-size:7.6px;letter-spacing:.09em}.taglineTop .tagDot{margin:0 3px}.right{gap:6px}.langMobileBtn,.themeBtn,.burger{padding:8px 10px}.modalHeadText h2{font-size:24px}}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 <header>
@@ -347,44 +346,32 @@
   </div>
 </footer>
 
-
 <div id="summaryDock" style="position:fixed;right:18px;bottom:18px;z-index:1500;display:none;max-width:min(420px,calc(100vw - 24px));">
-  <div class="card" style="background:linear-gradient(180deg,var(--gold-bg),var(--card));border-color:var(--gold-border);box-shadow:0 18px 45px rgba(11,16,22,.16);">
+  <div style="background:rgba(244,248,252,.96);border:1px solid var(--accent-border);box-shadow:var(--shadow2);border-radius:20px;padding:14px 14px 12px;backdrop-filter:blur(12px);">
     <div style="font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:6px;" data-i18n="summary.kicker">Visit summary</div>
     <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;" data-i18n="summary.title">You can download a PDF summary of the tools and assessments used in this visit.</div>
     <div style="font-size:12px;color:var(--muted);margin-bottom:10px;" id="summaryDockMeta">0 items recorded</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <button class="btn primary sm" type="button" onclick="openSummaryComposer()" data-i18n="summary.pdfBtn">Download PDF summary</button>
-      <button class="btn sm" type="button" onclick="clearVisitSummary()" data-i18n="summary.clearBtn">Clear summary</button>
-    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;"><button class="btn primary sm" type="button" onclick="openSummaryComposer()" data-i18n="summary.emailBtn">Download PDF summary</button><button class="btn sm" type="button" onclick="clearVisitSummary()" data-i18n="summary.clearBtn">Clear summary</button></div>
   </div>
 </div>
 
 <div class="modalShell" id="summaryComposerShell" aria-hidden="true">
   <div class="modalBackdrop" onclick="closeSummaryComposer()"></div>
   <div class="modalPanel" role="dialog" aria-modal="true" aria-labelledby="summaryComposerTitle">
-    <div class="modalHead">
-      <div class="modalHeadText">
-        <div class="kicker" data-i18n="summary.kicker">Visit summary</div>
-        <h2 id="summaryComposerTitle" data-i18n="summary.composeTitle">Download your PDF summary</h2>
-        <p data-i18n="summary.composeDesc">Create a clean PDF with your results and notes from this visit so you can keep it, print it, or bring it to coaching or training.</p>
-      </div>
-      <button class="modalClose" type="button" onclick="closeSummaryComposer()">×</button>
-    </div>
-    <div class="modalBody">
-      <div class="modalBodyInner">
-        <div id="summaryPreview" style="border:1px solid var(--border);background:var(--bg-alt);border-radius:18px;padding:16px;margin:0 0 16px;"></div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-          <button class="btn primary" type="button" onclick="downloadVisitSummaryPDF()" id="summarySendBtn" data-i18n="summary.sendBtn">Download PDF</button>
-          <button class="btn" type="button" onclick="closeSummaryComposer()" data-i18n="summary.cancelBtn">Cancel</button>
-          <span id="summaryStatus" class="small"></span>
-        </div>
-      </div>
-    </div>
+    <div class="modalHead"><div class="modalHeadText"><div class="kicker" data-i18n="summary.kicker">Visit summary</div><h2 id="summaryComposerTitle" data-i18n="summary.composeTitle">Email your summary</h2><p data-i18n="summary.composeDesc">Send yourself the results and notes from this visit so you can bring them to coaching, training, or review them later.</p></div><button class="modalClose" type="button" onclick="closeSummaryComposer()">×</button></div>
+    <div class="modalBody"><div class="modalBodyInner"><label class="formLabel" for="summaryNote" data-i18n="summary.noteLabel">Optional note</label><textarea id="summaryNote" class="toolArea" rows="4" placeholder="Anything you want included at the top of the PDF..."></textarea><div id="summaryPreview" style="border:1px solid var(--border);background:var(--bg-alt);border-radius:18px;padding:16px;margin:14px 0 16px;"></div><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;"><button class="btn primary" type="button" onclick="downloadVisitSummaryPDF()" id="summarySendBtn" data-i18n="summary.sendBtn">Download PDF</button><button class="btn" type="button" onclick="closeSummaryComposer()" data-i18n="summary.cancelBtn">Cancel</button><span id="summaryStatus" class="small"></span></div></div></div>
   </div>
 </div>
-<div id="summaryPdfRender" style="position:fixed;left:-10000px;top:0;width:820px;pointer-events:none;opacity:0;"></div>
 
+<div class="modalShell" id="modalShell" aria-hidden="true">
+  <div class="modalBackdrop" onclick="closeModal()"></div>
+  <div class="modalPanel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modalHead"><div class="modalHeadText"><div class="kicker" id="modalKicker"></div><h2 id="modalTitle"></h2><p id="modalDesc"></p></div><button class="modalClose" type="button" onclick="closeModal()">×</button></div>
+    <div class="modalBody"><div class="modalBodyInner" id="modalContent"></div></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script>
 const i18n = {
   en:{
@@ -412,10 +399,10 @@ const i18n = {
       recovery:{title:'7-day recovery planner',desc:'Plan recovery deliberately instead of hoping it happens on its own.',placeholder:'Sleep\nMovement\nBoundaries\nRecovery windows\nWhat I will stop this week'},
       grounding:{title:'Pre-conversation grounding',desc:'Use before conflict, feedback, or a high-stakes meeting.',placeholder:'What am I feeling?\nWhat story am I telling myself?\nWhat matters most in this conversation?'},
       review:{title:'Post-pressure review',desc:'What happened, what cost more than it should, and what to change next time.',placeholder:'What happened?\nWhat did it cost?\nWhat did I miss?\nWhat will I do differently next time?'},
-      values:{kicker:'Values clarification',title:'Value discovery tool',desc:'Choose the values that matter, then narrow them to your top 5 and rank them.',intro:'Use the full values list below. First select every value that feels genuinely important to you. Then narrow that list to only 5 and put them in order.',searchPlaceholder:'Search values…',step1Title:'Step 1 · Build your longer list',step1Lead:'Click every value that feels real for you — not the ones that merely sound admirable.',step2Title:'Step 2 · Choose only 5 and rank them',step2Lead:'From your selected values, choose your 5 core values and order them from most important to least important.',selectedLabel:'Selected values',selectedEmpty:'No values selected yet.',candidatesLabel:'Eligible for top 5',candidatesEmpty:'Select values first, then choose your top 5 from that list.',topLabel:'Your ranked top 5',topEmpty:'Choose up to 5 values from your selected list.',pickTop:'Add to top 5',alreadyChosen:'In top 5',remove:'Remove',clearAll:'Clear all',moveUp:'↑',moveDown:'↓',doneHint:'When you have 5 ranked values, they will be added to your PDF summary.',progressHint:'You can save a partial list, but the PDF is most useful once you have a full ranked top 5.',entrySelected:'Selected values',entryTopFive:'Ranked top 5 values',searchNoResults:'No values match this search.',selectedCount:'Selected',topCount:'Top 5'}
+      values:{kicker:'Values clarification',title:'Value discovery tool',desc:'Choose the values that matter, then narrow them to your top 5 and rank them.',intro:'Use the full values list below. First select every value that feels genuinely important to you. Then narrow that list to only 5 and put them in order.',searchPlaceholder:'Search values…',step1Title:'Step 1 · Build your longer list',step1Lead:'Click every value that feels real for you — not the ones that merely sound admirable.',step2Title:'Step 2 · Choose only 5 and rank them',step2Lead:'From your selected values, choose your 5 core values and order them from most important to least important.',selectedLabel:'Selected values',selectedEmpty:'No values selected yet.',candidatesLabel:'Eligible for top 5',candidatesEmpty:'Select values first, then choose your top 5 from that list.',topLabel:'Your ranked top 5',topEmpty:'Choose up to 5 values from your selected list.',pickTop:'Add to top 5',alreadyChosen:'In top 5',remove:'Remove',clearAll:'Clear all',moveUp:'↑',moveDown:'↓',doneHint:'When you have 5 ranked values, they will be added to your visit summary email.',progressHint:'You can save a partial list, but the email is most useful once you have a full ranked top 5.',entrySelected:'Selected values',entryTopFive:'Ranked top 5 values',searchNoResults:'No values match this search.',selectedCount:'Selected',topCount:'Top 5'}
     },
-    reflection:{title:'Weekly reflection',lead:'A different question each week. Take 10 minutes with it. The goal is not a polished answer. The goal is honesty.',note:'Write in a notebook, a note app, or record a voice message to yourself. Come back to it before your next session.',notesBtn:'Take notes',notesKicker:'Weekly reflection',notesTitle:'Reflection notes',notesDesc:'Write directly in the hub if you want these thoughts included in your downloadable PDF summary.',notesPlaceholder:'Write your thoughts here…',notesHint:'Saved automatically for your PDF summary.',summaryLabel:'Reflection notes',promptLabel:'Weekly prompt',notesLabel:'Your notes'},
-    summary:{kicker:'Visit summary',title:'You can download a PDF summary of the tools and assessments used in this visit.',composeTitle:'Download your PDF summary',composeDesc:'Create a clean PDF with your results and notes from this visit so you can keep it, print it, or bring it to coaching or training.',pdfBtn:'Download PDF summary',clearBtn:'Clear summary',sendBtn:'Download PDF',cancelBtn:'Cancel',previewLabel:'Preview',generatedLabel:'Generated',brandTagline:'EXPLORE · LEARN · CREATE',sectionAssessments:'Assessments',sectionTools:'Tools',sectionReflection:'Reflection',sectionNoAssessments:'No completed assessments yet.',sectionNoTools:'No recorded tools yet.',sectionNoReflection:'No reflection notes saved yet.',assessmentDescription:'Description',assessmentBlindSpots:'Blind spots',assessmentActionSteps:'Action steps',toolNotes:'Notes',toolEntries:'Saved entries',reflectionPrompt:'Weekly prompt',reflectionNotes:'Notes',fileName:'grundimpuls-members-summary'},
+    reflection:{title:'Weekly reflection',lead:'A different question each week. Take 10 minutes with it. The goal is not a polished answer. The goal is honesty.',note:'Write in a notebook, a note app, or record a voice message to yourself. Come back to it before your next session.',notesBtn:'Take notes',notesKicker:'Weekly reflection',notesTitle:'Reflection notes',notesDesc:'Write directly in the hub if you want these thoughts included with the rest of your visit summary.',notesPlaceholder:'Write your thoughts here…',notesHint:'Saved automatically for your summary email.',summaryLabel:'Reflection notes',promptLabel:'Weekly prompt',notesLabel:'Your notes'},
+    summary:{kicker:'Visit summary',title:'You can download a PDF summary of the tools and assessments used in this visit.',composeTitle:'Download your PDF summary',composeDesc:'Export the results and notes from this visit as a branded PDF you can save, print, or bring to coaching and training.',emailLabel:'Your email address',noteLabel:'Optional note',emailBtn:'Download PDF summary',clearBtn:'Clear summary',sendBtn:'Download PDF',cancelBtn:'Cancel'},
     footer:{sub:'Members Hub',note:'Private resource area for approved participants.'}
   },
   ro:{
@@ -446,12 +433,12 @@ const i18n = {
       values:{kicker:'Clarificare valori',title:'Instrument de descoperire a valorilor',desc:'Alege valorile care contează, apoi restrânge lista la top 5 și ordonează-le.',intro:'Folosește lista completă de mai jos. Mai întâi selectează toate valorile care simți că sunt cu adevărat importante pentru tine. Apoi restrânge lista la doar 5 și pune-le în ordine.',searchPlaceholder:'Caută valori…',step1Title:'Pasul 1 · Construiește lista mai lungă',step1Lead:'Dă click pe fiecare valoare care simți că este real importantă pentru tine — nu doar pe cele care sună bine.',step2Title:'Pasul 2 · Alege doar 5 și ordonează-le',step2Lead:'Din valorile selectate, alege cele 5 valori de bază și ordonează-le de la cea mai importantă la cea mai puțin importantă.',selectedLabel:'Valori selectate',selectedEmpty:'Nu ai selectat încă nicio valoare.',candidatesLabel:'Eligibile pentru top 5',candidatesEmpty:'Selectează mai întâi valori, apoi alege top 5 din acea listă.',topLabel:'Top 5 ordonat',topEmpty:'Alege până la 5 valori din lista selectată.',pickTop:'Adaugă în top 5',alreadyChosen:'În top 5',remove:'Elimină',clearAll:'Șterge tot',moveUp:'↑',moveDown:'↓',doneHint:'Când ai 5 valori ordonate, ele vor fi adăugate în emailul cu rezumatul vizitei.',progressHint:'Poți salva și o listă parțială, dar emailul este cel mai util când ai un top 5 complet ordonat.',entrySelected:'Valori selectate',entryTopFive:'Top 5 valori ordonat',searchNoResults:'Nicio valoare nu corespunde acestei căutări.',selectedCount:'Selectate',topCount:'Top 5'}
     },
     reflection:{title:'Reflecție săptămânală',lead:'O întrebare diferită în fiecare săptămână. Acordă-i 10 minute. Scopul nu este un răspuns elegant. Scopul este onestitatea.',note:'Scrie într-un caiet, într-o aplicație de notițe sau înregistrează-ți un mesaj vocal. Revino la el înainte de următoarea sesiune.',notesBtn:'Ia notițe',notesKicker:'Reflecție săptămânală',notesTitle:'Notițe de reflecție',notesDesc:'Scrie direct aici dacă vrei ca aceste gânduri să fie incluse împreună cu restul rezumatului vizitei.',notesPlaceholder:'Scrie aici gândurile tale…',notesHint:'Se salvează automat pentru emailul tău de rezumat.',summaryLabel:'Notițe de reflecție',promptLabel:'Întrebarea săptămânii',notesLabel:'Notițele tale'},
-    summary:{kicker:'Rezumat vizită',title:'Poți descărca un rezumat PDF al instrumentelor și evaluărilor folosite în această vizită.',composeTitle:'Descarcă rezumatul PDF',composeDesc:'Creează un PDF clar cu rezultatele și notițele din această vizită, ca să îl poți păstra, tipări sau aduce la coaching ori training.',pdfBtn:'Descarcă rezumatul PDF',clearBtn:'Șterge rezumatul',sendBtn:'Descarcă PDF',cancelBtn:'Anulează',previewLabel:'Previzualizare',generatedLabel:'Generat',brandTagline:'EXPLORE · LEARN · CREATE',sectionAssessments:'Evaluări',sectionTools:'Instrumente',sectionReflection:'Reflecție',sectionNoAssessments:'Nicio evaluare completată încă.',sectionNoTools:'Niciun instrument înregistrat încă.',sectionNoReflection:'Nicio notiță de reflecție salvată încă.',assessmentDescription:'Descriere',assessmentBlindSpots:'Puncte oarbe',assessmentActionSteps:'Pași de acțiune',toolNotes:'Notițe',toolEntries:'Intrări salvate',reflectionPrompt:'Întrebarea săptămânii',reflectionNotes:'Notițe',fileName:'rezumat-grundimpuls-members'},
+    summary:{kicker:'Rezumat vizită',title:'Poți descărca un rezumat PDF al instrumentelor și evaluărilor folosite în această vizită.',composeTitle:'Descarcă rezumatul PDF',composeDesc:'Exportă rezultatele și notițele din această vizită ca PDF cu branding, pe care îl poți salva, tipări sau aduce la coaching și training.',emailLabel:'Adresa ta de email',noteLabel:'Notă opțională',emailBtn:'Descarcă rezumatul PDF',clearBtn:'Șterge rezumatul',sendBtn:'Descarcă PDF',cancelBtn:'Anulează'},
     footer:{sub:'Hub Membri',note:'Zonă privată de resurse pentru participanții aprobați.'}
   }
 };
 
-const memberSessionSummary = { assessments:{}, tools:{}, reflection:{}, updatedAt:null };
+const memberSessionSummary = { assessments:{}, tools:{}, reflection:{}, updatedAt:null, lastEmail:'' };
 const reflectionPrompts = [{en:'Where am I holding back, and what would it cost me to stop?',ro:'Unde mă rețin și ce m-ar costa dacă aș înceta să o fac?'},{en:'What feedback have I been avoiding, and what does that say about me?',ro:'Ce feedback am evitat și ce spune asta despre mine?'},{en:'Where is my energy going that is not aligned with what I say matters to me?',ro:'Unde se duce energia mea fără să fie aliniată cu ceea ce spun că este important?'},{en:'What am I tolerating that I should be addressing?',ro:'Ce tolerez acum, deși ar trebui să abordez direct?'},{en:'When was the last time I was genuinely challenged? What did I do with it?',ro:'Când am fost ultima dată provocat cu adevărat? Ce am făcut cu asta?'},{en:'What does success look like for me in 90 days? Is my current behavior moving me there?',ro:'Cum arată succesul pentru mine peste 90 de zile? Comportamentul meu actual mă duce acolo?'}];
 const assessments = {
 
@@ -1656,161 +1643,13 @@ function saveToolValue(id, content, label){ memberSessionSummary.tools[id] = { c
 function saveStructuredTool(id, entries, label){ memberSessionSummary.tools[id] = { entries, label, updatedAt:new Date().toISOString() }; memberSessionSummary.updatedAt = new Date().toISOString(); updateSummaryDock(); }
 function markToolCompleted(id, label){ memberSessionSummary.tools[id] = { ...(memberSessionSummary.tools[id] || {}), completed:true, label, updatedAt:new Date().toISOString() }; memberSessionSummary.updatedAt = new Date().toISOString(); updateSummaryDock(); }
 function clearVisitSummary(){ memberSessionSummary.assessments = {}; memberSessionSummary.tools = {}; memberSessionSummary.reflection = {}; memberSessionSummary.updatedAt = null; updateSummaryDock(); closeSummaryComposer(); }
-
-function buildSummaryPreviewHTML(){
-  const lang = currentLang();
-  const t = i18n[lang].summary;
-  const assessmentsList = Object.values(memberSessionSummary.assessments);
-  const toolsList = Object.values(memberSessionSummary.tools).filter(item => item && ((item.content && item.content.trim()) || item.completed || (item.entries && item.entries.some(e => e.value && e.value.trim()))));
-  const reflectionItem = memberSessionSummary.reflection && ((memberSessionSummary.reflection.content && memberSessionSummary.reflection.content.trim()) || (memberSessionSummary.reflection.entries && memberSessionSummary.reflection.entries.some(e => e.value && e.value.trim()))) ? memberSessionSummary.reflection : null;
-  let html = `<div style="font-size:12px;color:var(--muted2);margin-bottom:8px;">${escapeHtml(t.previewLabel)}</div>`;
-  html += `<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">${escapeHtml(t.sectionAssessments)}</div>`;
-  html += assessmentsList.length ? '<ul style="margin:0 0 14px 18px;color:var(--muted);">' + assessmentsList.map(item => `<li><strong style="color:var(--text);">${escapeHtml(item.title)}</strong> — ${escapeHtml(item.scoreText)} · ${escapeHtml(item.label)}</li>`).join('') + '</ul>' : `<div class="small" style="margin-bottom:14px;">${escapeHtml(t.sectionNoAssessments)}</div>`;
-  html += `<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">${escapeHtml(t.sectionTools)}</div>`;
-  html += toolsList.length ? '<ul style="margin:0 0 14px 18px;color:var(--muted);">' + toolsList.map(item => { const topEntry = item.entries?.find(e => /top 5/i.test(e.label || '')); const extra = topEntry?.value ? ' — ' + escapeHtml(topEntry.value.replace(/\n/g, ' · ')) : ''; return `<li><strong style="color:var(--text);">${escapeHtml(item.label || '')}</strong>${extra}</li>`; }).join('') + '</ul>' : `<div class="small" style="margin-bottom:14px;">${escapeHtml(t.sectionNoTools)}</div>`;
-  html += `<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">${escapeHtml(t.sectionReflection)}</div>`;
-  html += reflectionItem ? `<ul style="margin:0 0 0 18px;color:var(--muted);"><li><strong style="color:var(--text);">${escapeHtml(reflectionItem.label || t.reflectionNotes)}</strong>${reflectionItem.weekLabel ? ' — ' + escapeHtml(reflectionItem.weekLabel) : ''}</li></ul><div class="small" style="margin-top:8px;white-space:pre-wrap;">${escapeHtml(reflectionItem.content || '')}</div>` : `<div class="small">${escapeHtml(t.sectionNoReflection)}</div>`;
-  return html;
-}
-function formatSummaryDate(iso){
-  const date = iso ? new Date(iso) : new Date();
-  try {
-    return date.toLocaleString(currentLang() === 'ro' ? 'ro-RO' : 'en-GB', { year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit' });
-  } catch(e) {
-    return date.toISOString();
-  }
-}
-function convertMultilineToHtml(text){
-  return escapeHtml(text || '').replace(/\n/g,'<br>');
-}
-function buildSummaryExportHTML(){
-  const lang = currentLang();
-  const t = i18n[lang].summary;
-  const reflectionItem = memberSessionSummary.reflection && ((memberSessionSummary.reflection.content && memberSessionSummary.reflection.content.trim()) || (memberSessionSummary.reflection.entries && memberSessionSummary.reflection.entries.some(e => e.value && e.value.trim()))) ? memberSessionSummary.reflection : null;
-  const assessmentsList = Object.values(memberSessionSummary.assessments);
-  const toolsList = Object.values(memberSessionSummary.tools).filter(item => item && ((item.content && item.content.trim()) || item.completed || (item.entries && item.entries.some(e => e.value && e.value.trim()))));
-  const generatedAt = formatSummaryDate(memberSessionSummary.updatedAt || new Date().toISOString());
-  return `
-  <div style="font-family:Montserrat,Arial,sans-serif;color:#172033;background:#ffffff;padding:28px 30px 34px;">
-    <div style="border:1px solid #d7e0ea;border-radius:22px;overflow:hidden;">
-      <div style="padding:24px 28px;background:linear-gradient(180deg,#fffaf0 0%,#ffffff 62%);border-bottom:1px solid #e0e8f0;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:18px;">
-          <div style="display:flex;align-items:flex-start;gap:14px;">
-            <img src="${location.origin}/assets/drop_light.svg" alt="Grundimpuls" style="width:30px;height:30px;object-fit:contain;margin-top:2px;">
-            <div>
-              <div style="display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;">
-                <div style="font-size:28px;font-weight:800;letter-spacing:.06em;color:#202a3b;line-height:1;">GRUNDIMPULS</div>
-                <div style="font-size:18px;font-weight:700;color:#2d67b3;line-height:1.1;">Members Hub</div>
-              </div>
-              <div style="font-size:11px;letter-spacing:.18em;color:#6d86a9;text-transform:uppercase;margin-top:7px;">${escapeHtml(t.brandTagline)}</div>
-            </div>
-          </div>
-          <div style="text-align:right;">
-            <div style="display:inline-block;padding:6px 10px;border-radius:999px;background:#f2f6fb;border:1px solid #d7e0ea;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#5a7295;">${escapeHtml(t.kicker)}</div>
-            <div style="font-size:12px;color:#647892;margin-top:10px;">${escapeHtml(t.generatedLabel)}: ${escapeHtml(generatedAt)}</div>
-          </div>
-        </div>
-        <div style="font-size:24px;font-weight:800;color:#1e2737;line-height:1.18;margin-top:20px;">${escapeHtml(t.composeTitle)}</div>
-        <div style="font-size:14px;color:#61738c;line-height:1.7;margin-top:8px;max-width:720px;">${escapeHtml(t.composeDesc)}</div>
-      </div>
-
-      <div style="padding:24px 28px 8px;">
-        <div style="font-size:18px;font-weight:800;color:#1e2737;margin-bottom:12px;">${escapeHtml(t.sectionAssessments)}</div>
-        ${assessmentsList.length ? assessmentsList.map(item => `
-          <div style="border:1px solid #dde6ef;border-radius:18px;padding:16px 18px;margin-bottom:14px;background:#fbfdff;page-break-inside:avoid;">
-            <div style="font-size:16px;font-weight:800;color:#1f2838;">${escapeHtml(item.title)}</div>
-            <div style="font-size:13px;color:#62758f;margin-top:4px;">${escapeHtml(item.scoreText)} · ${escapeHtml(item.label)}</div>
-            <div style="margin-top:14px;">
-              <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#2d67b3;">${escapeHtml(t.assessmentDescription)}</div>
-              <div style="font-size:14px;color:#334156;line-height:1.65;margin-top:6px;">${convertMultilineToHtml(item.description || '')}</div>
-            </div>
-            <div style="margin-top:14px;">
-              <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#2d67b3;">${escapeHtml(t.assessmentBlindSpots)}</div>
-              ${(item.blindSpots && item.blindSpots.length) ? `<ul style="margin:8px 0 0 18px;padding:0;color:#334156;line-height:1.65;">${item.blindSpots.map(v => `<li style="margin:0 0 6px 0;">${escapeHtml(v)}</li>`).join('')}</ul>` : `<div style="font-size:14px;color:#62758f;line-height:1.65;margin-top:6px;">—</div>`}
-            </div>
-            <div style="margin-top:14px;">
-              <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#2d67b3;">${escapeHtml(t.assessmentActionSteps)}</div>
-              ${(item.actionSteps && item.actionSteps.length) ? `<ul style="margin:8px 0 0 18px;padding:0;color:#334156;line-height:1.65;">${item.actionSteps.map(v => `<li style="margin:0 0 6px 0;">${escapeHtml(v)}</li>`).join('')}</ul>` : `<div style="font-size:14px;color:#62758f;line-height:1.65;margin-top:6px;">—</div>`}
-            </div>
-          </div>
-        `).join('') : `<div style="border:1px dashed #d7e0ea;border-radius:18px;padding:16px 18px;color:#62758f;background:#fbfdff;">${escapeHtml(t.sectionNoAssessments)}</div>`}
-      </div>
-
-      <div style="padding:10px 28px 8px;">
-        <div style="font-size:18px;font-weight:800;color:#1e2737;margin-bottom:12px;">${escapeHtml(t.sectionTools)}</div>
-        ${toolsList.length ? toolsList.map(item => `
-          <div style="border:1px solid #dde6ef;border-radius:18px;padding:16px 18px;margin-bottom:14px;background:#fbfdff;page-break-inside:avoid;">
-            <div style="font-size:16px;font-weight:800;color:#1f2838;">${escapeHtml(item.label || '')}</div>
-            ${item.entries && item.entries.length ? `
-              <div style="margin-top:12px;">
-                <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#2d67b3;">${escapeHtml(t.toolEntries)}</div>
-                ${item.entries.map(entry => `
-                  <div style="margin-top:10px;">
-                    <div style="font-size:13px;font-weight:700;color:#31425a;">${escapeHtml(entry.label || '')}</div>
-                    <div style="font-size:14px;color:#334156;line-height:1.65;margin-top:4px;white-space:pre-wrap;">${convertMultilineToHtml(entry.value || '')}</div>
-                  </div>
-                `).join('')}
-              </div>` : ''}
-            ${item.content && item.content.trim() ? `
-              <div style="margin-top:12px;">
-                <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#2d67b3;">${escapeHtml(t.toolNotes)}</div>
-                <div style="font-size:14px;color:#334156;line-height:1.65;margin-top:6px;white-space:pre-wrap;">${convertMultilineToHtml(item.content)}</div>
-              </div>` : ''}
-          </div>
-        `).join('') : `<div style="border:1px dashed #d7e0ea;border-radius:18px;padding:16px 18px;color:#62758f;background:#fbfdff;">${escapeHtml(t.sectionNoTools)}</div>`}
-      </div>
-
-      <div style="padding:10px 28px 28px;">
-        <div style="font-size:18px;font-weight:800;color:#1e2737;margin-bottom:12px;">${escapeHtml(t.sectionReflection)}</div>
-        ${reflectionItem ? `
-          <div style="border:1px solid #dde6ef;border-radius:18px;padding:16px 18px;background:#fbfdff;page-break-inside:avoid;">
-            ${reflectionItem.weekLabel ? `<div style="font-size:13px;color:#62758f;">${escapeHtml(reflectionItem.weekLabel)}</div>` : ''}
-            ${reflectionItem.promptText ? `<div style="margin-top:8px;"><div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#2d67b3;">${escapeHtml(t.reflectionPrompt)}</div><div style="font-size:16px;font-weight:700;color:#1f2838;line-height:1.55;font-style:italic;margin-top:6px;">“${escapeHtml(reflectionItem.promptText)}”</div></div>` : ''}
-            <div style="margin-top:14px;"><div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#2d67b3;">${escapeHtml(t.reflectionNotes)}</div><div style="font-size:14px;color:#334156;line-height:1.65;margin-top:6px;white-space:pre-wrap;">${convertMultilineToHtml(reflectionItem.content || '')}</div></div>
-          </div>
-        ` : `<div style="border:1px dashed #d7e0ea;border-radius:18px;padding:16px 18px;color:#62758f;background:#fbfdff;">${escapeHtml(t.sectionNoReflection)}</div>`}
-      </div>
-    </div>
-  </div>`;
-}
-function openSummaryComposer(){
-  document.getElementById('summaryPreview').innerHTML = buildSummaryPreviewHTML();
-  document.getElementById('summaryStatus').textContent = '';
-  document.getElementById('summaryComposerShell').classList.add('open');
-  document.body.classList.add('modal-open');
-}
+function buildSummaryPreviewHTML(){ const lang = currentLang(); const assessmentsList = Object.values(memberSessionSummary.assessments); const toolsList = Object.values(memberSessionSummary.tools).filter(item => item && ((item.content && item.content.trim()) || item.completed || (item.entries && item.entries.some(e => e.value && e.value.trim())))); const reflectionItem = memberSessionSummary.reflection && ((memberSessionSummary.reflection.content && memberSessionSummary.reflection.content.trim()) || (memberSessionSummary.reflection.entries && memberSessionSummary.reflection.entries.some(e => e.value && e.value.trim()))) ? memberSessionSummary.reflection : null; let html = `<div style="font-size:12px;color:var(--muted2);margin-bottom:8px;">${lang === 'ro' ? 'Previzualizare' : 'Preview'}</div>`; html += `<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">${lang === 'ro' ? 'Evaluări' : 'Assessments'}</div>`; html += assessmentsList.length ? '<ul style="margin:0 0 14px 18px;color:var(--muted);">' + assessmentsList.map(item => `<li><strong style="color:var(--text);">${escapeHtml(item.title)}</strong> — ${escapeHtml(item.scoreText)} · ${escapeHtml(item.label)}</li>`).join('') + '</ul>' : `<div class="small" style="margin-bottom:14px;">${lang === 'ro' ? 'Nicio evaluare completată încă.' : 'No completed assessments yet.'}</div>`; html += `<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">${lang === 'ro' ? 'Instrumente' : 'Tools'}</div>`; html += toolsList.length ? '<ul style="margin:0 0 14px 18px;color:var(--muted);">' + toolsList.map(item => { const topEntry = item.entries?.find(e => /top 5/i.test(e.label || '')); const extra = topEntry?.value ? ' — ' + escapeHtml(topEntry.value.replace(/\n/g, ' · ')) : ''; return `<li><strong style="color:var(--text);">${escapeHtml(item.label || '')}</strong>${extra}</li>`; }).join('') + '</ul>' : `<div class="small" style="margin-bottom:14px;">${lang === 'ro' ? 'Niciun instrument înregistrat încă.' : 'No recorded tools yet.'}</div>`; html += `<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">${lang === 'ro' ? 'Reflecție' : 'Reflection'}</div>`; html += reflectionItem ? `<ul style="margin:0 0 0 18px;color:var(--muted);"><li><strong style="color:var(--text);">${escapeHtml(reflectionItem.label || (lang === 'ro' ? 'Notițe de reflecție' : 'Reflection notes'))}</strong>${reflectionItem.weekLabel ? ' — ' + escapeHtml(reflectionItem.weekLabel) : ''}</li></ul><div class="small" style="margin-top:8px;white-space:pre-wrap;">${escapeHtml(reflectionItem.content || '')}</div>` : `<div class="small">${lang === 'ro' ? 'Nicio notiță de reflecție salvată încă.' : 'No reflection notes saved yet.'}</div>`; return html; }
+function openSummaryComposer(){ document.getElementById('summaryPreview').innerHTML = buildSummaryPreviewHTML(); document.getElementById('summaryStatus').textContent = ''; document.getElementById('summaryComposerShell').classList.add('open'); document.body.classList.add('modal-open'); }
 function closeSummaryComposer(){ document.getElementById('summaryComposerShell').classList.remove('open'); if(!currentModalId) document.body.classList.remove('modal-open'); }
-async function downloadVisitSummaryPDF(){
-  const status = document.getElementById('summaryStatus');
-  const btn = document.getElementById('summarySendBtn');
-  const mount = document.getElementById('summaryPdfRender');
-  const t = i18n[currentLang()].summary;
-  if(typeof html2pdf === 'undefined'){
-    status.textContent = currentLang() === 'ro' ? 'Biblioteca PDF nu s-a încărcat.' : 'The PDF library did not load.';
-    return;
-  }
-  btn.disabled = true;
-  status.textContent = currentLang() === 'ro' ? 'Se pregătește PDF-ul…' : 'Preparing PDF…';
-  try {
-    mount.innerHTML = buildSummaryExportHTML();
-    const element = mount.firstElementChild;
-    const safeDate = new Date().toISOString().slice(0,10);
-    await html2pdf().set({
-      margin: [8,8,8,8],
-      filename: `${t.fileName}-${safeDate}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      pagebreak: { mode: ['css', 'legacy'] }
-    }).from(element).save();
-    status.textContent = currentLang() === 'ro' ? 'PDF-ul a fost descărcat.' : 'PDF downloaded.';
-  } catch(err){
-    status.textContent = (currentLang() === 'ro' ? 'Generarea PDF-ului a eșuat. ' : 'PDF generation failed. ') + (err.message || '');
-  } finally {
-    btn.disabled = false;
-    mount.innerHTML = '';
-  }
-}
+function buildSummaryExportData(){ const lang = currentLang(); const assessmentsList = Object.values(memberSessionSummary.assessments); const toolsList = Object.values(memberSessionSummary.tools).filter(item => item && ((item.content && item.content.trim()) || item.completed || (item.entries && item.entries.some(e => e.value && e.value.trim())))); const reflectionItem = memberSessionSummary.reflection && ((memberSessionSummary.reflection.content && memberSessionSummary.reflection.content.trim()) || (memberSessionSummary.reflection.entries && memberSessionSummary.reflection.entries.some(e => e.value && e.value.trim()))) ? memberSessionSummary.reflection : null; return { lang, assessmentsList, toolsList, reflectionItem, note:(document.getElementById('summaryNote')?.value || '').trim(), visitedAt:memberSessionSummary.updatedAt || new Date().toISOString() }; }
+async function loadLogoDataUrl(){ try{ const res = await fetch('/assets/drop_light.svg'); if(!res.ok) return null; const svgText = await res.text(); const blob = new Blob([svgText], {type:'image/svg+xml'}); const url = URL.createObjectURL(blob); return await new Promise(resolve => { const img = new Image(); img.onload = () => { const size = Math.max(img.naturalWidth || 96, img.naturalHeight || 96, 96); const canvas = document.createElement('canvas'); canvas.width = size; canvas.height = size; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, size, size); URL.revokeObjectURL(url); resolve(canvas.toDataURL('image/png')); }; img.onerror = () => { URL.revokeObjectURL(url); resolve(null); }; img.src = url; }); }catch(err){ return null; } }
+function escapePdfText(value){ return String(value || '').replace(/\s+/g,' ').trim(); }
+async function downloadVisitSummaryPDF(){ const status = document.getElementById('summaryStatus'); const btn = document.getElementById('summarySendBtn'); const exportData = buildSummaryExportData(); const hasContent = exportData.assessmentsList.length || exportData.toolsList.length || exportData.reflectionItem; if(!hasContent){ status.textContent = exportData.lang === 'ro' ? 'Nu există încă nimic de exportat.' : 'There is nothing to export yet.'; return; } btn.disabled = true; status.textContent = exportData.lang === 'ro' ? 'Se generează PDF-ul…' : 'Generating PDF…'; try{ if(!(window.jspdf && window.jspdf.jsPDF)) throw new Error('jsPDF unavailable'); const { jsPDF } = window.jspdf; const doc = new jsPDF({ unit:'pt', format:'a4' }); const pageW = doc.internal.pageSize.getWidth(); const pageH = doc.internal.pageSize.getHeight(); const margin = 46; const contentW = pageW - margin * 2; let y = 54; const gold = [191,145,44]; const blue = [62,92,183]; const textColor = [28,34,48]; const muted = [92,103,130]; const line = [220,226,238]; const logoDataUrl = await loadLogoDataUrl(); if(logoDataUrl) doc.addImage(logoDataUrl, 'PNG', margin, y-2, 26, 26); doc.setFont('helvetica','bold'); doc.setFontSize(20); doc.setTextColor(...textColor); doc.text('GRUNDIMPULS', margin + 34, y + 15); doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(...blue); doc.text('Members Hub', margin + 220, y + 15); doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(...muted); doc.text('EXPLORE · LEARN · CREATE', margin + 34, y + 31); doc.setDrawColor(...gold); doc.setLineWidth(1.2); doc.line(margin, y + 42, pageW - margin, y + 42); y += 70; doc.setFont('helvetica','bold'); doc.setFontSize(22); doc.setTextColor(...textColor); doc.text(exportData.lang === 'ro' ? 'Rezumatul vizitei' : 'Visit summary', margin, y); y += 18; doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); const dateLabel = exportData.lang === 'ro' ? 'Generat la' : 'Generated on'; doc.text(`${dateLabel}: ${new Date(exportData.visitedAt).toLocaleString(exportData.lang === 'ro' ? 'ro-RO' : 'en-GB')}`, margin, y); y += 10; function ensureSpace(extra){ if(y + extra > pageH - 56){ doc.addPage(); y = 56; } } function sectionTitle(title){ ensureSpace(28); y += 16; doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(...blue); doc.text(title, margin, y); y += 10; doc.setDrawColor(...line); doc.line(margin, y, pageW - margin, y); y += 16; } function addWrappedLabelValue(label, value){ if(!value) return; doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(...textColor); const labelText = `${label}: `; doc.text(labelText, margin, y); const labelW = doc.getTextWidth(labelText); doc.setFont('helvetica','normal'); doc.setTextColor(...muted); const lines = doc.splitTextToSize(String(value), contentW - labelW); if(lines.length) doc.text(lines[0], margin + labelW, y); y += 13; for(const lineText of lines.slice(1)){ ensureSpace(14); doc.text(lineText, margin + labelW, y); y += 13; } } function addBulletList(items){ (items || []).forEach(item => { const lines = doc.splitTextToSize(String(item), contentW - 18); ensureSpace(Math.max(14, lines.length * 12 + 2)); doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text('•', margin + 2, y); doc.text(lines, margin + 14, y); y += lines.length * 12 + 4; }); } if(exportData.note){ y += 18; doc.setFillColor(247,249,253); doc.setDrawColor(...line); const noteLines = doc.splitTextToSize(exportData.note, contentW-28); const boxH = 30 + noteLines.length * 12; doc.roundedRect(margin, y-12, contentW, boxH, 12, 12, 'FD'); doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...textColor); doc.text(exportData.lang === 'ro' ? 'Notă personală' : 'Personal note', margin+14, y+4); doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(noteLines, margin+14, y+20); y += boxH + 6; } sectionTitle(exportData.lang === 'ro' ? 'Evaluări' : 'Assessments'); if(!exportData.assessmentsList.length){ doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(exportData.lang === 'ro' ? 'Nicio evaluare completată încă.' : 'No completed assessments yet.', margin, y); y += 14; } for(const item of exportData.assessmentsList){ ensureSpace(72); doc.setFillColor(249,250,253); doc.setDrawColor(...line); doc.roundedRect(margin, y-10, contentW, 22, 10, 10, 'FD'); doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...textColor); doc.text(escapePdfText(item.title), margin+12, y+4); y += 28; addWrappedLabelValue(exportData.lang === 'ro' ? 'Scor' : 'Score', escapePdfText(item.scoreText)); addWrappedLabelValue(exportData.lang === 'ro' ? 'Rezultat' : 'Result', escapePdfText(item.label)); addWrappedLabelValue(exportData.lang === 'ro' ? 'Descriere' : 'Description', escapePdfText(item.description)); if(item.blindSpots?.length){ doc.setFont('helvetica','bold'); doc.setTextColor(...textColor); doc.text(exportData.lang === 'ro' ? 'Puncte oarbe:' : 'Blind spots:', margin, y); y += 13; addBulletList(item.blindSpots); } if(item.actionSteps?.length){ doc.setFont('helvetica','bold'); doc.setTextColor(...textColor); doc.text(exportData.lang === 'ro' ? 'Pași de acțiune:' : 'Action steps:', margin, y); y += 13; addBulletList(item.actionSteps); } y += 4; } sectionTitle(exportData.lang === 'ro' ? 'Instrumente' : 'Tools'); if(!exportData.toolsList.length){ doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(exportData.lang === 'ro' ? 'Niciun instrument înregistrat încă.' : 'No recorded tools yet.', margin, y); y += 14; } for(const item of exportData.toolsList){ ensureSpace(38); doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...textColor); doc.text(escapePdfText(item.label || ''), margin, y); y += 14; if(item.content){ const lines = doc.splitTextToSize(String(item.content), contentW); doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(lines, margin, y); y += lines.length * 12 + 6; } if(item.entries?.length){ for(const entry of item.entries){ if(!entry.value || !String(entry.value).trim()) continue; addWrappedLabelValue(escapePdfText(entry.label || ''), escapePdfText(String(entry.value).replace(/\n/g, ' · '))); } } if(item.completed && !item.content && !item.entries?.length){ doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(exportData.lang === 'ro' ? 'Marcat ca finalizat.' : 'Marked as completed.', margin, y); y += 14; } y += 4; } sectionTitle(exportData.lang === 'ro' ? 'Reflecție săptămânală' : 'Weekly reflection'); if(!exportData.reflectionItem){ doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(exportData.lang === 'ro' ? 'Nicio notiță de reflecție salvată încă.' : 'No reflection notes saved yet.', margin, y); y += 14; } else { addWrappedLabelValue(exportData.lang === 'ro' ? 'Prompt' : 'Prompt', escapePdfText(exportData.reflectionItem.weekLabel || '')); addWrappedLabelValue(exportData.lang === 'ro' ? 'Titlu' : 'Title', escapePdfText(exportData.reflectionItem.label || '')); const lines = doc.splitTextToSize(String(exportData.reflectionItem.content || ''), contentW); doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(lines, margin, y); y += lines.length * 12 + 4; } const safeDate = new Date().toISOString().slice(0,10); doc.save(`grundimpuls-members-summary-${safeDate}.pdf`); status.textContent = exportData.lang === 'ro' ? 'PDF-ul a fost descărcat.' : 'PDF downloaded.'; }catch(err){ console.error(err); status.textContent = exportData.lang === 'ro' ? 'Generarea PDF a eșuat.' : 'PDF generation failed.'; } finally { btn.disabled = false; } }
 function renderAssessment(id) {
   const a = assessments[id];
   const lang = currentLang();
