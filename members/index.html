@@ -207,6 +207,7 @@
     .valuesCandidateList{display:flex;flex-direction:column;gap:8px}
     .valuesCandidate{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--border);background:var(--bg);border-radius:16px}
     .valuesCandidate strong{font-size:14px}
+    .valuesCandidateActions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
     .valuesTopList{display:flex;flex-direction:column;gap:10px}
     .valuesTopItem{display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--border);background:var(--bg);border-radius:16px}
     .valuesRank{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--accent-bg);color:var(--accent-dark);font-weight:900;font-size:14px;border:1px solid var(--accent-border)}
@@ -216,7 +217,7 @@
     .miniBtn:hover{border-color:var(--accent-border);background:var(--accent-bg)}
     .miniBtn:disabled{opacity:.45;cursor:not-allowed;transform:none}
     .valuesToolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-    @media(max-width:700px){.valuesGrid{max-height:260px}.valuesCandidate,.valuesTopItem{grid-template-columns:1fr;align-items:flex-start}.valuesTopActions{justify-content:flex-start}.valuesToolbar{align-items:flex-start}.valuesSearchRow{align-items:stretch}}
+    @media(max-width:700px){.valuesGrid{max-height:260px}.valuesCandidate,.valuesTopItem{grid-template-columns:1fr;align-items:flex-start}.valuesCandidateActions,.valuesTopActions{justify-content:flex-start}.valuesToolbar{align-items:flex-start}.valuesSearchRow{align-items:stretch}}
 
     @media(max-width:900px){header{position:fixed;top:0;left:0;right:0}main{padding-top:74px}.grid,.cols3,.gridAssess,.gridTools{grid-template-columns:1fr}h1{font-size:36px}.brand{gap:6px}.mark{width:34px;height:34px}.wordmarkLine{gap:8px;align-items:flex-start}.wordmark strong{font-size:clamp(19px,4.8vw,25px);letter-spacing:clamp(.035em,.05em,.06em)}.wordmarkCore{width:max-content}.hubSuffix{font-size:13px;transform:translateY(1px)}.taglineTop{font-size:clamp(8px,2vw,10px);letter-spacing:.11em}.siteReturn{display:none}.burger{display:inline-flex}.lang{display:none}.langMobile{display:block}.mobileMenu{display:block;position:absolute;right:10px;top:calc(100% + 8px);background:rgba(244,248,252,.97);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(14px);padding:8px;min-width:196px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .22s ease,opacity .18s ease}body.dark .mobileMenu{background:rgba(17,22,29,.97)}body.menu-open .mobileMenu{transform:translateY(0);opacity:1;pointer-events:auto}.mobileMenu .wrap{padding:0;display:flex;flex-direction:column;align-items:stretch}.mobileMenu .publicLink{display:flex;align-items:center;justify-content:flex-end;gap:10px;color:var(--gold);background:var(--gold-bg);border-color:var(--gold-border)}.mobileMenu .publicLink:hover{background:rgba(200,134,10,.16);border-color:rgba(200,134,10,.46);color:var(--gold-light)}.mobileMenu .publicDrop{width:20px;height:20px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(200,134,10,.28))}.hero{min-height:auto}.modalShell{padding:12px}.modalPanel{max-height:calc(100vh - 24px);border-radius:22px}.modalHead{padding:18px 18px 14px}.modalBody{padding:18px}#summaryDock{left:12px;right:12px;bottom:12px;max-width:none}}
     @media(max-width:430px){.nav{gap:10px}.brand{gap:5px}.mark{width:32px;height:32px}.wordmark{transform:translateY(1px)}.wordmarkLine{gap:7px}.wordmark strong{font-size:17px;letter-spacing:.028em}.hubSuffix{font-size:10px;flex-direction:column;align-items:flex-start;gap:1px;line-height:.92;transform:translateY(1px)}.taglineTop{font-size:7.6px;letter-spacing:.09em}.taglineTop .tagDot{margin:0 3px}.right{gap:6px}.langMobileBtn,.themeBtn,.burger{padding:8px 10px}.modalHeadText h2{font-size:24px}}
@@ -683,6 +684,7 @@ function toggleValueSelection(value) {
   refreshValuesDiscovery();
 }
 function addValueToTopFive(value) { const state = getValuesToolState(); if(!state.picked.includes(value) || state.topFive.includes(value) || state.topFive.length >= 5) return; state.topFive = [...state.topFive, value]; saveValuesToolState(state); refreshValuesDiscovery(); }
+function removePickedValue(value) { const state = getValuesToolState(); state.picked = state.picked.filter(v => v !== value); state.topFive = state.topFive.filter(v => v !== value); saveValuesToolState(state); refreshValuesDiscovery(); }
 function removeTopFiveValue(value) { const state = getValuesToolState(); state.topFive = state.topFive.filter(v => v !== value); saveValuesToolState(state); refreshValuesDiscovery(); }
 function moveTopFiveValue(index, direction) { const state = getValuesToolState(); const target = index + direction; if(target < 0 || target >= state.topFive.length) return; [state.topFive[index], state.topFive[target]] = [state.topFive[target], state.topFive[index]]; saveValuesToolState(state); refreshValuesDiscovery(); }
 function clearValuesTool() { saveValuesToolState({ picked:[], topFive:[] }); valuesSearch = ''; refreshValuesDiscovery(); }
@@ -723,9 +725,11 @@ function buildValuesDiscoveryInnerHTML() {
           <div><h3>${t.step2Title}</h3><p>${t.step2Lead}</p></div>
           <div class="valuesCount">${state.topFive.length}/5</div>
         </div>
-        ${candidates.length ? `<div class="valuesCandidateList">${candidates.map(value => `<div class="valuesCandidate"><strong>${escapeHtml(value)}</strong><button class="btn sm" type="button" onclick='addValueToTopFive(${JSON.stringify(value)})'${state.topFive.length >= 5 ? ' disabled' : ''}>${t.pickTop}</button></div>`).join('')}</div>` : `<div class="valuesEmpty">${t.candidatesEmpty}</div>`}
-        <div style="height:14px"></div>
+        <div class="valuesMeta" style="margin-bottom:8px">${t.topLabel}</div>
         <div class="valuesTopList">${state.topFive.length ? state.topFive.map((value, index) => `<div class="valuesTopItem"><div class="valuesRank">${index + 1}</div><div class="valuesTopName">${escapeHtml(value)}</div><div class="valuesTopActions"><button class="miniBtn" type="button" onclick="moveTopFiveValue(${index}, -1)"${index === 0 ? ' disabled' : ''} title="${escapeHtml(t.moveUp)}">↑</button><button class="miniBtn" type="button" onclick="moveTopFiveValue(${index}, 1)"${index === state.topFive.length - 1 ? ' disabled' : ''} title="${escapeHtml(t.moveDown)}">↓</button><button class="miniBtn" type="button" onclick='removeTopFiveValue(${JSON.stringify(value)})' title="${escapeHtml(t.remove)}">×</button></div></div>`).join('') : `<div class="valuesEmpty">${t.topEmpty}</div>`}</div>
+        <div style="height:14px"></div>
+        <div class="valuesMeta" style="margin-bottom:8px">${t.candidatesLabel}</div>
+        ${candidates.length ? `<div class="valuesCandidateList">${candidates.map(value => `<div class="valuesCandidate"><strong>${escapeHtml(value)}</strong><div class="valuesCandidateActions"><button class="miniBtn" type="button" onclick='removePickedValue(${JSON.stringify(value)})' title="${escapeHtml(t.remove)}">×</button><button class="btn sm" type="button" onclick='addValueToTopFive(${JSON.stringify(value)})'${state.topFive.length >= 5 ? ' disabled' : ''}>${t.pickTop}</button></div></div>`).join('')}</div>` : `<div class="valuesEmpty">${t.candidatesEmpty}</div>`}
         <p class="valuesHint" style="margin-top:14px">${state.topFive.length === 5 ? t.doneHint : t.progressHint}</p>
       </div>
     </div>`;
