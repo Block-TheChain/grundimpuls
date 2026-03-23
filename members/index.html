@@ -60,21 +60,26 @@
     header{position:sticky;top:0;z-index:999;background:rgba(244,248,252,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(14px)}
     body.dark header{background:rgba(17,22,29,.92)}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:13px 0;gap:14px;position:relative}
-    .brand,.brand:visited,.brand:hover{display:flex;align-items:center;gap:7px;min-width:0;flex:1 1 auto}
-    .mark,.footerMark,.siteReturn{width:36px;height:36px;position:relative;flex-shrink:0;overflow:visible;border-radius:50%;display:grid;place-items:center;background:transparent;border:1.5px solid transparent;transition:border-color .18s ease, background .18s ease, box-shadow .18s ease}
+    .brand,.brand:visited,.brand:hover{display:flex;align-items:center;gap:8px;min-width:0;flex:1 1 auto}
+    .mark,.footerMark,.siteReturn{width:36px;height:36px;position:relative;flex-shrink:0;overflow:visible;border-radius:50%;display:grid;place-items:center;background:transparent;border:1.5px solid transparent;transition:border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease}
     .brand:hover .mark,.footerBrand:hover .footerMark{border-color:var(--accent)}
-    .siteReturn{border-color:var(--gold-border);box-shadow:0 0 0 3px rgba(200,134,10,.22),0 0 18px rgba(200,134,10,.20);background:var(--gold-bg)}
-    .siteReturn:hover{border-color:var(--gold);box-shadow:0 0 0 5px rgba(200,134,10,.30),0 0 24px rgba(200,134,10,.28);background:rgba(200,134,10,.14)}
+    .siteReturn{position:relative;border-color:rgba(200,134,10,.42);box-shadow:0 0 0 3px rgba(240,180,60,.30),0 0 20px rgba(200,134,10,.24);background:radial-gradient(circle at 30% 30%, rgba(255,233,176,.96), rgba(240,180,60,.40) 62%, rgba(200,134,10,.18) 100%)}
+    .siteReturn::before{content:"";position:absolute;inset:4px;border-radius:50%;background:radial-gradient(circle at 35% 30%, rgba(255,247,214,.96), rgba(255,223,136,.72) 58%, rgba(240,180,60,.16) 100%);z-index:0}
+    .siteReturn .logo{position:relative;z-index:1;filter:drop-shadow(0 0 7px rgba(200,134,10,.24))}
+    .siteReturn:hover{transform:translateY(-1px);border-color:rgba(200,134,10,.68);box-shadow:0 0 0 5px rgba(240,180,60,.34),0 0 30px rgba(200,134,10,.34);background:radial-gradient(circle at 30% 30%, rgba(255,241,196,.98), rgba(240,180,60,.56) 62%, rgba(200,134,10,.24) 100%)}
+    .siteReturn:hover::before{background:radial-gradient(circle at 35% 30%, rgba(255,250,227,.98), rgba(255,226,146,.84) 58%, rgba(240,180,60,.24) 100%)}
     .logo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:scale(2);transform-origin:center}
     .logo-light{display:block}.logo-dark{display:none}
     body.dark .logo-light{display:none} body.dark .logo-dark{display:block}
     .brandScale{min-width:0}
-    .wordmark{display:inline-flex;flex-direction:column;line-height:1;transform:translateY(3px);min-width:0}
-    .wordmarkLine{display:flex;align-items:baseline;gap:10px;min-width:0;flex-wrap:nowrap}
-    .wordmark strong{font-family:'Montserrat',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;font-weight:600;letter-spacing:.06em;font-size:25px;color:var(--text);display:block}
-    .hubSuffix{font-size:16px;font-weight:700;color:var(--accent-dark);white-space:nowrap;transform:translateY(-1px)}
-    .taglineTop{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:5px;font-size:9.5px;color:var(--muted2);text-transform:uppercase;white-space:nowrap;max-width:220px}
-    .taglineTop .tagDot{margin:0 6px}
+    .wordmark{display:inline-flex;flex-direction:column;line-height:1;transform:translateY(2px);min-width:0}
+    .wordmarkLine{display:flex;align-items:flex-start;gap:10px;min-width:0;flex-wrap:nowrap}
+    .wordmarkCore{display:inline-flex;flex-direction:column;align-items:stretch;min-width:0;width:max-content}
+    .wordmark strong{font-family:'Montserrat',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;font-weight:600;letter-spacing:.06em;font-size:25px;color:var(--text);display:block;line-height:1}
+    .hubSuffix{display:flex;align-items:baseline;gap:4px;font-size:16px;font-weight:700;color:var(--accent-dark);white-space:nowrap;transform:translateY(2px)}
+    .hubSuffix span{display:block}
+    .taglineTop{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:7px;font-size:10.5px;color:var(--muted2);text-transform:uppercase;white-space:nowrap;letter-spacing:.12em}
+    .taglineTop .tagDot{margin:0 6px;flex:0 0 auto}
     .right{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;justify-content:flex-end}
     .lang{display:flex;gap:5px;align-items:center;border:1px solid var(--border);padding:5px;border-radius:999px;background:var(--bg-alt)}
     .lang button{cursor:pointer;border:0;background:transparent;color:var(--muted2);padding:7px 11px;border-radius:999px;font-weight:800;letter-spacing:.03em;font-size:12px;transition:all .15s ease}
@@ -137,10 +142,9 @@
     .footer{padding:36px 0 44px;background:var(--bg-alt);color:var(--muted);border-top:2px solid var(--border)}
     .footerInner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
     .footerBrand,.footerBrand:visited,.footerBrand:hover{display:flex;align-items:center;gap:8px}
-    .footerWordLine{display:flex;align-items:baseline;gap:10px}
+    .footerWordLine{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
     .footerName{font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.06em;font-size:15px;color:var(--text)}
     .footerHub{font-size:15px;font-weight:700;color:var(--accent-dark)}
-    .footerSub{font-size:11px;color:var(--muted2);letter-spacing:.14em;text-transform:uppercase}
     .modalShell{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:22px}
     .modalShell.open{display:flex}
     .modalBackdrop{position:absolute;inset:0;background:rgba(12,18,28,.46);backdrop-filter:blur(6px)}
@@ -179,8 +183,8 @@
     .breatheProgress{font-size:12px;color:var(--muted2)}
     .breatheComplete{text-align:center;display:none;padding:16px 0 8px}.breatheComplete.show{display:block}
     #summaryDock .btn{padding:9px 12px}
-    @media(max-width:900px){header{position:fixed;top:0;left:0;right:0}main{padding-top:74px}.grid,.cols3,.gridAssess,.gridTools{grid-template-columns:1fr}h1{font-size:36px}.wordmark strong{font-size:clamp(19px,4.8vw,25px);letter-spacing:clamp(.035em,.05em,.06em)}.hubSuffix{font-size:14px}.taglineTop{font-size:clamp(7.2px,2vw,9.5px);max-width:188px}.burger{display:inline-flex}.lang{display:none}.langMobile{display:block}.mobileMenu{display:block;position:absolute;right:10px;top:calc(100% + 8px);background:rgba(244,248,252,.97);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(14px);padding:8px;min-width:180px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .22s ease,opacity .18s ease}body.dark .mobileMenu{background:rgba(17,22,29,.97)}body.menu-open .mobileMenu{transform:translateY(0);opacity:1;pointer-events:auto}.mobileMenu .wrap{padding:0;display:flex;flex-direction:column;align-items:stretch}.hero{min-height:auto}.modalShell{padding:12px}.modalPanel{max-height:calc(100vh - 24px);border-radius:22px}.modalHead{padding:18px 18px 14px}.modalBody{padding:18px}#summaryDock{left:12px;right:12px;bottom:12px;max-width:none}}
-    @media(max-width:430px){.wordmark strong{font-size:18px;letter-spacing:.03em}.hubSuffix{font-size:12px}.taglineTop{font-size:7px}.taglineTop .tagDot{margin:0 3px}.right{gap:6px}.modalHeadText h2{font-size:24px}}
+    @media(max-width:900px){header{position:fixed;top:0;left:0;right:0}main{padding-top:74px}.grid,.cols3,.gridAssess,.gridTools{grid-template-columns:1fr}h1{font-size:36px}.brand{gap:6px}.mark{width:34px;height:34px}.wordmarkLine{gap:8px;align-items:flex-start}.wordmark strong{font-size:clamp(19px,4.8vw,25px);letter-spacing:clamp(.035em,.05em,.06em)}.wordmarkCore{width:max-content}.hubSuffix{font-size:13px;transform:translateY(1px)}.taglineTop{font-size:clamp(8px,2vw,10px);letter-spacing:.11em}.siteReturn{display:none}.burger{display:inline-flex}.lang{display:none}.langMobile{display:block}.mobileMenu{display:block;position:absolute;right:10px;top:calc(100% + 8px);background:rgba(244,248,252,.97);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(14px);padding:8px;min-width:196px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .22s ease,opacity .18s ease}body.dark .mobileMenu{background:rgba(17,22,29,.97)}body.menu-open .mobileMenu{transform:translateY(0);opacity:1;pointer-events:auto}.mobileMenu .wrap{padding:0;display:flex;flex-direction:column;align-items:stretch}.mobileMenu .publicLink{display:flex;align-items:center;justify-content:flex-end;gap:10px;color:var(--gold);background:var(--gold-bg);border-color:var(--gold-border)}.mobileMenu .publicLink:hover{background:rgba(200,134,10,.16);border-color:rgba(200,134,10,.46);color:var(--gold-light)}.mobileMenu .publicDrop{width:20px;height:20px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(200,134,10,.28))}.hero{min-height:auto}.modalShell{padding:12px}.modalPanel{max-height:calc(100vh - 24px);border-radius:22px}.modalHead{padding:18px 18px 14px}.modalBody{padding:18px}#summaryDock{left:12px;right:12px;bottom:12px;max-width:none}}
+    @media(max-width:430px){.nav{gap:10px}.brand{gap:5px}.mark{width:32px;height:32px}.wordmark{transform:translateY(1px)}.wordmarkLine{gap:7px}.wordmark strong{font-size:17px;letter-spacing:.028em}.hubSuffix{font-size:10px;flex-direction:column;align-items:flex-start;gap:1px;line-height:.92;transform:translateY(1px)}.taglineTop{font-size:7.6px;letter-spacing:.09em}.taglineTop .tagDot{margin:0 3px}.right{gap:6px}.langMobileBtn,.themeBtn,.burger{padding:8px 10px}.modalHeadText h2{font-size:24px}}
   </style>
 </head>
 <body>
@@ -194,8 +198,13 @@
         </div>
         <div class="brandScale">
           <div class="wordmark">
-            <div class="wordmarkLine"><strong>GRUNDIMPULS</strong><span class="hubSuffix" data-i18n="brand.hub">Members Hub</span></div>
-            <span class="taglineTop"><span>EXPLORE</span><span class="tagDot">·</span><span>LEARN</span><span class="tagDot">·</span><span>CREATE</span></span>
+            <div class="wordmarkLine">
+              <div class="wordmarkCore">
+                <strong>GRUNDIMPULS</strong>
+                <span class="taglineTop"><span>EXPLORE</span><span class="tagDot">·</span><span>LEARN</span><span class="tagDot">·</span><span>CREATE</span></span>
+              </div>
+              <span class="hubSuffix"><span data-i18n="brand.members">Members</span><span data-i18n="brand.hubWord">Hub</span></span>
+            </div>
           </div>
         </div>
       </a>
@@ -209,7 +218,7 @@
         <button id="themeToggle" class="themeBtn" type="button" aria-label="Toggle dark mode" aria-pressed="false">☾</button>
         <button class="burger" id="burgerBtn" aria-label="Open menu" type="button"><span class="burgerIcon" aria-hidden="true"></span></button>
       </div>
-      <div class="mobileMenu" id="mobileMenu"><div class="wrap"><a href="#start" data-i18n="nav.start">Start</a><a href="#assessments" data-i18n="nav.assessments">Self-Assessments</a><a href="#tools" data-i18n="nav.tools">Tools</a><a href="#reflection" data-i18n="nav.reflection">Weekly reflection</a></div></div>
+      <div class="mobileMenu" id="mobileMenu"><div class="wrap"><a href="/" class="publicLink"><img class="publicDrop logo-light" src="/assets/drop_light.svg" alt="Public site"><img class="publicDrop logo-dark" src="/assets/drop_dark.svg" alt="Public site"><span data-i18n="nav.publicSite">Public site</span></a><a href="#start" data-i18n="nav.start">Start</a><a href="#assessments" data-i18n="nav.assessments">Self-Assessments</a><a href="#tools" data-i18n="nav.tools">Tools</a><a href="#reflection" data-i18n="nav.reflection">Weekly reflection</a></div></div>
     </div>
   </div>
 </header>
@@ -294,7 +303,7 @@
   <div class="wrap footerInner">
     <a class="footerBrand" href="#top" onclick="closeModal()">
       <div class="footerMark"><img class="logo logo-light" src="/assets/drop_light.svg" alt="Grundimpuls Members Hub"><img class="logo logo-dark" src="/assets/drop_dark.svg" alt="Grundimpuls Members Hub"></div>
-      <div><div class="footerWordLine"><div class="footerName">GRUNDIMPULS</div><div class="footerHub" data-i18n="footer.sub">Members Hub</div></div><div class="footerSub">EXPLORE · LEARN · CREATE</div></div>
+      <div><div class="footerWordLine"><div class="footerName">GRUNDIMPULS</div><div class="footerHub" data-i18n="footer.sub">Members Hub</div></div></div>
     </a>
     <div class="small" data-i18n="footer.note">Private resource area for approved participants.</div>
   </div>
@@ -328,8 +337,8 @@
 <script>
 const i18n = {
   en:{
-    brand:{hub:'Members Hub'},
-    nav:{start:'Start',assessments:'Self-Assessments',tools:'Tools',reflection:'Weekly reflection'},
+    brand:{hub:'Members Hub',members:'Members',hubWord:'Hub'},
+    nav:{start:'Start',assessments:'Self-Assessments',tools:'Tools',reflection:'Weekly reflection',publicSite:'Public site'},
     common:{openAssessment:'Open assessment',openTool:'Open tool',seeResult:'See my result',copy:'Copy to clipboard',clear:'Clear',copied:'Copied.',start:'Start',reset:'Reset',ready:'Ready',pleaseAnswerAll:'Please answer all questions before seeing your result.',fillField:'Fill in at least one field first.',copyFailed:'Copy failed. Please copy manually.',resultDescription:'Description',resultBlindSpots:'Blind spots',resultActionSteps:'Action steps'},
     hero:{kicker:'Members Hub',h1:'Useful things for people who want clarity under pressure.',lead:'This is the private Grundimpuls resource hub for coaching and training participants. It is built for actual use in difficult weeks, not for passive reading.',sub:'Start with the situation you are in. Then use one tool. Not five.',badge1:'Self-Assessments',badge2:'Tools',badge3:'Weekly Reflection',cta1:'Start here',cta2:'Weekly reflection',note:'Access is limited to approved participant email addresses.',nowTitle:'What to use right now',now1:'If your capacity feels lower than usual, start with <strong>Burnout screening</strong>.',now2:'If you are overloaded, use <strong>Overload triage worksheet</strong>.',now3:'If a conversation is stuck, use <strong>Difficult conversation prep tool</strong>.',now4:'If decisions feel noisy, use <strong>Decision journal</strong>.',now5:'If you need to reset, use <strong>3-minute breathing exercise</strong>.',small:'Version 1 principle: less content, more utility.'},
     start:{title:'Start with your situation',lead:'People do not usually need a library. They need the right thing at the right time.',card1t:'I want a clearer snapshot',card1d:'Use one self-assessment to see where you are right now.',card2t:'I need something practical',card2d:'Use a tool before, during, or between sessions.',card3t:'I need to think more honestly',card3d:'Use the weekly reflection to slow down and look properly.'},
@@ -358,8 +367,8 @@ const i18n = {
     footer:{sub:'Members Hub',note:'Private resource area for approved participants.'}
   },
   ro:{
-    brand:{hub:'Hub Membri'},
-    nav:{start:'Start',assessments:'Autoevaluări',tools:'Instrumente',reflection:'Reflecție săptămânală'},
+    brand:{hub:'Hub Membri',members:'Hub',hubWord:'Membri'},
+    nav:{start:'Start',assessments:'Autoevaluări',tools:'Instrumente',reflection:'Reflecție săptămânală',publicSite:'Site public'},
     common:{openAssessment:'Deschide evaluarea',openTool:'Deschide instrumentul',seeResult:'Vezi rezultatul',copy:'Copiază',clear:'Șterge',copied:'Copiat.',start:'Start',reset:'Reset',ready:'Pregătit',pleaseAnswerAll:'Te rog răspunde la toate întrebările înainte să vezi rezultatul.',fillField:'Completează cel puțin un câmp mai întâi.',copyFailed:'Copierea a eșuat. Te rog copiază manual.',resultDescription:'Descriere',resultBlindSpots:'Puncte oarbe',resultActionSteps:'Pași de acțiune'},
     hero:{kicker:'Hub Membri',h1:'Lucruri utile pentru oameni care vor claritate sub presiune.',lead:'Acesta este hubul privat Grundimpuls pentru participanții la coaching și training. Este construit pentru utilizare reală în săptămâni dificile, nu pentru lectură pasivă.',sub:'Începe cu situația în care te afli. Apoi folosește un singur instrument. Nu cinci.',badge1:'Autoevaluări',badge2:'Instrumente',badge3:'Reflecție săptămânală',cta1:'Începe aici',cta2:'Reflecția săptămânii',note:'Accesul este limitat la adresele de e-mail aprobate.',nowTitle:'Ce să folosești acum',now1:'Dacă simți că ai mai puțină capacitate decât de obicei, începe cu <strong>screeningul de burnout</strong>.',now2:'Dacă ești supraîncărcat, folosește <strong>fișa de triere a suprasolicitării</strong>.',now3:'Dacă o conversație este blocată, folosește <strong>instrumentul de pregătire pentru conversații dificile</strong>.',now4:'Dacă deciziile par zgomotoase, folosește <strong>jurnalul de decizie</strong>.',now5:'Dacă ai nevoie de resetare, folosește <strong>exercițiul de respirație de 3 minute</strong>.',small:'Principiul versiunii 1: mai puțin conținut, mai multă utilitate.'},
     start:{title:'Începe cu situația ta',lead:'De obicei, oamenii nu au nevoie de o bibliotecă. Au nevoie de lucrul potrivit la momentul potrivit.',card1t:'Vreau o imagine mai clară',card1d:'Folosește o autoevaluare pentru a vedea unde te afli acum.',card2t:'Am nevoie de ceva practic',card2d:'Folosește un instrument înainte, în timpul sau între sesiuni.',card3t:'Am nevoie să gândesc mai onest',card3d:'Folosește reflecția săptămânală ca să încetinești și să privești mai atent.'},
