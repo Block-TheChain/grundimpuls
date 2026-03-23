@@ -342,7 +342,7 @@
       <div class="footerMark"><img class="logo logo-light" src="/assets/drop_light.svg" alt="Grundimpuls Members Hub"><img class="logo logo-dark" src="/assets/drop_dark.svg" alt="Grundimpuls Members Hub"></div>
       <div><div class="footerWordLine"><div class="footerName">GRUNDIMPULS</div><div class="footerHub" data-i18n="footer.sub">Members Hub</div></div></div>
     </a>
-    <div class="small" data-i18n="footer.note">Private resource area for approved participants.</div>
+    <div class="small" data-i18n="footer.note">Private resource area for approved participants only.</div>
   </div>
 </footer>
 
@@ -403,7 +403,7 @@ const i18n = {
     },
     reflection:{title:'Weekly reflection',lead:'A different question each week. Take 10 minutes with it. The goal is not a polished answer. The goal is honesty.',note:'Write in a notebook, a note app, or record a voice message to yourself. Come back to it before your next session.',notesBtn:'Take notes',notesKicker:'Weekly reflection',notesTitle:'Reflection notes',notesDesc:'Write directly in the hub if you want these thoughts included with the rest of your visit summary.',notesPlaceholder:'Write your thoughts here…',notesHint:'Saved automatically for your summary email.',summaryLabel:'Reflection notes',promptLabel:'Weekly prompt',notesLabel:'Your notes'},
     summary:{kicker:'Visit summary',title:'You can download a PDF summary of the tools and assessments used in this visit.',composeTitle:'Download your PDF summary',composeDesc:'Export the results and notes from this visit as a branded PDF you can save, print, or bring to coaching and training.',emailLabel:'Your email address',noteLabel:'Optional note',emailBtn:'Download PDF summary',clearBtn:'Clear summary',sendBtn:'Download PDF',cancelBtn:'Cancel'},
-    footer:{sub:'Members Hub',note:'Private resource area for approved participants.'}
+    footer:{sub:'Members Hub',note:'Private resource area for approved participants only.'}
   },
   ro:{
     brand:{hub:'Hub Membri',members:'Hub',hubWord:'Membri'},
@@ -434,7 +434,7 @@ const i18n = {
     },
     reflection:{title:'Reflecție săptămânală',lead:'O întrebare diferită în fiecare săptămână. Acordă-i 10 minute. Scopul nu este un răspuns elegant. Scopul este onestitatea.',note:'Scrie într-un caiet, într-o aplicație de notițe sau înregistrează-ți un mesaj vocal. Revino la el înainte de următoarea sesiune.',notesBtn:'Ia notițe',notesKicker:'Reflecție săptămânală',notesTitle:'Notițe de reflecție',notesDesc:'Scrie direct aici dacă vrei ca aceste gânduri să fie incluse împreună cu restul rezumatului vizitei.',notesPlaceholder:'Scrie aici gândurile tale…',notesHint:'Se salvează automat pentru emailul tău de rezumat.',summaryLabel:'Notițe de reflecție',promptLabel:'Întrebarea săptămânii',notesLabel:'Notițele tale'},
     summary:{kicker:'Rezumat vizită',title:'Poți descărca un rezumat PDF al instrumentelor și evaluărilor folosite în această vizită.',composeTitle:'Descarcă rezumatul PDF',composeDesc:'Exportă rezultatele și notițele din această vizită ca PDF cu branding, pe care îl poți salva, tipări sau aduce la coaching și training.',emailLabel:'Adresa ta de email',noteLabel:'Notă opțională',emailBtn:'Descarcă rezumatul PDF',clearBtn:'Șterge rezumatul',sendBtn:'Descarcă PDF',cancelBtn:'Anulează'},
-    footer:{sub:'Hub Membri',note:'Zonă privată de resurse pentru participanții aprobați.'}
+    footer:{sub:'Hub Membri',note:'Zonă privată de resurse doar pentru participanții aprobați.'}
   }
 };
 
@@ -648,9 +648,13 @@ const modalMeta = {
 let currentModalId = null, breatheTimer = null, breatheCycle = 0; const TOTAL_CYCLES = 4;
 
 let valuesSearch = '';
-const VALUES_MASTER_LIST = ["Abundance", "Acceptance", "Accessibility", "Accomplishment", "Accuracy", "Achievement", "Acknowledgement", "Activeness", "Adaptability", "Adoration", "Adroitness", "Adventure", "Affection", "Affluence", "Aggressiveness", "Agility", "Alertness", "Altruism", "Ambition", "Amusement", "Anticipation", "Appreciation", "Approachability", "Articulacy", "Assertiveness", "Assurance", "Attentiveness", "Attractiveness", "Audacity", "Availability", "Awareness", "Awe", "Balance", "Beauty", "Being the best", "Belonging", "Benevolence", "Bliss", "Boldness", "Bravery", "Brilliance", "Buoyancy", "Calmness", "Camaraderie", "Candor", "Capability", "Care", "Carefulness", "Celebrity", "Certainty", "Challenge", "Charity", "Charm", "Chastity", "Cheerfulness", "Clarity", "Cleanliness", "Clear-mindedness", "Cleverness", "Closeness", "Comfort", "Commitment", "Compassion", "Completion", "Composure", "Concentration", "Confidence", "Conformity", "Congruency", "Connection", "Consciousness", "Consistency", "Contentment", "Continuity", "Contribution", "Control", "Conviction", "Conviviality", "Coolness", "Cooperation", "Cordiality", "Correctness", "Courage", "Courtesy", "Craftiness", "Creativity", "Credibility", "Cunning", "Curiosity", "Daring", "Decisiveness", "Decorum", "Deference", "Delight", "Dependability", "Depth", "Desire", "Determination", "Devotion", "Devoutness", "Dexterity", "Dignity", "Diligence", "Direction", "Directness", "Discipline", "Discovery", "Discretion", "Diversity", "Dominance", "Dreaming", "Drive", "Duty", "Dynamism", "Eagerness", "Economy", "Ecstasy", "Education", "Effectiveness", "Efficiency", "Elation", "Elegance", "Empathy", "Encouragement", "Endurance", "Energy", "Enjoyment", "Entertainment", "Enthusiasm", "Excellence", "Excitement", "Exhilaration", "Expectancy", "Expediency", "Experience", "Expertise", "Exploration", "Expressiveness", "Extravagance", "Extroversion", "Exuberance", "Fairness", "Faith", "Fame", "Family", "Fascination", "Fashion", "Fearlessness", "Ferocity", "Fidelity", "Fierceness", "Financial independence", "Firmness", "Fitness", "Flexibility", "Flow", "Fluency", "Focus", "Fortitude", "Frankness", "Freedom", "Friendliness", "Frugality", "Fun", "Gallantry", "Generosity", "Gentility", "Giving", "Grace", "Gratitude", "Gregariousness", "Growth", "Guidance", "Happiness", "Harmony", "Health", "Heart", "Helpfulness", "Heroism", "Holiness", "Honesty", "Honor", "Hopefulness", "Hospitality", "Humility", "Humor", "Hygiene", "Imagination", "Impact", "Impartiality", "Independence", "Industry", "Ingenuity", "Inquisitiveness", "Insightfulness", "Inspiration", "Integrity", "Intelligence", "Intensity", "Intimacy", "Intrepidness", "Introversion", "Intuition", "Intuitiveness", "Inventiveness", "Investing", "Joy", "Judiciousness", "Justice", "Keenness", "Kindness", "Knowledge", "Leadership", "Learning", "Liberation", "Liberty", "Liveliness", "Logic", "Longevity", "Looking good", "Love", "Loyalty", "Majesty", "Making a difference", "Mastery", "Maturity", "Meekness", "Mellowness", "Meticulousness", "Mindfulness", "Modesty", "Motivation", "Mysteriousness", "Nature", "Neatness", "Nerve", "Obedience", "Open-mindedness", "Openness", "Optimism", "Order", "Organization", "Originality", "Outlandishness", "Outrageousness", "Passion", "Peace", "Perceptiveness", "Perfection", "Perkiness", "Perseverance", "Persistence", "Persuasiveness", "Philanthropy", "Piety", "Playfulness", "Pleasantness", "Pleasure", "Poise", "Polish", "Popularity", "Potency", "Power", "Practicality", "Pragmatism", "Precision", "Preparedness", "Presence", "Privacy", "Proactivity", "Professionalism", "Prosperity", "Prudence", "Punctuality", "Purity", "Realism", "Reason", "Reasonableness", "Recognition", "Recreation", "Refinement", "Reflection", "Relaxation", "Reliability", "Religiousness", "Resilience", "Resolution", "Resolve", "Resourcefulness", "Respect", "Rest", "Restraint", "Reverence", "Richness", "Rigor", "Ritual", "Sacredness", "Sacrifice", "Sagacity", "Saintliness", "Sanguinity", "Satisfaction", "Security", "Self-control", "Selflessness", "Self-reliance", "Sensitivity", "Sensuality", "Serenity", "Service", "Sexuality", "Sharing", "Shrewdness", "Significance", "Silence", "Silliness", "Simplicity", "Sincerity", "Skillfulness", "Solidarity", "Solitude", "Soundness", "Speed", "Spirit", "Spirituality", "Spontaneity", "Spunk", "Stability", "Stealth", "Stillness", "Strength", "Structure", "Success", "Support", "Supremacy", "Surprise", "Sympathy", "Synergy", "Teamwork", "Temperance", "Thankfulness", "Thoroughness", "Thoughtfulness", "Thrift", "Tidiness", "Timeliness", "Traditionalism", "Tranquility", "Transcendence", "Trust", "Trustworthiness", "Truth", "Understanding", "Unflappability", "Uniqueness", "Unity", "Usefulness", "Utility", "Valor", "Variety", "Victory", "Vigor", "Virtue", "Vision", "Vitality", "Vivacity", "Warmth", "Watchfulness", "Wealth", "Willfulness", "Willingness", "Winning", "Wisdom", "Wittiness", "Wonder", "Youthfulness", "Zeal"];
+const VALUES_MASTER_LIST = ["Abundance", "Acceptance", "Accessibility", "Accomplishment", "Accountability", "Accuracy", "Achievement", "Acknowledgement", "Activeness", "Adaptability", "Adoration", "Adroitness", "Adventure", "Affection", "Agility", "Alertness", "Altruism", "Ambition", "Amusement", "Anticipation", "Appreciation", "Approachability", "Articulacy", "Assertiveness", "Assurance", "Attentiveness", "Attractiveness", "Audacity", "Authenticity", "Availability", "Awareness", "Awe", "Balance", "Beauty", "Being the best", "Belonging", "Benevolence", "Bliss", "Boldness", "Bravery", "Brilliance", "Buoyancy", "Calmness", "Camaraderie", "Candor", "Capability", "Care", "Carefulness", "Celebrity", "Certainty", "Challenge", "Charity", "Charm", "Chastity", "Cheerfulness", "Clarity", "Cleanliness", "Clear-mindedness", "Cleverness", "Closeness", "Comfort", "Commitment", "Compassion", "Completion", "Composure", "Concentration", "Confidence", "Conformity", "Congruency", "Connection", "Consciousness", "Consistency", "Contentment", "Continuity", "Contribution", "Control", "Conviction", "Conviviality", "Coolness", "Cooperation", "Cordiality", "Correctness", "Courage", "Courtesy", "Creativity", "Credibility", "Curiosity", "Daring", "Decisiveness", "Decorum", "Deference", "Delight", "Dependability", "Depth", "Desire", "Determination", "Devotion", "Devoutness", "Dexterity", "Dignity", "Diligence", "Direction", "Directness", "Discipline", "Discovery", "Discretion", "Diversity", "Drive", "Duty", "Dynamism", "Eagerness", "Economy", "Ecstasy", "Education", "Effectiveness", "Efficiency", "Elation", "Elegance", "Empathy", "Encouragement", "Endurance", "Energy", "Enjoyment", "Entertainment", "Enthusiasm", "Excellence", "Excitement", "Exhilaration", "Expectancy", "Expediency", "Experience", "Expertise", "Exploration", "Expressiveness", "Exuberance", "Fairness", "Faith", "Fame", "Family", "Fascination", "Fashion", "Fearlessness", "Fidelity", "Financial independence", "Firmness", "Fitness", "Flexibility", "Flow", "Fluency", "Focus", "Forgiveness", "Fortitude", "Frankness", "Freedom", "Friendliness", "Frugality", "Fun", "Gallantry", "Generosity", "Gentility", "Giving", "Grace", "Gratitude", "Gregariousness", "Growth", "Guidance", "Happiness", "Harmony", "Health", "Heart", "Helpfulness", "Heroism", "Holiness", "Honesty", "Honor", "Hopefulness", "Hospitality", "Humility", "Humor", "Imagination", "Impact", "Impartiality", "Independence", "Industry", "Ingenuity", "Inquisitiveness", "Insightfulness", "Inspiration", "Integrity", "Intelligence", "Intensity", "Intimacy", "Intrepidness", "Intuition", "Intuitiveness", "Inventiveness", "Joy", "Judiciousness", "Justice", "Keenness", "Kindness", "Knowledge", "Leadership", "Learning", "Liveliness", "Logic", "Longevity", "Love", "Loyalty", "Majesty", "Making a difference", "Mastery", "Maturity", "Meekness", "Mellowness", "Meticulousness", "Mindfulness", "Modesty", "Motivation", "Mysteriousness", "Nature", "Neatness", "Nerve", "Open-mindedness", "Openness", "Optimism", "Order", "Organization", "Originality", "Passion", "Patience", "Peace", "Perceptiveness", "Perfection", "Perseverance", "Persuasiveness", "Philanthropy", "Piety", "Playfulness", "Pleasantness", "Pleasure", "Poise", "Polish", "Popularity", "Potency", "Power", "Practicality", "Pragmatism", "Precision", "Preparedness", "Presence", "Privacy", "Proactivity", "Professionalism", "Prosperity", "Prudence", "Punctuality", "Purity", "Realism", "Reason", "Reasonableness", "Recognition", "Reflection", "Refinement", "Relaxation", "Reliability", "Religiousness", "Resilience", "Resolution", "Resolve", "Resourcefulness", "Respect", "Rest", "Restraint", "Reverence", "Richness", "Rigor", "Ritual", "Sacredness", "Sacrifice", "Sagacity", "Saintliness", "Satisfaction", "Security", "Self-control", "Selflessness", "Self-reliance", "Sensitivity", "Sensuality", "Serenity", "Service", "Sexuality", "Sharing", "Shrewdness", "Significance", "Silence", "Simplicity", "Sincerity", "Skillfulness", "Solidarity", "Solitude", "Soundness", "Spirit", "Spirituality", "Spontaneity", "Spunk", "Stability", "Stillness", "Strength", "Structure", "Success", "Support", "Surprise", "Sympathy", "Synergy", "Teamwork", "Temperance", "Thoroughness", "Thoughtfulness", "Thrift", "Tidiness", "Timeliness", "Traditionalism", "Tranquility", "Transcendence", "Trust", "Trustworthiness", "Truth", "Understanding", "Unflappability", "Uniqueness", "Unity", "Usefulness", "Utility", "Valor", "Variety", "Victory", "Vigor", "Virtue", "Vision", "Vitality", "Vivacity", "Vulnerability", "Warmth", "Watchfulness", "Wealth", "Willfulness", "Willingness", "Wisdom", "Wittiness", "Wonder", "Youthfulness", "Zeal"]
+
+const VALUES_RO_LIST = ["Acceptare", "Acțiune", "Acuratețe", "Adaptabilitate", "Adevăr", "Administrare", "Afecțiune", "Ajutor", "Alegere", "Altruism", "Ambiție", "Angajament", "Antreprenoriat", "Aparențe", "Apartenență", "Apreciere", "Armonie", "Ascultare", "Atitudine", "Autenticitate", "Autocontrol", "Autocunoaștere", "Autonomie", "Autoritate", "Avansare", "Aventură", "Bani", "Blândețe", "Bogăție", "Bucurie", "Bunăstare", "Bunătate", "Calm", "Caracter", "Carismă", "Caritate", "Călătorii", "Câștig", "Claritate", "Colaborare", "Compasiune", "Competență", "Competiție", "Compromis", "Comunitate", "Conectare", "Confidențialitate", "Confort", "Conformitate", "Contribuție", "Control", "Cooperare", "Corectitudine", "Creativitate", "Credibilitate", "Credință", "Cultură", "Cunoaștere", "Curaj", "Curățenie", "Curiozitate", "Curtoazie", "Cumpătare", "Dăruire", "Dedicare", "Demnitate", "Deschidere", "Detașare", "Determinare", "Dezvoltare", "Diplomație", "Disciplină", "Distracție", "Dragoste", "Dreptate", "Echilibru", "Ecologie", "Educație", "Eficiență", "Egalitate", "Eleganță", "Empatie", "Energie", "Entuziasm", "Eroism", "Estetic", "Etică", "Evoluție", "Excelență", "Explorare", "Faimă", "Familie", "Feminitate", "Fericire", "Fidelitate", "Flexibilitate", "Frumusețe", "Generozitate", "Grijă", "Hărnicie", "Hedonism", "Hotărâre", "Idealism", "Iertare", "Imaginație", "Imparțialitate", "Implicare", "Independență", "Influență", "Ingeniozitate", "Inovație", "Inspirație", "Integritate", "Inteligență", "Interes", "Intimitate", "Intuiție", "Iubire", "Împlinire", "Încântare", "Încredere", "Încurajare", "Îndrăzneală", "Îndrumare", "Îngrijire", "Înțelepciune", "Învățare", "Joacă", "Justiție", "Leadership", "Libertate", "Loialitate", "Masculinitate", "Măiestrie", "Mândrie", "Milă", "Mindfulness", "Moderație", "Modestie", "Motivație", "Muncă", "Natură", "Neutralitate", "Nonconformism", "Noutate", "Obiectivitate", "Onestitate", "Onoare", "Optimism", "Ordine", "Pace", "Parteneriat", "Pasiune", "Patriotism", "Perfecțiune", "Perseverență", "Plăcere", "Politețe", "Popularitate", "Pragmatism", "Previziune", "Pricepere", "Prietenie", "Productivitate", "Prosperitate", "Protecție", "Provocare", "Punctualitate", "Puritate", "Putere", "Raționalitate", "Răbdare", "Râs", "Realism", "Realizare", "Reciprocitate", "Recunoaștere", "Recunoștință", "Renume", "Respect", "Responsabilitate", "Reziliență", "Rezistență", "Reușită", "Rezultate", "Risc", "Romantism", "Rutină", "Sacrificiu", "Sănătate", "Schimbare", "Scop", "Serenitate", "Seriozitate", "Sexualitate", "Siguranță", "Simplitate", "Sinceritate", "Smerenie", "Solidaritate", "Solitudine", "Speranță", "Spiritualitate", "Spontaneitate", "Sprijin", "Stabilitate", "Statut", "Succes", "Știință", "Tact", "Tărie", "Tenacitate", "Toleranță", "Tradiție", "Transparență", "Umilință", "Umor", "Unicitate", "Unitate", "Ușurință", "Utilitate", "Varietate", "Virtute", "Vitalitate", "Viziune", "Voioșie", "Vulnerabilitate"];
+function getCurrentValuesList() { return currentLang() === 'ro' ? VALUES_RO_LIST : VALUES_MASTER_LIST; }
 function normalizeValuesToolState(state) {
-  const picked = Array.from(new Set((state?.picked || []).filter(v => VALUES_MASTER_LIST.includes(v))));
+  const allowed = getCurrentValuesList();
+  const picked = Array.from(new Set((state?.picked || []).filter(v => allowed.includes(v))));
   const topFive = Array.from(new Set((state?.topFive || []).filter(v => picked.includes(v)))).slice(0,5);
   return { picked, topFive };
 }
@@ -696,7 +700,7 @@ function toggleValueSelection(value) {
     state.picked = state.picked.filter(v => v !== value);
     state.topFive = state.topFive.filter(v => v !== value);
   } else {
-    state.picked = VALUES_MASTER_LIST.filter(v => state.picked.includes(v) || v === value);
+    const allowed = getCurrentValuesList(); state.picked = allowed.filter(v => state.picked.includes(v) || v === value);
   }
   saveValuesToolState(state);
   refreshValuesDiscovery();
@@ -711,14 +715,15 @@ function buildValuesDiscoveryInnerHTML() {
   const t = i18n[lang].toolcards.values;
   const state = getValuesToolState();
   const query = valuesSearch.trim().toLowerCase();
-  const filtered = VALUES_MASTER_LIST.filter(value => value.toLowerCase().includes(query));
+  const valuesList = getCurrentValuesList();
+  const filtered = valuesList.filter(value => value.toLowerCase().includes(query));
   const candidates = state.picked.filter(value => !state.topFive.includes(value));
   return `
     <div class="valuesTool">
       <p class="valuesIntro">${t.intro}</p>
       <div class="valuesSearchRow">
         <input id="valuesSearch" class="valuesSearch" type="text" value="${escapeHtml(valuesSearch)}" placeholder="${escapeHtml(t.searchPlaceholder)}" oninput="updateValuesSearch(this.value)">
-        <div class="valuesMeta">${query ? `${filtered.length} / ${VALUES_MASTER_LIST.length}` : `${VALUES_MASTER_LIST.length} values`}</div>
+        <div class="valuesMeta">${query ? `${filtered.length} / ${valuesList.length}` : `${valuesList.length} values`}</div>
       </div>
       <div class="valuesPanel">
         <div class="valuesPanelHead">
@@ -726,7 +731,7 @@ function buildValuesDiscoveryInnerHTML() {
           <div class="valuesCount">${t.selectedCount}: ${state.picked.length}</div>
         </div>
         <div class="valuesToolbar">
-          <div class="valuesMeta">${query ? (lang === 'ro' ? `Se afișează ${filtered.length} din ${VALUES_MASTER_LIST.length} valori` : `Showing ${filtered.length} of ${VALUES_MASTER_LIST.length} values`) : (lang === 'ro' ? `${VALUES_MASTER_LIST.length} valori în listă` : `${VALUES_MASTER_LIST.length} values in the list`)}</div>
+          <div class="valuesMeta">${query ? (lang === 'ro' ? `Se afișează ${filtered.length} din ${valuesList.length} valori` : `Showing ${filtered.length} of ${valuesList.length} values`) : (lang === 'ro' ? `${valuesList.length} valori în listă` : `${valuesList.length} values in the list`)}</div>
           <button class="btn sm" type="button" onclick="clearValuesTool()">${t.clearAll}</button>
         </div>
         <div class="valuesGrid" style="margin-top:12px">${filtered.length ? filtered.map(value => `<button type="button" class="valueChip${state.picked.includes(value) ? ' active' : ''}" onclick='toggleValueSelection(${JSON.stringify(value)})'>${escapeHtml(value)}</button>`).join('') : `<div class="valuesEmpty">${t.searchNoResults}</div>`}</div>
@@ -1648,7 +1653,89 @@ function openSummaryComposer(){ document.getElementById('summaryPreview').innerH
 function closeSummaryComposer(){ document.getElementById('summaryComposerShell').classList.remove('open'); if(!currentModalId) document.body.classList.remove('modal-open'); }
 function buildSummaryExportData(){ const lang = currentLang(); const assessmentsList = Object.values(memberSessionSummary.assessments); const toolsList = Object.values(memberSessionSummary.tools).filter(item => item && ((item.content && item.content.trim()) || item.completed || (item.entries && item.entries.some(e => e.value && e.value.trim())))); const reflectionItem = memberSessionSummary.reflection && ((memberSessionSummary.reflection.content && memberSessionSummary.reflection.content.trim()) || (memberSessionSummary.reflection.entries && memberSessionSummary.reflection.entries.some(e => e.value && e.value.trim()))) ? memberSessionSummary.reflection : null; return { lang, assessmentsList, toolsList, reflectionItem, note:(document.getElementById('summaryNote')?.value || '').trim(), visitedAt:memberSessionSummary.updatedAt || new Date().toISOString() }; }
 async function loadLogoImage(){ try{ const res = await fetch('/assets/drop_light.svg'); if(!res.ok) return null; const svgText = await res.text(); const blob = new Blob([svgText], {type:'image/svg+xml'}); const url = URL.createObjectURL(blob); return await new Promise(resolve => { const img = new Image(); img.onload = () => { URL.revokeObjectURL(url); resolve(img); }; img.onerror = () => { URL.revokeObjectURL(url); resolve(null); }; img.src = url; }); }catch(err){ return null; } }
-async function renderPdfHeaderDataUrl(){ try{ if(document.fonts?.load){ await Promise.all([document.fonts.load('700 36px Montserrat'), document.fonts.load('700 22px Montserrat'), document.fonts.load('500 14px Montserrat')]); } const canvas = document.createElement('canvas'); canvas.width = 1600; canvas.height = 190; const ctx = canvas.getContext('2d'); if(!ctx) return null; const blue = '#3e5cb7'; const text = '#1c2230'; const muted = '#6d7b9b'; const line = '#d8e3ff'; const soft = '#eef3ff'; ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle = soft; ctx.beginPath(); ctx.arc(58,58,28,0,Math.PI*2); ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = '#b9c7ef'; ctx.beginPath(); ctx.arc(58,58,28,0,Math.PI*2); ctx.stroke(); const logo = await loadLogoImage(); if(logo){ const ratio = Math.min(32/(logo.naturalWidth||32), 44/(logo.naturalHeight||44)); const w=(logo.naturalWidth||32)*ratio, h=(logo.naturalHeight||44)*ratio; ctx.drawImage(logo, 58-w/2, 58-h/2, w, h); } ctx.fillStyle = text; ctx.font = '700 36px Montserrat, Arial, sans-serif'; ctx.fillText('GRUNDIMPULS', 100, 54); ctx.fillStyle = blue; ctx.font = '700 22px Montserrat, Arial, sans-serif'; ctx.fillText('Members Hub', 500, 54); ctx.fillStyle = muted; ctx.font = '500 14px Montserrat, Arial, sans-serif'; ctx.fillText('EXPLORE · LEARN · CREATE', 100, 86); ctx.strokeStyle = line; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(0,132); ctx.lineTo(canvas.width,132); ctx.stroke(); return canvas.toDataURL('image/png'); }catch(err){ return null; } }
+async function renderPdfHeaderDataUrl(){
+  try{
+    if(document.fonts?.load){
+      await Promise.all([
+        document.fonts.load('700 34px Montserrat'),
+        document.fonts.load('700 20px Montserrat'),
+        document.fonts.load('500 12px Montserrat')
+      ]);
+    }
+    const canvas = document.createElement('canvas');
+    canvas.width = 1600;
+    canvas.height = 190;
+    const ctx = canvas.getContext('2d');
+    if(!ctx) return null;
+    const blue = '#3e5cb7';
+    const text = '#1c2230';
+    const muted = '#6d7b9b';
+    const line = '#d8e3ff';
+    const soft = '#eef3ff';
+    const circleStroke = '#b8c7ef';
+    const tagText = 'EXPLORE · LEARN · CREATE';
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle = soft;
+    ctx.beginPath();
+    ctx.arc(62,58,31,0,Math.PI*2);
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = circleStroke;
+    ctx.beginPath();
+    ctx.arc(62,58,31,0,Math.PI*2);
+    ctx.stroke();
+
+    const logo = await loadLogoImage();
+    if(logo){
+      const ratio = Math.min(48/(logo.naturalWidth||48), 58/(logo.naturalHeight||58));
+      const w=(logo.naturalWidth||48)*ratio;
+      const h=(logo.naturalHeight||58)*ratio;
+      ctx.drawImage(logo, 62-w/2, 58-h/2, w, h);
+    }
+
+    const wordX = 108;
+    const wordY = 52;
+    ctx.fillStyle = text;
+    ctx.font = '700 34px Montserrat, Arial, sans-serif';
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillText('GRUNDIMPULS', wordX, wordY);
+    const wordWidth = ctx.measureText('GRUNDIMPULS').width;
+
+    ctx.fillStyle = blue;
+    ctx.font = '700 20px Montserrat, Arial, sans-serif';
+    ctx.fillText('Members Hub', wordX + wordWidth + 40, wordY);
+
+    const drawFittedTagline = (textValue, x, y, width) => {
+      ctx.save();
+      ctx.fillStyle = muted;
+      ctx.font = '500 12px Montserrat, Arial, sans-serif';
+      ctx.textBaseline = 'alphabetic';
+      const parts = textValue.split(' ');
+      const baseWidth = parts.reduce((sum, part) => sum + ctx.measureText(part).width, 0);
+      const gaps = Math.max(parts.length - 1, 1);
+      const gap = (width - baseWidth) / gaps;
+      let cursor = x;
+      parts.forEach((part, index) => {
+        ctx.fillText(part, cursor, y);
+        cursor += ctx.measureText(part).width;
+        if(index < parts.length - 1) cursor += gap;
+      });
+      ctx.restore();
+    };
+    drawFittedTagline(tagText, wordX, 82, wordWidth);
+
+    ctx.strokeStyle = line;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(0,132);
+    ctx.lineTo(canvas.width,132);
+    ctx.stroke();
+    return canvas.toDataURL('image/png');
+  }catch(err){
+    return null;
+  }
+}
 function escapePdfText(value){ return String(value || '').replace(/\s+/g,' ').trim(); }
 async function downloadVisitSummaryPDF(){ const status = document.getElementById('summaryStatus'); const btn = document.getElementById('summarySendBtn'); const exportData = buildSummaryExportData(); const hasContent = exportData.assessmentsList.length || exportData.toolsList.length || exportData.reflectionItem; if(!hasContent){ status.textContent = exportData.lang === 'ro' ? 'Nu există încă nimic de exportat.' : 'There is nothing to export yet.'; return; } btn.disabled = true; status.textContent = exportData.lang === 'ro' ? 'Se generează PDF-ul…' : 'Generating PDF…'; try{ if(!(window.jspdf && window.jspdf.jsPDF)) throw new Error('jsPDF unavailable'); const { jsPDF } = window.jspdf; const doc = new jsPDF({ unit:'pt', format:'a4' }); const pageW = doc.internal.pageSize.getWidth(); const pageH = doc.internal.pageSize.getHeight(); const margin = 46; const contentW = pageW - margin * 2; let y = 42; const blue = [62,92,183]; const textColor = [28,34,48]; const muted = [92,103,130]; const line = [220,226,238]; const headerDataUrl = await renderPdfHeaderDataUrl(); if(headerDataUrl){ const headerH = contentW * (190/1600); doc.addImage(headerDataUrl, 'PNG', margin, y, contentW, headerH); y += headerH + 24; } else { doc.setFont('helvetica','bold'); doc.setFontSize(16); doc.setTextColor(...textColor); doc.text('GRUNDIMPULS', margin, y + 14); doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...blue); doc.text('Members Hub', margin + 170, y + 14); doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(...muted); doc.text('EXPLORE · LEARN · CREATE', margin, y + 28); doc.setDrawColor(216,227,255); doc.setLineWidth(1.2); doc.line(margin, y + 40, pageW - margin, y + 40); y += 62; } doc.setFont('helvetica','bold'); doc.setFontSize(22); doc.setTextColor(...textColor); doc.text(exportData.lang === 'ro' ? 'Rezumatul vizitei' : 'Visit summary', margin, y); y += 18; doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); const dateLabel = exportData.lang === 'ro' ? 'Generat la' : 'Generated on'; doc.text(`${dateLabel}: ${new Date(exportData.visitedAt).toLocaleString(exportData.lang === 'ro' ? 'ro-RO' : 'en-GB')}`, margin, y); y += 10; function ensureSpace(extra){ if(y + extra > pageH - 56){ doc.addPage(); y = 42; if(headerDataUrl){ const headerH = contentW * (190/1600); doc.addImage(headerDataUrl, 'PNG', margin, y, contentW, headerH); y += headerH + 18; } } } function sectionTitle(title){ ensureSpace(28); y += 16; doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(...blue); doc.text(title, margin, y); y += 10; doc.setDrawColor(...line); doc.line(margin, y, pageW - margin, y); y += 16; } function addWrappedLabelValue(label, value){ if(!value) return; doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(...textColor); const labelText = `${label}: `; doc.text(labelText, margin, y); const labelW = doc.getTextWidth(labelText); doc.setFont('helvetica','normal'); doc.setTextColor(...muted); const lines = doc.splitTextToSize(String(value), contentW - labelW); if(lines.length) doc.text(lines[0], margin + labelW, y); y += 13; for(const lineText of lines.slice(1)){ ensureSpace(14); doc.text(lineText, margin + labelW, y); y += 13; } } function addBulletList(items){ (items || []).forEach(item => { const lines = doc.splitTextToSize(String(item), contentW - 18); ensureSpace(Math.max(14, lines.length * 12 + 2)); doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text('•', margin + 2, y); doc.text(lines, margin + 14, y); y += lines.length * 12 + 4; }); } if(exportData.note){ y += 18; doc.setFillColor(247,249,253); doc.setDrawColor(...line); const noteLines = doc.splitTextToSize(exportData.note, contentW-28); const boxH = 30 + noteLines.length * 12; doc.roundedRect(margin, y-12, contentW, boxH, 12, 12, 'FD'); doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...textColor); doc.text(exportData.lang === 'ro' ? 'Notă personală' : 'Personal note', margin+14, y+4); doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(noteLines, margin+14, y+20); y += boxH + 6; } sectionTitle(exportData.lang === 'ro' ? 'Evaluări' : 'Assessments'); if(!exportData.assessmentsList.length){ doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(exportData.lang === 'ro' ? 'Nicio evaluare completată încă.' : 'No completed assessments yet.', margin, y); y += 14; } for(const item of exportData.assessmentsList){ ensureSpace(72); doc.setFillColor(249,250,253); doc.setDrawColor(...line); doc.roundedRect(margin, y-10, contentW, 22, 10, 10, 'FD'); doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...textColor); doc.text(escapePdfText(item.title), margin+12, y+4); y += 28; addWrappedLabelValue(exportData.lang === 'ro' ? 'Scor' : 'Score', escapePdfText(item.scoreText)); addWrappedLabelValue(exportData.lang === 'ro' ? 'Rezultat' : 'Result', escapePdfText(item.label)); addWrappedLabelValue(exportData.lang === 'ro' ? 'Descriere' : 'Description', escapePdfText(item.description)); if(item.blindSpots?.length){ doc.setFont('helvetica','bold'); doc.setTextColor(...textColor); doc.text(exportData.lang === 'ro' ? 'Puncte oarbe:' : 'Blind spots:', margin, y); y += 13; addBulletList(item.blindSpots); } if(item.actionSteps?.length){ doc.setFont('helvetica','bold'); doc.setTextColor(...textColor); doc.text(exportData.lang === 'ro' ? 'Pași de acțiune:' : 'Action steps:', margin, y); y += 13; addBulletList(item.actionSteps); } y += 4; } sectionTitle(exportData.lang === 'ro' ? 'Instrumente' : 'Tools'); if(!exportData.toolsList.length){ doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(exportData.lang === 'ro' ? 'Niciun instrument înregistrat încă.' : 'No recorded tools yet.', margin, y); y += 14; } for(const item of exportData.toolsList){ ensureSpace(38); doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...textColor); doc.text(escapePdfText(item.label || ''), margin, y); y += 14; if(item.content){ const lines = doc.splitTextToSize(String(item.content), contentW); doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(lines, margin, y); y += lines.length * 12 + 6; } if(item.entries?.length){ for(const entry of item.entries){ if(!entry.value || !String(entry.value).trim()) continue; addWrappedLabelValue(escapePdfText(entry.label || ''), escapePdfText(String(entry.value).replace(/\n/g, ' · '))); } } if(item.completed && !item.content && !item.entries?.length){ doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(exportData.lang === 'ro' ? 'Marcat ca finalizat.' : 'Marked as completed.', margin, y); y += 14; } y += 4; } sectionTitle(exportData.lang === 'ro' ? 'Reflecție săptămânală' : 'Weekly reflection'); if(!exportData.reflectionItem){ doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(exportData.lang === 'ro' ? 'Nicio notiță de reflecție salvată încă.' : 'No reflection notes saved yet.', margin, y); y += 14; } else { addWrappedLabelValue(exportData.lang === 'ro' ? 'Prompt' : 'Prompt', escapePdfText(exportData.reflectionItem.weekLabel || '')); addWrappedLabelValue(exportData.lang === 'ro' ? 'Titlu' : 'Title', escapePdfText(exportData.reflectionItem.label || '')); const lines = doc.splitTextToSize(String(exportData.reflectionItem.content || ''), contentW); doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...muted); doc.text(lines, margin, y); y += lines.length * 12 + 4; } const safeDate = new Date().toISOString().slice(0,10); doc.save(`grundimpuls-members-summary-${safeDate}.pdf`); status.textContent = exportData.lang === 'ro' ? 'PDF-ul a fost descărcat.' : 'PDF downloaded.'; }catch(err){ console.error(err); status.textContent = exportData.lang === 'ro' ? 'Generarea PDF a eșuat.' : 'PDF generation failed.'; } finally { btn.disabled = false; } }
 function renderAssessment(id) {
