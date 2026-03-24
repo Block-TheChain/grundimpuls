@@ -59,7 +59,7 @@
     body.modal-open{overflow:hidden}
     a{text-decoration:none;color:inherit}
     .wrap{max-width:var(--max);margin:0 auto;padding:0 10px}
-    header{position:sticky;top:0;z-index:999;background:rgba(244,248,252,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(14px)}
+    header{position:sticky;top:0;z-index:999;background:rgba(244,248,252,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(14px);transition:transform .22s ease}
     body.dark header{background:rgba(17,22,29,.92)}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:13px 0;gap:14px;position:relative}
     .brand,.brand:visited,.brand:hover{display:flex;align-items:center;gap:8px;min-width:0;flex:1 1 auto}
@@ -227,9 +227,12 @@
 
 
     .summaryDock{position:fixed;right:18px;bottom:18px;z-index:70;max-width:360px}
+    .summaryFab{display:none;border:1px solid var(--accent-border);background:linear-gradient(180deg,#8eb8ea 0%,#3a75c8 100%);color:#fff;border-radius:999px;padding:12px 16px;font-weight:900;box-shadow:var(--shadow);cursor:pointer}
+    .summaryFab:hover{filter:brightness(1.03)}
+    .summaryDockCard{display:block}
     .summaryCard{background:rgba(244,248,252,.96);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);backdrop-filter:blur(14px);padding:14px}
     body.dark .summaryCard{background:rgba(17,22,29,.96)}
-    @media(max-width:900px){header{position:fixed;top:0;left:0;right:0}main{padding-top:74px}.grid,.cols3,.gridAssess,.gridTools{grid-template-columns:1fr}h1{font-size:36px}.brand{gap:6px}.mark{width:34px;height:34px}.wordmarkLine{gap:8px;align-items:flex-start}.wordmark strong{font-size:clamp(19px,4.8vw,25px);letter-spacing:clamp(.035em,.05em,.06em)}.wordmarkCore{width:max-content}.hubSuffix{font-size:13px;transform:translateY(1px)}.taglineTop{font-size:clamp(8px,2vw,10px);letter-spacing:.11em}.siteReturn{display:none}.burger{display:inline-flex}.lang{display:none}.langMobile{display:block}.mobileMenu{display:block;position:absolute;right:10px;top:calc(100% + 8px);background:rgba(244,248,252,.97);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(14px);padding:8px;min-width:196px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .22s ease,opacity .18s ease}body.dark .mobileMenu{background:rgba(17,22,29,.97)}body.menu-open .mobileMenu{transform:translateY(0);opacity:1;pointer-events:auto}.mobileMenu .wrap{padding:0;display:flex;flex-direction:column;align-items:stretch}.mobileMenu .publicLink{display:flex;align-items:center;justify-content:flex-end;gap:10px;color:var(--gold);background:var(--gold-bg);border-color:var(--gold-border)}.mobileMenu .publicLink:hover{background:rgba(200,134,10,.16);border-color:rgba(200,134,10,.46);color:var(--gold-light)}.mobileMenu .publicDrop{width:20px;height:20px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(200,134,10,.28))}.hero{min-height:auto}.modalShell{padding:12px}.modalPanel{max-height:calc(100vh - 24px);border-radius:22px}.modalHead{padding:18px 18px 14px}.modalBody{padding:18px}#summaryDock{left:12px;right:12px;bottom:12px;max-width:none}}
+    @media(max-width:900px){header{position:fixed;top:0;left:0;right:0}main{padding-top:74px}.grid,.cols3,.gridAssess,.gridTools{grid-template-columns:1fr}h1{font-size:36px}.brand{gap:6px}.mark{width:34px;height:34px}.wordmarkLine{gap:8px;align-items:flex-start}.wordmark strong{font-size:clamp(19px,4.8vw,25px);letter-spacing:clamp(.035em,.05em,.06em)}.wordmarkCore{width:max-content}.hubSuffix{font-size:13px;transform:translateY(1px)}.taglineTop{font-size:clamp(8px,2vw,10px);letter-spacing:.11em}.siteReturn{display:none}.burger{display:inline-flex}.lang{display:none}.langMobile{display:block}.mobileMenu{display:block;position:absolute;right:10px;top:calc(100% + 8px);background:rgba(244,248,252,.97);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(14px);padding:8px;min-width:196px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .22s ease,opacity .18s ease}body.dark .mobileMenu{background:rgba(17,22,29,.97)}body.menu-open .mobileMenu{transform:translateY(0);opacity:1;pointer-events:auto}.mobileMenu .wrap{padding:0;display:flex;flex-direction:column;align-items:stretch}.mobileMenu .publicLink{display:flex;align-items:center;justify-content:flex-end;gap:10px;color:var(--gold);background:var(--gold-bg);border-color:var(--gold-border)}.mobileMenu .publicLink:hover{background:rgba(200,134,10,.16);border-color:rgba(200,134,10,.46);color:var(--gold-light)}.mobileMenu .publicDrop{width:28px;height:28px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(200,134,10,.28))}.hero{min-height:auto}.modalShell{padding:12px}.modalPanel{max-height:calc(100vh - 24px);border-radius:22px}.modalHead{padding:18px 18px 14px}.modalBody{padding:18px}#summaryDock{left:12px;right:12px;bottom:12px;max-width:none}}
     @media(max-width:430px){.nav{gap:10px}.brand{gap:5px}.mark{width:32px;height:32px}.wordmark{transform:translateY(1px)}.wordmarkLine{gap:7px}.wordmark strong{font-size:17px;letter-spacing:.028em}.hubSuffix{font-size:10px;flex-direction:column;align-items:flex-start;gap:1px;line-height:.92;transform:translateY(1px)}.taglineTop{font-size:7.6px;letter-spacing:.09em}.taglineTop .tagDot{margin:0 3px}.right{gap:6px}.langMobileBtn,.themeBtn,.burger{padding:8px 10px}.modalHeadText h2{font-size:24px}}
   </style>
 </head>
@@ -362,6 +365,8 @@
 </footer>
 
 <div class="summaryDock" id="summaryDock">
+  <button class="summaryFab" id="summaryFab" type="button" onclick="toggleSummaryDock()" data-i18n="summary.kicker">Visit summary</button>
+  <div class="summaryDockCard">
   <div class="summaryCard">
     <div class="small" style="font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:6px" data-i18n="summary.kicker">Visit summary</div>
     <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px" data-i18n="summary.title">Your session trail is being collected.</div>
@@ -371,6 +376,7 @@
       <button class="btn primary sm" type="button" onclick="openSummaryComposer()" data-i18n="summary.open">Open summary</button>
       <button class="btn sm" type="button" onclick="downloadSummaryPdf()" data-i18n="summary.download">Download PDF</button>
     </div>
+  </div>
   </div>
 </div>
 
