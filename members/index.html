@@ -357,11 +357,12 @@
   </div>
 </footer>
 
-<div class="summaryDock" id="summaryDock">
+<div class="summaryDock" id="summaryDock" style="position:fixed;right:18px;bottom:18px;z-index:1500;display:none;max-width:min(420px,calc(100vw - 24px));">
   <div class="summaryCard">
     <div class="small" style="font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:6px" data-i18n="summary.kicker">Visit summary</div>
     <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px" data-i18n="summary.title">Your session trail is being collected.</div>
     <div class="small" id="summaryHint" data-i18n="summary.hint">When you have something worth keeping, download it as a PDF.</div>
+    <div class="small" id="summaryDockMeta" style="margin-top:6px"></div>
     <div class="ctaRow" style="margin-top:10px">
       <button class="btn primary sm" type="button" onclick="openSummaryComposer()" data-i18n="summary.open">Open summary</button>
       <button class="btn sm" type="button" onclick="downloadSummaryPdf()" data-i18n="summary.download">Download PDF</button>
@@ -734,13 +735,22 @@ function renderValuesTool(){ return `<div id="valuesToolRoot">${buildValuesDisco
 
 
 function updateSummaryDock(){
-  const hasAssess = Object.keys(state.summary.assessments||{}).length>0;
-  const hasTools = Object.keys(state.summary.tools||{}).length>0;
-  const hasValues = !!(state.summary.values && ((state.summary.values.selected||[]).length || (state.summary.values.top5||[]).length));
-  const hasReflection = !!(state.summary.reflection && state.summary.reflection.note);
+  const assessmentsCount = Object.keys(state.summary.assessments||{}).length;
+  const toolsCount = Object.values(state.summary.tools||{}).filter(item => {
+    if(!item || !item.data) return false;
+    return Object.values(item.data).some(v => Array.isArray(v) ? v.length : String(v||'').trim());
+  }).length;
+  const valuesCount = (state.summary.values && (((state.summary.values.selected||[]).length)||((state.summary.values.top5||[]).length))) ? 1 : 0;
+  const reflectionCount = (state.summary.reflection && String(state.summary.reflection.note||'').trim()) ? 1 : 0;
+  const total = assessmentsCount + toolsCount + valuesCount + reflectionCount;
+  const dock = document.getElementById('summaryDock');
   const hint = document.getElementById('summaryHint');
-  if(hint) hint.textContent = hasAssess || hasTools || hasValues || hasReflection ? t('summary.statusReady') : t('summary.hint');
+  const meta = document.getElementById('summaryDockMeta');
+  if(dock) dock.style.display = total > 0 ? 'block' : 'none';
+  if(hint) hint.textContent = total > 0 ? t('summary.statusReady') : t('summary.hint');
+  if(meta) meta.textContent = state.lang==='ro' ? `${total} elemente înregistrate` : `${total} items recorded`;
 }
+
 
 function renderSummaryComposer(){
   const parts=[];
@@ -782,53 +792,55 @@ function buildPdfHtml(){
   const section = (title, body) => `<section style="margin-top:22px"><h2 style="font:700 20px Montserrat,Arial,sans-serif;color:#2c66b8;margin:0 0 10px">${title}</h2>${body}</section>`;
   const esc = escapeHtml;
   const toolBodies = tools.map(tl=>{
-    const items=Object.entries(tl.data||{}).filter(([,v])=>v).map(([k,v])=>`<div style="margin:6px 0"><strong>${esc(k)}:</strong> ${esc(String(v))}</div>`).join('');
+    const items=Object.entries(tl.data||{}).filter(([,v])=>Array.isArray(v)?v.length:v).map(([k,v])=>`<div style="margin:6px 0"><strong>${esc(k)}:</strong> ${Array.isArray(v)?esc(v.join(' · ')):esc(String(v))}</div>`).join('');
     return `<div style="margin-bottom:14px"><div style="font-weight:700">${esc(tl.title)}</div>${items}</div>`;
   }).join('');
-  return `<!doctype html><html><head><meta charset="utf-8"><style>
-    body{font-family:Arial,sans-serif;color:#1f2937;margin:0;padding:34px 38px;background:#fff;font-size:14px;line-height:1.45;word-break:break-word;overflow-wrap:anywhere}
-    .head{display:flex;align-items:flex-start;gap:12px;border-bottom:2px solid #c7d8ef;padding-bottom:12px}
-    .logoWrap{width:36px;height:36px;border-radius:999px;border:1px solid #d2ae61;background:#f9f1de;display:flex;align-items:center;justify-content:center;flex:0 0 36px}
-    .drop{font-size:24px;line-height:1;color:#b98516;transform:translateY(-1px)}
-    .brand strong{display:block;font:800 18px Montserrat,Arial,sans-serif;letter-spacing:.03em;color:#1f2a3a}
-    .tag{font-size:9px;letter-spacing:.18em;color:#6b83a6;text-transform:uppercase;margin-top:2px}
-    .hub{font:700 14px Montserrat,Arial,sans-serif;color:#2c66b8;margin-left:6px;margin-top:3px}
-    h1{font:800 34px Montserrat,Arial,sans-serif;margin:22px 0 4px;color:#12243d}
-    .muted{color:#5b6f8f}
-    .pill{border:1px solid #c7d8ef;border-radius:999px;padding:8px 14px;font:700 14px Arial,sans-serif;display:inline-block;margin-bottom:8px}
-    ul{margin:8px 0 0 18px;padding:0} li{margin:4px 0}
-  </style></head><body>
-    <div class="head"><div class="logoWrap"><div class="drop">◦</div></div><div class="brand"><strong>GRUNDIMPULS</strong><div class="tag">EXPLORE · LEARN · CREATE</div></div><div class="hub">Members Hub</div></div>
-    <h1>${esc(t('summary.composerTitle'))}</h1><div class="muted">${esc(t('summary.generated'))}: ${esc(generated)}</div>
+  return `<div id="pdfSummaryCard" style="font-family:Arial,sans-serif;color:#1f2937;margin:0;padding:34px 38px;background:#fff;font-size:14px;line-height:1.45;word-break:break-word;overflow-wrap:anywhere;width:794px;box-sizing:border-box">
+    <div style="display:flex;align-items:flex-start;gap:12px;border-bottom:2px solid #c7d8ef;padding-bottom:12px"><div style="width:36px;height:36px;border-radius:999px;border:1px solid #d2ae61;background:#f9f1de;display:flex;align-items:center;justify-content:center;flex:0 0 36px"><div style="font-size:24px;line-height:1;color:#b98516;transform:translateY(-1px)">◦</div></div><div><div style="display:flex;align-items:flex-start;gap:6px"><strong style="display:block;font:800 18px Montserrat,Arial,sans-serif;letter-spacing:.03em;color:#1f2a3a">GRUNDIMPULS</strong><div style="font:700 14px Montserrat,Arial,sans-serif;color:#2c66b8;margin-top:3px">Members Hub</div></div><div style="font-size:9px;letter-spacing:.18em;color:#6b83a6;text-transform:uppercase;margin-top:2px">EXPLORE · LEARN · CREATE</div></div></div>
+    <h1 style="font:800 34px Montserrat,Arial,sans-serif;margin:22px 0 4px;color:#12243d">${esc(t('summary.composerTitle'))}</h1><div style="color:#5b6f8f">${esc(t('summary.generated'))}: ${esc(generated)}</div>
     ${state.summary.note ? `<p style="margin-top:14px">${esc(state.summary.note)}</p>`:''}
-    ${a.length ? section(esc(t('summary.assessments')), a.map(x=>`<div style="margin-bottom:18px"><div class="pill">${esc(x.title)}</div><div><strong>${state.lang==='ro'?'Scor':'Score'}:</strong> ${esc(String(x.score))} / ${esc(String(x.max))}</div><div><strong>${state.lang==='ro'?'Rezultat':'Result'}:</strong> ${esc(x.label)}</div><div><strong>${state.lang==='ro'?'Descriere':'Description'}:</strong> ${esc(x.desc)}</div><div><strong>${state.lang==='ro'?'Puncte oarbe':'Blind spots'}:</strong><ul>${(x.blind||[]).map(y=>`<li>${esc(y)}</li>`).join('')}</ul></div><div><strong>${state.lang==='ro'?'Pași de acțiune':'Action steps'}:</strong><ul>${(x.actions||[]).map(y=>`<li>${esc(y)}</li>`).join('')}</ul></div></div>`).join('')):''}
+    ${a.length ? section(esc(t('summary.assessments')), a.map(x=>`<div style="margin-bottom:18px"><div style="border:1px solid #c7d8ef;border-radius:999px;padding:8px 14px;font:700 14px Arial,sans-serif;display:inline-block;margin-bottom:8px">${esc(x.title)}</div><div><strong>${state.lang==='ro'?'Scor':'Score'}:</strong> ${esc(String(x.score))} / ${esc(String(x.max))}</div><div><strong>${state.lang==='ro'?'Rezultat':'Result'}:</strong> ${esc(x.label)}</div><div><strong>${state.lang==='ro'?'Descriere':'Description'}:</strong> ${esc(x.desc)}</div><div><strong>${state.lang==='ro'?'Puncte oarbe':'Blind spots'}:</strong><ul style="margin:8px 0 0 18px;padding:0">${(x.blind||[]).map(y=>`<li style="margin:4px 0">${esc(y)}</li>`).join('')}</ul></div><div><strong>${state.lang==='ro'?'Pași de acțiune':'Action steps'}:</strong><ul style="margin:8px 0 0 18px;padding:0">${(x.actions||[]).map(y=>`<li style="margin:4px 0">${esc(y)}</li>`).join('')}</ul></div></div>`).join('')):''}
     ${tools.length ? section(esc(t('summary.tools')), toolBodies):''}
     ${values && ((values.selected||[]).length || (values.top5||[]).length) ? section(esc(t('summary.values')), `${(values.selected||[]).length?`<div><strong>${state.lang==='ro'?'Valori selectate':'Selected values'}:</strong> ${esc(values.selected.join(', '))}</div>`:''}${(values.top5||[]).length?`<div style="margin-top:10px"><strong>${state.lang==='ro'?'Top 5 valori ordonat':'Ranked top 5'}:</strong> ${esc(values.top5.map((v,i)=>`${i+1}. ${v}`).join(' · '))}</div>`:''}`):''}
-    ${reflection?.note ? section(esc(t('summary.reflection')), `<div><strong>${esc(t('reflection.questionLabel'))}:</strong> ${esc(reflection.question||'')}</div><div style="margin-top:8px"><strong>${esc(t('reflection.titleLabel'))}:</strong> ${esc(reflection.title||'')}</div><div style="margin-top:8px">${esc(reflection.note||'').replace(/\n/g,'<br>')}</div>`):''}
-  </body></html>`;
+    ${reflection?.note ? section(esc(t('summary.reflection')), `<div><strong>${esc(t('reflection.questionLabel'))}:</strong> ${esc(reflection.question||'')}</div><div style="margin-top:8px"><strong>${esc(t('reflection.titleLabel'))}:</strong> ${esc(reflection.title||'')}</div><div style="margin-top:8px">${esc(reflection.note||'').replace(/
+/g,'<br>')}</div>`):''}
+  </div>`;
 }
 
 async function downloadSummaryPdf(){
+  let wrap=null;
   try{
     saveSummaryNote();
-    const wrap=document.createElement('div');
-    wrap.style.position='fixed'; wrap.style.left='-10000px'; wrap.style.top='0'; wrap.style.width='794px';
+    wrap=document.createElement('div');
+    wrap.style.position='fixed';
+    wrap.style.left='-10000px';
+    wrap.style.top='0';
     wrap.innerHTML=buildPdfHtml();
     document.body.appendChild(wrap);
     const node=wrap.firstElementChild;
-    const canvas=await html2canvas(node,{scale:2,backgroundColor:'#ffffff',useCORS:true});
+    const canvas=await html2canvas(node,{scale:2,backgroundColor:'#ffffff',useCORS:true,logging:false});
     const { jsPDF } = window.jspdf;
     const pdf=new jsPDF('p','pt','a4');
     const pageW=pdf.internal.pageSize.getWidth(), pageH=pdf.internal.pageSize.getHeight();
     const imgW=pageW, imgH=canvas.height * imgW / canvas.width;
-    let y=0, remaining=imgH;
+    let remaining=imgH;
+    let position=0;
     const img=canvas.toDataURL('image/png');
-    pdf.addImage(img,'PNG',0,0,imgW,imgH);
-    remaining-=pageH;
-    while(remaining>0){ y = remaining - imgH; pdf.addPage(); pdf.addImage(img,'PNG',0,y,imgW,imgH); remaining -= pageH; }
+    pdf.addImage(img,'PNG',0,position,imgW,imgH);
+    remaining -= pageH;
+    while(remaining>0){
+      position = remaining - imgH;
+      pdf.addPage();
+      pdf.addImage(img,'PNG',0,position,imgW,imgH);
+      remaining -= pageH;
+    }
     pdf.save(`grundimpuls-members-summary-${state.lang}.pdf`);
-    wrap.remove();
-  }catch(err){ console.error(err); alert('PDF export failed.'); }
+  }catch(err){
+    console.error(err);
+    alert('PDF export failed.');
+  }finally{
+    if(wrap) wrap.remove();
+  }
 }
 
 function initApp(){
