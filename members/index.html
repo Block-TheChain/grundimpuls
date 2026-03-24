@@ -721,3 +721,122 @@ function buildValuesDiscoveryInnerHTML(){ const tt=i18n[state.lang].toolcards.va
 function rerenderValues(focusSearch=false){ const modalBody=document.querySelector('#modalShell .modalBody'); const valuesGrid=document.getElementById('valuesGrid'); const modalScrollTop=modalBody?modalBody.scrollTop:0; const gridScrollTop=valuesGrid?valuesGrid.scrollTop:0; const gridScrollLeft=valuesGrid?valuesGrid.scrollLeft:0; const root=document.getElementById('valuesToolRoot'); if(root) root.innerHTML=buildValuesDiscoveryInnerHTML(); requestAnimationFrame(() => { if(modalBody) modalBody.scrollTop=modalScrollTop; const nextGrid=document.getElementById('valuesGrid'); if(nextGrid){ nextGrid.scrollTop=gridScrollTop; nextGrid.scrollLeft=gridScrollLeft; } if(focusSearch){ const input=document.getElementById('valuesSearch'); if(input){ input.focus(); input.setSelectionRange(valuesSearch.length, valuesSearch.length); } } }); }
 function renderValuesTool(){ return `<div id="valuesToolRoot">${buildValuesDiscoveryInnerHTML()}</div>`; }
 
+
+
+function updateSummaryDock(){
+  const hasAssess = Object.keys(state.summary.assessments||{}).length>0;
+  const hasTools = Object.keys(state.summary.tools||{}).length>0;
+  const hasValues = !!(state.summary.values && ((state.summary.values.selected||[]).length || (state.summary.values.top5||[]).length));
+  const hasReflection = !!(state.summary.reflection && state.summary.reflection.note);
+  const hint = document.getElementById('summaryHint');
+  if(hint) hint.textContent = hasAssess || hasTools || hasValues || hasReflection ? t('summary.statusReady') : t('summary.hint');
+}
+
+function renderSummaryComposer(){
+  const parts=[];
+  const note = state.summary.note || '';
+  parts.push(`<label class="formLabel" for="summary_note">${t('summary.optionalNote')}</label><textarea id="summary_note" class="toolArea" placeholder="${escapeHtml(t('summary.optionalNotePh'))}">${escapeHtml(note)}</textarea>`);
+  const a = Object.values(state.summary.assessments||{});
+  if(a.length){
+    parts.push(`<div class="resultSection"><strong>${t('summary.assessments')}</strong><ul>${a.map(x=>`<li>${escapeHtml(x.title)} — ${escapeHtml(String(x.score))}/${escapeHtml(String(x.max))} — ${escapeHtml(x.label)}</li>`).join('')}</ul></div>`);
+  }
+  const tools = Object.values(state.summary.tools||{});
+  if(tools.length){
+    parts.push(`<div class="resultSection"><strong>${t('summary.tools')}</strong><ul>${tools.map(x=>`<li>${escapeHtml(x.title)}</li>`).join('')}</ul></div>`);
+  }
+  if(state.summary.values && ((state.summary.values.selected||[]).length || (state.summary.values.top5||[]).length)){
+    const v=state.summary.values;
+    parts.push(`<div class="resultSection"><strong>${t('summary.values')}</strong><p>${(v.top5||[]).length ? escapeHtml(v.top5.join(' · ')) : escapeHtml((v.selected||[]).join(', '))}</p></div>`);
+  }
+  if(state.summary.reflection?.note){
+    parts.push(`<div class="resultSection"><strong>${t('summary.reflection')}</strong><p>${escapeHtml(state.summary.reflection.question||'')}</p><p>${escapeHtml(state.summary.reflection.note||'')}</p></div>`);
+  }
+  if(parts.length===1){ parts.push(`<div class="panel">${t('summary.empty')}</div>`); }
+  return `<div>${parts.join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveSummaryNote()">${t('common.save')}</button><button class="btn" type="button" onclick="downloadSummaryPdf()">${t('summary.download')}</button></div></div>`;
+}
+
+function saveSummaryNote(){
+  const el=document.getElementById('summary_note');
+  state.summary.note = el ? el.value.trim() : '';
+  updateSummaryDock();
+}
+
+function openSummaryComposer(){ openModal('summary'); }
+
+function buildPdfHtml(){
+  const generated = new Date().toLocaleString(state.lang==='ro'?'ro-RO':'en-GB');
+  const a = Object.values(state.summary.assessments||{});
+  const tools = Object.values(state.summary.tools||{});
+  const values = state.summary.values;
+  const reflection = state.summary.reflection;
+  const section = (title, body) => `<section style="margin-top:22px"><h2 style="font:700 20px Montserrat,Arial,sans-serif;color:#2c66b8;margin:0 0 10px">${title}</h2>${body}</section>`;
+  const esc = escapeHtml;
+  const toolBodies = tools.map(tl=>{
+    const items=Object.entries(tl.data||{}).filter(([,v])=>v).map(([k,v])=>`<div style="margin:6px 0"><strong>${esc(k)}:</strong> ${esc(String(v))}</div>`).join('');
+    return `<div style="margin-bottom:14px"><div style="font-weight:700">${esc(tl.title)}</div>${items}</div>`;
+  }).join('');
+  return `<!doctype html><html><head><meta charset="utf-8"><style>
+    body{font-family:Arial,sans-serif;color:#1f2937;margin:0;padding:34px 38px;background:#fff;font-size:14px;line-height:1.45;word-break:break-word;overflow-wrap:anywhere}
+    .head{display:flex;align-items:flex-start;gap:12px;border-bottom:2px solid #c7d8ef;padding-bottom:12px}
+    .logoWrap{width:36px;height:36px;border-radius:999px;border:1px solid #d2ae61;background:#f9f1de;display:flex;align-items:center;justify-content:center;flex:0 0 36px}
+    .drop{font-size:24px;line-height:1;color:#b98516;transform:translateY(-1px)}
+    .brand strong{display:block;font:800 18px Montserrat,Arial,sans-serif;letter-spacing:.03em;color:#1f2a3a}
+    .tag{font-size:9px;letter-spacing:.18em;color:#6b83a6;text-transform:uppercase;margin-top:2px}
+    .hub{font:700 14px Montserrat,Arial,sans-serif;color:#2c66b8;margin-left:6px;margin-top:3px}
+    h1{font:800 34px Montserrat,Arial,sans-serif;margin:22px 0 4px;color:#12243d}
+    .muted{color:#5b6f8f}
+    .pill{border:1px solid #c7d8ef;border-radius:999px;padding:8px 14px;font:700 14px Arial,sans-serif;display:inline-block;margin-bottom:8px}
+    ul{margin:8px 0 0 18px;padding:0} li{margin:4px 0}
+  </style></head><body>
+    <div class="head"><div class="logoWrap"><div class="drop">◦</div></div><div class="brand"><strong>GRUNDIMPULS</strong><div class="tag">EXPLORE · LEARN · CREATE</div></div><div class="hub">Members Hub</div></div>
+    <h1>${esc(t('summary.composerTitle'))}</h1><div class="muted">${esc(t('summary.generated'))}: ${esc(generated)}</div>
+    ${state.summary.note ? `<p style="margin-top:14px">${esc(state.summary.note)}</p>`:''}
+    ${a.length ? section(esc(t('summary.assessments')), a.map(x=>`<div style="margin-bottom:18px"><div class="pill">${esc(x.title)}</div><div><strong>${state.lang==='ro'?'Scor':'Score'}:</strong> ${esc(String(x.score))} / ${esc(String(x.max))}</div><div><strong>${state.lang==='ro'?'Rezultat':'Result'}:</strong> ${esc(x.label)}</div><div><strong>${state.lang==='ro'?'Descriere':'Description'}:</strong> ${esc(x.desc)}</div><div><strong>${state.lang==='ro'?'Puncte oarbe':'Blind spots'}:</strong><ul>${(x.blind||[]).map(y=>`<li>${esc(y)}</li>`).join('')}</ul></div><div><strong>${state.lang==='ro'?'Pași de acțiune':'Action steps'}:</strong><ul>${(x.actions||[]).map(y=>`<li>${esc(y)}</li>`).join('')}</ul></div></div>`).join('')):''}
+    ${tools.length ? section(esc(t('summary.tools')), toolBodies):''}
+    ${values && ((values.selected||[]).length || (values.top5||[]).length) ? section(esc(t('summary.values')), `${(values.selected||[]).length?`<div><strong>${state.lang==='ro'?'Valori selectate':'Selected values'}:</strong> ${esc(values.selected.join(', '))}</div>`:''}${(values.top5||[]).length?`<div style="margin-top:10px"><strong>${state.lang==='ro'?'Top 5 valori ordonat':'Ranked top 5'}:</strong> ${esc(values.top5.map((v,i)=>`${i+1}. ${v}`).join(' · '))}</div>`:''}`):''}
+    ${reflection?.note ? section(esc(t('summary.reflection')), `<div><strong>${esc(t('reflection.questionLabel'))}:</strong> ${esc(reflection.question||'')}</div><div style="margin-top:8px"><strong>${esc(t('reflection.titleLabel'))}:</strong> ${esc(reflection.title||'')}</div><div style="margin-top:8px">${esc(reflection.note||'').replace(/\n/g,'<br>')}</div>`):''}
+  </body></html>`;
+}
+
+async function downloadSummaryPdf(){
+  try{
+    saveSummaryNote();
+    const wrap=document.createElement('div');
+    wrap.style.position='fixed'; wrap.style.left='-10000px'; wrap.style.top='0'; wrap.style.width='794px';
+    wrap.innerHTML=buildPdfHtml();
+    document.body.appendChild(wrap);
+    const node=wrap.firstElementChild;
+    const canvas=await html2canvas(node,{scale:2,backgroundColor:'#ffffff',useCORS:true});
+    const { jsPDF } = window.jspdf;
+    const pdf=new jsPDF('p','pt','a4');
+    const pageW=pdf.internal.pageSize.getWidth(), pageH=pdf.internal.pageSize.getHeight();
+    const imgW=pageW, imgH=canvas.height * imgW / canvas.width;
+    let y=0, remaining=imgH;
+    const img=canvas.toDataURL('image/png');
+    pdf.addImage(img,'PNG',0,0,imgW,imgH);
+    remaining-=pageH;
+    while(remaining>0){ y = remaining - imgH; pdf.addPage(); pdf.addImage(img,'PNG',0,y,imgW,imgH); remaining -= pageH; }
+    pdf.save(`grundimpuls-members-summary-${state.lang}.pdf`);
+    wrap.remove();
+  }catch(err){ console.error(err); alert('PDF export failed.'); }
+}
+
+function initApp(){
+  initTheme();
+  applyI18n();
+  document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+  document.getElementById('langMobileBtn')?.addEventListener('click', ()=>document.body.classList.toggle('lang-open'));
+  document.getElementById('burgerBtn')?.addEventListener('click', ()=>document.body.classList.toggle('menu-open'));
+  document.querySelectorAll('.lang button[data-lang], .langMobileMenu button[data-lang]').forEach(btn=>btn.addEventListener('click', ()=>setLang(btn.dataset.lang)));
+  document.addEventListener('click', e=>{
+    const lm=document.getElementById('langMobile'); if(lm && !lm.contains(e.target)) document.body.classList.remove('lang-open');
+    const nav=document.querySelector('.nav'); if(nav && !nav.contains(e.target) && !e.target.closest('#burgerBtn')) document.body.classList.remove('menu-open');
+  });
+  updateSummaryDock();
+}
+
+window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+window.addEventListener('load', initApp);
+</script>
+</body>
+</html>
