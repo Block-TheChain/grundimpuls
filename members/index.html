@@ -786,48 +786,81 @@ function saveSummaryNote(){
 
 function openSummaryComposer(){ openModal('summary'); }
 
-function buildPdfHtml(){
-  const generated = new Date().toLocaleString(state.lang==='ro'?'ro-RO':'en-GB');
+
+function buildPdfSections(){
+  const generated = new Date();
+  const generatedLabel = generated.toLocaleString(state.lang==='ro'?'ro-RO':'en-GB');
   const a = Object.values(state.summary.assessments||{});
   const tools = Object.values(state.summary.tools||{});
   const values = state.summary.values;
   const reflection = state.summary.reflection;
-  const section = (title, body) => `<section style="margin-top:22px"><h2 style="font:700 20px Montserrat,Arial,sans-serif;color:#2c66b8;margin:0 0 10px">${title}</h2>${body}</section>`;
   const esc = escapeHtml;
-  const toolBodies = tools.map(tl=>{
-    const items=Object.entries(tl.data||{}).filter(([,v])=>v).map(([k,v])=>`<div style="margin:6px 0"><strong>${esc(k)}:</strong> ${esc(String(v)).replace(/\n/g,'<br>')}</div>`).join('');
-    return `<div style="margin-bottom:14px"><div style="font-weight:700">${esc(tl.title)}</div>${items}</div>`;
-  }).join('');
-  return `<div id="pdfSummaryCard" style="width:794px;background:#fff;color:#1f2937;padding:34px 38px;font-family:Arial,sans-serif;font-size:14px;line-height:1.45;word-break:break-word;overflow-wrap:anywhere;box-sizing:border-box">
+  const header = `
+  <div class="pdfPageBlock pdfHeaderBlock" style="width:794px;background:#fff;color:#1f2937;padding:28px 34px 24px;font-family:Arial,sans-serif;font-size:14px;line-height:1.45;word-break:break-word;overflow-wrap:anywhere;box-sizing:border-box">
     <style>
-      #pdfSummaryCard *{box-sizing:border-box}
-      #pdfSummaryCard .head{display:flex;align-items:flex-start;gap:12px;border-bottom:2px solid #c7d8ef;padding-bottom:12px}
-      #pdfSummaryCard .logoWrap{width:36px;height:36px;border-radius:999px;border:1px solid #d2ae61;background:#f9f1de;display:flex;align-items:center;justify-content:center;flex:0 0 36px}
-      #pdfSummaryCard .drop{font-size:24px;line-height:1;color:#b98516;transform:translateY(-1px)}
-      #pdfSummaryCard .brand strong{display:block;font:800 18px Montserrat,Arial,sans-serif;letter-spacing:.03em;color:#1f2a3a}
-      #pdfSummaryCard .tag{font-size:9px;letter-spacing:.18em;color:#6b83a6;text-transform:uppercase;margin-top:2px}
-      #pdfSummaryCard .hub{font:700 14px Montserrat,Arial,sans-serif;color:#2c66b8;margin-left:6px;margin-top:3px}
-      #pdfSummaryCard h1{font:800 34px Montserrat,Arial,sans-serif;margin:22px 0 4px;color:#12243d}
-      #pdfSummaryCard .muted{color:#5b6f8f}
-      #pdfSummaryCard .pill{border:1px solid #c7d8ef;border-radius:999px;padding:8px 14px;font:700 14px Arial,sans-serif;display:inline-block;margin-bottom:8px}
-      #pdfSummaryCard .scoreLine{font-family:Montserrat,Arial,sans-serif;font-weight:800;color:#39519b;line-height:1;margin:2px 0 12px}
-      #pdfSummaryCard .scoreMain{font-size:44px}
-      #pdfSummaryCard .scoreMax{font-size:22px;color:#7e93ba;margin-left:4px}
-      #pdfSummaryCard .block{background:#eef3fb;border:1px solid #b7c8e6;border-radius:22px;padding:22px;margin-top:12px}
-      #pdfSummaryCard .resultCap{font:800 18px Montserrat,Arial,sans-serif;color:#1f2a3a;margin:0 0 12px}
-      #pdfSummaryCard .subhead{font:800 13px Montserrat,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#39519b;margin:18px 0 8px;padding-top:14px;border-top:1px solid #b7c8e6}
-      #pdfSummaryCard p,#pdfSummaryCard li,#pdfSummaryCard div{max-width:100%}
-      #pdfSummaryCard ul{margin:8px 0 0 20px;padding:0}
-      #pdfSummaryCard li{margin:6px 0}
+      .pdfPageBlock *{box-sizing:border-box}
+      .pdfPageBlock{font-family:Arial,sans-serif;color:#1f2937}
+      .pdfHead{display:flex;align-items:flex-start;gap:14px;border-bottom:2px solid #c7d8ef;padding-bottom:10px}
+      .pdfLogoWrap{width:34px;flex:0 0 34px;display:flex;justify-content:center;padding-top:2px}
+      .pdfLogoSvg{width:28px;height:36px;display:block}
+      .pdfBrandCol{display:flex;flex-direction:column;align-items:flex-start;width:183px}
+      .pdfBrandWord{display:block;font:800 18px Montserrat,Arial,sans-serif;letter-spacing:.03em;color:#1f2a3a;line-height:1}
+      .pdfTag{display:block;width:183px;font-size:9px;letter-spacing:.18em;color:#6b83a6;text-transform:uppercase;margin-top:5px;white-space:nowrap}
+      .pdfHub{font:700 14px Montserrat,Arial,sans-serif;color:#2c66b8;line-height:1.1;padding-top:4px}
+      .pdfTitle{font:800 34px Montserrat,Arial,sans-serif;margin:18px 0 4px;color:#12243d}
+      .pdfMuted{color:#5b6f8f}
+      .pdfSectionTitle{font:700 20px Montserrat,Arial,sans-serif;color:#2c66b8;margin:0 0 8px}
+      .pdfBlock{background:#eef3fb;border:1px solid #b7c8e6;border-radius:22px;padding:20px 22px}
+      .pdfPill{border:1px solid #c7d8ef;border-radius:999px;padding:8px 14px;font:700 14px Arial,sans-serif;display:inline-block;margin-bottom:8px;background:#f4f8fc}
+      .pdfScoreLine{font-family:Montserrat,Arial,sans-serif;font-weight:800;color:#39519b;line-height:1;margin:2px 0 12px}
+      .pdfScoreMain{font-size:44px}
+      .pdfScoreMax{font-size:22px;color:#7e93ba;margin-left:4px}
+      .pdfResultCap{font:800 18px Montserrat,Arial,sans-serif;color:#1f2a3a;margin:0 0 12px}
+      .pdfSubhead{font:800 13px Montserrat,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#39519b;margin:18px 0 8px;padding-top:14px;border-top:1px solid #b7c8e6}
+      .pdfParagraph, .pdfList li, .pdfField{font-size:14px;line-height:1.55;color:#1f2937}
+      .pdfField{margin:6px 0}
+      .pdfList{margin:8px 0 0 20px;padding:0}
+      .pdfList li{margin:6px 0}
     </style>
-    <div class="head"><div class="logoWrap"><div class="drop">◦</div></div><div class="brand"><strong>GRUNDIMPULS</strong><div class="tag">EXPLORE · LEARN · CREATE</div></div><div class="hub">Members Hub</div></div>
-    <h1>${esc(t('summary.composerTitle'))}</h1><div class="muted">${esc(t('summary.generated'))}: ${esc(generated)}</div>
-    ${state.summary.note ? `<p style="margin-top:14px">${esc(state.summary.note).replace(/\n/g,'<br>')}</p>`:''}
-    ${a.length ? section(esc(t('summary.assessments')), a.map(x=>`<div class="block"><div class="pill">${esc(x.title)}</div><div class="scoreLine"><span class="scoreMain">${esc(String(x.score))}</span><span class="scoreMax">/${esc(String(x.max))}</span></div><div class="resultCap">${esc(x.label)}</div><div class="subhead">${state.lang==='ro'?'Descriere':'Description'}</div><div>${esc(x.desc)}</div><div class="subhead">${state.lang==='ro'?'Puncte oarbe':'Blind spots'}</div><ul>${(x.blind||[]).map(y=>`<li>${esc(y)}</li>`).join('')}</ul><div class="subhead">${state.lang==='ro'?'Pași de acțiune':'Action steps'}</div><ul>${(x.actions||[]).map(y=>`<li>${esc(y)}</li>`).join('')}</ul></div>`).join('')):''}
-    ${tools.length ? section(esc(t('summary.tools')), toolBodies):''}
-    ${values && ((values.selected||[]).length || (values.top5||[]).length) ? section(esc(t('summary.values')), `${(values.selected||[]).length?`<div><strong>${state.lang==='ro'?'Valori selectate':'Selected values'}:</strong> ${esc(values.selected.join(', '))}</div>`:''}${(values.top5||[]).length?`<div style="margin-top:10px"><strong>${state.lang==='ro'?'Top 5 valori ordonat':'Ranked top 5'}:</strong> ${esc(values.top5.map((v,i)=>`${i+1}. ${v}`).join(' · '))}</div>`:''}`):''}
-    ${reflection?.note ? section(esc(t('summary.reflection')), `<div><strong>${esc(t('reflection.questionLabel'))}:</strong> ${esc(reflection.question||'')}</div><div style="margin-top:8px"><strong>${esc(t('reflection.titleLabel'))}:</strong> ${esc(reflection.title||'')}</div><div style="margin-top:8px">${esc(reflection.note||'').replace(/\n/g,'<br>')}</div>`):''}
+    <div class="pdfHead">
+      <div class="pdfLogoWrap">
+        <svg class="pdfLogoSvg" viewBox="0 0 64 88" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M32 4 C32 4, 54 38, 54 54 C54 72, 44 84, 32 84 C20 84, 10 72, 10 54 C10 38, 32 4, 32 4 Z" fill="none" stroke="#111827" stroke-width="4" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="pdfBrandCol"><span class="pdfBrandWord">GRUNDIMPULS</span><span class="pdfTag">EXPLORE · LEARN · CREATE</span></div>
+      <div class="pdfHub">Members Hub</div>
+    </div>
+    <div class="pdfTitle">${esc(t('summary.composerTitle'))}</div>
+    <div class="pdfMuted">${esc(t('summary.generated'))}: ${esc(generatedLabel)}</div>
+    ${state.summary.note ? `<div class="pdfParagraph" style="margin-top:12px">${esc(state.summary.note).replace(/\n/g,'<br>')}</div>`:''}
   </div>`;
+
+  const sections = [header];
+
+  if(a.length){
+    sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0"><h2 class="pdfSectionTitle">${esc(t('summary.assessments'))}</h2></div>`);
+    a.forEach(x=>{
+      sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0"><div class="pdfBlock"><div class="pdfPill">${esc(x.title)}</div><div class="pdfScoreLine"><span class="pdfScoreMain">${esc(String(x.score))}</span><span class="pdfScoreMax">/${esc(String(x.max))}</span></div><div class="pdfResultCap">${esc(x.label)}</div><div class="pdfSubhead">${state.lang==='ro'?'Descriere':'Description'}</div><div class="pdfParagraph">${esc(x.desc)}</div><div class="pdfSubhead">${state.lang==='ro'?'Puncte oarbe':'Blind spots'}</div><ul class="pdfList">${(x.blind||[]).map(y=>`<li>${esc(y)}</li>`).join('')}</ul><div class="pdfSubhead">${state.lang==='ro'?'Pași de acțiune':'Action steps'}</div><ul class="pdfList">${(x.actions||[]).map(y=>`<li>${esc(y)}</li>`).join('')}</ul></div></div>`);
+    });
+  }
+
+  if(tools.length){
+    sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0"><h2 class="pdfSectionTitle">${esc(t('summary.tools'))}</h2></div>`);
+    tools.forEach(tl=>{
+      const items=Object.entries(tl.data||{}).filter(([,v])=>v).map(([k,v])=>`<div class="pdfField"><strong>${esc(k)}:</strong> ${esc(String(v)).replace(/\n/g,'<br>')}</div>`).join('');
+      sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0"><div style="padding:2px 0 0"><div style="font-weight:700;font-size:16px;margin-bottom:6px">${esc(tl.title)}</div>${items}</div></div>`);
+    });
+  }
+
+  if(values && ((values.selected||[]).length || (values.top5||[]).length)){
+    sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0"><h2 class="pdfSectionTitle">${esc(t('summary.values'))}</h2><div class="pdfField">${(values.selected||[]).length?`<strong>${state.lang==='ro'?'Valori selectate':'Selected values'}:</strong> ${esc(values.selected.join(', '))}`:''}</div>${(values.top5||[]).length?`<div class="pdfField" style="margin-top:10px"><strong>${state.lang==='ro'?'Top 5 valori ordonat':'Ranked top 5'}:</strong> ${esc(values.top5.map((v,i)=>`${i+1}. ${v}`).join(' · '))}</div>`:''}</div>`);
+  }
+
+  if(reflection?.note){
+    sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0 34px"><h2 class="pdfSectionTitle">${esc(t('summary.reflection'))}</h2><div class="pdfField"><strong>${esc(t('reflection.questionLabel'))}:</strong> ${esc(reflection.question||'')}</div><div class="pdfField" style="margin-top:8px"><strong>${esc(t('reflection.titleLabel'))}:</strong> ${esc(reflection.title||'')}</div><div class="pdfField" style="margin-top:8px">${esc(reflection.note||'').replace(/\n/g,'<br>')}</div></div>`);
+  }
+  return sections;
 }
 
 async function downloadSummaryPdf(){
@@ -843,26 +876,37 @@ async function downloadSummaryPdf(){
     wrap.style.top='0';
     wrap.style.width='794px';
     wrap.style.zIndex='-1';
-    wrap.innerHTML=buildPdfHtml();
+    wrap.style.background='#fff';
+    wrap.innerHTML=buildPdfSections().join('');
     document.body.appendChild(wrap);
-    const node=wrap.firstElementChild;
-    await new Promise(r=>setTimeout(r,120));
-    const canvas=await window.html2canvas(node,{scale:2,backgroundColor:'#ffffff',useCORS:true,logging:false,windowWidth:794});
+    await new Promise(r=>setTimeout(r,150));
+    const blocks=[...wrap.children];
     const { jsPDF } = window.jspdf;
     const pdf=new jsPDF('p','pt','a4');
-    const pageW=pdf.internal.pageSize.getWidth(), pageH=pdf.internal.pageSize.getHeight();
-    const imgW=pageW, imgH=canvas.height * imgW / canvas.width;
-    const img=canvas.toDataURL('image/png');
-    let remaining=imgH, position=0;
-    pdf.addImage(img,'PNG',0,position,imgW,imgH,undefined,'FAST');
-    remaining -= pageH;
-    while(remaining > 0){
-      position = remaining - imgH;
-      pdf.addPage();
-      pdf.addImage(img,'PNG',0,position,imgW,imgH,undefined,'FAST');
-      remaining -= pageH;
+    const pageW=pdf.internal.pageSize.getWidth();
+    const pageH=pdf.internal.pageSize.getHeight();
+    const margin=28;
+    const usableW=pageW - margin*2;
+    let y=margin;
+    let first=true;
+    for(const block of blocks){
+      const canvas=await window.html2canvas(block,{scale:2,backgroundColor:'#ffffff',useCORS:true,logging:false,windowWidth:794});
+      const imgW=usableW;
+      const imgH=canvas.height * imgW / canvas.width;
+      if(!first && y + imgH > pageH - margin){
+        pdf.addPage();
+        y=margin;
+      }
+      const img=canvas.toDataURL('image/png');
+      pdf.addImage(img,'PNG',margin,y,imgW,imgH,undefined,'FAST');
+      y += imgH + 12;
+      first=false;
     }
-    pdf.save(`grundimpuls-members-summary-${state.lang}.pdf`);
+    const d=new Date();
+    const yyyy=d.getFullYear();
+    const mm=String(d.getMonth()+1).padStart(2,'0');
+    const dd=String(d.getDate()).padStart(2,'0');
+    pdf.save(`grundimpuls-members-summary-${yyyy}-${mm}-${dd}-${state.lang}.pdf`);
   }catch(err){
     console.error(err);
     alert('PDF export failed.');
@@ -870,7 +914,6 @@ async function downloadSummaryPdf(){
     if(wrap) wrap.remove();
   }
 }
-
 function initApp(){
   initTheme();
   applyI18n();
