@@ -173,6 +173,10 @@
     .result .rtext{font-size:16px;color:var(--text);margin:0;line-height:1.65}
     .result .rlist{margin:0 0 0 18px;padding:0;color:var(--text);font-size:16px}
     .result .rlist li{margin:0 0 8px 0;line-height:1.55;font-size:16px}
+    .result .score .scoreMax{font-size:.56em;font-weight:800;color:var(--muted2)}
+    .result .rlist{margin:0 0 0 20px;padding:0;color:var(--text);font-size:16px;line-height:1.58}
+    .result .rlist li{margin:0 0 8px 0}
+
     .formLabel{display:block;font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px}
     .toolArea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--bg-alt);color:var(--text);font-family:inherit;font-size:14px;resize:vertical;transition:border-color .15s;outline:none;margin-bottom:14px}
     .toolArea:focus{border-color:var(--accent-border)}
@@ -595,7 +599,7 @@ function openModal(key, rerender=false){
     content.innerHTML = renderAssessment(key);
   } else if(toolDefs[key]){
     if(key==='values'){
-      kicker.textContent = t('toolcards.values.title');
+      kicker.textContent = t('toolcards.values.kicker');
       title.textContent = t('values.title');
       desc.textContent = t('values.desc');
       content.innerHTML = renderValuesTool();
@@ -616,12 +620,13 @@ function closeModal(){document.getElementById('modalShell').classList.remove('op
 function renderAssessment(key){
   const def=assessments[key];
   const answers=state.assessmentAnswers[key] || {};
+  const scale=[t('common.scale1'),t('common.scale2'),t('common.scale3'),t('common.scale4'),t('common.scale5')];
   let html='';
   let currentGroup='';
   def.questions.forEach((q,idx)=>{
-    const group = q.group;
+    const group=q.group;
     if(group!==currentGroup){currentGroup=group; html+=`<div class="qGroup">${escapeHtml(group)}</div>`}
-    html += `<div class="question"><p>${idx+1}. ${escapeHtml(q.text[state.lang])}</p><div class="scaleRow">${[1,2,3,4].map(v=>`<label><input type="radio" name="q_${key}_${idx}" value="${v}" ${answers[idx]==v?'checked':''} onchange="setAssessmentAnswer('${key}',${idx},${v})"><span>${['Not true','Slightly','Mostly','Very true'][v-1]}</span></label>`).join('')}</div></div>`;
+    html += `<div class="question"><p>${idx+1}. ${escapeHtml(q.text[state.lang])}</p><div class="scaleRow">${[1,2,3,4,5].map(v=>`<label><input type="radio" name="q_${key}_${idx}" value="${v}" ${answers[idx]==v?'checked':''} onchange="setAssessmentAnswer('${key}',${idx},${v})"><span>${escapeHtml(scale[v-1])}</span></label>`).join('')}</div></div>`;
   });
   html += `<div class="stackRow"><button class="btn primary" type="button" onclick="finishAssessment('${key}')">${t('common.seeResult')}</button><button class="btn" type="button" onclick="resetAssessment('${key}')">${t('common.reset')}</button></div><div class="result" id="result_${key}"></div>`;
   return html;
@@ -631,12 +636,13 @@ function resetAssessment(key){ state.assessmentAnswers[key]={}; openModal(key,tr
 function finishAssessment(key){
   const def=assessments[key]; const ans=state.assessmentAnswers[key]||{}; if(Object.keys(ans).length!==def.questions.length){alert(t('common.pleaseAnswerAll')); return}
   const total=Object.values(ans).reduce((a,b)=>a+b,0); const band=def.bands.find(b=>total<=b.max) || def.bands[def.bands.length-1];
-  const resultHtml = `<div class="resultScore">${total}</div><div class="small">/ ${def.scoreMax}</div><div class="resultLabel">${escapeHtml(band.label[state.lang])}</div><div class="resultSection"><strong>${state.lang==='ro'?'Descriere':'Description'}</strong><p>${escapeHtml(band.desc[state.lang])}</p></div><div class="resultSection"><strong>${state.lang==='ro'?'Puncte oarbe':'Blind spots'}</strong><ul>${band.blind[state.lang].map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul></div><div class="resultSection"><strong>${state.lang==='ro'?'Pași de acțiune':'Action steps'}</strong><ul>${band.actions[state.lang].map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul></div>`;
+  const resultHtml = `<div class="score">${total} <span class="scoreMax">/ ${def.scoreMax}</span></div><div class="rlabel">${escapeHtml(band.label[state.lang])}</div><div class="rblock"><div class="rhead">${state.lang==='ro'?'Descriere':'Description'}</div><div class="rtext">${escapeHtml(band.desc[state.lang])}</div></div><div class="rblock"><div class="rhead">${state.lang==='ro'?'Puncte oarbe':'Blind spots'}</div>${renderBulletList(band.blind[state.lang]||[])}</div><div class="rblock"><div class="rhead">${state.lang==='ro'?'Pași de acțiune':'Action steps'}</div>${renderBulletList(band.actions[state.lang]||[])}</div>`;
   const box=document.getElementById('result_'+key); box.innerHTML=resultHtml; box.classList.add('show');
   state.summary.assessments[key]={title:t('cards.'+key+'.title'),score:total,max:def.scoreMax,label:band.label[state.lang],desc:band.desc[state.lang],blind:[...band.blind[state.lang]],actions:[...band.actions[state.lang]]};
   updateSummaryDock();
 }
 
+function renderBulletList(items){ return `<ul class="rlist">${(items||[]).map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul>`; }
 function renderToolForm(key){
   const saved=state.summary.tools[key]?.data || {}; const fields=toolDefs[key].fields;
   return `<div>${fields.map(([id,en,ro])=>`<label class="formLabel" for="${key}_${id}">${escapeHtml(state.lang==='ro'?ro:en)}</label><textarea id="${key}_${id}" class="toolArea">${escapeHtml(saved[id]||'')}</textarea>`).join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveTool('${key}')">${t('common.save')}</button><span class="copyMsg" id="msg_${key}">${t('summary.statusSaved')}</span></div></div>`
@@ -651,7 +657,7 @@ function saveTool(key){
 
 function renderReflectionNotes(){
   const saved=state.summary.reflection || {title:t('reflection.defaultTitle'),note:''}; const week=currentWeekly();
-  return `<div><label class="formLabel">${t('reflection.questionLabel')}</label><div class="panel" style="margin-bottom:14px">${escapeHtml(week.question)}</div><label class="formLabel" for="reflection_title">${t('reflection.titleLabel')}</label><input id="reflection_title" class="toolInput" value="${escapeHtml(saved.title||t('reflection.defaultTitle'))}" style="margin-bottom:14px"><label class="formLabel" for="reflection_note">${t('reflection.notesTitle')}</label><textarea id="reflection_note" class="toolArea">${escapeHtml(saved.note||'')}</textarea><div class="stackRow"><button class="btn primary" type="button" onclick="saveReflectionNotes()">${t('common.save')}</button><span class="copyMsg" id="msg_reflection">${t('summary.statusSaved')}</span></div></div>`
+  return `<div><label class="formLabel">${t('reflection.questionLabel')}</label><div class="panel" style="margin-bottom:14px"><div style="font-size:31px;line-height:1.28;font-weight:800;font-style:italic;color:var(--text)">“${escapeHtml(week.question)}”</div></div><label class="formLabel" for="reflection_title">${t('reflection.titleLabel')}</label><input id="reflection_title" class="toolInput" value="${escapeHtml(saved.title||t('reflection.defaultTitle'))}" style="margin-bottom:14px"><label class="formLabel" for="reflection_note">${t('reflection.notesTitle')}</label><textarea id="reflection_note" class="toolArea">${escapeHtml(saved.note||'')}</textarea><div class="stackRow"><button class="btn primary" type="button" onclick="saveReflectionNotes()">${t('common.save')}</button><span class="copyMsg" id="msg_reflection">${t('summary.statusSaved')}</span></div></div>`
 }
 function saveReflectionNotes(){
   const title=document.getElementById('reflection_title').value.trim()||t('reflection.defaultTitle'); const note=document.getElementById('reflection_note').value.trim();
@@ -663,13 +669,13 @@ function saveReflectionNotes(){
 }
 
 function renderBreathing(){
-  return `<div class="breatheWrap"><div class="breatheCircle" id="breatheCircle"><div class="breathePhase" id="breathePhase">Ready</div><div class="breatheCount" id="breatheCount">3:00</div></div><div class="small" id="breatheProgress">${state.lang==='ro'?'3 minute · ritm 4-4-6':'3 minutes · rhythm 4-4-6'}</div><div class="stackRow"><button class="btn primary" type="button" id="breatheStart" onclick="toggleBreathing()">${t('common.start')}</button><button class="btn" type="button" onclick="resetBreathing()">${t('common.reset')}</button></div></div>`
+  return `<div class="breatheWrap" id="breatheWrap"><div class="breatheCircle" id="breatheCircle"><div class="breathePhase" id="breathePhase">${state.lang==='ro'?'Pregătit':'Ready'}</div><div class="breatheCount" id="breatheCount">4</div></div><div class="breatheInstruction" id="breatheInstruction">${state.lang==='ro'?'Inspiră lent și constant pe nas.':'Breathe in slowly and steadily through your nose.'}</div><div class="breatheProgress" id="breatheProgress">${state.lang==='ro'?'Ciclul 1 din 4':'Cycle 1 of 4'}</div><div class="stackRow"><button class="btn primary" type="button" id="breatheStart" onclick="toggleBreathing()">${t('common.start')}</button><button class="btn" type="button" onclick="resetBreathing()">${t('common.reset')}</button></div></div>`
 }
-function initBreathing(){ state.breathing={remaining:180,phaseIndex:0,phaseElapsed:0,running:false,timer:null,phases:[{name:state.lang==='ro'?'Inspiră':'Inhale',sec:4,scale:1.14},{name:state.lang==='ro'?'Ține':'Hold',sec:4,scale:1.14},{name:state.lang==='ro'?'Expiră':'Exhale',sec:6,scale:.92}]}; updateBreathingDisplay() }
-function toggleBreathing(){ if(!state.breathing) initBreathing(); const b=state.breathing; b.running=!b.running; document.getElementById('breatheStart').textContent=b.running?(state.lang==='ro'?'Pauză':'Pause'):t('common.start'); if(b.running){ b.timer=setInterval(stepBreathing,1000)} else {clearInterval(b.timer)} }
+function initBreathing(){ state.breathing={phaseIndex:0,remaining:4,running:false,cycle:0,timer:null,phases:[{name:state.lang==='ro'?'Inspiră':'Inhale',sec:4,scale:1.18,instruction:state.lang==='ro'?'Inspiră lent și constant pe nas.':'Breathe in slowly and steadily through your nose.'},{name:state.lang==='ro'?'Ține':'Hold',sec:4,scale:1.18,instruction:state.lang==='ro'?'Ține. Rămâi nemișcat.':'Hold. Stay still. Let the air settle.'},{name:state.lang==='ro'?'Expiră':'Exhale',sec:4,scale:0.88,instruction:state.lang==='ro'?'Expiră lent pe gură.':'Breathe out slowly through your mouth.'},{name:state.lang==='ro'?'Ține':'Hold',sec:4,scale:0.88,instruction:state.lang==='ro'?'Ține. Gol. Lasă tensiunea să plece.':'Hold. Empty. Let go of tension.'}]}; updateBreathingDisplay() }
+function toggleBreathing(){ if(!state.breathing) initBreathing(); const b=state.breathing; b.running=!b.running; document.getElementById('breatheStart').textContent=b.running?(state.lang==='ro'?'Pauză':'Pause'):t('common.start'); if(b.running){ b.timer=setInterval(stepBreathing,1000)} else if(b.timer){ clearInterval(b.timer); b.timer=null; } }
 function resetBreathing(){ if(state.breathing?.timer) clearInterval(state.breathing.timer); initBreathing(); document.getElementById('breatheStart').textContent=t('common.start') }
-function stepBreathing(){ const b=state.breathing; if(!b.running) return; b.remaining--; b.phaseElapsed++; if(b.phaseElapsed>=b.phases[b.phaseIndex].sec){b.phaseElapsed=0; b.phaseIndex=(b.phaseIndex+1)%b.phases.length} if(b.remaining<=0){clearInterval(b.timer); b.running=false; state.summary.tools.breathing={title:t('toolcards.breathing.title'),data:{completed:state.lang==='ro'?'Exercițiu completat':'Exercise completed'}}; updateSummaryDock()} updateBreathingDisplay() }
-function updateBreathingDisplay(){ if(!state.breathing) return; const b=state.breathing; const phase=b.phases[b.phaseIndex]; const mm=String(Math.floor(b.remaining/60)).padStart(1,'0'); const ss=String(b.remaining%60).padStart(2,'0'); document.getElementById('breathePhase').textContent=phase.name; document.getElementById('breatheCount').textContent=`${mm}:${ss}`; document.getElementById('breatheCircle').style.transform=`scale(${phase.scale})`; }
+function stepBreathing(){ const b=state.breathing; if(!b.running) return; b.remaining--; if(b.remaining<=0){ b.phaseIndex=(b.phaseIndex+1)%b.phases.length; if(b.phaseIndex===0) b.cycle++; if(b.cycle>=4){ clearInterval(b.timer); b.running=false; state.summary.tools.breathing={title:t('toolcards.breathing.title'),data:{completed:state.lang==='ro'?'Exercițiu completat':'Exercise completed'}}; updateSummaryDock(); document.getElementById('breatheStart').textContent=t('common.start'); initBreathing(); return; } b.remaining=b.phases[b.phaseIndex].sec; } updateBreathingDisplay() }
+function updateBreathingDisplay(){ if(!state.breathing) return; const b=state.breathing; const phase=b.phases[b.phaseIndex]; document.getElementById('breathePhase').textContent=phase.name; document.getElementById('breatheCount').textContent=String(b.remaining); document.getElementById('breatheInstruction').textContent=phase.instruction; document.getElementById('breatheProgress').textContent=state.lang==='ro'?`Ciclul ${b.cycle+1} din 4`:`Cycle ${b.cycle+1} of 4`; document.getElementById('breatheCircle').style.transform=`scale(${phase.scale})`; }
 
 function getValuesList(){ return state.lang==='ro' ? RO_VALUES : EN_VALUES }
 let valuesSearch = '';
