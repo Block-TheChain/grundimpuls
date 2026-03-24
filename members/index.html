@@ -679,7 +679,7 @@ function updateBreathingDisplay(){ if(!state.breathing) return; const b=state.br
 
 function getValuesList(){ return state.lang==='ro' ? RO_VALUES : EN_VALUES }
 let valuesSearch = '';
-function getValuesList(){ return state.lang==='ro' ? VALUES_RO_LIST : VALUES_MASTER_LIST; }
+function getValuesList(){ return state.lang==='ro' ? RO_VALUES : EN_VALUES; }
 function normalizeValuesState(s){ const allowed=getValuesList(); const selected=Array.from(new Set((s?.selected||[]).filter(v=>allowed.includes(v)))); const top5=Array.from(new Set((s?.top5||[]).filter(v=>selected.includes(v)))).slice(0,5); return {selected,top5}; }
 function syncValuesIntoSummary(){ state.summary.values={title:t('toolcards.values.title'),selected:[...state.values.selected],top5:[...state.values.top5]}; }
 function updateValuesSearch(value){ valuesSearch=value||''; rerenderValues(true); }
