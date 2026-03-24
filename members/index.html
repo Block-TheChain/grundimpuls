@@ -159,10 +159,10 @@
     .qGroup{font-size:12px;font-weight:900;color:var(--accent-dark);text-transform:uppercase;letter-spacing:.14em;margin:22px 0 10px;padding-top:16px;border-top:1px solid var(--border)}
     .qGroup:first-child{margin-top:0;padding-top:0;border-top:none}
     .question{margin-bottom:22px}.question p{font-size:14px;color:var(--text);margin-bottom:10px;font-weight:600}
-    .scaleRow{display:flex;gap:6px;flex-wrap:wrap}
-    .scaleRow label{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;flex:1 0 auto}
+    .scaleRow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;align-items:start}
+    .scaleRow label{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px;cursor:pointer;min-width:0}
     .scaleRow input[type="radio"]{accent-color:var(--accent);width:16px;height:16px}
-    .scaleRow span{font-size:11px;color:var(--muted2);text-align:center;max-width:72px;line-height:1.3}
+    .scaleRow span{font-size:11px;color:var(--muted2);text-align:center;line-height:1.25;max-width:none;white-space:normal}
     .result{margin-top:20px;padding:22px;border-radius:var(--radius);border:1px solid var(--accent-border);background:var(--accent-bg);display:none}
     .result.show{display:block}
     .result .score{font-size:38px;font-weight:900;color:var(--accent-dark);line-height:1}
@@ -211,19 +211,19 @@
     .valuesEmpty{font-size:14px;color:var(--muted2);padding:14px 0}
     .valuesSelected{display:flex;flex-wrap:wrap;gap:8px}
     .valuesCandidateList{display:flex;flex-direction:column;gap:8px}
-    .valuesCandidate{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--border);background:var(--bg);border-radius:16px}
-    .valuesCandidate strong{font-size:14px}
-    .valuesCandidateActions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .valuesCandidate{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--border);background:var(--bg);border-radius:16px}
+    .valuesCandidate strong{font-size:14px;min-width:0;overflow-wrap:anywhere}
+    .valuesCandidateActions{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;justify-content:flex-end;white-space:nowrap}
     .valuesTopList{display:flex;flex-direction:column;gap:10px}
-    .valuesTopItem{display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--border);background:var(--bg);border-radius:16px}
+    .valuesTopItem{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--border);background:var(--bg);border-radius:16px}
     .valuesRank{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--accent-bg);color:var(--accent-dark);font-weight:900;font-size:14px;border:1px solid var(--accent-border)}
     .valuesTopName{font-size:15px;font-weight:800;color:var(--text)}
-    .valuesTopActions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+    .valuesTopActions{display:flex;gap:6px;flex-wrap:nowrap;justify-content:flex-end;align-items:center}
     .miniBtn{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;padding:0 10px;border-radius:12px;border:1px solid var(--border);background:var(--bg-alt);color:var(--text);font:inherit;font-size:13px;font-weight:900;cursor:pointer;transition:all .15s ease}
     .miniBtn:hover{border-color:var(--accent-border);background:var(--accent-bg)}
     .miniBtn:disabled{opacity:.45;cursor:not-allowed;transform:none}
     .valuesToolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-    @media(max-width:700px){.valuesGrid{max-height:260px}.valuesCandidate,.valuesTopItem{grid-template-columns:1fr;align-items:flex-start}.valuesCandidateActions,.valuesTopActions{justify-content:flex-start}.valuesToolbar{align-items:flex-start}.valuesSearchRow{align-items:stretch}}
+    @media(max-width:700px){.valuesGrid{max-height:260px}.valuesCandidate{grid-template-columns:minmax(0,1fr) auto;align-items:center}.valuesTopItem{grid-template-columns:44px minmax(0,1fr) auto;align-items:center}.valuesCandidateActions,.valuesTopActions{justify-content:flex-end}.valuesToolbar{align-items:flex-start}.valuesSearchRow{align-items:stretch}.scaleRow span{font-size:10px}}
 
 
     .summaryDock{position:fixed;right:18px;bottom:18px;z-index:70;max-width:360px}
@@ -403,7 +403,7 @@ const i18n = {
   en: {
     brand:{hub:'Members Hub',members:'Members',hubWord:'Hub'},
     nav:{start:'Start',assessments:'Self-Assessments',tools:'Tools',reflection:'Weekly reflection',publicSite:'Public site'},
-    common:{openAssessment:'Open assessment',openTool:'Open tool',startAssessment:'Start assessment',seeResult:'See my result',copy:'Copy to clipboard',clear:'Clear',copied:'Copied.',start:'Start',reset:'Reset',ready:'Ready',close:'Close',pleaseAnswerAll:'Please answer all questions before seeing your result.',fillField:'Fill in at least one field first.',copyFailed:'Copy failed. Please copy manually.',save:'Save',saved:'Saved.'},
+    common:{openAssessment:'Open assessment',openTool:'Open tool',startAssessment:'Start assessment',seeResult:'See my result',copy:'Copy to clipboard',clear:'Clear',copied:'Copied.',start:'Start',reset:'Reset',ready:'Ready',close:'Close',pleaseAnswerAll:'Please answer all questions before seeing your result.',fillField:'Fill in at least one field first.',copyFailed:'Copy failed. Please copy manually.',save:'Save',saved:'Saved.',scale1:'Not true',scale2:'Slightly',scale3:'Somewhat',scale4:'Mostly',scale5:'Very true'},
     hero:{kicker:'Members Hub',h1:'Useful things for people who want clarity under pressure.',lead:'This is the private Grundimpuls resource hub for coaching and training participants. It is built for actual use in difficult weeks, not for passive reading.',sub:'Start with the situation you are in. Then use one tool. Not five.',badge1:'Self-Assessments',badge2:'Tools',badge3:'Weekly Reflection',cta1:'Start here',cta2:'Weekly reflection',note:'Access is limited to approved participant email addresses.',nowTitle:'What to use right now',now1:'If your capacity feels lower than usual, start with <strong>Burnout screening</strong>.',now2:'If you are overloaded, use <strong>7-day recovery planner</strong>.',now3:'If a conversation is stuck, use <strong>Difficult conversation prep</strong>.',now4:'If decisions feel noisy, use <strong>Decision journal</strong>.',now5:'If you need to reset, use <strong>3-minute breathing exercise</strong>.',small:'Version 1 principle: less content, more utility.'},
     start:{title:'Start with your situation',lead:'People do not usually need a library. They need the right thing at the right time.',card1t:'I want a clearer snapshot',card1d:'Use one self-assessment to see where you are right now.',card2t:'I need something practical',card2d:'Use a tool before, during, or between sessions.',card3t:'I need to think more honestly',card3d:'Use the weekly reflection to slow down and look properly.'},
     assess:{title:'Self-Assessments',lead:'These are practical self-checks. They give you a structured snapshot and a direction for reflection.'},
@@ -418,7 +418,7 @@ const i18n = {
   ro: {
     brand:{hub:'Members Hub',members:'Hub',hubWord:'Membri'},
     nav:{start:'Start',assessments:'Autoevaluări',tools:'Instrumente',reflection:'Reflecție săptămânală',publicSite:'Site public'},
-    common:{openAssessment:'Deschide evaluarea',openTool:'Deschide instrumentul',startAssessment:'Începe evaluarea',seeResult:'Vezi rezultatul',copy:'Copiază',clear:'Șterge',copied:'Copiat.',start:'Start',reset:'Resetează',ready:'Pregătit',close:'Închide',pleaseAnswerAll:'Răspunde la toate întrebările înainte să vezi rezultatul.',fillField:'Completează cel puțin un câmp.',copyFailed:'Copierea a eșuat. Copiază manual.',save:'Salvează',saved:'Salvat.'},
+    common:{openAssessment:'Deschide evaluarea',openTool:'Deschide instrumentul',startAssessment:'Începe evaluarea',seeResult:'Vezi rezultatul',copy:'Copiază',clear:'Șterge',copied:'Copiat.',start:'Start',reset:'Resetează',ready:'Pregătit',close:'Închide',pleaseAnswerAll:'Răspunde la toate întrebările înainte să vezi rezultatul.',fillField:'Completează cel puțin un câmp.',copyFailed:'Copierea a eșuat. Copiază manual.',save:'Salvează',saved:'Salvat.',scale1:'Deloc adevărat',scale2:'Puțin',scale3:'Parțial',scale4:'Mai degrabă da',scale5:'Foarte adevărat'},
     hero:{kicker:'Members Hub',h1:'Lucruri utile pentru oameni care vor claritate sub presiune.',lead:'Acesta este hubul privat de resurse Grundimpuls pentru participanții la coaching și training. Este făcut pentru folosire reală în săptămâni dificile, nu pentru citit pasiv.',sub:'Începe cu situația în care ești. Apoi folosește un singur instrument. Nu cinci.',badge1:'Autoevaluări',badge2:'Instrumente',badge3:'Reflecție săptămânală',cta1:'Începe aici',cta2:'Reflecție săptămânală',note:'Accesul este limitat la adresele de email aprobate ale participanților.',nowTitle:'Ce să folosești chiar acum',now1:'Dacă simți că ai capacitate mai mică decât de obicei, începe cu <strong>screeningul de burnout</strong>.',now2:'Dacă ești supraîncărcat, folosește <strong>planificatorul de recuperare pe 7 zile</strong>.',now3:'Dacă o conversație este blocată, folosește <strong>pregătirea pentru conversații dificile</strong>.',now4:'Dacă deciziile par zgomotoase, folosește <strong>jurnalul de decizie</strong>.',now5:'Dacă ai nevoie de resetare, folosește <strong>exercițiul de respirație de 3 minute</strong>.',small:'Principiul versiunii 1: mai puțin conținut, mai multă utilitate.'},
     start:{title:'Începe cu situația ta',lead:'De obicei, oamenii nu au nevoie de o bibliotecă. Au nevoie de lucrul potrivit la momentul potrivit.',card1t:'Vreau o imagine mai clară',card1d:'Folosește o autoevaluare ca să vezi unde ești acum.',card2t:'Am nevoie de ceva practic',card2d:'Folosește un instrument înainte, în timpul sau între sesiuni.',card3t:'Am nevoie să gândesc mai onest',card3d:'Folosește reflecția săptămânală ca să încetinești și să te uiți mai clar.'},
     assess:{title:'Autoevaluări',lead:'Acestea sunt verificări practice. Îți oferă o imagine structurată și o direcție de reflecție.'},
