@@ -363,7 +363,6 @@
   <section id="initiations">
     <div class="wrap">
       <div class="accentBar"></div>
-      <div class="eyebrow" data-i18n="initiations.eyebrow">Initiations</div>
       <h2 data-i18n="initiations.title">Initiations</h2>
       <p class="lead" data-i18n="initiations.lead">A smaller section for things that should stay close to hand: principles worth returning to, and one assessment for clarifying what matters before you build on top of it.</p>
       <div class="initiationsShell">
@@ -400,6 +399,31 @@
     </div>
   </section>
 
+  <section id="from-stamin">
+    <div class="wrap">
+      <div class="accentBar"></div>
+      <h2 data-i18n="stamin.title">From Stamin</h2>
+      <div class="card" style="max-width:860px">
+        <p data-i18n="stamin.note1">This month I am paying attention to the gap between insight and execution. Many smart people know exactly what is wrong and still keep protecting the pattern that creates the problem.</p>
+        <p data-i18n="stamin.note2">That usually means the real work is not more understanding. It is a more honest decision about what has to change.</p>
+        <p><a href="https://grundimpuls.substack.com" target="_blank" rel="noopener" data-i18n="stamin.link">Read the latest or most relevant Substack piece</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="daily-inspiration">
+    <div class="wrap">
+      <div class="accentBar"></div>
+      <h2 data-i18n="daily.title">Daily inspiration</h2>
+      <p data-i18n="daily.lead">A daily line worth thinking with, not just agreeing with.</p>
+      <div class="card" style="max-width:860px;margin-top:24px">
+        <div class="small" id="dailyLabel"></div>
+        <div style="font-size:20px;font-weight:700;color:var(--text);font-style:italic;line-height:1.55;margin:12px 0 10px" id="dailyQuote"></div>
+        <div class="small" id="dailyAuthor" style="color:var(--accent-dark);font-weight:700"></div>
+      </div>
+    </div>
+  </section>
+
   <section id="reflection" class="alt">
     <div class="wrap">
       <div class="accentBar"></div>
@@ -415,29 +439,7 @@
   </section>
 
 
-  <section id="daily-inspiration">
-    <div class="wrap">
-      <div class="accentBar"></div>
-      <h2 data-i18n="daily.title">Daily inspiration</h2>
-      <p data-i18n="daily.lead">A daily line worth thinking with, not just agreeing with.</p>
-      <div class="card" style="max-width:860px;margin-top:24px">
-        <div class="small" id="dailyLabel"></div>
-        <div style="font-size:20px;font-weight:700;color:var(--text);font-style:italic;line-height:1.55;margin:12px 0 10px" id="dailyQuote"></div>
-        <div class="small" id="dailyAuthor" style="color:var(--accent-dark);font-weight:700"></div>
-      </div>
-    </div>
-  </section>
-  <section id="from-stamin">
-    <div class="wrap">
-      <div class="accentBar"></div>
-      <h2 data-i18n="stamin.title">From Stamin</h2>
-      <div class="card" style="max-width:860px">
-        <p data-i18n="stamin.note1">This month I am paying attention to the gap between insight and execution. Many smart people know exactly what is wrong and still keep protecting the pattern that creates the problem.</p>
-        <p data-i18n="stamin.note2">That usually means the real work is not more understanding. It is a more honest decision about what has to change.</p>
-        <p><a href="https://grundimpuls.substack.com" target="_blank" rel="noopener" data-i18n="stamin.link">Read the latest or most relevant Substack piece</a></p>
-      </div>
-    </div>
-  </section>
+
 
 </main>
 
@@ -501,7 +503,7 @@ const i18n = {
     support:{title:'Coaching support',lead:'These are not extra modules. They are simple working surfaces around your sessions.'},
     resources:{title:'Resources',lead:'A small set of references worth keeping close. Not a library.',r1t:'Burnout Coaching one-pager',r1d:'Because sometimes people need the structure before they are willing to look at the cost.',r2t:'Executive Coaching one-pager',r2d:'Useful when the work is less about performance tips and more about judgment, pressure, and responsibility.',r3t:'Strengths Coaching one-pager',r3d:'A reminder that strengths are useful only when they are used deliberately, not romantically.',r4t:'Critical Thinking course one-pager',r4d:'For when the problem is not effort, but the quality of your thinking under pressure.',r5t:'Mental Wellness course one-pager',r5d:'Because sustainable functioning usually needs more design and less denial.',r6t:'Grundimpuls on Substack',r6d:'This is where longer ideas go when a short answer would be dishonest.'},
     daily:{title:'Daily inspiration',lead:'A daily line worth thinking with, not just agreeing with.',label:"Today's quote",from:'From'},
-    stamin:{title:'From Stamin',note1:'This month I am paying attention to the gap between insight and execution. Many smart people know exactly what is wrong and still keep protecting the pattern that creates the problem.',note2:'That usually means the real work is not more understanding. It is a more honest decision about what has to change.',link:'Read the latest or most relevant Substack piece'},
+    stamin:{title:'From Daniel',note1:'This month I am paying attention to the gap between insight and execution. Many smart people know exactly what is wrong and still keep protecting the pattern that creates the problem.',note2:'That usually means the real work is not more understanding. It is a more honest decision about what has to change.',link:'Read the latest or most relevant Substack piece'},
     reflection:{title:'Weekly reflection',lead:'One question per week. The point is not to sound good. The point is to stop editing reality.',note:'Write in a notebook, a note app, or directly here. Then come back to it before your next session.',takeNotes:'Open weekly reflection',notesTitle:'Reflection notes',notesDesc:'Write your response directly here if you want it included in the summary.',questionLabel:'Question',weekLabel:'Week',titleLabel:'Title',defaultTitle:'Reflection notes'},
     summary:{kicker:'Visit summary',title:'This visit is leaving a trail.',hint:'When you have something worth keeping, open the summary or download it.',open:'Open summary',email:'Email to self',download:'Download PDF',composerTitle:'Visit summary',composerDesc:'Review what will be included before you download it.',optionalNote:'Optional note',optionalNotePh:'Anything you want included at the top of the summary...',statusReady:'Ready.',statusSaved:'Saved to summary.',empty:'Nothing has been saved yet.',assessments:'Assessments',tools:'Tools',reflection:'Weekly reflection',generated:'Generated on'},
     footer:{sub:'Members Hub',note:'Private resource area for approved participants only.'}
@@ -517,11 +519,11 @@ const i18n = {
     tools:{title:'Instrumente',lead:'Folosește un singur instrument pentru o singură problemă vie. De obicei este suficient.'},
     toolcards:{prep:{kicker:'Înainte de sesiune',title:'Pregătire pentru sesiune',desc:'Pentru momentele în care vrei ca sesiunea să înceapă exact acolo unde este problema reală.'},breathing:{kicker:'Resetare în 3 minute',title:'Box breathing de 3 minute',desc:'Pentru momentele în care sistemul tău este prea activat ca să gândești clar.'},overload:{kicker:'Triere de încărcare',title:'Fișă de triere a supraîncărcării',desc:'Pentru momentele în care totul pare important și exact asta este problema.'},conversation:{kicker:'Claritate în conversație',title:'Pregătire pentru conversații dificile',desc:'Pentru momentele în care o conversație continuă să nu aibă loc.'},decision:{kicker:'Calitatea deciziei',title:'Jurnal de decizie',desc:'Pentru momentele în care viteza te face mai puțin inteligent.'},recovery:{kicker:'Planificarea recuperării',title:'Planificator de recuperare pe 7 zile',desc:'Pentru momentele în care odihna nu se va întâmpla decât dacă este proiectată.'},grounding:{kicker:'Înainte de un moment greu',title:'Grounding înainte de conversație',desc:'Pentru momentele în care trebuie să intri în cameră mai stabil decât te simți.'},review:{kicker:'După presiune',title:'Revizuire după presiune',desc:'Pentru momentele în care nu vrei să irosești o săptămână grea.'},notes:{kicker:'După sesiune',title:'Notițe post-sesiune',desc:'Un scratchpad privat pentru ce vrei să ții minte după conversație.'},commitments:{kicker:'Du munca mai departe',title:'Tracker de angajamente',desc:'Scrie 1–3 angajamente, marchează-le făcute sau du-le mai departe.'}},
     path:{q1:'Ce se întâmplă de fapt cu energia mea chiar acum?',q1d:'Deschide Burnout Risk Check',q2:'Gândesc clar sau sunt în mod de reacție?',q2d:'Deschide Strategic Mindset',q3:'Ce trebuie să spun și încă nu am spus?',q3d:'Deschide Pregătire pentru conversații dificile',q4:'Ce evit?',q4d:'Deschide Reflecția săptămânală'},
-    initiations:{eyebrow:'Inițieri',title:'Inițieri',lead:'O secțiune mai mică pentru lucrurile care merită ținute aproape: principii la care merită să revii și o evaluare care clarifică ce contează înainte să construiești ceva deasupra.',ethicsTag:'Etică',ethicsTitle:'Principii etice pentru o viață bună',ethicsDesc:'Nu pentru că ai nevoie de mai multe sloganuri. Ci pentru că, sub presiune, oamenii alunecă dacă nu au standarde la care să revină.',valuesTag:'Descoperirea valorilor',valuesTitle:'Evaluarea de descoperire a valorilor',valuesDesc:'Pentru momentele în care deciziile tale sună rezonabil, dar ceva important încă nu este numit.',valuesMeta:'Alege mai larg la început, apoi restrânge la cele cinci pe care nu vrei să le trădezi.',openValues:'Deschide evaluarea valorilor',selected:'Selectate',top5:'Top 5',search:'Caută valori...',searchMeta:'Începe cu 12–20 care chiar contează. Apoi redu la cinci.',empty:'Nicio valoare nu se potrivește acestei căutări.',remove:'Elimină',save:'Salvează top 5',saved:'Salvat în rezumat.',pickMore:'Alege cel puțin cinci valori înainte să salvezi.',summaryLabel:'Valori principale'},
+    initiations:{eyebrow:'Inițieri',title:'Inițieri',lead:'O secțiune mai mică pentru lucrurile care merită ținute aproape: principii la care merită să revii și o evaluare care clarifică ce contează înainte să construiești ceva deasupra.',ethicsTag:'Etică',ethicsTitle:'Principii etice pentru o viață bună',ethicsDesc:'Nu pentru că ai nevoie de mai multe sloganuri. Ci pentru că, sub presiune, oamenii alunecă dacă nu au standarde la care să revină.',openEthics:'Deschide grupele etice',closeEthics:'Închide grupele etice',downloadPdf:'Descarcă PDF',valuesTag:'Descoperirea valorilor',valuesTitle:'Evaluarea de descoperire a valorilor',valuesDesc:'Pentru momentele în care deciziile tale sună rezonabil, dar ceva important încă nu este numit.',valuesMeta:'Alege mai larg la început, apoi restrânge la cele cinci pe care nu vrei să le trădezi.',openValues:'Deschide evaluarea valorilor',selected:'Selectate',top5:'Top 5',search:'Caută valori...',searchMeta:'Începe cu 12–20 care chiar contează. Apoi redu la cinci.',empty:'Nicio valoare nu se potrivește acestei căutări.',remove:'Elimină',save:'Salvează top 5',saved:'Salvat în rezumat.',pickMore:'Alege cel puțin cinci valori înainte să salvezi.',summaryLabel:'Valori principale'},
     support:{title:'Suport de coaching',lead:'Acestea nu sunt module în plus. Sunt suprafețe simple de lucru în jurul sesiunilor tale.'},
     resources:{title:'Resurse',lead:'Un set mic de repere care merită păstrate aproape. Nu o bibliotecă.',r1t:'One-pager Burnout Coaching',r1d:'Pentru că uneori oamenii au nevoie mai întâi de structură înainte să se uite la cost.',r2t:'One-pager Executive Coaching',r2d:'Util când munca este mai puțin despre tips de performanță și mai mult despre judecată, presiune și responsabilitate.',r3t:'One-pager Strengths Coaching',r3d:'Un reminder că punctele forte sunt utile doar când sunt folosite deliberat, nu romantic.',r4t:'One-pager curs Critical Thinking',r4d:'Pentru momentele în care problema nu este efortul, ci calitatea gândirii sub presiune.',r5t:'One-pager curs Mental Wellness',r5d:'Pentru că funcționarea sustenabilă are nevoie de mai mult design și mai puțină negare.',r6t:'Grundimpuls pe Substack',r6d:'Aici merg ideile mai lungi atunci când un răspuns scurt ar fi necinstit.'},
     daily:{title:'Inspirație zilnică',lead:'O idee zilnică la care merită să te gândești, nu doar să fii de acord.',label:'Citatul zilei',from:'De la'},
-    stamin:{title:'De la Stamin',note1:'Luna aceasta mă uit la diferența dintre insight și execuție. Mulți oameni inteligenți știu exact ce este greșit și totuși continuă să protejeze tiparul care creează problema.',note2:'Asta înseamnă de obicei că munca reală nu este mai multă înțelegere. Este o decizie mai onestă despre ce trebuie schimbat.',link:'Citește ultimul sau cel mai relevant articol de pe Substack'},
+    stamin:{title:'De la Daniel',note1:'Luna aceasta mă uit la diferența dintre insight și execuție. Mulți oameni inteligenți știu exact ce este greșit și totuși continuă să protejeze tiparul care creează problema.',note2:'Asta înseamnă de obicei că munca reală nu este mai multă înțelegere. Este o decizie mai onestă despre ce trebuie schimbat.',link:'Citește ultimul sau cel mai relevant articol de pe Substack'},
     reflection:{title:'Reflecție săptămânală',lead:'O singură întrebare pe săptămână. Ideea nu este să suni bine. Ideea este să nu mai editezi realitatea.',note:'Scrie într-un caiet, într-o aplicație de notițe sau direct aici. Apoi revino înainte de următoarea sesiune.',takeNotes:'Deschide reflecția săptămânală',notesTitle:'Notițe de reflecție',notesDesc:'Scrie răspunsul direct aici dacă vrei să fie inclus în rezumat.',questionLabel:'Întrebare',weekLabel:'Săptămâna',titleLabel:'Titlu',defaultTitle:'Notițe de reflecție'},
     summary:{kicker:'Rezumatul vizitei',title:'Vizita aceasta lasă o urmă.',hint:'Când ai ceva ce merită păstrat, deschide rezumatul sau descarcă-l.',open:'Deschide rezumatul',email:'Trimite pe email',download:'Descarcă PDF',composerTitle:'Rezumatul vizitei',composerDesc:'Revizuiește ce va fi inclus înainte să trimiți sau să descarci.',optionalNote:'Notă opțională',optionalNotePh:'Orice vrei să fie inclus la începutul rezumatului...',statusReady:'Pregătit.',statusSaved:'Salvat în rezumat.',empty:'Nu a fost salvat încă nimic.',assessments:'Evaluări',tools:'Instrumente',reflection:'Reflecție săptămânală',generated:'Generat la'},
     footer:{sub:'Members Hub',note:'Zonă privată de resurse doar pentru participanții aprobați.'}
