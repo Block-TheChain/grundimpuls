@@ -530,7 +530,20 @@ const i18n = {
   }
 };
 
-const WEEKLY_REFLECTION_QUESTIONS = ['What matters most this week, and what keeps trying to distract you from it?','Where are you making something harder than it needs to be?','What are you tolerating that is quietly costing you too much?','What conversation have you postponed long enough?','What are you calling pressure that is actually lack of clarity?','Where are you still hoping instead of deciding?','What pattern keeps repeating, and what role do you keep playing in it?','What would a more honest version of this week look like?','Which commitment needs protection before it needs improvement?','What are you trying to control that is not yours to control?','Where do you need more courage, and where do you need more restraint?','What would make next week meaningfully better, not just busier?'];
+const WEEKLY_REFLECTION_QUESTIONS = [
+  {en:'What matters most this week, and what keeps trying to distract you from it?',ro:'Ce contează cel mai mult săptămâna aceasta și ce tot încearcă să te abată de la asta?'},
+  {en:'Where are you making something harder than it needs to be?',ro:'Unde faci ceva mai greu decât ar trebui să fie?'},
+  {en:'What are you tolerating that is quietly costing you too much?',ro:'Ce tolerezi acum și te costă, în tăcere, prea mult?'},
+  {en:'What conversation have you postponed long enough?',ro:'Ce conversație ai amânat deja destul?'},
+  {en:'What are you calling pressure that is actually lack of clarity?',ro:'Ce numești presiune, deși este de fapt lipsă de claritate?'},
+  {en:'Where are you still hoping instead of deciding?',ro:'Unde încă speri, în loc să decizi?'},
+  {en:'What pattern keeps repeating, and what role do you keep playing in it?',ro:'Ce tipar continuă să se repete și ce rol continui să joci în el?'},
+  {en:'What would a more honest version of this week look like?',ro:'Cum ar arăta o versiune mai onestă a acestei săptămâni?'},
+  {en:'Which commitment needs protection before it needs improvement?',ro:'Ce angajament are nevoie mai întâi de protecție, înainte să aibă nevoie de îmbunătățire?'},
+  {en:'What are you trying to control that is not yours to control?',ro:'Ce încerci să controlezi, deși nu este al tău de controlat?'},
+  {en:'Where do you need more courage, and where do you need more restraint?',ro:'Unde ai nevoie de mai mult curaj și unde ai nevoie de mai multă reținere?'},
+  {en:'What would make next week meaningfully better, not just busier?',ro:'Ce ar face săptămâna viitoare în mod real mai bună, nu doar mai plină?'}
+];
 const WEEKLY_REFLECTION_TIMEZONE = 'Europe/Bucharest';
 const WEEKLY_REFLECTION_SWITCH_HOUR = 3;
 const WEEKLY_REFLECTION_ANCHOR_MS = Date.UTC(2026, 2, 23, 0, 0, 0);
@@ -587,9 +600,16 @@ function currentWeekly(){
   const cycle = Math.floor(weekIndex / total);
   const position = weekIndex % total;
   const order = shuffledOrder(total, cycle);
-  const question = WEEKLY_REFLECTION_QUESTIONS[order[position]] || WEEKLY_REFLECTION_QUESTIONS[0] || '';
+  const entry = WEEKLY_REFLECTION_QUESTIONS[order[position]] || WEEKLY_REFLECTION_QUESTIONS[0] || {en:'',ro:''};
   const weekStart = WEEKLY_REFLECTION_ANCHOR_MS + weekIndex * 604800000;
-  return { week: formatReflectionWeekLabel(weekStart), question, index: weekIndex, cycle };
+  return {
+    week: formatReflectionWeekLabel(weekStart),
+    question: state.lang === 'ro' ? entry.ro : entry.en,
+    questionEn: entry.en,
+    questionRo: entry.ro,
+    index: weekIndex,
+    cycle
+  };
 }
 
 const EN_VALUES = ["Abundance","Acceptance","Accessibility","Accomplishment","Accountability","Accuracy","Achievement","Acknowledgement","Activeness","Adaptability","Adoration","Adroitness","Adventure","Affection","Agility","Alertness","Altruism","Ambition","Amusement","Anticipation","Appreciation","Approachability","Articulacy","Assertiveness","Assurance","Attentiveness","Attractiveness","Audacity","Authenticity","Availability","Awareness","Awe","Balance","Beauty","Being the best","Belonging","Benevolence","Bliss","Boldness","Bravery","Brilliance","Buoyancy","Calmness","Camaraderie","Candor","Capability","Care","Carefulness","Celebrity","Certainty","Challenge","Charity","Charm","Chastity","Cheerfulness","Clarity","Cleanliness","Clear-mindedness","Cleverness","Closeness","Comfort","Commitment","Compassion","Completion","Composure","Concentration","Confidence","Conformity","Congruency","Connection","Consciousness","Consistency","Contentment","Continuity","Contribution","Control","Conviction","Conviviality","Coolness","Cooperation","Cordiality","Correctness","Courage","Courtesy","Creativity","Credibility","Curiosity","Daring","Decisiveness","Decorum","Deference","Delight","Dependability","Depth","Desire","Determination","Devotion","Devoutness","Dexterity","Dignity","Diligence","Direction","Directness","Discipline","Discovery","Discretion","Diversity","Drive","Duty","Dynamism","Eagerness","Economy","Ecstasy","Education","Effectiveness","Efficiency","Elation","Elegance","Empathy","Encouragement","Endurance","Energy","Enjoyment","Entertainment","Enthusiasm","Excellence","Excitement","Exhilaration","Expectancy","Expediency","Experience","Expertise","Exploration","Expressiveness","Exuberance","Fairness","Faith","Fame","Family","Fascination","Fashion","Fearlessness","Fidelity","Financial independence","Firmness","Fitness","Flexibility","Flow","Fluency","Focus","Forgiveness","Fortitude","Frankness","Freedom","Friendliness","Frugality","Fun","Gallantry","Generosity","Gentility","Giving","Grace","Gratitude","Gregariousness","Growth","Guidance","Happiness","Harmony","Health","Heart","Helpfulness","Heroism","Holiness","Honesty","Honor","Hopefulness","Hospitality","Humility","Humor","Imagination","Impact","Impartiality","Independence","Industry","Ingenuity","Inquisitiveness","Insightfulness","Inspiration","Integrity","Intelligence","Intensity","Intimacy","Intrepidness","Intuition","Intuitiveness","Inventiveness","Joy","Judiciousness","Justice","Keenness","Kindness","Knowledge","Leadership","Learning","Liveliness","Logic","Longevity","Love","Loyalty","Majesty","Making a difference","Mastery","Maturity","Meekness","Mellowness","Meticulousness","Mindfulness","Modesty","Motivation","Mysteriousness","Nature","Neatness","Nerve","Open-mindedness","Openness","Optimism","Order","Organization","Originality","Passion","Patience","Peace","Perceptiveness","Perfection","Perseverance","Persuasiveness","Philanthropy","Piety","Playfulness","Pleasantness","Pleasure","Poise","Polish","Popularity","Potency","Power","Practicality","Pragmatism","Precision","Preparedness","Presence","Privacy","Proactivity","Professionalism","Prosperity","Prudence","Punctuality","Purity","Realism","Reason","Reasonableness","Recognition","Reflection","Refinement","Relaxation","Reliability","Religiousness","Resilience","Resolution","Resolve","Resourcefulness","Respect","Rest","Restraint","Reverence","Richness","Rigor","Ritual","Sacredness","Sacrifice","Sagacity","Saintliness","Satisfaction","Security","Self-control","Selflessness","Self-reliance","Sensitivity","Sensuality","Serenity","Service","Sexuality","Sharing","Shrewdness","Significance","Silence","Simplicity","Sincerity","Skillfulness","Solidarity","Solitude","Soundness","Spirit","Spirituality","Spontaneity","Spunk","Stability","Stillness","Strength","Structure","Success","Support","Surprise","Sympathy","Synergy","Teamwork","Temperance","Thoroughness","Thoughtfulness","Thrift","Tidiness","Timeliness","Traditionalism","Tranquility","Transcendence","Trust","Trustworthiness","Truth","Understanding","Unflappability","Uniqueness","Unity","Usefulness","Utility","Valor","Variety","Victory","Vigor","Virtue","Vision","Vitality","Vivacity","Vulnerability","Warmth","Watchfulness","Wealth","Willfulness","Willingness","Wisdom","Wittiness","Wonder","Youthfulness","Zeal"];
@@ -2301,6 +2321,7 @@ function buildPdfSections(){
   const tools = Object.values(state.summary.tools||{});
   const values = state.summary.values;
   const reflection = state.summary.reflection;
+  const daily = getDailyQuote().item[state.lang];
   const esc = escapeHtml;
   const header = `
   <div class="pdfPageBlock pdfHeaderBlock" style="width:794px;background:#fff;color:#1f2937;padding:28px 34px 24px;font-family:Arial,sans-serif;font-size:14px;line-height:1.45;word-break:break-word;overflow-wrap:anywhere;box-sizing:border-box">
@@ -2340,6 +2361,10 @@ function buildPdfSections(){
   </div>`;
 
   const sections = [header];
+
+  if(daily){
+    sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0"><h2 class="pdfSectionTitle">${esc(t('daily.title'))}</h2><div class="pdfBlock"><div class="pdfField"><strong>${esc(t('daily.summaryLabel'))}:</strong></div><div class="pdfParagraph" style="font-style:italic;margin-top:6px">“${esc(daily.quote)}”</div><div class="pdfField" style="margin-top:10px"><strong>${esc(daily.author)}</strong></div></div></div>`);
+  }
 
   if(a.length){
     sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0"><h2 class="pdfSectionTitle">${esc(t('summary.assessments'))}</h2></div>`);
