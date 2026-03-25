@@ -338,7 +338,7 @@
           <div class="tagline" data-i18n="start.pathE">Option E · Explore something specific</div>
           <h3 data-i18n="start.card1t">Start with a question</h3>
           <p data-i18n="start.card1d">Pick the question that sounds uncomfortably close to your situation. It will route you to one relevant instrument.</p>
-          <div class="ctaRow"><button class="btn primary sm" type="button" onclick="showExploreQuestions()" data-i18n="start.reveal">Show the questions</button></div>
+          <div class="ctaRow"><button class="btn primary sm" type="button" onclick="toggleExploreQuestions()" data-i18n="start.reveal">Show the questions</button></div>
         </div>
         <div class="card">
           <div class="tagline" data-i18n="start.pathF">Option F · Browse and pick</div>
@@ -400,18 +400,6 @@
     </div>
   </section>
 
-  <section id="from-stamin">
-    <div class="wrap">
-      <div class="accentBar"></div>
-      <h2 data-i18n="stamin.title">From Stamin</h2>
-      <div class="card" style="max-width:860px">
-        <p data-i18n="stamin.note1">This month I am paying attention to the gap between insight and execution. Many smart people know exactly what is wrong and still keep protecting the pattern that creates the problem.</p>
-        <p data-i18n="stamin.note2">That usually means the real work is not more understanding. It is a more honest decision about what has to change.</p>
-        <p><a href="https://grundimpuls.substack.com" target="_blank" rel="noopener" data-i18n="stamin.link">Read the latest or most relevant Substack piece</a></p>
-      </div>
-    </div>
-  </section>
-
   <section id="reflection" class="alt">
     <div class="wrap">
       <div class="accentBar"></div>
@@ -425,6 +413,32 @@
       </div>
     </div>
   </section>
+
+
+  <section id="daily-inspiration">
+    <div class="wrap">
+      <div class="accentBar"></div>
+      <h2 data-i18n="daily.title">Daily inspiration</h2>
+      <p data-i18n="daily.lead">A daily line worth thinking with, not just agreeing with.</p>
+      <div class="card" style="max-width:860px;margin-top:24px">
+        <div class="small" id="dailyLabel"></div>
+        <div style="font-size:20px;font-weight:700;color:var(--text);font-style:italic;line-height:1.55;margin:12px 0 10px" id="dailyQuote"></div>
+        <div class="small" id="dailyAuthor" style="color:var(--accent-dark);font-weight:700"></div>
+      </div>
+    </div>
+  </section>
+  <section id="from-stamin">
+    <div class="wrap">
+      <div class="accentBar"></div>
+      <h2 data-i18n="stamin.title">From Stamin</h2>
+      <div class="card" style="max-width:860px">
+        <p data-i18n="stamin.note1">This month I am paying attention to the gap between insight and execution. Many smart people know exactly what is wrong and still keep protecting the pattern that creates the problem.</p>
+        <p data-i18n="stamin.note2">That usually means the real work is not more understanding. It is a more honest decision about what has to change.</p>
+        <p><a href="https://grundimpuls.substack.com" target="_blank" rel="noopener" data-i18n="stamin.link">Read the latest or most relevant Substack piece</a></p>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="footer">
@@ -477,15 +491,16 @@ const i18n = {
     nav:{start:'Start',initiations:'Initiations',assessments:'Assessments',tools:'Tools',support:'Support',reflection:'Weekly reflection',publicSite:'Public site'},
     common:{openAssessment:'Open assessment',openTool:'Open tool',startAssessment:'Start assessment',seeResult:'See my result',copy:'Copy to clipboard',clear:'Clear',copied:'Copied.',start:'Start',reset:'Reset',ready:'Ready',close:'Close',pleaseAnswerAll:'Please answer all questions before seeing your result.',fillField:'Fill in at least one field first.',copyFailed:'Copy failed. Please copy manually.',save:'Save',saved:'Saved.',scale1:'Not true',scale2:'Slightly',scale3:'Somewhat',scale4:'Mostly',scale5:'Very true'},
     hero:{kicker:'Members Hub',h1:'A private working space for people who need clarity, not more content.',lead:'This is not a course and it is not a library. It is a set of instruments to use between sessions, in difficult weeks, or when something needs clarifying.',sub:'Use it when something is live, not when you are procrastinating with personal development.',howTitle:'How to use this',how1:'If something specific is going on, start with a question.',how2:'If you want to explore, browse the collection.',how3:'If you are preparing for a session, go to Session Prep.',cta1:'I want to explore something specific',cta2:'I want to browse and pick',inventory:'6 assessments · 8 tools · coaching support · weekly reflection',nowTitle:'What this hub is for',now1:'For when you are still delivering but something is quietly wrong.',now2:'For when you suspect you are solving the wrong problem.',now3:'For when a conversation keeps not happening.',now4:'For when you need to arrive at the next session with your thinking already cleaner.',small:'Less content. Better routing. More honest work.'},
-    start:{title:'Choose an entry point',lead:'Members can move between these modes at any time.',pathE:'Option E · Explore something specific',pathF:'Option F · Browse and pick',card1t:'Start with a question',card1d:'Pick the question that sounds uncomfortably close to your situation. It will route you to one relevant instrument.',card2t:'See the full collection',card2d:'Browse assessments, tools, coaching support, and the current weekly reflection.',reveal:'Show the questions',browse:'Browse the collection',optionETag:'Explore by question'},
+    start:{title:'Choose an entry point',lead:'Members can move between these modes at any time.',pathE:'Option E · Explore something specific',pathF:'Option F · Browse and pick',card1t:'Start with a question',card1d:'Pick the question that sounds uncomfortably close to your situation. It will route you to one relevant instrument.',card2t:'See the full collection',card2d:'Browse assessments, tools, coaching support, and the current weekly reflection.',reveal:'Show the questions',hide:'Hide the questions',browse:'Browse the collection',optionETag:'Explore by question'},
     assess:{title:'Assessments',lead:'Use these when you want a sharper read on what is happening, not a flattering one.'},
     cards:{coachability:{tag:'Coachability Assessment',title:'Coachability assessment',desc:'For when insight is present but change still keeps not happening.'},leadership:{tag:'Leadership Self-Check',title:'Leadership self-check',desc:'For when the issue may be less about skill and more about how you are showing up under load.'},burnout:{tag:'Burnout Risk Check',title:'Burnout risk check',desc:'For when you are still delivering but something is quietly wrong.'},mental:{tag:'Mental Wellness and Integration',title:'Mental wellness and integration',desc:'For when life looks functional from the outside but not integrated from the inside.'},resilience:{tag:'Resilience Profile',title:'Resilience profile',desc:'For when you want to know whether you are actually recovering or just surviving well.'},strategic:{tag:'Strategic Mindset',title:'Strategic mindset — critical thinking and cognitive agility',desc:'For when you suspect you may be solving the wrong problem.'}},
     tools:{title:'Tools',lead:'Use one instrument against one live issue. That is usually enough.'},
     toolcards:{prep:{kicker:'Before the session',title:'Session prep',desc:'For when you want the session to begin where the real issue actually is.'},breathing:{kicker:'3-minute reset',title:'3-minute box breathing',desc:'For when your system is too activated to think cleanly.'},overload:{kicker:'Load triage',title:'Overload triage worksheet',desc:'For when everything feels important and that is exactly the problem.'},conversation:{kicker:'Conversation clarity',title:'Difficult conversation prep',desc:'For when a conversation keeps not happening.'},decision:{kicker:'Decision quality',title:'Decision journal',desc:'For when speed is making you less intelligent.'},recovery:{kicker:'Recovery planning',title:'7-day recovery planner',desc:'For when rest will not happen unless it is designed.'},grounding:{kicker:'Before a hard moment',title:'Pre-conversation grounding',desc:'For when you need to enter the room steadier than you feel.'},review:{kicker:'After pressure',title:'Post-pressure review',desc:'For when you do not want to waste a hard week.'},notes:{kicker:'After the session',title:'Post-session notes',desc:'A private scratchpad for what you want to remember after the conversation.'},commitments:{kicker:'Carry the work forward',title:'Commitments tracker',desc:'Write 1–3 commitments, mark them done, or carry them forward.'}},
     path:{q1:'What is actually going on with my energy right now?',q1d:'Open Burnout Risk Check',q2:'Am I thinking clearly or am I in reaction mode?',q2d:'Open Strategic Mindset',q3:'What do I need to say that I have not said yet?',q3d:'Open Difficult Conversation Prep',q4:'What am I avoiding?',q4d:'Open Weekly Reflection'},
-    initiations:{eyebrow:'Initiations',title:'Initiations',lead:'A smaller section for things that should stay close to hand: principles worth returning to, and one assessment for clarifying what matters before you build on top of it.',ethicsTag:'Ethics',ethicsTitle:'Ethical principles for a good life',ethicsDesc:'Not because you need more slogans. Because under pressure, people drift unless they have standards they can return to.',openEthics:'Open ethics groups',closeEthics:'Close ethics groups',valuesTag:'Value discovery',valuesTitle:'Value Discovery assessment',valuesDesc:'For when your decisions sound reasonable but something important is still not named.',valuesMeta:'Choose broadly first, then narrow to the five you do not want to betray.',openValues:'Open Value Discovery',selected:'Selected',top5:'Top 5',search:'Search values...',searchMeta:'Start with 12–20 that genuinely matter. Then reduce to five.',empty:'No values match this search.',remove:'Remove',save:'Save my top 5',saved:'Saved to summary.',pickMore:'Pick at least five values before saving.',summaryLabel:'Top values'},
+    initiations:{eyebrow:'Initiations',title:'Initiations',lead:'A smaller section for things that should stay close to hand: principles worth returning to, and one assessment for clarifying what matters before you build on top of it.',ethicsTag:'Ethics',ethicsTitle:'Ethical principles for a good life',ethicsDesc:'Not because you need more slogans. Because under pressure, people drift unless they have standards they can return to.',openEthics:'Open ethics groups',closeEthics:'Close ethics groups',downloadPdf:'Download PDF',valuesTag:'Value discovery',valuesTitle:'Value Discovery assessment',valuesDesc:'For when your decisions sound reasonable but something important is still not named.',valuesMeta:'Choose broadly first, then narrow to the five you do not want to betray.',openValues:'Open Value Discovery',selected:'Selected',top5:'Top 5',search:'Search values...',searchMeta:'Start with 12–20 that genuinely matter. Then reduce to five.',empty:'No values match this search.',remove:'Remove',save:'Save my top 5',saved:'Saved to summary.',pickMore:'Pick at least five values before saving.',summaryLabel:'Top values'},
     support:{title:'Coaching support',lead:'These are not extra modules. They are simple working surfaces around your sessions.'},
     resources:{title:'Resources',lead:'A small set of references worth keeping close. Not a library.',r1t:'Burnout Coaching one-pager',r1d:'Because sometimes people need the structure before they are willing to look at the cost.',r2t:'Executive Coaching one-pager',r2d:'Useful when the work is less about performance tips and more about judgment, pressure, and responsibility.',r3t:'Strengths Coaching one-pager',r3d:'A reminder that strengths are useful only when they are used deliberately, not romantically.',r4t:'Critical Thinking course one-pager',r4d:'For when the problem is not effort, but the quality of your thinking under pressure.',r5t:'Mental Wellness course one-pager',r5d:'Because sustainable functioning usually needs more design and less denial.',r6t:'Grundimpuls on Substack',r6d:'This is where longer ideas go when a short answer would be dishonest.'},
+    daily:{title:'Daily inspiration',lead:'A daily line worth thinking with, not just agreeing with.',label:"Today's quote",from:'From'},
     stamin:{title:'From Stamin',note1:'This month I am paying attention to the gap between insight and execution. Many smart people know exactly what is wrong and still keep protecting the pattern that creates the problem.',note2:'That usually means the real work is not more understanding. It is a more honest decision about what has to change.',link:'Read the latest or most relevant Substack piece'},
     reflection:{title:'Weekly reflection',lead:'One question per week. The point is not to sound good. The point is to stop editing reality.',note:'Write in a notebook, a note app, or directly here. Then come back to it before your next session.',takeNotes:'Open weekly reflection',notesTitle:'Reflection notes',notesDesc:'Write your response directly here if you want it included in the summary.',questionLabel:'Question',weekLabel:'Week',titleLabel:'Title',defaultTitle:'Reflection notes'},
     summary:{kicker:'Visit summary',title:'This visit is leaving a trail.',hint:'When you have something worth keeping, open the summary or download it.',open:'Open summary',email:'Email to self',download:'Download PDF',composerTitle:'Visit summary',composerDesc:'Review what will be included before you download it.',optionalNote:'Optional note',optionalNotePh:'Anything you want included at the top of the summary...',statusReady:'Ready.',statusSaved:'Saved to summary.',empty:'Nothing has been saved yet.',assessments:'Assessments',tools:'Tools',reflection:'Weekly reflection',generated:'Generated on'},
@@ -496,7 +511,7 @@ const i18n = {
     nav:{start:'Start',initiations:'Inițieri',assessments:'Evaluări',tools:'Instrumente',support:'Suport',reflection:'Reflecție săptămânală',publicSite:'Site public'},
     common:{openAssessment:'Deschide evaluarea',openTool:'Deschide instrumentul',startAssessment:'Începe evaluarea',seeResult:'Vezi rezultatul',copy:'Copiază',clear:'Șterge',copied:'Copiat.',start:'Start',reset:'Resetează',ready:'Pregătit',close:'Închide',pleaseAnswerAll:'Răspunde la toate întrebările înainte să vezi rezultatul.',fillField:'Completează cel puțin un câmp.',copyFailed:'Copierea a eșuat. Copiază manual.',save:'Salvează',saved:'Salvat.',scale1:'Deloc adevărat',scale2:'Puțin',scale3:'Parțial',scale4:'Mai degrabă da',scale5:'Foarte adevărat'},
     hero:{kicker:'Members Hub',h1:'Un spațiu privat de lucru pentru oameni care au nevoie de claritate, nu de mai mult conținut.',lead:'Acesta nu este un curs și nu este o bibliotecă. Este un set de instrumente de folosit între sesiuni, în săptămâni dificile sau când ceva trebuie clarificat.',sub:'Folosește-l când ceva este viu, nu când amâni munca reală sub forma dezvoltării personale.',howTitle:'Cum se folosește',how1:'Dacă se întâmplă ceva specific, începe cu o întrebare.',how2:'Dacă vrei să explorezi, răsfoiește colecția.',how3:'Dacă te pregătești pentru o sesiune, mergi la Pregătire pentru sesiune.',cta1:'Vreau să explorez ceva specific',cta2:'Vreau să răsfoiesc și să aleg',inventory:'6 evaluări · 8 instrumente · suport de coaching · reflecție săptămânală',nowTitle:'Pentru ce este acest hub',now1:'Pentru momentele în care încă livrezi, dar ceva este în liniște greșit.',now2:'Pentru momentele în care bănuiești că rezolvi problema greșită.',now3:'Pentru momentele în care o conversație continuă să nu aibă loc.',now4:'Pentru momentele în care vrei să ajungi la următoarea sesiune cu gândirea deja mai curată.',small:'Mai puțin conținut. Rutare mai bună. Muncă mai onestă.'},
-    start:{title:'Alege un punct de intrare',lead:'Membrii pot trece între aceste moduri oricând.',pathE:'Opțiunea E · Explorează ceva specific',pathF:'Opțiunea F · Răsfoiește și alege',card1t:'Începe cu o întrebare',card1d:'Alege întrebarea care sună inconfortabil de apropiat de situația ta. Te va duce la un instrument relevant.',card2t:'Vezi colecția completă',card2d:'Răsfoiește evaluările, instrumentele, suportul de coaching și reflecția săptămânală.',reveal:'Arată întrebările',browse:'Răsfoiește colecția',optionETag:'Explorează prin întrebare'},
+    start:{title:'Alege un punct de intrare',lead:'Membrii pot trece între aceste moduri oricând.',pathE:'Opțiunea E · Explorează ceva specific',pathF:'Opțiunea F · Răsfoiește și alege',card1t:'Începe cu o întrebare',card1d:'Alege întrebarea care sună inconfortabil de apropiat de situația ta. Te va duce la un instrument relevant.',card2t:'Vezi colecția completă',card2d:'Răsfoiește evaluările, instrumentele, suportul de coaching și reflecția săptămânală.',reveal:'Arată întrebările',hide:'Ascunde întrebările',browse:'Răsfoiește colecția',optionETag:'Explorează prin întrebare'},
     assess:{title:'Evaluări',lead:'Folosește-le când vrei o citire mai clară a ceea ce se întâmplă, nu una măgulitoare.'},
     cards:{coachability:{tag:'Evaluare coachability',title:'Evaluare coachability',desc:'Pentru momentele în care insightul există, dar schimbarea tot continuă să nu se întâmple.'},leadership:{tag:'Leadership Self-Check',title:'Leadership self-check',desc:'Pentru momentele în care problema poate fi mai puțin despre skill și mai mult despre cum apari sub presiune.'},burnout:{tag:'Burnout Risk Check',title:'Burnout risk check',desc:'Pentru momentele în care încă livrezi, dar ceva este în liniște greșit.'},mental:{tag:'Mental Wellness and Integration',title:'Mental wellness and integration',desc:'Pentru momentele în care viața pare funcțională la exterior, dar neintegrată la interior.'},resilience:{tag:'Resilience Profile',title:'Resilience profile',desc:'Pentru momentele în care vrei să știi dacă te recuperezi cu adevărat sau doar supraviețuiești competent.'},strategic:{tag:'Strategic Mindset',title:'Strategic mindset — gândire critică și agilitate cognitivă',desc:'Pentru momentele în care bănuiești că poate rezolvi problema greșită.'}},
     tools:{title:'Instrumente',lead:'Folosește un singur instrument pentru o singură problemă vie. De obicei este suficient.'},
@@ -505,9 +520,10 @@ const i18n = {
     initiations:{eyebrow:'Inițieri',title:'Inițieri',lead:'O secțiune mai mică pentru lucrurile care merită ținute aproape: principii la care merită să revii și o evaluare care clarifică ce contează înainte să construiești ceva deasupra.',ethicsTag:'Etică',ethicsTitle:'Principii etice pentru o viață bună',ethicsDesc:'Nu pentru că ai nevoie de mai multe sloganuri. Ci pentru că, sub presiune, oamenii alunecă dacă nu au standarde la care să revină.',valuesTag:'Descoperirea valorilor',valuesTitle:'Evaluarea de descoperire a valorilor',valuesDesc:'Pentru momentele în care deciziile tale sună rezonabil, dar ceva important încă nu este numit.',valuesMeta:'Alege mai larg la început, apoi restrânge la cele cinci pe care nu vrei să le trădezi.',openValues:'Deschide evaluarea valorilor',selected:'Selectate',top5:'Top 5',search:'Caută valori...',searchMeta:'Începe cu 12–20 care chiar contează. Apoi redu la cinci.',empty:'Nicio valoare nu se potrivește acestei căutări.',remove:'Elimină',save:'Salvează top 5',saved:'Salvat în rezumat.',pickMore:'Alege cel puțin cinci valori înainte să salvezi.',summaryLabel:'Valori principale'},
     support:{title:'Suport de coaching',lead:'Acestea nu sunt module în plus. Sunt suprafețe simple de lucru în jurul sesiunilor tale.'},
     resources:{title:'Resurse',lead:'Un set mic de repere care merită păstrate aproape. Nu o bibliotecă.',r1t:'One-pager Burnout Coaching',r1d:'Pentru că uneori oamenii au nevoie mai întâi de structură înainte să se uite la cost.',r2t:'One-pager Executive Coaching',r2d:'Util când munca este mai puțin despre tips de performanță și mai mult despre judecată, presiune și responsabilitate.',r3t:'One-pager Strengths Coaching',r3d:'Un reminder că punctele forte sunt utile doar când sunt folosite deliberat, nu romantic.',r4t:'One-pager curs Critical Thinking',r4d:'Pentru momentele în care problema nu este efortul, ci calitatea gândirii sub presiune.',r5t:'One-pager curs Mental Wellness',r5d:'Pentru că funcționarea sustenabilă are nevoie de mai mult design și mai puțină negare.',r6t:'Grundimpuls pe Substack',r6d:'Aici merg ideile mai lungi atunci când un răspuns scurt ar fi necinstit.'},
+    daily:{title:'Inspirație zilnică',lead:'O idee zilnică la care merită să te gândești, nu doar să fii de acord.',label:'Citatul zilei',from:'De la'},
     stamin:{title:'De la Stamin',note1:'Luna aceasta mă uit la diferența dintre insight și execuție. Mulți oameni inteligenți știu exact ce este greșit și totuși continuă să protejeze tiparul care creează problema.',note2:'Asta înseamnă de obicei că munca reală nu este mai multă înțelegere. Este o decizie mai onestă despre ce trebuie schimbat.',link:'Citește ultimul sau cel mai relevant articol de pe Substack'},
     reflection:{title:'Reflecție săptămânală',lead:'O singură întrebare pe săptămână. Ideea nu este să suni bine. Ideea este să nu mai editezi realitatea.',note:'Scrie într-un caiet, într-o aplicație de notițe sau direct aici. Apoi revino înainte de următoarea sesiune.',takeNotes:'Deschide reflecția săptămânală',notesTitle:'Notițe de reflecție',notesDesc:'Scrie răspunsul direct aici dacă vrei să fie inclus în rezumat.',questionLabel:'Întrebare',weekLabel:'Săptămâna',titleLabel:'Titlu',defaultTitle:'Notițe de reflecție'},
-    summary:{kicker:'Rezumatul vizitei',title:'Vizita aceasta lasă o urmă.',hint:'Când ai ceva ce merită păstrat, trimite-ți-l sau descarcă-l.',open:'Deschide rezumatul',email:'Trimite pe email',download:'Descarcă PDF',composerTitle:'Rezumatul vizitei',composerDesc:'Revizuiește ce va fi inclus înainte să trimiți sau să descarci.',optionalNote:'Notă opțională',optionalNotePh:'Orice vrei să fie inclus la începutul rezumatului...',statusReady:'Pregătit.',statusSaved:'Salvat în rezumat.',empty:'Nu a fost salvat încă nimic.',assessments:'Evaluări',tools:'Instrumente',reflection:'Reflecție săptămânală',generated:'Generat la'},
+    summary:{kicker:'Rezumatul vizitei',title:'Vizita aceasta lasă o urmă.',hint:'Când ai ceva ce merită păstrat, deschide rezumatul sau descarcă-l.',open:'Deschide rezumatul',email:'Trimite pe email',download:'Descarcă PDF',composerTitle:'Rezumatul vizitei',composerDesc:'Revizuiește ce va fi inclus înainte să trimiți sau să descarci.',optionalNote:'Notă opțională',optionalNotePh:'Orice vrei să fie inclus la începutul rezumatului...',statusReady:'Pregătit.',statusSaved:'Salvat în rezumat.',empty:'Nu a fost salvat încă nimic.',assessments:'Evaluări',tools:'Instrumente',reflection:'Reflecție săptămânală',generated:'Generat la'},
     footer:{sub:'Members Hub',note:'Zonă privată de resurse doar pentru participanții aprobați.'}
   }
 };
@@ -719,6 +735,7 @@ function buildCards(){
   const supportGrid=document.getElementById('supportGrid');
   if(supportGrid) supportGrid.innerHTML = ['prep','notes','commitments'].map(k=>`<div class="card">${(t('toolcards.'+k+'.kicker')&&t('toolcards.'+k+'.kicker')!==('toolcards.'+k+'.kicker'))?`<div class="tagline">${t('toolcards.'+k+'.kicker')}</div>`:''}<h3>${t('toolcards.'+k+'.title')}</h3><p>${t('toolcards.'+k+'.desc')}</p><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('${k}')">${t('common.openTool')}</button></div></div>`).join('');
   buildInitiations();
+  renderDailyQuote();
 }
 
 function applyI18n(){
@@ -795,6 +812,7 @@ function finishAssessment(key){
   const resultHtml = `<div class="score">${total} <span class="scoreMax">/ ${def.scoreMax}</span></div><div class="rlabel">${escapeHtml(band.label[state.lang])}</div><div class="rblock"><div class="rhead">${state.lang==='ro'?'Descriere':'Description'}</div><div class="rtext">${escapeHtml(band.desc[state.lang])}</div></div><div class="rblock"><div class="rhead">${state.lang==='ro'?'Puncte oarbe':'Blind spots'}</div>${renderBulletList(band.blind[state.lang]||[])}</div><div class="rblock"><div class="rhead">${state.lang==='ro'?'Pași de acțiune':'Action steps'}</div>${renderBulletList(band.actions[state.lang]||[])}</div>`;
   const box=document.getElementById('result_'+key); box.innerHTML=resultHtml; box.classList.add('show');
   state.summary.assessments[key]={title:t('cards.'+key+'.title'),score:total,max:def.scoreMax,label:band.label[state.lang],desc:band.desc[state.lang],blind:[...band.blind[state.lang]],actions:[...band.actions[state.lang]]};
+  renderDailyQuote();
   updateSummaryDock();
 }
 
@@ -809,6 +827,7 @@ function saveTool(key){
   state.summary.tools[key]={id:key,title:t('toolcards.'+key+'.title'),data:payload};
   persistHubData();
   const m=document.getElementById('msg_'+key); if(m){m.classList.add('show'); setTimeout(()=>m.classList.remove('show'),1400)}
+  renderDailyQuote();
   updateSummaryDock();
 }
 
@@ -841,6 +860,7 @@ function saveCommitments(){
   state.summary.tools.commitments={id:'commitments',title:t('toolcards.commitments.title'),data:{count:String(items.length)},items};
   persistHubData();
   const m=document.getElementById('msg_commitments'); if(m){m.classList.add('show'); setTimeout(()=>m.classList.remove('show'),1400)}
+  renderDailyQuote();
   updateSummaryDock();
 }
 function renderReflectionNotes(){
@@ -854,6 +874,7 @@ function saveReflectionNotes(){
   state.summary.reflection={title,note,question:week.question,week:week.week};
   persistHubData();
   const m=document.getElementById('msg_reflection'); m.classList.add('show'); setTimeout(()=>m.classList.remove('show'),1400);
+  renderDailyQuote();
   updateSummaryDock();
 }
 
@@ -868,6 +889,1250 @@ function updateBreathingDisplay(){ if(!state.breathing) return; const b=state.br
 
 function getValuesList(){ return state.lang==='ro' ? RO_VALUES : EN_VALUES }
 
+
+
+const DAILY_QUOTES = [
+  {
+    "en": {
+      "quote": "Know yourself.",
+      "author": "Socrates"
+    },
+    "ro": {
+      "quote": "Cunoaște-te pe tine însuți.",
+      "author": "Socrate"
+    }
+  },
+  {
+    "en": {
+      "quote": "The unexamined life is not worth living.",
+      "author": "Socrates"
+    },
+    "ro": {
+      "quote": "Viața neexaminată nu merită trăită.",
+      "author": "Socrate"
+    }
+  },
+  {
+    "en": {
+      "quote": "We suffer more often in imagination than in reality.",
+      "author": "Seneca"
+    },
+    "ro": {
+      "quote": "Suferim mai des în imaginație decât în realitate.",
+      "author": "Seneca"
+    }
+  },
+  {
+    "en": {
+      "quote": "He who has a why to live can bear almost any how.",
+      "author": "Friedrich Nietzsche"
+    },
+    "ro": {
+      "quote": "Cel care are un de ce pentru care să trăiască poate îndura aproape orice cum.",
+      "author": "Friedrich Nietzsche"
+    }
+  },
+  {
+    "en": {
+      "quote": "Waste no more time arguing what a good man should be. Be one.",
+      "author": "Marcus Aurelius"
+    },
+    "ro": {
+      "quote": "Nu mai pierde timp discutând cum ar trebui să fie un om bun. Fii unul.",
+      "author": "Marcus Aurelius"
+    }
+  },
+  {
+    "en": {
+      "quote": "First say to yourself what you would be; and then do what you have to do.",
+      "author": "Epictetus"
+    },
+    "ro": {
+      "quote": "Spune-ți mai întâi ce vrei să fii; apoi fă ce ai de făcut.",
+      "author": "Epictet"
+    }
+  },
+  {
+    "en": {
+      "quote": "No man is free who is not master of himself.",
+      "author": "Epictetus"
+    },
+    "ro": {
+      "quote": "Nu este liber cel care nu este stăpân pe sine.",
+      "author": "Epictet"
+    }
+  },
+  {
+    "en": {
+      "quote": "Luck is what happens when preparation meets opportunity.",
+      "author": "Seneca"
+    },
+    "ro": {
+      "quote": "Norocul este ceea ce se întâmplă când pregătirea întâlnește oportunitatea.",
+      "author": "Seneca"
+    }
+  },
+  {
+    "en": {
+      "quote": "Well-being is realized by small steps, but is truly no small thing.",
+      "author": "Zeno of Citium"
+    },
+    "ro": {
+      "quote": "Starea de bine se realizează prin pași mici, dar nu este deloc un lucru mic.",
+      "author": "Zenon din Citium"
+    }
+  },
+  {
+    "en": {
+      "quote": "What you do every day matters more than what you do once in a while.",
+      "author": "Gretchen Rubin"
+    },
+    "ro": {
+      "quote": "Ceea ce faci în fiecare zi contează mai mult decât ceea ce faci din când în când.",
+      "author": "Gretchen Rubin"
+    }
+  },
+  {
+    "en": {
+      "quote": "Between stimulus and response there is a space.",
+      "author": "Viktor Frankl"
+    },
+    "ro": {
+      "quote": "Între stimul și răspuns există un spațiu.",
+      "author": "Viktor Frankl"
+    }
+  },
+  {
+    "en": {
+      "quote": "When we are no longer able to change a situation, we are challenged to change ourselves.",
+      "author": "Viktor Frankl"
+    },
+    "ro": {
+      "quote": "Când nu mai putem schimba o situație, suntem provocați să ne schimbăm pe noi înșine.",
+      "author": "Viktor Frankl"
+    }
+  },
+  {
+    "en": {
+      "quote": "Man is made by his belief. As he believes, so he is.",
+      "author": "Bhagavad Gita"
+    },
+    "ro": {
+      "quote": "Omul este făcut de credința lui. Așa cum crede, așa devine.",
+      "author": "Bhagavad Gita"
+    }
+  },
+  {
+    "en": {
+      "quote": "To know what you prefer instead of humbly saying Amen to what the world tells you you ought to prefer is to have kept your soul alive.",
+      "author": "Robert Louis Stevenson"
+    },
+    "ro": {
+      "quote": "Să știi ce preferi, în loc să spui smerit „Amin” la ce îți spune lumea că ar trebui să preferi, înseamnă să-ți fi păstrat sufletul viu.",
+      "author": "Robert Louis Stevenson"
+    }
+  },
+  {
+    "en": {
+      "quote": "The price of anything is the amount of life you exchange for it.",
+      "author": "Henry David Thoreau"
+    },
+    "ro": {
+      "quote": "Prețul oricărui lucru este cantitatea de viață pe care o schimbi pentru el.",
+      "author": "Henry David Thoreau"
+    }
+  },
+  {
+    "en": {
+      "quote": "It is not enough to be busy. The question is: what are we busy about?",
+      "author": "Henry David Thoreau"
+    },
+    "ro": {
+      "quote": "Nu este suficient să fii ocupat. Întrebarea este: cu ce suntem ocupați?",
+      "author": "Henry David Thoreau"
+    }
+  },
+  {
+    "en": {
+      "quote": "How vain it is to sit down to write when you have not stood up to live.",
+      "author": "Henry David Thoreau"
+    },
+    "ro": {
+      "quote": "Cât de zadarnic este să te așezi să scrii când nu te-ai ridicat să trăiești.",
+      "author": "Henry David Thoreau"
+    }
+  },
+  {
+    "en": {
+      "quote": "Let your life lightly dance on the edges of Time like dew on the tip of a leaf.",
+      "author": "Rabindranath Tagore"
+    },
+    "ro": {
+      "quote": "Lasă-ți viața să danseze ușor pe marginile Timpului, ca roua pe vârful unei frunze.",
+      "author": "Rabindranath Tagore"
+    }
+  },
+  {
+    "en": {
+      "quote": "You become what you give your attention to.",
+      "author": "Epictetus"
+    },
+    "ro": {
+      "quote": "Devii ceea căruia îi dai atenția ta.",
+      "author": "Epictet"
+    }
+  },
+  {
+    "en": {
+      "quote": "Do not spoil what you have by desiring what you have not.",
+      "author": "Epicurus"
+    },
+    "ro": {
+      "quote": "Nu strica ceea ce ai dorindu-ți ceea ce nu ai.",
+      "author": "Epicur"
+    }
+  },
+  {
+    "en": {
+      "quote": "Freedom is secured not by the fulfilling of desires, but by the removal of desire.",
+      "author": "Epictetus"
+    },
+    "ro": {
+      "quote": "Libertatea nu este asigurată prin împlinirea dorințelor, ci prin îndepărtarea dorinței.",
+      "author": "Epictet"
+    }
+  },
+  {
+    "en": {
+      "quote": "Character is fate.",
+      "author": "Heraclitus"
+    },
+    "ro": {
+      "quote": "Caracterul este destin.",
+      "author": "Heraclit"
+    }
+  },
+  {
+    "en": {
+      "quote": "What we achieve inwardly will change outer reality.",
+      "author": "Plutarch"
+    },
+    "ro": {
+      "quote": "Ceea ce realizăm lăuntric va schimba realitatea exterioară.",
+      "author": "Plutarh"
+    }
+  },
+  {
+    "en": {
+      "quote": "The whole future lies in uncertainty: live immediately.",
+      "author": "Seneca"
+    },
+    "ro": {
+      "quote": "Întreg viitorul stă în incertitudine: trăiește acum.",
+      "author": "Seneca"
+    }
+  },
+  {
+    "en": {
+      "quote": "He has the most who is most content with the least.",
+      "author": "Diogenes"
+    },
+    "ro": {
+      "quote": "Are cel mai mult acela care este cel mai mulțumit cu cel mai puțin.",
+      "author": "Diogene"
+    }
+  },
+  {
+    "en": {
+      "quote": "Begin at once to live, and count each separate day as a separate life.",
+      "author": "Seneca"
+    },
+    "ro": {
+      "quote": "Începe chiar acum să trăiești și socotește fiecare zi ca pe o viață separată.",
+      "author": "Seneca"
+    }
+  },
+  {
+    "en": {
+      "quote": "A ship in harbor is safe, but that is not what ships are built for.",
+      "author": "John A. Shedd"
+    },
+    "ro": {
+      "quote": "O navă în port este în siguranță, dar nu pentru asta sunt construite navele.",
+      "author": "John A. Shedd"
+    }
+  },
+  {
+    "en": {
+      "quote": "The obstacle in the path becomes the path.",
+      "author": "Zen proverb"
+    },
+    "ro": {
+      "quote": "Obstacolul din drum devine drumul.",
+      "author": "Proverb zen"
+    }
+  },
+  {
+    "en": {
+      "quote": "When I let go of what I am, I become what I might be.",
+      "author": "Lao Tzu"
+    },
+    "ro": {
+      "quote": "Când renunț la ceea ce sunt, devin ceea ce aș putea fi.",
+      "author": "Lao Tzu"
+    }
+  },
+  {
+    "en": {
+      "quote": "He who knows others is wise; he who knows himself is enlightened.",
+      "author": "Lao Tzu"
+    },
+    "ro": {
+      "quote": "Cel care îi cunoaște pe alții este înțelept; cel care se cunoaște pe sine este luminat.",
+      "author": "Lao Tzu"
+    }
+  },
+  {
+    "en": {
+      "quote": "To conquer oneself is the greatest victory.",
+      "author": "Plato"
+    },
+    "ro": {
+      "quote": "Să te cucerești pe tine însuți este cea mai mare victorie.",
+      "author": "Platon"
+    }
+  },
+  {
+    "en": {
+      "quote": "Courage is grace under pressure.",
+      "author": "Ernest Hemingway"
+    },
+    "ro": {
+      "quote": "Curajul este grație sub presiune.",
+      "author": "Ernest Hemingway"
+    }
+  },
+  {
+    "en": {
+      "quote": "The best way out is always through.",
+      "author": "Robert Frost"
+    },
+    "ro": {
+      "quote": "Cea mai bună ieșire este întotdeauna prin.",
+      "author": "Robert Frost"
+    }
+  },
+  {
+    "en": {
+      "quote": "Attention is the rarest and purest form of generosity.",
+      "author": "Simone Weil"
+    },
+    "ro": {
+      "quote": "Atenția este cea mai rară și mai pură formă de generozitate.",
+      "author": "Simone Weil"
+    }
+  },
+  {
+    "en": {
+      "quote": "The future depends on what you do today.",
+      "author": "Mahatma Gandhi"
+    },
+    "ro": {
+      "quote": "Viitorul depinde de ceea ce faci astăzi.",
+      "author": "Mahatma Gandhi"
+    }
+  },
+  {
+    "en": {
+      "quote": "Happiness depends upon ourselves.",
+      "author": "Aristotle"
+    },
+    "ro": {
+      "quote": "Fericirea depinde de noi înșine.",
+      "author": "Aristotel"
+    }
+  },
+  {
+    "en": {
+      "quote": "Quality is not an act, it is a habit.",
+      "author": "Aristotle"
+    },
+    "ro": {
+      "quote": "Calitatea nu este un act, ci un obicei.",
+      "author": "Aristotel"
+    }
+  },
+  {
+    "en": {
+      "quote": "Knowing yourself is the beginning of all wisdom.",
+      "author": "Aristotle"
+    },
+    "ro": {
+      "quote": "A te cunoaște pe tine însuți este începutul oricărei înțelepciuni.",
+      "author": "Aristotel"
+    }
+  },
+  {
+    "en": {
+      "quote": "The energy of the mind is the essence of life.",
+      "author": "Aristotle"
+    },
+    "ro": {
+      "quote": "Energia minții este esența vieții.",
+      "author": "Aristotel"
+    }
+  },
+  {
+    "en": {
+      "quote": "What lies in our power to do, lies in our power not to do.",
+      "author": "Aristotle"
+    },
+    "ro": {
+      "quote": "Ceea ce stă în puterea noastră să facem stă și în puterea noastră să nu facem.",
+      "author": "Aristotel"
+    }
+  },
+  {
+    "en": {
+      "quote": "To improve is to change; to be perfect is to change often.",
+      "author": "Winston Churchill"
+    },
+    "ro": {
+      "quote": "Să te îmbunătățești înseamnă să te schimbi; să fii perfect înseamnă să te schimbi des.",
+      "author": "Winston Churchill"
+    }
+  },
+  {
+    "en": {
+      "quote": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+      "author": "Winston Churchill"
+    },
+    "ro": {
+      "quote": "Succesul nu este final, eșecul nu este fatal: contează curajul de a continua.",
+      "author": "Winston Churchill"
+    }
+  },
+  {
+    "en": {
+      "quote": "Discipline is choosing between what you want now and what you want most.",
+      "author": "Abraham Lincoln"
+    },
+    "ro": {
+      "quote": "Disciplina înseamnă să alegi între ceea ce vrei acum și ceea ce vrei cel mai mult.",
+      "author": "Abraham Lincoln"
+    }
+  },
+  {
+    "en": {
+      "quote": "We are what we repeatedly do.",
+      "author": "Will Durant"
+    },
+    "ro": {
+      "quote": "Suntem ceea ce facem în mod repetat.",
+      "author": "Will Durant"
+    }
+  },
+  {
+    "en": {
+      "quote": "If it is not right, do not do it; if it is not true, do not say it.",
+      "author": "Marcus Aurelius"
+    },
+    "ro": {
+      "quote": "Dacă nu este drept, nu o face; dacă nu este adevărat, nu o spune.",
+      "author": "Marcus Aurelius"
+    }
+  },
+  {
+    "en": {
+      "quote": "The soul becomes dyed with the color of its thoughts.",
+      "author": "Marcus Aurelius"
+    },
+    "ro": {
+      "quote": "Sufletul se colorează după culoarea gândurilor sale.",
+      "author": "Marcus Aurelius"
+    }
+  },
+  {
+    "en": {
+      "quote": "Very little is needed to make a happy life.",
+      "author": "Marcus Aurelius"
+    },
+    "ro": {
+      "quote": "Foarte puțin este necesar pentru a face o viață fericită.",
+      "author": "Marcus Aurelius"
+    }
+  },
+  {
+    "en": {
+      "quote": "You have power over your mind, not outside events.",
+      "author": "Marcus Aurelius"
+    },
+    "ro": {
+      "quote": "Ai putere asupra minții tale, nu asupra evenimentelor din afară.",
+      "author": "Marcus Aurelius"
+    }
+  },
+  {
+    "en": {
+      "quote": "Confine yourself to the present.",
+      "author": "Marcus Aurelius"
+    },
+    "ro": {
+      "quote": "Limitează-te la prezent.",
+      "author": "Marcus Aurelius"
+    }
+  },
+  {
+    "en": {
+      "quote": "Difficulties strengthen the mind, as labor does the body.",
+      "author": "Seneca"
+    },
+    "ro": {
+      "quote": "Dificultățile întăresc mintea, așa cum munca întărește trupul.",
+      "author": "Seneca"
+    }
+  },
+  {
+    "en": {
+      "quote": "As long as you live, keep learning how to live.",
+      "author": "Seneca"
+    },
+    "ro": {
+      "quote": "Cât timp trăiești, continuă să înveți cum să trăiești.",
+      "author": "Seneca"
+    }
+  },
+  {
+    "en": {
+      "quote": "Wherever there is a human being, there is an opportunity for kindness.",
+      "author": "Seneca"
+    },
+    "ro": {
+      "quote": "Oriunde există o ființă umană, există o oportunitate pentru bunătate.",
+      "author": "Seneca"
+    }
+  },
+  {
+    "en": {
+      "quote": "It is the power of the mind to be unconquerable.",
+      "author": "Seneca"
+    },
+    "ro": {
+      "quote": "Este puterea minții de a fi neînvinsă.",
+      "author": "Seneca"
+    }
+  },
+  {
+    "en": {
+      "quote": "Time discovers truth.",
+      "author": "Seneca"
+    },
+    "ro": {
+      "quote": "Timpul descoperă adevărul.",
+      "author": "Seneca"
+    }
+  },
+  {
+    "en": {
+      "quote": "How long are you going to wait before you demand the best for yourself?",
+      "author": "Epictetus"
+    },
+    "ro": {
+      "quote": "Cât timp ai de gând să mai aștepți înainte să ceri ce este mai bun pentru tine?",
+      "author": "Epictet"
+    }
+  },
+  {
+    "en": {
+      "quote": "Freedom is the only worthy goal in life. It is won by disregarding things that lie beyond our control.",
+      "author": "Epictetus"
+    },
+    "ro": {
+      "quote": "Libertatea este singurul scop vrednic în viață. Este câștigată ignorând lucrurile care sunt dincolo de controlul nostru.",
+      "author": "Epictet"
+    }
+  },
+  {
+    "en": {
+      "quote": "Make the best use of what is in your power, and take the rest as it happens.",
+      "author": "Epictetus"
+    },
+    "ro": {
+      "quote": "Folosește cât mai bine ceea ce este în puterea ta și primește restul așa cum vine.",
+      "author": "Epictet"
+    }
+  },
+  {
+    "en": {
+      "quote": "No great thing is created suddenly.",
+      "author": "Epictetus"
+    },
+    "ro": {
+      "quote": "Niciun lucru mare nu este creat dintr-odată.",
+      "author": "Epictet"
+    }
+  },
+  {
+    "en": {
+      "quote": "The greater the difficulty, the more glory in surmounting it.",
+      "author": "Epicurus"
+    },
+    "ro": {
+      "quote": "Cu cât dificultatea este mai mare, cu atât gloria depășirii ei este mai mare.",
+      "author": "Epicur"
+    }
+  },
+  {
+    "en": {
+      "quote": "Do not count what you have by what you possess.",
+      "author": "Boethius"
+    },
+    "ro": {
+      "quote": "Nu socoti ceea ce ai după ceea ce posezi.",
+      "author": "Boethius"
+    }
+  },
+  {
+    "en": {
+      "quote": "Simplicity, simplicity, simplicity.",
+      "author": "Henry David Thoreau"
+    },
+    "ro": {
+      "quote": "Simplitate, simplitate, simplitate.",
+      "author": "Henry David Thoreau"
+    }
+  },
+  {
+    "en": {
+      "quote": "Go confidently in the direction of your dreams. Live the life you have imagined.",
+      "author": "Henry David Thoreau"
+    },
+    "ro": {
+      "quote": "Mergi cu încredere în direcția visurilor tale. Trăiește viața pe care ți-ai imaginat-o.",
+      "author": "Henry David Thoreau"
+    }
+  },
+  {
+    "en": {
+      "quote": "The question is not what you look at, but what you see.",
+      "author": "Henry David Thoreau"
+    },
+    "ro": {
+      "quote": "Întrebarea nu este la ce te uiți, ci ce vezi.",
+      "author": "Henry David Thoreau"
+    }
+  },
+  {
+    "en": {
+      "quote": "Be a good steward of your gifts. Protect your time. Feed your inner life. Avoid too much noise.",
+      "author": "Jane Kenyon"
+    },
+    "ro": {
+      "quote": "Fii un bun administrator al darurilor tale. Protejează-ți timpul. Hrănește-ți viața interioară. Evită prea mult zgomot.",
+      "author": "Jane Kenyon"
+    }
+  },
+  {
+    "en": {
+      "quote": "Nothing can bring you peace but yourself.",
+      "author": "Ralph Waldo Emerson"
+    },
+    "ro": {
+      "quote": "Nimic nu-ți poate aduce pace în afară de tine însuți.",
+      "author": "Ralph Waldo Emerson"
+    }
+  },
+  {
+    "en": {
+      "quote": "What you do speaks so loudly that I cannot hear what you say.",
+      "author": "Ralph Waldo Emerson"
+    },
+    "ro": {
+      "quote": "Ceea ce faci vorbește atât de tare încât nu pot auzi ce spui.",
+      "author": "Ralph Waldo Emerson"
+    }
+  },
+  {
+    "en": {
+      "quote": "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+      "author": "Ralph Waldo Emerson"
+    },
+    "ro": {
+      "quote": "Să fii tu însuți într-o lume care încearcă mereu să te facă altceva este cea mai mare realizare.",
+      "author": "Ralph Waldo Emerson"
+    }
+  },
+  {
+    "en": {
+      "quote": "Life can only be understood backwards; but it must be lived forwards.",
+      "author": "Søren Kierkegaard"
+    },
+    "ro": {
+      "quote": "Viața poate fi înțeleasă doar înapoi; dar trebuie trăită înainte.",
+      "author": "Søren Kierkegaard"
+    }
+  },
+  {
+    "en": {
+      "quote": "The most common form of despair is not being who you are.",
+      "author": "Søren Kierkegaard"
+    },
+    "ro": {
+      "quote": "Cea mai comună formă de disperare este să nu fii cine ești.",
+      "author": "Søren Kierkegaard"
+    }
+  },
+  {
+    "en": {
+      "quote": "Anxiety is the dizziness of freedom.",
+      "author": "Søren Kierkegaard"
+    },
+    "ro": {
+      "quote": "Anxietatea este amețeala libertății.",
+      "author": "Søren Kierkegaard"
+    }
+  },
+  {
+    "en": {
+      "quote": "No wind favors he who has no destined port.",
+      "author": "Michel de Montaigne"
+    },
+    "ro": {
+      "quote": "Niciun vânt nu-l favorizează pe cel care nu are un port de destinație.",
+      "author": "Michel de Montaigne"
+    }
+  },
+  {
+    "en": {
+      "quote": "My life has been full of terrible misfortunes most of which never happened.",
+      "author": "Michel de Montaigne"
+    },
+    "ro": {
+      "quote": "Viața mea a fost plină de nenorociri cumplite, dintre care cele mai multe nu s-au întâmplat niciodată.",
+      "author": "Michel de Montaigne"
+    }
+  },
+  {
+    "en": {
+      "quote": "It is not death that a man should fear, but never beginning to live.",
+      "author": "Marcus Aurelius"
+    },
+    "ro": {
+      "quote": "Nu de moarte ar trebui să se teamă un om, ci de faptul că nu începe niciodată să trăiască.",
+      "author": "Marcus Aurelius"
+    }
+  },
+  {
+    "en": {
+      "quote": "The happiness of your life depends upon the quality of your thoughts.",
+      "author": "Marcus Aurelius"
+    },
+    "ro": {
+      "quote": "Fericirea vieții tale depinde de calitatea gândurilor tale.",
+      "author": "Marcus Aurelius"
+    }
+  },
+  {
+    "en": {
+      "quote": "You become what you think about all day long.",
+      "author": "Ralph Waldo Emerson"
+    },
+    "ro": {
+      "quote": "Devii ceea la ce te gândești toată ziua.",
+      "author": "Ralph Waldo Emerson"
+    }
+  },
+  {
+    "en": {
+      "quote": "Our life is frittered away by detail. Simplify, simplify.",
+      "author": "Henry David Thoreau"
+    },
+    "ro": {
+      "quote": "Viața noastră este risipită în detalii. Simplifică, simplifică.",
+      "author": "Henry David Thoreau"
+    }
+  },
+  {
+    "en": {
+      "quote": "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+      "author": "Ralph Waldo Emerson"
+    },
+    "ro": {
+      "quote": "Ceea ce se află în spatele nostru și ceea ce se află înaintea noastră sunt lucruri mici față de ceea ce se află în noi.",
+      "author": "Ralph Waldo Emerson"
+    }
+  },
+  {
+    "en": {
+      "quote": "He who has peace of mind disturbs neither himself nor another.",
+      "author": "Epicurus"
+    },
+    "ro": {
+      "quote": "Cel care are pace în minte nu se tulbură nici pe sine, nici pe altul.",
+      "author": "Epicur"
+    }
+  },
+  {
+    "en": {
+      "quote": "There is no easy way from the earth to the stars.",
+      "author": "Seneca"
+    },
+    "ro": {
+      "quote": "Nu există o cale ușoară de la pământ la stele.",
+      "author": "Seneca"
+    }
+  },
+  {
+    "en": {
+      "quote": "What progress, you ask, have I made? I have begun to be a friend to myself.",
+      "author": "Hecato"
+    },
+    "ro": {
+      "quote": "Ce progres am făcut, întrebi? Am început să-mi fiu prieten.",
+      "author": "Hecato"
+    }
+  },
+  {
+    "en": {
+      "quote": "Courage starts with showing up and letting ourselves be seen.",
+      "author": "Brené Brown"
+    },
+    "ro": {
+      "quote": "Curajul începe prin a te prezenta și a te lăsa văzut.",
+      "author": "Brené Brown"
+    }
+  },
+  {
+    "en": {
+      "quote": "Clear is kind. Unclear is unkind.",
+      "author": "Brené Brown"
+    },
+    "ro": {
+      "quote": "Clar înseamnă bunătate. Neclar înseamnă lipsă de bunătate.",
+      "author": "Brené Brown"
+    }
+  },
+  {
+    "en": {
+      "quote": "Integrity is choosing courage over comfort.",
+      "author": "Brené Brown"
+    },
+    "ro": {
+      "quote": "Integritatea înseamnă să alegi curajul în locul confortului.",
+      "author": "Brené Brown"
+    }
+  },
+  {
+    "en": {
+      "quote": "Rest is not idleness.",
+      "author": "John Lubbock"
+    },
+    "ro": {
+      "quote": "Odihna nu este lene.",
+      "author": "John Lubbock"
+    }
+  },
+  {
+    "en": {
+      "quote": "There is more to life than increasing its speed.",
+      "author": "Mahatma Gandhi"
+    },
+    "ro": {
+      "quote": "În viață este mai mult decât a-i crește viteza.",
+      "author": "Mahatma Gandhi"
+    }
+  },
+  {
+    "en": {
+      "quote": "Almost everything will work again if you unplug it for a few minutes, including you.",
+      "author": "Anne Lamott"
+    },
+    "ro": {
+      "quote": "Aproape orice va funcționa din nou dacă îl scoți câteva minute din priză, inclusiv tu.",
+      "author": "Anne Lamott"
+    }
+  },
+  {
+    "en": {
+      "quote": "What is necessary is never unwise.",
+      "author": "Edmund Burke"
+    },
+    "ro": {
+      "quote": "Ceea ce este necesar nu este niciodată neînțelept.",
+      "author": "Edmund Burke"
+    }
+  },
+  {
+    "en": {
+      "quote": "To think is easy. To act is hard. But the hardest thing in the world is to act in accordance with your thinking.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    "ro": {
+      "quote": "Să gândești este ușor. Să acționezi este greu. Dar cel mai greu lucru din lume este să acționezi în acord cu gândirea ta.",
+      "author": "Johann Wolfgang von Goethe"
+    }
+  },
+  {
+    "en": {
+      "quote": "Magic is believing in yourself.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    "ro": {
+      "quote": "Magia înseamnă să crezi în tine.",
+      "author": "Johann Wolfgang von Goethe"
+    }
+  },
+  {
+    "en": {
+      "quote": "Everything that irritates us about others can lead us to an understanding of ourselves.",
+      "author": "Carl Jung"
+    },
+    "ro": {
+      "quote": "Tot ceea ce ne irită la ceilalți ne poate conduce la o înțelegere a noastră.",
+      "author": "Carl Jung"
+    }
+  },
+  {
+    "en": {
+      "quote": "Until you make the unconscious conscious, it will direct your life and you will call it fate.",
+      "author": "Carl Jung"
+    },
+    "ro": {
+      "quote": "Până când nu faci conștientul inconștient, acesta îți va conduce viața și vei numi asta destin.",
+      "author": "Carl Jung"
+    }
+  },
+  {
+    "en": {
+      "quote": "One does not become enlightened by imagining figures of light, but by making the darkness conscious.",
+      "author": "Carl Jung"
+    },
+    "ro": {
+      "quote": "Nu devii luminat imaginând figuri de lumină, ci făcând întunericul conștient.",
+      "author": "Carl Jung"
+    }
+  },
+  {
+    "en": {
+      "quote": "The privilege of a lifetime is to become who you truly are.",
+      "author": "Carl Jung"
+    },
+    "ro": {
+      "quote": "Privilegiul unei vieți este să devii cine ești cu adevărat.",
+      "author": "Carl Jung"
+    }
+  },
+  {
+    "en": {
+      "quote": "In the middle of difficulty lies opportunity.",
+      "author": "Albert Einstein"
+    },
+    "ro": {
+      "quote": "În mijlocul dificultății stă oportunitatea.",
+      "author": "Albert Einstein"
+    }
+  },
+  {
+    "en": {
+      "quote": "A person who never made a mistake never tried anything new.",
+      "author": "Albert Einstein"
+    },
+    "ro": {
+      "quote": "O persoană care nu a făcut niciodată o greșeală nu a încercat niciodată ceva nou.",
+      "author": "Albert Einstein"
+    }
+  },
+  {
+    "en": {
+      "quote": "Not everything that can be counted counts, and not everything that counts can be counted.",
+      "author": "William Bruce Cameron"
+    },
+    "ro": {
+      "quote": "Nu tot ceea ce poate fi numărat contează și nu tot ceea ce contează poate fi numărat.",
+      "author": "William Bruce Cameron"
+    }
+  },
+  {
+    "en": {
+      "quote": "Beware the barrenness of a busy life.",
+      "author": "Socrates"
+    },
+    "ro": {
+      "quote": "Ferește-te de sterpiciunea unei vieți ocupate.",
+      "author": "Socrate"
+    }
+  },
+  {
+    "en": {
+      "quote": "To find yourself, think for yourself.",
+      "author": "Socrates"
+    },
+    "ro": {
+      "quote": "Ca să te găsești, gândește pentru tine.",
+      "author": "Socrate"
+    }
+  },
+  {
+    "en": {
+      "quote": "Be kind, for everyone you meet is fighting a hard battle.",
+      "author": "Ian Maclaren"
+    },
+    "ro": {
+      "quote": "Fii bun, căci fiecare om pe care îl întâlnești duce o bătălie grea.",
+      "author": "Ian Maclaren"
+    }
+  },
+  {
+    "en": {
+      "quote": "It is never too late to be what you might have been.",
+      "author": "George Eliot"
+    },
+    "ro": {
+      "quote": "Nu este niciodată prea târziu să fii ceea ce ai fi putut fi.",
+      "author": "George Eliot"
+    }
+  },
+  {
+    "en": {
+      "quote": "People do not decide their futures, they decide their habits and their habits decide their futures.",
+      "author": "F. M. Alexander"
+    },
+    "ro": {
+      "quote": "Oamenii nu-și decid viitorul, își decid obiceiurile, iar obiceiurile le decid viitorul.",
+      "author": "F. M. Alexander"
+    }
+  },
+  {
+    "en": {
+      "quote": "Do first things first, and second things not at all.",
+      "author": "Peter Drucker"
+    },
+    "ro": {
+      "quote": "Fă mai întâi lucrurile importante și pe cele secundare deloc.",
+      "author": "Peter Drucker"
+    }
+  },
+  {
+    "en": {
+      "quote": "There is surely nothing quite so useless as doing with great efficiency what should not be done at all.",
+      "author": "Peter Drucker"
+    },
+    "ro": {
+      "quote": "Nu există aproape nimic atât de inutil precum a face foarte eficient ceea ce nu ar trebui făcut deloc.",
+      "author": "Peter Drucker"
+    }
+  },
+  {
+    "en": {
+      "quote": "Follow effective action with quiet reflection. From the quiet reflection will come even more effective action.",
+      "author": "Peter Drucker"
+    },
+    "ro": {
+      "quote": "Urmează acțiunea eficientă cu reflecție liniștită. Din reflecția liniștită va veni o acțiune și mai eficientă.",
+      "author": "Peter Drucker"
+    }
+  },
+  {
+    "en": {
+      "quote": "The things that matter most must never be at the mercy of the things that matter least.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    "ro": {
+      "quote": "Lucrurile care contează cel mai mult nu trebuie niciodată lăsate la mila celor care contează cel mai puțin.",
+      "author": "Johann Wolfgang von Goethe"
+    }
+  },
+  {
+    "en": {
+      "quote": "Maturity is the capacity to endure uncertainty.",
+      "author": "John Huston Finley"
+    },
+    "ro": {
+      "quote": "Maturitatea este capacitatea de a îndura incertitudinea.",
+      "author": "John Huston Finley"
+    }
+  },
+  {
+    "en": {
+      "quote": "Peace is not the absence of conflict, but the ability to cope with it.",
+      "author": "Mahatma Gandhi"
+    },
+    "ro": {
+      "quote": "Pacea nu este absența conflictului, ci capacitatea de a face față lui.",
+      "author": "Mahatma Gandhi"
+    }
+  },
+  {
+    "en": {
+      "quote": "Be patient toward all that is unsolved in your heart.",
+      "author": "Rainer Maria Rilke"
+    },
+    "ro": {
+      "quote": "Fii răbdător cu tot ceea ce este nerezolvat în inima ta.",
+      "author": "Rainer Maria Rilke"
+    }
+  },
+  {
+    "en": {
+      "quote": "Live the questions now.",
+      "author": "Rainer Maria Rilke"
+    },
+    "ro": {
+      "quote": "Trăiește întrebările acum.",
+      "author": "Rainer Maria Rilke"
+    }
+  },
+  {
+    "en": {
+      "quote": "Perhaps all the dragons in our lives are princesses waiting to see us act just once with beauty and courage.",
+      "author": "Rainer Maria Rilke"
+    },
+    "ro": {
+      "quote": "Poate că toți dragonii din viața noastră sunt prințese care așteaptă să ne vadă acționând măcar o dată cu frumusețe și curaj.",
+      "author": "Rainer Maria Rilke"
+    }
+  },
+  {
+    "en": {
+      "quote": "The mind is not a vessel to be filled but a fire to be kindled.",
+      "author": "Plutarch"
+    },
+    "ro": {
+      "quote": "Mintea nu este un vas de umplut, ci un foc de aprins.",
+      "author": "Plutarh"
+    }
+  },
+  {
+    "en": {
+      "quote": "What matters is not what happens to you, but how you react to it.",
+      "author": "Epictetus"
+    },
+    "ro": {
+      "quote": "Ceea ce contează nu este ce ți se întâmplă, ci cum reacționezi.",
+      "author": "Epictet"
+    }
+  },
+  {
+    "en": {
+      "quote": "The first and greatest victory is to conquer yourself.",
+      "author": "Plato"
+    },
+    "ro": {
+      "quote": "Prima și cea mai mare victorie este să te cucerești pe tine însuți.",
+      "author": "Platon"
+    }
+  },
+  {
+    "en": {
+      "quote": "You cannot step into the same river twice.",
+      "author": "Heraclitus"
+    },
+    "ro": {
+      "quote": "Nu poți păși de două ori în același râu.",
+      "author": "Heraclit"
+    }
+  },
+  {
+    "en": {
+      "quote": "When you arise in the morning, think of what a privilege it is to be alive.",
+      "author": "Marcus Aurelius"
+    },
+    "ro": {
+      "quote": "Când te ridici dimineața, gândește-te ce privilegiu este să fii viu.",
+      "author": "Marcus Aurelius"
+    }
+  },
+  {
+    "en": {
+      "quote": "Be tolerant with others and strict with yourself.",
+      "author": "Marcus Aurelius"
+    },
+    "ro": {
+      "quote": "Fii tolerant cu ceilalți și exigent cu tine însuți.",
+      "author": "Marcus Aurelius"
+    }
+  },
+  {
+    "en": {
+      "quote": "A gem cannot be polished without friction, nor a person perfected without trials.",
+      "author": "Seneca"
+    },
+    "ro": {
+      "quote": "O piatră prețioasă nu poate fi șlefuită fără frecare, iar un om nu poate fi desăvârșit fără încercări.",
+      "author": "Seneca"
+    }
+  },
+  {
+    "en": {
+      "quote": "If you wish to improve, be content to appear clueless or stupid.",
+      "author": "Epictetus"
+    },
+    "ro": {
+      "quote": "Dacă vrei să te îmbunătățești, mulțumește-te să pari neștiutor sau prost.",
+      "author": "Epictet"
+    }
+  },
+  {
+    "en": {
+      "quote": "The most difficult thing is the decision to act, the rest is merely tenacity.",
+      "author": "Amelia Earhart"
+    },
+    "ro": {
+      "quote": "Cel mai dificil lucru este decizia de a acționa, restul este doar tenacitate.",
+      "author": "Amelia Earhart"
+    }
+  },
+  {
+    "en": {
+      "quote": "Do what you can, with what you have, where you are.",
+      "author": "Theodore Roosevelt"
+    },
+    "ro": {
+      "quote": "Fă ce poți, cu ce ai, acolo unde ești.",
+      "author": "Theodore Roosevelt"
+    }
+  },
+  {
+    "en": {
+      "quote": "Comparison is the thief of joy.",
+      "author": "Theodore Roosevelt"
+    },
+    "ro": {
+      "quote": "Comparația este hoțul bucuriei.",
+      "author": "Theodore Roosevelt"
+    }
+  },
+  {
+    "en": {
+      "quote": "Knowing is not enough; we must apply. Willing is not enough; we must do.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    "ro": {
+      "quote": "A ști nu este suficient; trebuie să aplicăm. A vrea nu este suficient; trebuie să facem.",
+      "author": "Johann Wolfgang von Goethe"
+    }
+  },
+  {
+    "en": {
+      "quote": "A man who dares to waste one hour of time has not discovered the value of life.",
+      "author": "Charles Darwin"
+    },
+    "ro": {
+      "quote": "Un om care îndrăznește să piardă o oră de timp nu a descoperit valoarea vieții.",
+      "author": "Charles Darwin"
+    }
+  },
+  {
+    "en": {
+      "quote": "Do the next right thing.",
+      "author": "Anonymous"
+    },
+    "ro": {
+      "quote": "Fă următorul lucru drept.",
+      "author": "Anonim"
+    }
+  }
+];
 
 const ETHICS_GROUPS = {
   en:[
@@ -897,7 +2162,7 @@ function buildInitiations(){
   if(ethicsWrap){
     const groups=ETHICS_GROUPS[state.lang];
     const isOpen=!!state.ethicsListOpen;
-    ethicsWrap.innerHTML=`<div class="card" style="margin-bottom:12px"><div class="tagline">${t('initiations.ethicsTag')}</div><h3>${t('initiations.ethicsTitle')}</h3><p>${t('initiations.ethicsDesc')}</p><div class="tileActions"><button class="btn primary sm ethicCardAction" type="button" onclick="toggleEthicsList()">${isOpen ? t('initiations.closeEthics') : t('initiations.openEthics')}</button></div></div>${isOpen ? groups.map((group,idx)=>`<div class="ethicItem ${state.ethicsOpen===idx?'open':''}"><button class="ethicToggle" type="button" onclick="toggleEthicsGroup(${idx})"><div class="ethicMeta"><strong>${escapeHtml(group.title)}</strong><span>${group.items.length} ${state.lang==='ro'?'principii':'principles'}</span></div><span class="ethicChevron">+</span></button><div class="ethicBody"><p class="ethicIntro">${escapeHtml(group.intro)}</p><ol class="ethicList">${group.items.map(([head,desc])=>`<li><strong>${escapeHtml(head)}</strong>${escapeHtml(desc)}</li>`).join('')}</ol></div></div>`).join('') : ''}`;
+    ethicsWrap.innerHTML=`<div class="card" style="margin-bottom:12px"><div class="tagline">${t('initiations.ethicsTag')}</div><h3>${t('initiations.ethicsTitle')}</h3><p>${t('initiations.ethicsDesc')}</p><div class="tileActions"><button class="btn primary sm ethicCardAction" type="button" onclick="toggleEthicsList()">${isOpen ? t('initiations.closeEthics') : t('initiations.openEthics')}</button><button class="btn sm ethicCardAction" type="button" onclick="downloadEthicsPdf()">${t('initiations.downloadPdf')}</button></div></div>${isOpen ? groups.map((group,idx)=>`<div class="ethicItem ${state.ethicsOpen===idx?'open':''}"><button class="ethicToggle" type="button" onclick="toggleEthicsGroup(${idx})"><div class="ethicMeta"><strong>${escapeHtml(group.title)}</strong><span style="margin-left:10px">${group.items.length} ${state.lang==='ro'?'principii':'principles'}</span></div><span class="ethicChevron">+</span></button><div class="ethicBody"><p class="ethicIntro">${escapeHtml(group.intro)}</p><ol class="ethicList">${group.items.map(([head,desc])=>`<li><strong>${escapeHtml(head)}</strong>${escapeHtml(desc)}</li>`).join('')}</ol></div></div>`).join('') : ''}`;
   }
   const valuesCard=document.getElementById('valuesDiscoveryCard');
   if(valuesCard){
@@ -905,6 +2170,7 @@ function buildInitiations(){
   }
 }
 function toggleEthicsList(){ state.ethicsListOpen=!state.ethicsListOpen; if(!state.ethicsListOpen) state.ethicsOpen=-1; buildInitiations(); }
+function toggleEthicsGroup(idx){ state.ethicsOpen = state.ethicsOpen===idx ? -1 : idx; buildInitiations(); }
 function renderValuesDiscovery(){
   const selected=state.values.selected||[];
   const top5=state.values.top5||[];
@@ -921,6 +2187,61 @@ function pushToTop5(v){ if(!state.values.selected.includes(v)) state.values.sele
 function removeTopValue(idx){ state.values.top5.splice(idx,1); openModal('valuesDiscovery', true); }
 function moveValue(idx,dir){ const arr=state.values.top5; const ni=idx+dir; if(ni<0||ni>=arr.length) return; [arr[idx],arr[ni]]=[arr[ni],arr[idx]]; openModal('valuesDiscovery', true); }
 function saveValuesDiscovery(){ if((state.values.top5||[]).length<5){ alert(t('initiations.pickMore')); return; } state.summary.values={title:t('initiations.valuesTitle'),top5:[...state.values.top5],selected:[...state.values.selected]}; persistHubData(); const m=document.getElementById('msg_values'); if(m){m.classList.add('show'); setTimeout(()=>m.classList.remove('show'),1400)} updateSummaryDock(); buildInitiations(); }
+
+function downloadEthicsPdf(){
+  const href = state.lang==='ro' ? '/members/assets/Etici_RO.pdf' : '/members/assets/Ethics_EN.pdf';
+  const a=document.createElement('a');
+  a.href=href;
+  a.target='_blank';
+  a.rel='noopener';
+  a.download='';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+function getBucharestParts(date){
+  const fmt = new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Bucharest',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});
+  const parts=Object.fromEntries(fmt.formatToParts(date).filter(p=>p.type!=='literal').map(p=>[p.type,p.value]));
+  return {year:+parts.year,month:+parts.month,day:+parts.day,hour:+parts.hour,minute:+parts.minute,second:+parts.second};
+}
+function getBucharestDayIndex(){
+  const now = getBucharestParts(new Date());
+  const adjustedHour = now.hour < 3 ? 0 : 1;
+  const utcMs = Date.UTC(now.year, now.month-1, now.day - (adjustedHour ? 0 : 1));
+  return Math.floor(utcMs / 86400000);
+}
+function seededRandom(seed){
+  let t = seed + 0x6D2B79F5;
+  t = Math.imul(t ^ t >>> 15, t | 1);
+  t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+  return ((t ^ t >>> 14) >>> 0) / 4294967296;
+}
+function shuffledOrder(length, seed){
+  const arr = Array.from({length}, (_,i)=>i);
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(seededRandom(seed + i*97) * (i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+function getDailyQuote(){
+  const list = DAILY_QUOTES;
+  const dayIndex = getBucharestDayIndex();
+  const cycle = Math.floor(dayIndex / list.length);
+  const pos = dayIndex % list.length;
+  const order = shuffledOrder(list.length, 1009 + cycle * 7919);
+  return {item:list[order[pos]], cycle, pos};
+}
+function renderDailyQuote(){
+  const payload=getDailyQuote();
+  const item=payload.item[state.lang];
+  const quote=document.getElementById('dailyQuote');
+  const author=document.getElementById('dailyAuthor');
+  const label=document.getElementById('dailyLabel');
+  if(quote) quote.textContent='“' + item.quote + '”';
+  if(author) author.textContent=item.author;
+  if(label) label.textContent = `${t('daily.label')} · ${state.lang==='ro' ? 'rotație zilnică la 03:00, ora Bucureștiului' : 'daily rotation at 03:00 Bucharest time'}`;
+}
 
 function updateSummaryDock(){
   const assessCount = Object.keys(state.summary.assessments||{}).length;
@@ -956,13 +2277,14 @@ function renderSummaryComposer(){
     parts.push(`<div class="resultSection"><strong>${t('summary.reflection')}</strong><p>${escapeHtml(state.summary.reflection.question||'')}</p><p>${escapeHtml(state.summary.reflection.note||'')}</p></div>`);
   }
   if(parts.length===1){ parts.push(`<div class="panel">${t('summary.empty')}</div>`); }
-  return `<div>${parts.join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveSummaryNote()">${t('common.save')}</button><button class="btn" type="button" onclick="emailSummaryToSelf()">${t('summary.email')}</button><button class="btn" type="button" onclick="downloadSummaryPdf()">${t('summary.download')}</button></div></div>`;
+  return `<div>${parts.join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveSummaryNote()">${t('common.save')}</button><button class="btn" type="button" onclick="downloadSummaryPdf()">${t('summary.download')}</button></div></div>`;
 }
 
 function saveSummaryNote(){
   const el=document.getElementById('summary_note');
   state.summary.note = el ? el.value.trim() : '';
   persistHubData();
+  renderDailyQuote();
   updateSummaryDock();
 }
 
@@ -1142,9 +2464,17 @@ function loadHubData(){
     if(saved?.values){ state.values.selected = saved.values.selected || saved.values.top5 || []; state.values.top5 = saved.values.top5 || []; }
   }catch(e){}
 }
-function showExploreQuestions(){
-  const el=document.getElementById('optionEQuestions'); if(el){el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'start'});}
+function toggleExploreQuestions(){
+  state.exploreOpen = !state.exploreOpen;
+  const el=document.getElementById('optionEQuestions');
+  const btn=document.querySelector('#start .card .ctaRow .btn');
+  if(el){
+    el.style.display = state.exploreOpen ? 'block' : 'none';
+    if(state.exploreOpen) el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  if(btn) btn.textContent = state.exploreOpen ? t('start.hide') : t('start.reveal');
 }
+
 function openOptionPath(primary, followup){
   openModal(primary);
   const box=document.getElementById('optionFollowup');
@@ -1169,6 +2499,7 @@ function initApp(){
   loadHubData();
   initTheme();
   applyI18n();
+  const qBtn=document.querySelector('#start .card .ctaRow .btn'); if(qBtn) qBtn.textContent = state.exploreOpen ? t('start.hide') : t('start.reveal');
   document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
   document.getElementById('langMobileBtn')?.addEventListener('click', ()=>document.body.classList.toggle('lang-open'));
   document.getElementById('burgerBtn')?.addEventListener('click', ()=>document.body.classList.toggle('menu-open'));
@@ -1180,6 +2511,7 @@ function initApp(){
     if(isMobileViewport() && dock && document.body.classList.contains('summary-open') && !dock.contains(e.target)) document.body.classList.remove('summary-open');
   });
   setupMobileScrollBehavior();
+  renderDailyQuote();
   updateSummaryDock();
 }
 
