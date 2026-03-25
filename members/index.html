@@ -268,7 +268,7 @@
         <button id="themeToggle" class="themeBtn" type="button" aria-label="Toggle dark mode" aria-pressed="false">☾</button>
         <button class="burger" id="burgerBtn" aria-label="Open menu" type="button"><span class="burgerIcon" aria-hidden="true"></span></button>
       </div>
-      <div class="mobileMenu" id="mobileMenu"><div class="wrap"><a href="/" class="publicLink"><img class="publicDrop logo-light" src="/assets/drop_light.svg" alt="Public site"><img class="publicDrop logo-dark" src="/assets/drop_dark.svg" alt="Public site"><span data-i18n="nav.publicSite">Public site</span></a><a href="#start" data-i18n="nav.start">Start</a><a href="#assessments" data-i18n="nav.assessments">Self-Assessments</a><a href="#tools" data-i18n="nav.tools">Tools</a><a href="#reflection" data-i18n="nav.reflection">Weekly reflection</a></div></div>
+      <div class="mobileMenu" id="mobileMenu"><div class="wrap"><a href="/" class="publicLink"><img class="publicDrop logo-light" src="/assets/drop_light.svg" alt="Public site"><img class="publicDrop logo-dark" src="/assets/drop_dark.svg" alt="Public site"><span data-i18n="nav.publicSite">Public site</span></a><a href="#start" data-i18n="nav.start">Start</a><a href="#assessments" data-i18n="nav.assessments">Assessments</a><a href="#tools" data-i18n="nav.tools">Tools</a><a href="#support" data-i18n="nav.support">Support</a><a href="#reflection" data-i18n="nav.reflection">Weekly reflection</a></div></div>
     </div>
   </div>
 </header>
@@ -279,31 +279,31 @@
       <div class="grid">
         <div class="card">
           <div class="kicker" data-i18n="hero.kicker">Members Hub</div>
-          <h1 data-i18n="hero.h1">Useful things for people who want clarity under pressure.</h1>
-          <p class="lead" data-i18n="hero.lead">This is the private Grundimpuls resource hub for coaching and training participants. It is built for actual use in difficult weeks, not for passive reading.</p>
-          <p data-i18n="hero.sub">Start with the situation you are in. Then use one tool. Not five.</p>
-          <div class="badges">
-            <span class="badge" data-i18n="hero.badge1">Self-Assessments</span>
-            <span class="badge" data-i18n="hero.badge2">Tools</span>
-            <span class="badge" data-i18n="hero.badge3">Weekly Reflection</span>
+          <h1 data-i18n="hero.h1">A private working space for people who need clarity, not more content.</h1>
+          <p class="lead" data-i18n="hero.lead">This is not a course and it is not a library. It is a set of instruments to use between sessions, in difficult weeks, or when something needs clarifying.</p>
+          <p data-i18n="hero.sub">Use it when something is live, not when you are procrastinating with personal development.</p>
+          <div class="panel" style="margin:18px 0 0;background:var(--bg-alt)">
+            <div class="small" style="font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:8px" data-i18n="hero.howTitle">How to use this</div>
+            <div class="small" data-i18n="hero.how1">If something specific is going on, start with a question.</div>
+            <div class="small" data-i18n="hero.how2">If you want to explore, browse the collection.</div>
+            <div class="small" data-i18n="hero.how3">If you are preparing for a session, go to Session Prep.</div>
           </div>
           <div class="ctaRow">
-            <a class="btn primary" href="#start" data-i18n="hero.cta1">Start here</a>
-            <a class="btn" href="#reflection" data-i18n="hero.cta2">Weekly reflection</a>
+            <button class="btn primary" type="button" onclick="showExploreQuestions()" data-i18n="hero.cta1">I want to explore something specific</button>
+            <a class="btn" href="#assessments" data-i18n="hero.cta2">I want to browse and pick</a>
           </div>
-          <p class="mini" style="margin-top:14px" data-i18n="hero.note">Access is limited to approved participant email addresses.</p>
+          <p class="mini" style="margin-top:14px" data-i18n="hero.inventory">6 assessments · 8 tools · coaching support · weekly reflection</p>
         </div>
         <div class="card">
-          <h3 data-i18n="hero.nowTitle">What to use right now</h3>
+          <h3 data-i18n="hero.nowTitle">What this hub is for</h3>
           <ul class="quickList">
-            <li data-i18n="hero.now1">If your capacity feels lower than usual, start with <strong>Burnout screening</strong>.</li>
-            <li data-i18n="hero.now2">If you are overloaded, use <strong>7-day recovery planner</strong>.</li>
-            <li data-i18n="hero.now3">If a conversation is stuck, use <strong>Difficult conversation prep</strong>.</li>
-            <li data-i18n="hero.now4">If decisions feel noisy, use <strong>Decision journal</strong>.</li>
-            <li data-i18n="hero.now5">If you need to reset, use <strong>3-minute breathing exercise</strong>.</li>
+            <li data-i18n="hero.now1">For when you are still delivering but something is quietly wrong.</li>
+            <li data-i18n="hero.now2">For when you suspect you are solving the wrong problem.</li>
+            <li data-i18n="hero.now3">For when a conversation keeps not happening.</li>
+            <li data-i18n="hero.now4">For when you need to arrive at the next session with your thinking already cleaner.</li>
           </ul>
           <div class="accentBar" style="margin-top:18px"></div>
-          <p class="small" data-i18n="hero.small">Version 1 principle: less content, more utility.</p>
+          <p class="small" data-i18n="hero.small">Less content. Better routing. More honest work.</p>
         </div>
       </div>
     </div>
@@ -312,12 +312,31 @@
   <section id="start" class="alt">
     <div class="wrap">
       <div class="accentBar"></div>
-      <h2 data-i18n="start.title">Start with your situation</h2>
-      <p data-i18n="start.lead">People do not usually need a library. They need the right thing at the right time.</p>
-      <div class="cols3">
-        <a class="hubLink" href="#assessments"><strong data-i18n="start.card1t">I want a clearer snapshot</strong><span data-i18n="start.card1d">Use one self-assessment to see where you are right now.</span></a>
-        <a class="hubLink" href="#tools"><strong data-i18n="start.card2t">I need something practical</strong><span data-i18n="start.card2d">Use a tool before, during, or between sessions.</span></a>
-        <a class="hubLink" href="#reflection"><strong data-i18n="start.card3t">I need to think more honestly</strong><span data-i18n="start.card3d">Use the weekly reflection to slow down and look properly.</span></a>
+      <h2 data-i18n="start.title">Choose an entry point</h2>
+      <p data-i18n="start.lead">Members can move between these modes at any time.</p>
+      <div class="grid">
+        <div class="card">
+          <div class="tagline" data-i18n="start.pathE">Option E · Explore something specific</div>
+          <h3 data-i18n="start.card1t">Start with a question</h3>
+          <p data-i18n="start.card1d">Pick the question that sounds uncomfortably close to your situation. It will route you to one relevant instrument.</p>
+          <div class="ctaRow"><button class="btn primary sm" type="button" onclick="showExploreQuestions()" data-i18n="start.reveal">Show the questions</button></div>
+        </div>
+        <div class="card">
+          <div class="tagline" data-i18n="start.pathF">Option F · Browse and pick</div>
+          <h3 data-i18n="start.card2t">See the full collection</h3>
+          <p data-i18n="start.card2d">Browse assessments, tools, coaching support, and the current weekly reflection.</p>
+          <div class="ctaRow"><a class="btn primary sm" href="#assessments" data-i18n="start.browse">Browse the collection</a></div>
+        </div>
+      </div>
+      <div id="optionEQuestions" class="card" style="display:none;margin-top:22px">
+        <div class="tagline" data-i18n="start.optionETag">Explore by question</div>
+        <div class="cols3" style="grid-template-columns:1fr 1fr;gap:14px">
+          <button class="hubLink" type="button" onclick="openOptionPath('burnout','recovery')"><strong data-i18n="path.q1">What is actually going on with my energy right now?</strong><span data-i18n="path.q1d">Open Burnout Risk Check</span></button>
+          <button class="hubLink" type="button" onclick="openOptionPath('strategic','decision')"><strong data-i18n="path.q2">Am I thinking clearly or am I in reaction mode?</strong><span data-i18n="path.q2d">Open Strategic Mindset</span></button>
+          <button class="hubLink" type="button" onclick="openOptionPath('conversation','grounding')"><strong data-i18n="path.q3">What do I need to say that I have not said yet?</strong><span data-i18n="path.q3d">Open Difficult Conversation Prep</span></button>
+          <button class="hubLink" type="button" onclick="openOptionPath('reflectionNotes','prep')"><strong data-i18n="path.q4">What am I avoiding?</strong><span data-i18n="path.q4d">Open Weekly Reflection</span></button>
+        </div>
+        <div id="optionFollowup" class="panel" style="display:none;margin-top:16px"></div>
       </div>
     </div>
   </section>
@@ -325,18 +344,55 @@
   <section id="assessments">
     <div class="wrap">
       <div class="accentBar"></div>
-      <h2 data-i18n="assess.title">Self-Assessments</h2>
-      <p data-i18n="assess.lead">These are practical self-checks. They give you a structured snapshot and a direction for reflection.</p>
+      <h2 data-i18n="assess.title">Assessments</h2>
+      <p data-i18n="assess.lead">Use these when you want a sharper read on what is happening, not a flattering one.</p>
       <div class="gridAssess" id="assessmentGrid"></div>
     </div>
   </section>
 
-  <section id="tools" class="warm">
+  <section id="tools" class="alt">
     <div class="wrap">
       <div class="accentBar"></div>
       <h2 data-i18n="tools.title">Tools</h2>
-      <p data-i18n="tools.lead">Use these before, during, or between sessions.</p>
+      <p data-i18n="tools.lead">Use one instrument against one live issue. That is usually enough.</p>
       <div class="gridTools" id="toolGrid"></div>
+    </div>
+  </section>
+
+  <section id="support">
+    <div class="wrap">
+      <div class="accentBar"></div>
+      <h2 data-i18n="support.title">Coaching support</h2>
+      <p data-i18n="support.lead">These are not extra modules. They are simple working surfaces around your sessions.</p>
+      <div class="gridTools" id="supportGrid"></div>
+    </div>
+  </section>
+
+  <section id="resources" class="alt">
+    <div class="wrap">
+      <div class="accentBar"></div>
+      <h2 data-i18n="resources.title">Resources</h2>
+      <p data-i18n="resources.lead">A small set of references worth keeping close. Not a library.</p>
+      <div class="gridTools">
+        <a class="hubLink" href="Grundimpuls_Burnout_Coaching_OnePager.pdf" download><strong data-i18n="resources.r1t">Burnout Coaching one-pager</strong><span data-i18n="resources.r1d">Because sometimes people need the structure before they are willing to look at the cost.</span></a>
+        <a class="hubLink" href="Grundimpuls_Executive_Coaching_OnePager.pdf" download><strong data-i18n="resources.r2t">Executive Coaching one-pager</strong><span data-i18n="resources.r2d">Useful when the work is less about performance tips and more about judgment, pressure, and responsibility.</span></a>
+        <a class="hubLink" href="Grundimpuls_Strengths_Coaching_OnePager.pdf" download><strong data-i18n="resources.r3t">Strengths Coaching one-pager</strong><span data-i18n="resources.r3d">A reminder that strengths are useful only when they are used deliberately, not romantically.</span></a>
+        <a class="hubLink" href="Grundimpuls_CriticalThinking_COURSE_OnePager.pdf" download><strong data-i18n="resources.r4t">Critical Thinking course one-pager</strong><span data-i18n="resources.r4d">For when the problem is not effort, but the quality of your thinking under pressure.</span></a>
+        <a class="hubLink" href="Grundimpuls_MentalWellness_COURSE_OnePager.pdf" download><strong data-i18n="resources.r5t">Mental Wellness course one-pager</strong><span data-i18n="resources.r5d">Because sustainable functioning usually needs more design and less denial.</span></a>
+        <a class="hubLink" href="https://grundimpuls.substack.com" target="_blank" rel="noopener"><strong data-i18n="resources.r6t">Grundimpuls on Substack</strong><span data-i18n="resources.r6d">This is where longer ideas go when a short answer would be dishonest.</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="from-stamin">
+    <div class="wrap">
+      <div class="accentBar"></div>
+      <h2 data-i18n="stamin.title">From Stamin</h2>
+      <div class="card" style="max-width:860px">
+        <p data-i18n="stamin.note1">This month I am paying attention to the gap between insight and execution. Many smart people know exactly what is wrong and still keep protecting the pattern that creates the problem.</p>
+        <p data-i18n="stamin.note2">That usually means the real work is not more understanding. It is a more honest decision about what has to change.</p>
+        <p><a href="https://grundimpuls.substack.com" target="_blank" rel="noopener" data-i18n="stamin.link">Read the latest or most relevant Substack piece</a></p>
+      </div>
     </div>
   </section>
 
@@ -344,12 +400,12 @@
     <div class="wrap">
       <div class="accentBar"></div>
       <h2 data-i18n="reflection.title">Weekly reflection</h2>
-      <p data-i18n="reflection.lead">A different question each week. Take 10 minutes with it. The goal is not a polished answer. The goal is honesty.</p>
+      <p data-i18n="reflection.lead">One question per week. The point is not to sound good. The point is to stop editing reality.</p>
       <div class="card" style="max-width:760px;margin-top:24px;background:var(--accent-bg);border-color:var(--accent-border)">
         <div class="small" id="weekLabel"></div>
         <div style="font-size:20px;font-weight:700;color:var(--text);font-style:italic;line-height:1.55;margin:12px 0 16px" id="reflectionPrompt"></div>
-        <p style="font-size:13px;margin:0 0 16px" data-i18n="reflection.note">Write in a notebook, a note app, or record a voice message to yourself. Come back to it before your next session.</p>
-        <div class="ctaRow"><button class="btn primary" type="button" onclick="openModal('reflectionNotes')" data-i18n="reflection.takeNotes">Take notes</button></div>
+        <p style="font-size:13px;margin:0 0 16px" data-i18n="reflection.note">Write in a notebook, a note app, or directly here. Then come back to it before your next session.</p>
+        <div class="ctaRow"><button class="btn primary" type="button" onclick="openModal('reflectionNotes')" data-i18n="reflection.takeNotes">Open weekly reflection</button></div>
       </div>
     </div>
   </section>
@@ -372,9 +428,10 @@
     <div class="small" style="font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:6px" data-i18n="summary.kicker">Visit summary</div>
     <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px" data-i18n="summary.title">Your session trail is being collected.</div>
     <div class="small" id="summaryCounts" style="margin-bottom:4px;color:var(--muted)">0 assessments · 0 tools · 0 notes</div>
-    <div class="small" id="summaryHint" data-i18n="summary.hint">When you have something worth keeping, download it as a PDF.</div>
+    <div class="small" id="summaryHint" data-i18n="summary.hint">When you have something worth keeping, send it to yourself or download it.</div>
     <div class="ctaRow" style="margin-top:10px">
       <button class="btn primary sm" type="button" onclick="openSummaryComposer()" data-i18n="summary.open">Open summary</button>
+      <button class="btn sm" type="button" onclick="emailSummaryToSelf()" data-i18n="summary.email">Email to self</button>
       <button class="btn sm" type="button" onclick="downloadSummaryPdf()" data-i18n="summary.download">Download PDF</button>
     </div>
   </div>
@@ -402,37 +459,43 @@
 const i18n = {
   en: {
     brand:{hub:'Members Hub',members:'Members',hubWord:'Hub'},
-    nav:{start:'Start',assessments:'Self-Assessments',tools:'Tools',reflection:'Weekly reflection',publicSite:'Public site'},
+    nav:{start:'Start',assessments:'Assessments',tools:'Tools',support:'Support',reflection:'Weekly reflection',publicSite:'Public site'},
     common:{openAssessment:'Open assessment',openTool:'Open tool',startAssessment:'Start assessment',seeResult:'See my result',copy:'Copy to clipboard',clear:'Clear',copied:'Copied.',start:'Start',reset:'Reset',ready:'Ready',close:'Close',pleaseAnswerAll:'Please answer all questions before seeing your result.',fillField:'Fill in at least one field first.',copyFailed:'Copy failed. Please copy manually.',save:'Save',saved:'Saved.',scale1:'Not true',scale2:'Slightly',scale3:'Somewhat',scale4:'Mostly',scale5:'Very true'},
-    hero:{kicker:'Members Hub',h1:'Useful things for people who want clarity under pressure.',lead:'This is the private Grundimpuls resource hub for coaching and training participants. It is built for actual use in difficult weeks, not for passive reading.',sub:'Start with the situation you are in. Then use one tool. Not five.',badge1:'Self-Assessments',badge2:'Tools',badge3:'Weekly Reflection',cta1:'Start here',cta2:'Weekly reflection',note:'Access is limited to approved participant email addresses.',nowTitle:'What to use right now',now1:'If your capacity feels lower than usual, start with <strong>Burnout screening</strong>.',now2:'If you are overloaded, use <strong>7-day recovery planner</strong>.',now3:'If a conversation is stuck, use <strong>Difficult conversation prep</strong>.',now4:'If decisions feel noisy, use <strong>Decision journal</strong>.',now5:'If you need to reset, use <strong>3-minute breathing exercise</strong>.',small:'Version 1 principle: less content, more utility.'},
-    start:{title:'Start with your situation',lead:'People do not usually need a library. They need the right thing at the right time.',card1t:'I want a clearer snapshot',card1d:'Use one self-assessment to see where you are right now.',card2t:'I need something practical',card2d:'Use a tool before, during, or between sessions.',card3t:'I need to think more honestly',card3d:'Use the weekly reflection to slow down and look properly.'},
-    assess:{title:'Self-Assessments',lead:'These are practical self-checks. They give you a structured snapshot and a direction for reflection.'},
-    cards:{coachability:{tag:'Coachability Assessment',title:'How coachable are you right now?',desc:'20 questions across mindset, ego, learning, adaptability, accountability, and baseline functioning.'},leadership:{tag:'Leadership Inventory',title:'Leadership self-check',desc:'10 questions across direction, communication, feedback, composure, ownership, and self-awareness.'},burnout:{tag:'Burnout Screening',title:'Burnout risk check',desc:'9 questions across exhaustion, cynicism, and reduced efficacy.'},mental:{tag:'Mental Wellness Assessment',title:'Mental wellness and integration',desc:'18 questions covering vitality, focus, safety, resilience, meaning, and emotional integration.'},resilience:{tag:'Resilience Check',title:'Resilience profile',desc:'8 questions on recovery, adaptability, support, and purpose.'},strategic:{tag:'Strategic Mindset',title:'Critical thinking and cognitive agility',desc:'18 questions across assumptions, emotional regulation, argument evaluation, and systems thinking.'}},
-    tools:{title:'Tools',lead:'Use these before, during, or between sessions.'},
-    toolcards:{prep:{kicker:'Before each session',title:'Session prep',desc:'Fill this in before your coaching session. It takes 5 minutes and makes the session sharper.'},recovery:{kicker:'Recovery planning',title:'7-day recovery planner',desc:'Plan recovery deliberately instead of hoping it happens on its own.'},conversation:{kicker:'Conversation clarity',title:'Difficult conversation prep',desc:'Clarify aim, friction, boundaries, and what a good outcome looks like.'},decision:{kicker:'Decision quality',title:'Decision journal',desc:'Slow down decisions that feel noisy, reactive, or overly confident.'},review:{kicker:'After-action reflection',title:'Post-pressure review',desc:'What happened, what cost more than it should, and what to change next time.'},breathing:{kicker:'Acute stress regulation',title:'3-minute breathing exercise',desc:'A short guided reset for when your system is overclocked.'},values:{kicker:'Values clarification',title:'Value discovery tool',desc:'Choose values that matter, narrow them to your top 5, and rank them.'}},
-    reflection:{title:'Weekly reflection',lead:'A different question each week. Take 10 minutes with it. The goal is not a polished answer. The goal is honesty.',note:'Write in a notebook, a note app, or record a voice message to yourself. Come back to it before your next session.',takeNotes:'Take notes',notesTitle:'Reflection notes',notesDesc:'Write your response directly here if you want it included in the PDF.',questionLabel:'Question',weekLabel:'Week',titleLabel:'Title',defaultTitle:'Reflection notes'},
-    values:{title:'Value discovery tool',desc:'Choose the values that matter, then narrow them to your top 5 and rank them.',step1:'Step 1 · Build a long list',step1Lead:'Select every value that genuinely matters to you. Do not optimize yet.',step2:'Step 2 · Choose only 5 and rank them',step2Lead:'From your selected values, choose your 5 core values and order them from most important to least important.',selectedCount:'Selected',topCount:'Top 5',addTop:'Add to top 5',remove:'Remove',clearAll:'Clear all',saveNote:'You can save a partial list, but the PDF is most useful once you have a fully ranked top 5.',selectedValues:'Selected values',rankedTop:'Ranked top 5'},
-    summary:{kicker:'Visit summary',title:'Your session trail is being collected.',hint:'When you have something worth keeping, download it as a PDF.',open:'Open summary',download:'Download PDF',composerTitle:'Visit summary',composerDesc:'Review what will be included before you download the PDF.',optionalNote:'Optional note',optionalNotePh:'Anything you want included at the top of the PDF...',statusReady:'Ready for PDF export.',statusSaved:'Saved to summary.',empty:'Nothing has been saved yet.',assessments:'Assessments',tools:'Tools',reflection:'Weekly reflection',values:'Values',generated:'Generated on'},
+    hero:{kicker:'Members Hub',h1:'A private working space for people who need clarity, not more content.',lead:'This is not a course and it is not a library. It is a set of instruments to use between sessions, in difficult weeks, or when something needs clarifying.',sub:'Use it when something is live, not when you are procrastinating with personal development.',howTitle:'How to use this',how1:'If something specific is going on, start with a question.',how2:'If you want to explore, browse the collection.',how3:'If you are preparing for a session, go to Session Prep.',cta1:'I want to explore something specific',cta2:'I want to browse and pick',inventory:'6 assessments · 8 tools · coaching support · weekly reflection',nowTitle:'What this hub is for',now1:'For when you are still delivering but something is quietly wrong.',now2:'For when you suspect you are solving the wrong problem.',now3:'For when a conversation keeps not happening.',now4:'For when you need to arrive at the next session with your thinking already cleaner.',small:'Less content. Better routing. More honest work.'},
+    start:{title:'Choose an entry point',lead:'Members can move between these modes at any time.',pathE:'Option E · Explore something specific',pathF:'Option F · Browse and pick',card1t:'Start with a question',card1d:'Pick the question that sounds uncomfortably close to your situation. It will route you to one relevant instrument.',card2t:'See the full collection',card2d:'Browse assessments, tools, coaching support, and the current weekly reflection.',reveal:'Show the questions',browse:'Browse the collection',optionETag:'Explore by question'},
+    assess:{title:'Assessments',lead:'Use these when you want a sharper read on what is happening, not a flattering one.'},
+    cards:{coachability:{tag:'Coachability Assessment',title:'Coachability assessment',desc:'For when insight is present but change still keeps not happening.'},leadership:{tag:'Leadership Self-Check',title:'Leadership self-check',desc:'For when the issue may be less about skill and more about how you are showing up under load.'},burnout:{tag:'Burnout Risk Check',title:'Burnout risk check',desc:'For when you are still delivering but something is quietly wrong.'},mental:{tag:'Mental Wellness and Integration',title:'Mental wellness and integration',desc:'For when life looks functional from the outside but not integrated from the inside.'},resilience:{tag:'Resilience Profile',title:'Resilience profile',desc:'For when you want to know whether you are actually recovering or just surviving well.'},strategic:{tag:'Strategic Mindset',title:'Strategic mindset — critical thinking and cognitive agility',desc:'For when you suspect you may be solving the wrong problem.'}},
+    tools:{title:'Tools',lead:'Use one instrument against one live issue. That is usually enough.'},
+    toolcards:{prep:{kicker:'Before the session',title:'Session prep',desc:'For when you want the session to begin where the real issue actually is.'},breathing:{kicker:'3-minute reset',title:'3-minute box breathing',desc:'For when your system is too activated to think cleanly.'},overload:{kicker:'Load triage',title:'Overload triage worksheet',desc:'For when everything feels important and that is exactly the problem.'},conversation:{kicker:'Conversation clarity',title:'Difficult conversation prep',desc:'For when a conversation keeps not happening.'},decision:{kicker:'Decision quality',title:'Decision journal',desc:'For when speed is making you less intelligent.'},recovery:{kicker:'Recovery planning',title:'7-day recovery planner',desc:'For when rest will not happen unless it is designed.'},grounding:{kicker:'Before a hard moment',title:'Pre-conversation grounding',desc:'For when you need to enter the room steadier than you feel.'},review:{kicker:'After pressure',title:'Post-pressure review',desc:'For when you do not want to waste a hard week.'},notes:{kicker:'After the session',title:'Post-session notes',desc:'A private scratchpad for what you want to remember after the conversation.'},commitments:{kicker:'Carry the work forward',title:'Commitments tracker',desc:'Write 1–3 commitments, mark them done, or carry them forward.'}},
+    path:{q1:'What is actually going on with my energy right now?',q1d:'Open Burnout Risk Check',q2:'Am I thinking clearly or am I in reaction mode?',q2d:'Open Strategic Mindset',q3:'What do I need to say that I have not said yet?',q3d:'Open Difficult Conversation Prep',q4:'What am I avoiding?',q4d:'Open Weekly Reflection'},
+    support:{title:'Coaching support',lead:'These are not extra modules. They are simple working surfaces around your sessions.'},
+    resources:{title:'Resources',lead:'A small set of references worth keeping close. Not a library.',r1t:'Burnout Coaching one-pager',r1d:'Because sometimes people need the structure before they are willing to look at the cost.',r2t:'Executive Coaching one-pager',r2d:'Useful when the work is less about performance tips and more about judgment, pressure, and responsibility.',r3t:'Strengths Coaching one-pager',r3d:'A reminder that strengths are useful only when they are used deliberately, not romantically.',r4t:'Critical Thinking course one-pager',r4d:'For when the problem is not effort, but the quality of your thinking under pressure.',r5t:'Mental Wellness course one-pager',r5d:'Because sustainable functioning usually needs more design and less denial.',r6t:'Grundimpuls on Substack',r6d:'This is where longer ideas go when a short answer would be dishonest.'},
+    stamin:{title:'From Stamin',note1:'This month I am paying attention to the gap between insight and execution. Many smart people know exactly what is wrong and still keep protecting the pattern that creates the problem.',note2:'That usually means the real work is not more understanding. It is a more honest decision about what has to change.',link:'Read the latest or most relevant Substack piece'},
+    reflection:{title:'Weekly reflection',lead:'One question per week. The point is not to sound good. The point is to stop editing reality.',note:'Write in a notebook, a note app, or directly here. Then come back to it before your next session.',takeNotes:'Open weekly reflection',notesTitle:'Reflection notes',notesDesc:'Write your response directly here if you want it included in the summary.',questionLabel:'Question',weekLabel:'Week',titleLabel:'Title',defaultTitle:'Reflection notes'},
+    summary:{kicker:'Visit summary',title:'This visit is leaving a trail.',hint:'When you have something worth keeping, send it to yourself or download it.',open:'Open summary',email:'Email to self',download:'Download PDF',composerTitle:'Visit summary',composerDesc:'Review what will be included before you send or download it.',optionalNote:'Optional note',optionalNotePh:'Anything you want included at the top of the summary...',statusReady:'Ready.',statusSaved:'Saved to summary.',empty:'Nothing has been saved yet.',assessments:'Assessments',tools:'Tools',reflection:'Weekly reflection',generated:'Generated on'},
     footer:{sub:'Members Hub',note:'Private resource area for approved participants only.'}
   },
   ro: {
     brand:{hub:'Members Hub',members:'Hub',hubWord:'Membri'},
-    nav:{start:'Start',assessments:'Autoevaluări',tools:'Instrumente',reflection:'Reflecție săptămânală',publicSite:'Site public'},
+    nav:{start:'Start',assessments:'Evaluări',tools:'Instrumente',support:'Suport',reflection:'Reflecție săptămânală',publicSite:'Site public'},
     common:{openAssessment:'Deschide evaluarea',openTool:'Deschide instrumentul',startAssessment:'Începe evaluarea',seeResult:'Vezi rezultatul',copy:'Copiază',clear:'Șterge',copied:'Copiat.',start:'Start',reset:'Resetează',ready:'Pregătit',close:'Închide',pleaseAnswerAll:'Răspunde la toate întrebările înainte să vezi rezultatul.',fillField:'Completează cel puțin un câmp.',copyFailed:'Copierea a eșuat. Copiază manual.',save:'Salvează',saved:'Salvat.',scale1:'Deloc adevărat',scale2:'Puțin',scale3:'Parțial',scale4:'Mai degrabă da',scale5:'Foarte adevărat'},
-    hero:{kicker:'Members Hub',h1:'Lucruri utile pentru oameni care vor claritate sub presiune.',lead:'Acesta este hubul privat de resurse Grundimpuls pentru participanții la coaching și training. Este făcut pentru folosire reală în săptămâni dificile, nu pentru citit pasiv.',sub:'Începe cu situația în care ești. Apoi folosește un singur instrument. Nu cinci.',badge1:'Autoevaluări',badge2:'Instrumente',badge3:'Reflecție săptămânală',cta1:'Începe aici',cta2:'Reflecție săptămânală',note:'Accesul este limitat la adresele de email aprobate ale participanților.',nowTitle:'Ce să folosești chiar acum',now1:'Dacă simți că ai capacitate mai mică decât de obicei, începe cu <strong>screeningul de burnout</strong>.',now2:'Dacă ești supraîncărcat, folosește <strong>planificatorul de recuperare pe 7 zile</strong>.',now3:'Dacă o conversație este blocată, folosește <strong>pregătirea pentru conversații dificile</strong>.',now4:'Dacă deciziile par zgomotoase, folosește <strong>jurnalul de decizie</strong>.',now5:'Dacă ai nevoie de resetare, folosește <strong>exercițiul de respirație de 3 minute</strong>.',small:'Principiul versiunii 1: mai puțin conținut, mai multă utilitate.'},
-    start:{title:'Începe cu situația ta',lead:'De obicei, oamenii nu au nevoie de o bibliotecă. Au nevoie de lucrul potrivit la momentul potrivit.',card1t:'Vreau o imagine mai clară',card1d:'Folosește o autoevaluare ca să vezi unde ești acum.',card2t:'Am nevoie de ceva practic',card2d:'Folosește un instrument înainte, în timpul sau între sesiuni.',card3t:'Am nevoie să gândesc mai onest',card3d:'Folosește reflecția săptămânală ca să încetinești și să te uiți mai clar.'},
-    assess:{title:'Autoevaluări',lead:'Acestea sunt verificări practice. Îți oferă o imagine structurată și o direcție de reflecție.'},
-    cards:{coachability:{tag:'Evaluarea coachability',title:'Cât de coachable ești acum?',desc:'20 de întrebări despre mindset, ego, învățare, adaptabilitate, responsabilitate și funcționare de bază.'},burnout:{tag:'Screening burnout',title:'Verificare risc burnout',desc:'9 întrebări despre epuizare, cinism și eficacitate redusă.'},mental:{tag:'Evaluare wellness mental',title:'Wellness mental și integrare',desc:'18 întrebări despre vitalitate, focus, siguranță, reziliență, sens și integrare emoțională.'},resilience:{tag:'Verificare reziliență',title:'Profil de reziliență',desc:'8 întrebări despre recuperare, adaptabilitate, suport și sens.'},strategic:{tag:'Mindset strategic',title:'Gândire critică și agilitate cognitivă',desc:'18 întrebări despre presupuneri, reglare emoțională, evaluarea argumentelor și gândire sistemică.'}},
-    tools:{title:'Instrumente',lead:'Folosește-le înainte, în timpul sau între sesiuni.'},
-    toolcards:{prep:{kicker:'Înainte de fiecare sesiune',title:'Pregătire pentru sesiune',desc:'Completează asta înainte de sesiunea de coaching. Ia 5 minute și face sesiunea mai clară.'},recovery:{kicker:'Planificarea recuperării',title:'Planificator de recuperare pe 7 zile',desc:'Planifică recuperarea deliberat, în loc să speri că se va întâmpla singură.'},conversation:{kicker:'Claritate în conversație',title:'Pregătire pentru conversații dificile',desc:'Clarifică scopul, fricțiunea, limitele și cum ar arăta un rezultat bun.'},decision:{kicker:'Calitatea deciziei',title:'Jurnal de decizie',desc:'Încetinește deciziile care par reactive, zgomotoase sau prea sigure pe ele.'},review:{kicker:'Reflecție după acțiune',title:'Revizuire după presiune',desc:'Ce s-a întâmplat, ce a costat mai mult decât trebuia și ce schimbi data viitoare.'},breathing:{kicker:'Reglare în stres acut',title:'Exercițiu de respirație de 3 minute',desc:'O resetare scurtă pentru momentele în care sistemul tău e supraîncărcat.'},values:{kicker:'Clarificare valori',title:'Instrument de descoperire a valorilor',desc:'Alege valorile care contează, restrânge-le la top 5 și ordonează-le.'}},
-    reflection:{title:'Reflecție săptămânală',lead:'O întrebare diferită în fiecare săptămână. Stai 10 minute cu ea. Scopul nu este un răspuns lustruit. Scopul este onestitatea.',note:'Scrie într-un caiet, într-o aplicație de notițe sau înregistrează-ți un mesaj vocal. Revino la ea înainte de următoarea sesiune.',takeNotes:'Ia notițe',notesTitle:'Notițe de reflecție',notesDesc:'Scrie răspunsul direct aici dacă vrei să fie inclus în PDF.',questionLabel:'Întrebarea săptămânii',weekLabel:'Săptămâna',titleLabel:'Titlu',defaultTitle:'Notițe de reflecție'},
-    values:{title:'Instrument de descoperire a valorilor',desc:'Alege valorile care contează, apoi restrânge-le la top 5 și ordonează-le.',step1:'Pasul 1 · Construiește o listă lungă',step1Lead:'Selectează toate valorile care chiar contează pentru tine. Nu optimiza încă.',step2:'Pasul 2 · Alege doar 5 și ordonează-le',step2Lead:'Din valorile selectate, alege cele 5 valori de bază și ordonează-le de la cea mai importantă la cea mai puțin importantă.',selectedCount:'Selectate',topCount:'Top 5',addTop:'Adaugă în top 5',remove:'Elimină',clearAll:'Șterge tot',saveNote:'Poți salva și o listă parțială, dar PDF-ul este cel mai util când ai un top 5 complet ordonat.',selectedValues:'Valori selectate',rankedTop:'Top 5 valori ordonat'},
-    summary:{kicker:'Rezumatul vizitei',title:'Urma sesiunii tale este colectată.',hint:'Când ai ceva ce merită păstrat, descarcă-l ca PDF.',open:'Deschide rezumatul',download:'Descarcă PDF',composerTitle:'Rezumatul vizitei',composerDesc:'Revizuiește ce va fi inclus înainte să descarci PDF-ul.',optionalNote:'Notă opțională',optionalNotePh:'Orice vrei să fie inclus la începutul PDF-ului...',statusReady:'Pregătit pentru export PDF.',statusSaved:'Salvat în rezumat.',empty:'Nu a fost salvat încă nimic.',assessments:'Evaluări',tools:'Instrumente',reflection:'Reflecție săptămânală',values:'Valori',generated:'Generat la'},
+    hero:{kicker:'Members Hub',h1:'Un spațiu privat de lucru pentru oameni care au nevoie de claritate, nu de mai mult conținut.',lead:'Acesta nu este un curs și nu este o bibliotecă. Este un set de instrumente de folosit între sesiuni, în săptămâni dificile sau când ceva trebuie clarificat.',sub:'Folosește-l când ceva este viu, nu când amâni munca reală sub forma dezvoltării personale.',howTitle:'Cum se folosește',how1:'Dacă se întâmplă ceva specific, începe cu o întrebare.',how2:'Dacă vrei să explorezi, răsfoiește colecția.',how3:'Dacă te pregătești pentru o sesiune, mergi la Pregătire pentru sesiune.',cta1:'Vreau să explorez ceva specific',cta2:'Vreau să răsfoiesc și să aleg',inventory:'6 evaluări · 8 instrumente · suport de coaching · reflecție săptămânală',nowTitle:'Pentru ce este acest hub',now1:'Pentru momentele în care încă livrezi, dar ceva este în liniște greșit.',now2:'Pentru momentele în care bănuiești că rezolvi problema greșită.',now3:'Pentru momentele în care o conversație continuă să nu aibă loc.',now4:'Pentru momentele în care vrei să ajungi la următoarea sesiune cu gândirea deja mai curată.',small:'Mai puțin conținut. Rutare mai bună. Muncă mai onestă.'},
+    start:{title:'Alege un punct de intrare',lead:'Membrii pot trece între aceste moduri oricând.',pathE:'Opțiunea E · Explorează ceva specific',pathF:'Opțiunea F · Răsfoiește și alege',card1t:'Începe cu o întrebare',card1d:'Alege întrebarea care sună inconfortabil de apropiat de situația ta. Te va duce la un instrument relevant.',card2t:'Vezi colecția completă',card2d:'Răsfoiește evaluările, instrumentele, suportul de coaching și reflecția săptămânală.',reveal:'Arată întrebările',browse:'Răsfoiește colecția',optionETag:'Explorează prin întrebare'},
+    assess:{title:'Evaluări',lead:'Folosește-le când vrei o citire mai clară a ceea ce se întâmplă, nu una măgulitoare.'},
+    cards:{coachability:{tag:'Evaluare coachability',title:'Evaluare coachability',desc:'Pentru momentele în care insightul există, dar schimbarea tot continuă să nu se întâmple.'},leadership:{tag:'Leadership Self-Check',title:'Leadership self-check',desc:'Pentru momentele în care problema poate fi mai puțin despre skill și mai mult despre cum apari sub presiune.'},burnout:{tag:'Burnout Risk Check',title:'Burnout risk check',desc:'Pentru momentele în care încă livrezi, dar ceva este în liniște greșit.'},mental:{tag:'Mental Wellness and Integration',title:'Mental wellness and integration',desc:'Pentru momentele în care viața pare funcțională la exterior, dar neintegrată la interior.'},resilience:{tag:'Resilience Profile',title:'Resilience profile',desc:'Pentru momentele în care vrei să știi dacă te recuperezi cu adevărat sau doar supraviețuiești competent.'},strategic:{tag:'Strategic Mindset',title:'Strategic mindset — gândire critică și agilitate cognitivă',desc:'Pentru momentele în care bănuiești că poate rezolvi problema greșită.'}},
+    tools:{title:'Instrumente',lead:'Folosește un singur instrument pentru o singură problemă vie. De obicei este suficient.'},
+    toolcards:{prep:{kicker:'Înainte de sesiune',title:'Pregătire pentru sesiune',desc:'Pentru momentele în care vrei ca sesiunea să înceapă exact acolo unde este problema reală.'},breathing:{kicker:'Resetare în 3 minute',title:'Box breathing de 3 minute',desc:'Pentru momentele în care sistemul tău este prea activat ca să gândești clar.'},overload:{kicker:'Triere de încărcare',title:'Fișă de triere a supraîncărcării',desc:'Pentru momentele în care totul pare important și exact asta este problema.'},conversation:{kicker:'Claritate în conversație',title:'Pregătire pentru conversații dificile',desc:'Pentru momentele în care o conversație continuă să nu aibă loc.'},decision:{kicker:'Calitatea deciziei',title:'Jurnal de decizie',desc:'Pentru momentele în care viteza te face mai puțin inteligent.'},recovery:{kicker:'Planificarea recuperării',title:'Planificator de recuperare pe 7 zile',desc:'Pentru momentele în care odihna nu se va întâmpla decât dacă este proiectată.'},grounding:{kicker:'Înainte de un moment greu',title:'Grounding înainte de conversație',desc:'Pentru momentele în care trebuie să intri în cameră mai stabil decât te simți.'},review:{kicker:'După presiune',title:'Revizuire după presiune',desc:'Pentru momentele în care nu vrei să irosești o săptămână grea.'},notes:{kicker:'După sesiune',title:'Notițe post-sesiune',desc:'Un scratchpad privat pentru ce vrei să ții minte după conversație.'},commitments:{kicker:'Du munca mai departe',title:'Tracker de angajamente',desc:'Scrie 1–3 angajamente, marchează-le făcute sau du-le mai departe.'}},
+    path:{q1:'Ce se întâmplă de fapt cu energia mea chiar acum?',q1d:'Deschide Burnout Risk Check',q2:'Gândesc clar sau sunt în mod de reacție?',q2d:'Deschide Strategic Mindset',q3:'Ce trebuie să spun și încă nu am spus?',q3d:'Deschide Pregătire pentru conversații dificile',q4:'Ce evit?',q4d:'Deschide Reflecția săptămânală'},
+    support:{title:'Suport de coaching',lead:'Acestea nu sunt module în plus. Sunt suprafețe simple de lucru în jurul sesiunilor tale.'},
+    resources:{title:'Resurse',lead:'Un set mic de repere care merită păstrate aproape. Nu o bibliotecă.',r1t:'One-pager Burnout Coaching',r1d:'Pentru că uneori oamenii au nevoie mai întâi de structură înainte să se uite la cost.',r2t:'One-pager Executive Coaching',r2d:'Util când munca este mai puțin despre tips de performanță și mai mult despre judecată, presiune și responsabilitate.',r3t:'One-pager Strengths Coaching',r3d:'Un reminder că punctele forte sunt utile doar când sunt folosite deliberat, nu romantic.',r4t:'One-pager curs Critical Thinking',r4d:'Pentru momentele în care problema nu este efortul, ci calitatea gândirii sub presiune.',r5t:'One-pager curs Mental Wellness',r5d:'Pentru că funcționarea sustenabilă are nevoie de mai mult design și mai puțină negare.',r6t:'Grundimpuls pe Substack',r6d:'Aici merg ideile mai lungi atunci când un răspuns scurt ar fi necinstit.'},
+    stamin:{title:'De la Stamin',note1:'Luna aceasta mă uit la diferența dintre insight și execuție. Mulți oameni inteligenți știu exact ce este greșit și totuși continuă să protejeze tiparul care creează problema.',note2:'Asta înseamnă de obicei că munca reală nu este mai multă înțelegere. Este o decizie mai onestă despre ce trebuie schimbat.',link:'Citește ultimul sau cel mai relevant articol de pe Substack'},
+    reflection:{title:'Reflecție săptămânală',lead:'O singură întrebare pe săptămână. Ideea nu este să suni bine. Ideea este să nu mai editezi realitatea.',note:'Scrie într-un caiet, într-o aplicație de notițe sau direct aici. Apoi revino înainte de următoarea sesiune.',takeNotes:'Deschide reflecția săptămânală',notesTitle:'Notițe de reflecție',notesDesc:'Scrie răspunsul direct aici dacă vrei să fie inclus în rezumat.',questionLabel:'Întrebare',weekLabel:'Săptămâna',titleLabel:'Titlu',defaultTitle:'Notițe de reflecție'},
+    summary:{kicker:'Rezumatul vizitei',title:'Vizita aceasta lasă o urmă.',hint:'Când ai ceva ce merită păstrat, trimite-ți-l sau descarcă-l.',open:'Deschide rezumatul',email:'Trimite pe email',download:'Descarcă PDF',composerTitle:'Rezumatul vizitei',composerDesc:'Revizuiește ce va fi inclus înainte să trimiți sau să descarci.',optionalNote:'Notă opțională',optionalNotePh:'Orice vrei să fie inclus la începutul rezumatului...',statusReady:'Pregătit.',statusSaved:'Salvat în rezumat.',empty:'Nu a fost salvat încă nimic.',assessments:'Evaluări',tools:'Instrumente',reflection:'Reflecție săptămânală',generated:'Generat la'},
     footer:{sub:'Members Hub',note:'Zonă privată de resurse doar pentru participanții aprobați.'}
   }
 };
 
-const WEEKLY_REFLECTION_QUESTIONS = ["What kind of contribution would feel meaningful to you right now?", "Deep down, what do you really want from your life?", "How do you define success in your career and your personal life?", "What would you like to be doing with your life this time next year?", "What are you trying to accomplish that’s important to you, and why is that deeply important to you?", "What do you find most worthwhile and fulfilling about the work you do?", "What kind of contribution would you like to make through the way you live and work?", "What would “a good week” look like for you this week?", "If fear were quieter, what would you be more willing to explore?", "What would your current challenge look like if it were easy?", "What belief would better support the person you want to be?", "What reminder would your wiser self want you to hear more often?", "What would become possible if you trusted yourself a little more?", "What might become possible if you loosened one limiting pattern?", "Where might you be holding back, and what might become possible if you loosened that pattern?", "What outcome are you most afraid of, and how likely is it really?", "What doubts or fears show up when you consider making a meaningful change?", "What patterns or circumstances may be limiting you right now?", "What beliefs might be limiting your choices right now?", "What is one assumption you are making that you could stop making in order to move forward?", "What story about yourself might be limiting you, and how accurate is it?", "What feels missing or uncertain before you take the next step toward the life you want?", "What need might one of your unhelpful habits be trying to meet?", "What parts of who you are feel most visible to others, and what parts stay more private?", "Where do you feel most authentic, and where do you feel you are performing?", "When have you felt most alive and fully yourself, and what were you doing in that moment?", "What activities absorb you so completely that you lose track of time, and how present are they in your daily life?", "How would your closest friends and family describe you, and how does that differ from how you view yourself?", "What part of your personality would you like to develop further?", "What is the most grounded, mature version of yourself you can imagine?", "How would you speak and act if you were showing up at your best?", "How do you want to be perceived by the world moving forward?", "What makes you passionate, and what do you genuinely love?", "What motivates you to get out of bed in the morning?", "What are the core values that define how you work and live?", "What are your top three talents, and how do you most like to use them?", "How can your strengths help create value for other people?", "What qualities do you have that serve you well in any professional context?", "What empowering beliefs do you hold about yourself, and which ones do you hold about other people?", "What is working well right now that you are not giving yourself credit for?", "What principles do you want to act on when making difficult decisions?", "What results have you seen so far, and what are they teaching you?", "What feedback have you received lately, and what will you do differently because of it?", "Where have things not gone as you hoped, and what can you build from those experiences?", "What is the most useful question you can ask yourself this week?", "What information might make a meaningful difference if you had it?", "What are the wider consequences of the actions you are taking right now?", "What are the good aspects of your present situation, and how can you keep them while still making the change you want?", "What is one different response you could experiment with this week?", "What may improve if you make this change, and what may stay the same if you do not?", "What steps do you need to take to move toward this goal, and what resources do you already have?", "Which decision would have the biggest positive impact on your priorities right now?", "What is one small action you could take this week that your future self would thank you for?", "Where is your attention right now, and where would it be more useful for it to be this week?", "What are you avoiding right now, and what might change if you faced it directly?", "What conversation have you been postponing, and what is it costing you to stay silent?", "What is the one thing, if resolved this week, that would make everything else easier?", "What would a fully rested, fully resourced version of you do next?", "How might your life be whole and meaningful exactly as it is right now, even as you continue to grow?", "What are you most grateful for right now, and how does that shape what you want to build next?", "What would you say to yourself if you were your own best friend?", "What is one kind thing you could do for yourself this week that would have a real positive impact?", "How can you be your own strongest supporter this week?", "What thoughts would help you function at your best this week?", "Who in your life brings out the best in you, and how can you spend more time with them?", "How can you lighten up—about work or about yourself—to feel more fulfilled?"];
+const WEEKLY_REFLECTION_QUESTIONS = ['What matters most this week, and what keeps trying to distract you from it?','Where are you making something harder than it needs to be?','What are you tolerating that is quietly costing you too much?','What conversation have you postponed long enough?','What are you calling pressure that is actually lack of clarity?','Where are you still hoping instead of deciding?','What pattern keeps repeating, and what role do you keep playing in it?','What would a more honest version of this week look like?','Which commitment needs protection before it needs improvement?','What are you trying to control that is not yours to control?','Where do you need more courage, and where do you need more restraint?','What would make next week meaningfully better, not just busier?'];
 const WEEKLY_REFLECTION_TIMEZONE = 'Europe/Bucharest';
 const WEEKLY_REFLECTION_SWITCH_HOUR = 3;
 const WEEKLY_REFLECTION_ANCHOR_MS = Date.UTC(2026, 2, 23, 0, 0, 0);
@@ -597,18 +660,21 @@ const assessments = {
 };
 
 const toolDefs = {
-  prep:{kind:'form',fields:[['shift','What has changed or shifted since our last session?','Ce s-a schimbat sau s-a mișcat de la ultima sesiune?'],['topic','What is the most important topic for today?','Care este subiectul cel mai important pentru azi?'],['outcome','What outcome do you want from this session?','Ce rezultat vrei din această sesiune?'],['blocker','What might get in the way?','Ce ar putea sta în cale?'],['whatelse','What else?','Ce altceva?']]},
-  recovery:{kind:'form',fields:[['sleep','What would improve recovery this week most?','Ce ar îmbunătăți cel mai mult recuperarea ta săptămâna aceasta?'],['boundary','Which boundary needs tightening?','Ce limită are nevoie să fie întărită?'],['support','What support do you need to ask for?','Ce sprijin trebuie să ceri?'],['plan','What three recovery moves will you schedule?','Ce trei mișcări de recuperare vei programa?'],['whatelse','What else?','Ce altceva?']]},
-  conversation:{kind:'form',fields:[['goal','What is the real aim of the conversation?','Care este scopul real al conversației?'],['truth','What needs to be said clearly?','Ce trebuie spus clar?'],['fear','What are you afraid will happen?','De ce te temi că se va întâmpla?'],['boundary','What boundary or request must be explicit?','Ce limită sau cerere trebuie formulată explicit?'],['whatelse','What else?','Ce altceva?']]},
-  decision:{kind:'form',fields:[['decision','What decision are you making?','Ce decizie iei?'],['options','What are the main options?','Care sunt opțiunile principale?'],['assumptions','What assumptions are you making?','Ce presupuneri faci?'],['evidence','What evidence supports and challenges your view?','Ce dovezi îți susțin și îți contrazic perspectiva?'],['tradeoff','What trade-off are you accepting?','Ce compromis accepți?'],['whatelse','What else?','Ce altceva?']]},
-  review:{kind:'form',fields:[['what','What happened?','Ce s-a întâmplat?'],['cost','What cost more than it should have?','Ce a costat mai mult decât ar fi trebuit?'],['signal','What warning signal did you miss?','Ce semnal de avertizare ai ratat?'],['change','What will you change next time?','Ce vei schimba data viitoare?'],['whatelse','What else?','Ce altceva?']]},
+  prep:{kind:'form',fields:[['shift','What has changed since the last session?','Ce s-a schimbat de la ultima sesiune?'],['topic','What matters most for this session?','Ce contează cel mai mult pentru această sesiune?'],['outcome','What would make this session useful?','Ce ar face această sesiune utilă?'],['blocker','What could get in the way?','Ce ar putea sta în cale?']]},
   breathing:{kind:'breathing'},
-  values:{kind:'values'},
+  overload:{kind:'form',fields:[['signals','What are the clearest signs you are overloaded?','Care sunt cele mai clare semne că ești supraîncărcat?'],['drop','What can be reduced, delayed, delegated, or stopped?','Ce poate fi redus, amânat, delegat sau oprit?'],['protect','What absolutely needs protecting this week?','Ce trebuie protejat absolut săptămâna aceasta?'],['next','What is the next stabilizing move?','Care este următoarea mișcare de stabilizare?']]},
+  conversation:{kind:'form',fields:[['goal','What is the real aim of the conversation?','Care este scopul real al conversației?'],['truth','What needs to be said clearly?','Ce trebuie spus clar?'],['fear','What are you afraid will happen?','De ce te temi că se va întâmpla?'],['boundary','What boundary or request must be explicit?','Ce limită sau cerere trebuie formulată explicit?']]},
+  decision:{kind:'form',fields:[['decision','What decision are you making?','Ce decizie iei?'],['options','What are the real options?','Care sunt opțiunile reale?'],['assumptions','What assumptions are you making?','Ce presupuneri faci?'],['tradeoff','What trade-off are you accepting?','Ce compromis accepți?']]},
+  recovery:{kind:'form',fields:[['sleep','What would improve recovery most in the next seven days?','Ce ar îmbunătăți cel mai mult recuperarea în următoarele șapte zile?'],['boundary','Which boundary needs tightening?','Ce limită are nevoie să fie întărită?'],['support','What support do you need to ask for?','Ce sprijin trebuie să ceri?'],['plan','What three recovery moves will you schedule?','Ce trei mișcări de recuperare vei programa?']]},
+  grounding:{kind:'form',fields:[['state','What state are you in right now?','În ce stare ești chiar acum?'],['fact','What is true, not just felt?','Ce este adevărat, nu doar simțit?'],['intention','How do you want to show up in the next conversation?','Cum vrei să apari în următoarea conversație?'],['anchor','What one sentence do you want to remember?','Ce propoziție vrei să ții minte?']]},
+  review:{kind:'form',fields:[['what','What happened?','Ce s-a întâmplat?'],['cost','What cost more than it should have?','Ce a costat mai mult decât ar fi trebuit?'],['signal','What warning signal did you miss?','Ce semnal de avertizare ai ratat?'],['change','What will you change next time?','Ce vei schimba data viitoare?']]},
+  notes:{kind:'form',fields:[['notes','What do you want to remember from the session?','Ce vrei să ții minte din sesiune?']]},
+  commitments:{kind:'commitments'},
   reflectionNotes:{kind:'reflection'}
 };
 
 const state = {
-  lang:'en',
+  lang:localStorage.getItem('gh_lang') || 'en',
   modal:null,
   theme:localStorage.getItem('gh_theme') || 'light',
   assessmentAnswers:{},
@@ -625,12 +691,14 @@ function initTheme(){document.body.classList.toggle('dark', state.theme==='dark'
 function toggleTheme(){state.theme = state.theme==='dark' ? 'light' : 'dark'; localStorage.setItem('gh_theme', state.theme); initTheme()}
 
 function buildCards(){
-  const assessOrder=['coachability','leadership','burnout','mental','resilience','strategic'];
+  const assessOrder=['burnout','leadership','coachability','resilience','mental','strategic'];
   const assessGrid=document.getElementById('assessmentGrid');
-  assessGrid.innerHTML = assessOrder.map(k=>`<div class="card"><div class="tagline">${t('cards.'+k+'.tag')}</div><h3>${t('cards.'+k+'.title')}</h3><p>${t('cards.'+k+'.desc')}</p><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('${k}')">${t('common.openAssessment')}</button></div></div>`).join('');
-  const toolsOrder=['values','prep','recovery','conversation','decision','review','breathing'];
+  if(assessGrid) assessGrid.innerHTML = assessOrder.map(k=>`<div class="card"><div class="tagline">${t('cards.'+k+'.tag')}</div><h3>${t('cards.'+k+'.title')}</h3><p>${t('cards.'+k+'.desc')}</p><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('${k}')">${t('common.openAssessment')}</button></div></div>`).join('');
+  const toolsOrder=['prep','breathing','overload','conversation','decision','recovery','grounding','review'];
   const toolGrid=document.getElementById('toolGrid');
-  toolGrid.innerHTML = toolsOrder.map(k=>`<div class="card">${(t('toolcards.'+k+'.kicker')&&t('toolcards.'+k+'.kicker')!==('toolcards.'+k+'.kicker'))?`<div class="tagline">${t('toolcards.'+k+'.kicker')}</div>`:''}<h3>${t('toolcards.'+k+'.title')}</h3><p>${t('toolcards.'+k+'.desc')}</p><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('${k}')">${t('common.openTool')}</button></div></div>`).join('');
+  if(toolGrid) toolGrid.innerHTML = toolsOrder.map(k=>`<div class="card">${(t('toolcards.'+k+'.kicker')&&t('toolcards.'+k+'.kicker')!==('toolcards.'+k+'.kicker'))?`<div class="tagline">${t('toolcards.'+k+'.kicker')}</div>`:''}<h3>${t('toolcards.'+k+'.title')}</h3><p>${t('toolcards.'+k+'.desc')}</p><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('${k}')">${t('common.openTool')}</button></div></div>`).join('');
+  const supportGrid=document.getElementById('supportGrid');
+  if(supportGrid) supportGrid.innerHTML = ['prep','notes','commitments'].map(k=>`<div class="card">${(t('toolcards.'+k+'.kicker')&&t('toolcards.'+k+'.kicker')!==('toolcards.'+k+'.kicker'))?`<div class="tagline">${t('toolcards.'+k+'.kicker')}</div>`:''}<h3>${t('toolcards.'+k+'.title')}</h3><p>${t('toolcards.'+k+'.desc')}</p><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('${k}')">${t('common.openTool')}</button></div></div>`).join('');
 }
 
 function applyI18n(){
@@ -647,11 +715,12 @@ function applyI18n(){
   if(weekLabel) weekLabel.textContent = week.week;
   if(reflectionPrompt) reflectionPrompt.textContent = week.question;
   buildCards();
+  persistHubData();
   updateSummaryDock();
   if(state.modal) openModal(state.modal, true);
 }
 
-function setLang(lang){state.lang=lang; document.body.classList.remove('lang-open'); applyI18n()}
+function setLang(lang){state.lang=lang; localStorage.setItem('gh_lang', lang); document.body.classList.remove('lang-open'); applyI18n()}
 
 function openModal(key, rerender=false){
   state.modal=key;
@@ -666,15 +735,12 @@ function openModal(key, rerender=false){
     desc.textContent = t('cards.'+key+'.desc');
     content.innerHTML = renderAssessment(key);
   } else if(toolDefs[key]){
-    if(key==='values'){
-      kicker.textContent = t('toolcards.values.kicker');
-      title.textContent = t('values.title');
-      desc.textContent = t('values.desc');
-      content.innerHTML = renderValuesTool();
-    } else if(key==='breathing'){
+    if(key==='breathing'){
       kicker.textContent = t('toolcards.breathing.title'); title.textContent=t('toolcards.breathing.title'); desc.textContent=t('toolcards.breathing.desc'); content.innerHTML=renderBreathing(); initBreathing();
     } else if(key==='reflectionNotes'){
       kicker.textContent = t('reflection.title'); title.textContent=t('reflection.notesTitle'); desc.textContent=t('reflection.notesDesc'); content.innerHTML=renderReflectionNotes();
+    } else if(key==='commitments'){
+      kicker.textContent = t('support.title'); title.textContent=t('toolcards.commitments.title'); desc.textContent=t('toolcards.commitments.desc'); content.innerHTML=renderCommitmentsTool();
     } else {
       kicker.textContent = t('tools.title'); title.textContent=t('toolcards.'+key+'.title'); desc.textContent=t('toolcards.'+key+'.desc'); content.innerHTML=renderToolForm(key);
     }
@@ -713,16 +779,48 @@ function finishAssessment(key){
 function renderBulletList(items){ return `<ul class="rlist">${(items||[]).map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul>`; }
 function renderToolForm(key){
   const saved=state.summary.tools[key]?.data || {}; const fields=toolDefs[key].fields;
-  return `<div>${fields.map(([id,en,ro])=>`<label class="formLabel" for="${key}_${id}">${escapeHtml(state.lang==='ro'?ro:en)}</label><textarea id="${key}_${id}" class="toolArea">${escapeHtml(saved[id]||'')}</textarea>`).join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveTool('${key}')">${t('common.save')}</button><span class="copyMsg" id="msg_${key}">${t('summary.statusSaved')}</span></div></div>`
+  return `<div>${fields.map(([id,en,ro])=>`<label class="formLabel" for="${key}_${id}">${escapeHtml(state.lang==='ro'?ro:en)}</label><textarea id="${key}_${id}" class="toolArea">${escapeHtml(saved[id]||'')}</textarea>`).join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveTool('${key}')">${t('common.save')}</button><button class="btn" type="button" onclick="copyToolToClipboard('${key}')">${t('common.copy')}</button><span class="copyMsg" id="msg_${key}">${t('summary.statusSaved')}</span></div></div>`
 }
 function saveTool(key){
   const payload={}; let filled=false; toolDefs[key].fields.forEach(([id])=>{const v=document.getElementById(`${key}_${id}`).value.trim(); payload[id]=v; if(v) filled=true});
   if(!filled){alert(t('common.fillField')); return}
-  state.summary.tools[key]={title:t('toolcards.'+key+'.title'),data:payload};
+  state.summary.tools[key]={id:key,title:t('toolcards.'+key+'.title'),data:payload};
+  persistHubData();
   const m=document.getElementById('msg_'+key); if(m){m.classList.add('show'); setTimeout(()=>m.classList.remove('show'),1400)}
   updateSummaryDock();
 }
 
+
+function copyTextWithFallback(text){
+  if(navigator.clipboard && window.isSecureContext){
+    return navigator.clipboard.writeText(text).catch(()=>fallbackCopyText(text));
+  }
+  return fallbackCopyText(text);
+}
+function fallbackCopyText(text){
+  return new Promise((resolve,reject)=>{
+    const ta=document.createElement('textarea');
+    ta.value=text; ta.style.position='fixed'; ta.style.left='-9999px'; document.body.appendChild(ta); ta.focus(); ta.select();
+    try{ document.execCommand('copy') ? resolve() : reject(new Error('copy failed')); }catch(err){ reject(err); } finally { ta.remove(); }
+  });
+}
+function copyToolToClipboard(key){
+  const def=toolDefs[key]; if(!def||!def.fields) return;
+  const text=def.fields.map(([id,en,ro])=>`${state.lang==='ro'?ro:en}\n${document.getElementById(`${key}_${id}`)?.value.trim()||''}`).join('\n\n');
+  copyTextWithFallback(text).then(()=>{const m=document.getElementById('msg_'+key); if(m){m.textContent=t('common.copied');m.classList.add('show');setTimeout(()=>{m.classList.remove('show');m.textContent=t('summary.statusSaved')},1400)}}).catch(()=>alert(t('common.copyFailed')));
+}
+function renderCommitmentsTool(){
+  const items=(state.summary.tools.commitments?.items||[]).length ? state.summary.tools.commitments.items : [{text:'',done:false,date:''},{text:'',done:false,date:''},{text:'',done:false,date:''}];
+  return `<div>${items.map((it,i)=>`<div class="panel" style="margin-bottom:12px"><label class="formLabel" for="commitment_${i}">${state.lang==='ro'?'Angajament':'Commitment'} ${i+1}</label><input id="commitment_${i}" class="toolInput" value="${escapeHtml(it.text||'')}"><div class="stackRow" style="margin-top:8px"><label><input type="checkbox" id="commitment_done_${i}" ${it.done?'checked':''}> ${state.lang==='ro'?'Finalizat':'Done'}</label><input id="commitment_date_${i}" class="toolInput" style="max-width:180px" type="date" value="${escapeHtml(it.date||'')}"></div></div>`).join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveCommitments()">${t('common.save')}</button><span class="copyMsg" id="msg_commitments">${t('summary.statusSaved')}</span></div></div>`
+}
+function saveCommitments(){
+  const items=[0,1,2].map(i=>({text:document.getElementById(`commitment_${i}`)?.value.trim()||'',done:!!document.getElementById(`commitment_done_${i}`)?.checked,date:document.getElementById(`commitment_date_${i}`)?.value||''})).filter(x=>x.text);
+  if(!items.length){alert(t('common.fillField')); return}
+  state.summary.tools.commitments={id:'commitments',title:t('toolcards.commitments.title'),data:{count:String(items.length)},items};
+  persistHubData();
+  const m=document.getElementById('msg_commitments'); if(m){m.classList.add('show'); setTimeout(()=>m.classList.remove('show'),1400)}
+  updateSummaryDock();
+}
 function renderReflectionNotes(){
   const saved=state.summary.reflection || {title:t('reflection.defaultTitle'),note:''}; const week=currentWeekly();
   return `<div><label class="formLabel">${t('reflection.questionLabel')}</label><div class="panel" style="margin-bottom:14px"><div style="font-size:31px;line-height:1.28;font-weight:800;font-style:italic;color:var(--text)">“${escapeHtml(week.question)}”</div></div><label class="formLabel" for="reflection_title">${t('reflection.titleLabel')}</label><input id="reflection_title" class="toolInput" value="${escapeHtml(saved.title||t('reflection.defaultTitle'))}" style="margin-bottom:14px"><label class="formLabel" for="reflection_note">${t('reflection.notesTitle')}</label><textarea id="reflection_note" class="toolArea">${escapeHtml(saved.note||'')}</textarea><div class="stackRow"><button class="btn primary" type="button" onclick="saveReflectionNotes()">${t('common.save')}</button><span class="copyMsg" id="msg_reflection">${t('summary.statusSaved')}</span></div></div>`
@@ -732,6 +830,7 @@ function saveReflectionNotes(){
   if(!note){alert(t('common.fillField')); return}
   const week=currentWeekly();
   state.summary.reflection={title,note,question:week.question,week:week.week};
+  persistHubData();
   const m=document.getElementById('msg_reflection'); m.classList.add('show'); setTimeout(()=>m.classList.remove('show'),1400);
   updateSummaryDock();
 }
@@ -746,64 +845,11 @@ function stepBreathing(){ const b=state.breathing; if(!b.running) return; b.rema
 function updateBreathingDisplay(){ if(!state.breathing) return; const b=state.breathing; const phase=b.phases[b.phaseIndex]; document.getElementById('breathePhase').textContent=phase.name; document.getElementById('breatheCount').textContent=String(b.remaining); document.getElementById('breatheInstruction').textContent=phase.instruction; document.getElementById('breatheProgress').textContent=state.lang==='ro'?`Ciclul ${b.cycle+1} din 4`:`Cycle ${b.cycle+1} of 4`; document.getElementById('breatheCircle').style.transform=`scale(${phase.scale})`; }
 
 function getValuesList(){ return state.lang==='ro' ? RO_VALUES : EN_VALUES }
-let valuesSearch = '';
-function getValuesList(){ return state.lang==='ro' ? RO_VALUES : EN_VALUES; }
-function normalizeValuesState(s){ const allowed=getValuesList(); const selected=Array.from(new Set((s?.selected||[]).filter(v=>allowed.includes(v)))); const top5=Array.from(new Set((s?.top5||[]).filter(v=>selected.includes(v)))).slice(0,5); return {selected,top5}; }
-function syncValuesIntoSummary(){ state.summary.values={title:t('toolcards.values.title'),selected:[...state.values.selected],top5:[...state.values.top5]}; }
-function updateValuesSearch(value){ valuesSearch=value||''; rerenderValues(true); }
-function toggleValueSelection(value){ const s=normalizeValuesState(state.values); if (s.selected.includes(value)) { s.selected=s.selected.filter(v=>v!==value); s.top5=s.top5.filter(v=>v!==value); } else { const allowed=getValuesList(); s.selected=allowed.filter(v=>s.selected.includes(v) || v===value); } state.values={...s}; syncValuesIntoSummary(); rerenderValues(); }
-function addValueToTopFive(value){ if(!state.values.selected.includes(value) || state.values.top5.includes(value) || state.values.top5.length>=5) return; state.values.top5=[...state.values.top5,value]; syncValuesIntoSummary(); rerenderValues(); }
-function removePickedValue(value){ state.values.selected=state.values.selected.filter(v=>v!==value); state.values.top5=state.values.top5.filter(v=>v!==value); syncValuesIntoSummary(); rerenderValues(); }
-function removeTopFiveValue(value){ state.values.top5=state.values.top5.filter(v=>v!==value); syncValuesIntoSummary(); rerenderValues(); }
-function moveTopFiveValue(index,direction){ const target=index+direction; if(target<0||target>=state.values.top5.length) return; [state.values.top5[index], state.values.top5[target]]=[state.values.top5[target], state.values.top5[index]]; syncValuesIntoSummary(); rerenderValues(); }
-function clearValuesTool(){ valuesSearch=''; state.values={selected:[],top5:[],scrollTop:0}; state.summary.values={title:t('toolcards.values.title'),selected:[],top5:[]}; rerenderValues(); }
-function buildValuesDiscoveryInnerHTML(){ const tt=i18n[state.lang].toolcards.values; const valuesList=getValuesList(); const query=valuesSearch.trim().toLowerCase(); const filtered=valuesList.filter(value => value.toLowerCase().includes(query)); const candidates=state.values.selected.filter(value => !state.values.top5.includes(value)); return `
-    <div class="valuesTool">
-      <p class="valuesIntro">${tt.intro || t('values.desc')}</p>
-      <div class="valuesSearchRow">
-        <input id="valuesSearch" class="valuesSearch" type="text" value="${escapeHtml(valuesSearch)}" placeholder="${escapeHtml(tt.searchPlaceholder || 'Search values…')}" oninput="updateValuesSearch(this.value)">
-        <div class="valuesMeta">${query ? `${filtered.length} / ${valuesList.length}` : `${valuesList.length} ${state.lang==='ro'?'valori':'values'}`}</div>
-      </div>
-      <div class="valuesPanel">
-        <div class="valuesPanelHead">
-          <div><h3>${tt.step1Title || t('values.step1')}</h3><p>${tt.step1Lead || t('values.step1Lead')}</p></div>
-          <div class="valuesCount">${tt.selectedCount || t('values.selectedCount')}: ${state.values.selected.length}</div>
-        </div>
-        <div class="valuesToolbar">
-          <div class="valuesMeta">${query ? (state.lang==='ro' ? `Se afișează ${filtered.length} din ${valuesList.length} valori` : `Showing ${filtered.length} of ${valuesList.length} values`) : (state.lang==='ro' ? `${valuesList.length} valori în listă` : `${valuesList.length} values in the list`)}</div>
-          <button class="btn sm" type="button" onclick="clearValuesTool()">${tt.clearAll || t('values.clearAll')}</button>
-        </div>
-        <div id="valuesGrid" class="valuesGrid" style="margin-top:12px">${filtered.length ? filtered.map(value => `<button type="button" class="valueChip${state.values.selected.includes(value) ? ' active' : ''}" onclick='toggleValueSelection(${JSON.stringify(value)})'>${escapeHtml(value)}</button>`).join('') : `<div class="valuesEmpty">${tt.searchNoResults || ''}</div>`}</div>
-      </div>
-      <div class="valuesPanel">
-        <div class="valuesPanelHead">
-          <div><h3>${tt.selectedLabel || t('values.selectedValues')}</h3><p>${tt.step2Lead || t('values.step2Lead')}</p></div>
-          <div class="valuesCount">${tt.topCount || t('values.topCount')}: ${state.values.top5.length}/5</div>
-        </div>
-        ${state.values.selected.length ? `<div class="valuesSelected">${state.values.selected.map(value => `<button type="button" class="valueChip subtle${state.values.top5.includes(value) ? ' active' : ''}" onclick='toggleValueSelection(${JSON.stringify(value)})' title="${escapeHtml(tt.remove || t('values.remove'))}">${escapeHtml(value)}</button>`).join('')}</div>` : `<div class="valuesEmpty">${tt.selectedEmpty || ''}</div>`}
-      </div>
-      <div class="valuesPanel">
-        <div class="valuesPanelHead">
-          <div><h3>${tt.step2Title || t('values.step2')}</h3><p>${tt.step2Lead || t('values.step2Lead')}</p></div>
-          <div class="valuesCount">${state.values.top5.length}/5</div>
-        </div>
-        <div class="valuesMeta" style="margin-bottom:8px">${tt.topLabel || t('values.rankedTop')}</div>
-        <div class="valuesTopList">${state.values.top5.length ? state.values.top5.map((value, index) => `<div class="valuesTopItem"><div class="valuesRank">${index + 1}</div><div class="valuesTopName">${escapeHtml(value)}</div><div class="valuesTopActions"><button class="miniBtn" type="button" onclick="moveTopFiveValue(${index}, -1)"${index === 0 ? ' disabled' : ''}>↑</button><button class="miniBtn" type="button" onclick="moveTopFiveValue(${index}, 1)"${index === state.values.top5.length - 1 ? ' disabled' : ''}>↓</button><button class="miniBtn" type="button" onclick='removeTopFiveValue(${JSON.stringify(value)})'>×</button></div></div>`).join('') : `<div class="valuesEmpty">${tt.topEmpty || ''}</div>`}</div>
-        <div style="height:14px"></div>
-        <div class="valuesMeta" style="margin-bottom:8px">${tt.candidatesLabel || ''}</div>
-        ${candidates.length ? `<div class="valuesCandidateList">${candidates.map(value => `<div class="valuesCandidate"><strong>${escapeHtml(value)}</strong><div class="valuesCandidateActions"><button class="miniBtn" type="button" onclick='removePickedValue(${JSON.stringify(value)})' title="${escapeHtml(tt.remove || t('values.remove'))}">×</button><button class="btn sm" type="button" onclick='addValueToTopFive(${JSON.stringify(value)})'${state.values.top5.length >= 5 ? ' disabled' : ''}>${tt.pickTop || t('values.addTop')}</button></div></div>`).join('')}</div>` : `<div class="valuesEmpty">${tt.candidatesEmpty || ''}</div>`}
-        <p class="valuesHint" style="margin-top:14px">${state.values.top5.length === 5 ? (tt.doneHint || t('values.saveNote')) : (tt.progressHint || t('values.saveNote'))}</p>
-        <div class="stackRow"><button class="btn primary" type="button" onclick="syncValuesIntoSummary();updateSummaryDock();document.getElementById('msg_values').classList.add('show');setTimeout(()=>document.getElementById('msg_values').classList.remove('show'),1400)">${t('common.save')}</button><span class="copyMsg" id="msg_values">${t('summary.statusSaved')}</span></div>
-      </div>
-    </div>`; }
-function rerenderValues(focusSearch=false){ const modalBody=document.querySelector('#modalShell .modalBody'); const valuesGrid=document.getElementById('valuesGrid'); const modalScrollTop=modalBody?modalBody.scrollTop:0; const gridScrollTop=valuesGrid?valuesGrid.scrollTop:0; const gridScrollLeft=valuesGrid?valuesGrid.scrollLeft:0; const root=document.getElementById('valuesToolRoot'); if(root) root.innerHTML=buildValuesDiscoveryInnerHTML(); requestAnimationFrame(() => { if(modalBody) modalBody.scrollTop=modalScrollTop; const nextGrid=document.getElementById('valuesGrid'); if(nextGrid){ nextGrid.scrollTop=gridScrollTop; nextGrid.scrollLeft=gridScrollLeft; } if(focusSearch){ const input=document.getElementById('valuesSearch'); if(input){ input.focus(); input.setSelectionRange(valuesSearch.length, valuesSearch.length); } } }); }
-function renderValuesTool(){ return `<div id="valuesToolRoot">${buildValuesDiscoveryInnerHTML()}</div>`; }
-
 
 
 function updateSummaryDock(){
   const assessCount = Object.keys(state.summary.assessments||{}).length;
-  const toolsCount = Object.keys(state.summary.tools||{}).length + ((state.summary.values && ((state.summary.values.selected||[]).length || (state.summary.values.top5||[]).length)) ? 1 : 0);
+  const toolsCount = Object.keys(state.summary.tools||{}).length;
   const notesCount = (state.summary.reflection?.note ? 1 : 0) + (state.summary.note ? 1 : 0);
   const hasAssess = assessCount>0;
   const hasTools = toolsCount>0;
@@ -830,20 +876,17 @@ function renderSummaryComposer(){
   if(tools.length){
     parts.push(`<div class="resultSection"><strong>${t('summary.tools')}</strong><ul>${tools.map(x=>`<li>${escapeHtml(x.title)}</li>`).join('')}</ul></div>`);
   }
-  if(state.summary.values && ((state.summary.values.selected||[]).length || (state.summary.values.top5||[]).length)){
-    const v=state.summary.values;
-    parts.push(`<div class="resultSection"><strong>${t('summary.values')}</strong><p>${(v.top5||[]).length ? escapeHtml(v.top5.join(' · ')) : escapeHtml((v.selected||[]).join(', '))}</p></div>`);
-  }
   if(state.summary.reflection?.note){
     parts.push(`<div class="resultSection"><strong>${t('summary.reflection')}</strong><p>${escapeHtml(state.summary.reflection.question||'')}</p><p>${escapeHtml(state.summary.reflection.note||'')}</p></div>`);
   }
   if(parts.length===1){ parts.push(`<div class="panel">${t('summary.empty')}</div>`); }
-  return `<div>${parts.join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveSummaryNote()">${t('common.save')}</button><button class="btn" type="button" onclick="downloadSummaryPdf()">${t('summary.download')}</button></div></div>`;
+  return `<div>${parts.join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveSummaryNote()">${t('common.save')}</button><button class="btn" type="button" onclick="emailSummaryToSelf()">${t('summary.email')}</button><button class="btn" type="button" onclick="downloadSummaryPdf()">${t('summary.download')}</button></div></div>`;
 }
 
 function saveSummaryNote(){
   const el=document.getElementById('summary_note');
   state.summary.note = el ? el.value.trim() : '';
+  persistHubData();
   updateSummaryDock();
 }
 
@@ -914,9 +957,6 @@ function buildPdfSections(){
     });
   }
 
-  if(values && ((values.selected||[]).length || (values.top5||[]).length)){
-    sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0"><h2 class="pdfSectionTitle">${esc(t('summary.values'))}</h2><div class="pdfField">${(values.selected||[]).length?`<strong>${state.lang==='ro'?'Valori selectate':'Selected values'}:</strong> ${esc(values.selected.join(', '))}`:''}</div>${(values.top5||[]).length?`<div class="pdfField" style="margin-top:10px"><strong>${state.lang==='ro'?'Top 5 valori ordonat':'Ranked top 5'}:</strong> ${esc(values.top5.map((v,i)=>`${i+1}. ${v}`).join(' · '))}</div>`:''}</div>`);
-  }
 
   if(reflection?.note){
     sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0 34px"><h2 class="pdfSectionTitle">${esc(t('summary.reflection'))}</h2><div class="pdfField"><strong>${esc(t('reflection.questionLabel'))}:</strong> ${esc(reflection.question||'')}</div><div class="pdfField" style="margin-top:8px"><strong>${esc(t('reflection.titleLabel'))}:</strong> ${esc(reflection.title||'')}</div><div class="pdfField" style="margin-top:8px">${esc(reflection.note||'').replace(/\n/g,'<br>')}</div></div>`);
@@ -1010,7 +1050,42 @@ function setupMobileScrollBehavior(){
   });
 }
 
+
+function persistHubData(){
+  localStorage.setItem('gh_lang', state.lang);
+  localStorage.setItem('gh_members_summary', JSON.stringify(state.summary));
+}
+function loadHubData(){
+  try{
+    const saved=JSON.parse(localStorage.getItem('gh_members_summary')||'null');
+    if(saved) state.summary=saved;
+  }catch(e){}
+}
+function showExploreQuestions(){
+  const el=document.getElementById('optionEQuestions'); if(el){el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'start'});}
+}
+function openOptionPath(primary, followup){
+  openModal(primary);
+  const box=document.getElementById('optionFollowup');
+  if(box){
+    box.style.display='block';
+    const title=t('toolcards.'+followup+'.title');
+    box.innerHTML=`<strong>${state.lang==='ro'?'Sugestie de continuare':'Follow-up suggestion'}:</strong> <button class="btn sm" type="button" onclick="openModal('${followup}')" style="margin-left:8px">${escapeHtml(title)}</button>`;
+  }
+}
+async function emailSummaryToSelf(){
+  try{
+    saveSummaryNote();
+    const payload={lang:state.lang,summary:state.summary};
+    const res=await fetch('/api/email-summary',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!res.ok) throw new Error('email failed');
+    alert(state.lang==='ro'?'Rezumatul a fost trimis.':'Summary sent.');
+  }catch(err){
+    alert(state.lang==='ro'?'Trimiterea pe email nu a funcționat aici. Endpoint-ul /api/email-summary are nevoie de backend.':'Email send did not work here. The /api/email-summary endpoint needs a backend.');
+  }
+}
 function initApp(){
+  loadHubData();
   initTheme();
   applyI18n();
   document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
