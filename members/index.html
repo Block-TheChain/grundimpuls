@@ -816,6 +816,14 @@ function buildCards(){
   renderDailyQuote();
 }
 
+function renderWeeklyReflectionUI(){
+  const week = currentWeekly();
+  const weekLabel = document.getElementById('weekLabel');
+  const reflectionPrompt = document.getElementById('reflectionPrompt');
+  if(weekLabel) weekLabel.textContent = week.week;
+  if(reflectionPrompt) reflectionPrompt.textContent = state.lang === 'ro' ? week.questionRo : week.questionEn;
+}
+
 function applyI18n(){
   document.documentElement.lang = state.lang;
   document.querySelectorAll('[data-i18n]').forEach(el=>{el.innerHTML = t(el.getAttribute('data-i18n'))});
@@ -824,11 +832,7 @@ function applyI18n(){
   document.querySelectorAll('.lang button').forEach(btn=>btn.classList.toggle('active', btn.dataset.lang===state.lang));
   const headerHubSuffix = document.getElementById('headerHubSuffix');
   if(headerHubSuffix) headerHubSuffix.innerHTML = mobileHubText();
-  const week = currentWeekly();
-  const weekLabel = document.getElementById('weekLabel');
-  const reflectionPrompt = document.getElementById('reflectionPrompt');
-  if(weekLabel) weekLabel.textContent = week.week;
-  if(reflectionPrompt) reflectionPrompt.textContent = week.question;
+  renderWeeklyReflectionUI();
   buildCards();
   persistHubData();
   updateSummaryDock();
