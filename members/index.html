@@ -252,6 +252,15 @@
     .summaryCard{background:rgba(244,248,252,.96);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);backdrop-filter:blur(14px);padding:14px}
     body.dark .summaryCard{background:rgba(17,22,29,.96)}
     body.header-hidden header{transform:translateY(-100%)}
+
+    .focusFilters{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+    .filterChip{appearance:none;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:12px 16px;font:700 14px/1 var(--font);cursor:pointer;transition:transform .16s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease}
+    .filterChip:hover{transform:translateY(-1px);border-color:var(--accent)}
+    .filterChip.active{background:linear-gradient(135deg,#b7cff0 0%, #6ea0df 52%, #3B74BE 100%);color:#fff;border-color:rgba(59,116,190,.46);box-shadow:0 10px 24px rgba(59,116,190,.22)}
+    .focusNote{margin-top:12px;max-width:860px}
+    .visitPickBtn{margin-left:auto}
+    .card.inVisit{box-shadow:0 0 0 1px rgba(59,116,190,.38),0 18px 34px rgba(59,116,190,.14)}
+
     @media(max-width:900px){header{position:fixed;top:0;left:0;right:0}main{padding-top:74px}.grid,.cols3,.gridAssess,.gridTools{grid-template-columns:1fr}h1{font-size:36px}.brand{gap:6px}.mark{width:34px;height:34px}.wordmarkLine{gap:8px;align-items:flex-start}.wordmark strong{font-size:clamp(19px,4.8vw,25px);letter-spacing:clamp(.035em,.05em,.06em)}.wordmarkCore{width:max-content}.hubSuffix{font-size:13px;transform:translateY(1px)}.taglineTop{font-size:clamp(8px,2vw,10px);letter-spacing:.11em}.siteReturn{display:none}.burger{display:inline-flex}.lang{display:none}.langMobile{display:block}.mobileMenu{display:block;position:absolute;right:10px;top:calc(100% + 8px);background:rgba(244,248,252,.97);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(14px);padding:8px;min-width:196px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .22s ease,opacity .18s ease}body.dark .mobileMenu{background:rgba(17,22,29,.97)}body.menu-open .mobileMenu{transform:translateY(0);opacity:1;pointer-events:auto}.mobileMenu .wrap{padding:0;display:flex;flex-direction:column;align-items:stretch}.mobileMenu .publicLink{display:flex;align-items:center;justify-content:flex-end;gap:12px;color:var(--gold);background:var(--gold-bg);border-color:var(--gold-border)}.mobileMenu .publicLink:hover{background:rgba(200,134,10,.16);border-color:rgba(200,134,10,.46);color:var(--gold-light)}.mobileMenu .publicDrop{width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(200,134,10,.28));flex:0 0 40px}.hero{min-height:auto}.modalShell{padding:12px}.modalPanel{max-height:calc(100vh - 24px);border-radius:22px}.modalHead{padding:18px 18px 14px}.modalBody{padding:18px}#summaryDock{left:auto;right:12px;bottom:12px;max-width:min(92vw,340px)}#summaryDock .summaryFab{display:inline-flex}#summaryDock .summaryDockCard{display:none}body.summary-open #summaryDock .summaryDockCard{display:block}body.summary-open #summaryDock .summaryFab{display:none}}
     @media(max-width:430px){.nav{gap:10px}.brand{gap:5px}.mark{width:32px;height:32px}.wordmark{transform:translateY(1px)}.wordmarkLine{gap:7px}.wordmark strong{font-size:17px;letter-spacing:.028em}.hubSuffix{font-size:10px;flex-direction:column;align-items:flex-start;gap:1px;line-height:.92;transform:translateY(1px)}.taglineTop{font-size:7.6px;letter-spacing:.09em}.taglineTop .tagDot{margin:0 3px}.right{gap:6px}.langMobileBtn,.themeBtn,.burger{padding:8px 10px}.modalHeadText h2{font-size:24px}}
   </style>
@@ -311,7 +320,7 @@
             <a class="btn primary" href="#support" data-i18n="hero.cta1">I want coaching support</a>
             <a class="btn" href="#initiations" data-i18n="hero.cta2">I want to browse around</a>
           </div>
-          <p class="mini" style="margin-top:14px" data-i18n="hero.inventory">6 assessments · 7 tools · initiations · coaching support · From Daniel · daily inspiration · weekly reflection</p>
+          <p class="mini" style="margin-top:14px" data-i18n="hero.inventory">6 assessments · 10 tools · initiations · coaching support · From Daniel · daily inspiration · weekly reflection</p>
         </div>
         <div class="card">
           <h3 data-i18n="hero.nowTitle">What this hub is for</h3>
@@ -328,6 +337,15 @@
     </div>
   </section>
 
+  <section id="focus">
+    <div class="wrap">
+      <div class="accentBar"></div>
+      <h2 data-i18n="filters.title">Choose a focus</h2>
+      <p data-i18n="filters.lead">Use a topic to reduce the page to what is most relevant right now.</p>
+      <div class="focusFilters" id="focusFilters"></div>
+      <p class="small focusNote" id="focusNote"></p>
+    </div>
+  </section>
 
   <section id="initiations">
     <div class="wrap">
@@ -460,13 +478,14 @@ const i18n = {
   en: {
     brand:{hub:'Members Hub',members:'Members',hubWord:'Hub'},
     nav:{start:'Start',initiations:'Initiations',assessments:'Assessments',tools:'Tools',support:'Support',reflection:'Weekly reflection',publicSite:'Public site'},
-    common:{openAssessment:'Open assessment',openTool:'Open tool',startAssessment:'Start assessment',seeResult:'See my result',copy:'Copy to clipboard',clear:'Clear',copied:'Copied.',start:'Start',reset:'Reset',ready:'Ready',close:'Close',pleaseAnswerAll:'Please answer all questions before seeing your result.',fillField:'Fill in at least one field first.',copyFailed:'Copy failed. Please copy manually.',save:'Save',saved:'Saved.',scale1:'Not true',scale2:'Slightly',scale3:'Somewhat',scale4:'Mostly',scale5:'Very true'},
-    hero:{kicker:'Members Hub',h1:'A private working space for people who need clarity, not more content.',lead:'This is not a course and it is not a library. It is a set of instruments to use between sessions, in difficult weeks, or when something needs clarifying.',sub:'Use it when something is live, not when you are procrastinating with personal development.',howTitle:'How to use this',how1:'If you need support around a session, start with Coaching Support.',how2:'If you want to explore, browse the collection.',how3:'If you want to revisit foundations, go to Initiations.',cta1:'I want coaching support',cta2:'I want to browse around',inventory:'6 assessments · 7 tools · initiations · coaching support · From Daniel · daily inspiration · weekly reflection',nowTitle:'What this hub is for',now1:'For when you are still delivering but something is quietly wrong.',now2:'For when you suspect you are solving the wrong problem.',now3:'For when a conversation keeps not happening.',now4:'For when you need to arrive at the next session with your thinking already cleaner.',small:'Less content. Better routing. More honest work.'},
+    common:{openAssessment:'Open assessment',openTool:'Open tool',startAssessment:'Start assessment',seeResult:'See my result',copy:'Copy to clipboard',clear:'Clear',copied:'Copied.',start:'Start',reset:'Reset',ready:'Ready',close:'Close',pleaseAnswerAll:'Please answer all questions before seeing your result.',fillField:'Fill in at least one field first.',copyFailed:'Copy failed. Please copy manually.',save:'Save',saved:'Saved.',scale1:'Not true',scale2:'Slightly',scale3:'Somewhat',scale4:'Mostly',scale5:'Very true',addToVisit:'Add to my visit',removeFromVisit:'Remove'},
+    hero:{kicker:'Members Hub',h1:'A private working space for people who need clarity, not more content.',lead:'This is not a course and it is not a library. It is a set of instruments to use between sessions, in difficult weeks, or when something needs clarifying.',sub:'Use it when something is live, not when you are procrastinating with personal development.',howTitle:'How to use this',how1:'If you need support around a session, start with Coaching Support.',how2:'If you want to explore, browse the collection.',how3:'If you want to revisit foundations, go to Initiations.',cta1:'I want coaching support',cta2:'I want to browse around',inventory:'6 assessments · 10 tools · initiations · coaching support · From Daniel · daily inspiration · weekly reflection',nowTitle:'What this hub is for',now1:'For when you are still delivering but something is quietly wrong.',now2:'For when you suspect you are solving the wrong problem.',now3:'For when a conversation keeps not happening.',now4:'For when you need to arrive at the next session with your thinking already cleaner.',small:'Less content. Better routing. More honest work.'},
     start:{title:'Choose an entry point',lead:'Members can move between these modes at any time.',pathE:'Option E · Explore something specific',pathF:'Option F · Browse and pick',card1t:'Start with a question',card1d:'Pick the question that sounds uncomfortably close to your situation. It will route you to one relevant instrument.',card2t:'See the full collection',card2d:'Browse assessments, tools, coaching support, and the current weekly reflection.',reveal:'Show the questions',hide:'Hide the questions',browse:'Browse the collection',optionETag:'Explore by question'},
     assess:{title:'Assessments',lead:'Use these when you want a sharper read on what is happening, not a flattering one.'},
     cards:{coachability:{tag:'Coachability',title:'Coachability assessment',desc:'For when insight is present but change still keeps not happening.'},leadership:{tag:'Leadership',title:'Leadership self-check',desc:'For when the issue may be less about skill and more about how you are showing up under load.'},burnout:{tag:'Burnout',title:'Burnout risk check',desc:'For when you are still delivering but something is quietly wrong.'},mental:{tag:'Mental Wellness',title:'Mental wellness and integration',desc:'For when life looks functional from the outside but not integrated from the inside.'},resilience:{tag:'Stress',title:'Resilience profile',desc:'For when you want to know whether you are actually recovering or just surviving well.'},strategic:{tag:'Critical Thinking',title:'Strategic mindset — critical thinking and cognitive agility',desc:'For when you suspect you may be solving the wrong problem.'}},
     tools:{title:'Tools',lead:'Use one instrument against one live issue. That is usually enough.'},
-    toolcards:{prep:{kicker:'Before the session',title:'Session prep',desc:'For when you want the session to begin where the real issue actually is.'},breathing:{kicker:'3-minute reset',title:'3-minute box breathing',desc:'For when your system is too activated to think cleanly.'},overload:{kicker:'Load triage',title:'Overload triage worksheet',desc:'For when everything feels important and that is exactly the problem.'},conversation:{kicker:'Conversation clarity',title:'Difficult conversation prep',desc:'For when a conversation keeps not happening.'},decision:{kicker:'Decision quality',title:'Decision journal',desc:'For when speed is making you less intelligent.'},recovery:{kicker:'Recovery planning',title:'7-day recovery planner',desc:'For when rest will not happen unless it is designed.'},grounding:{kicker:'Before a hard moment',title:'Pre-conversation grounding',desc:'For when you need to enter the room steadier than you feel.'},review:{kicker:'After pressure',title:'Post-pressure review',desc:'For when you do not want to waste a hard week.'},notes:{kicker:'After the session',title:'Post-session notes',desc:'A private scratchpad for what you want to remember after the conversation.'},commitments:{kicker:'Carry the work forward',title:'Commitments tracker',desc:'Write 1–3 commitments, mark them done, or carry them forward.'},values:{kicker:'Values clarification',title:'Value discovery tool',desc:'Choose values that matter, narrow them to your top 5, and rank them.'}},
+    filters:{title:'Choose a focus',lead:'Use a topic to reduce the page to what is most relevant right now.',stress:'Stress & Burnout',leadership:'Leadership',coaching:'Coaching',daily:'Daily clarity',weekly:'Weekly clarity',monthly:'Monthly clarity',all:'Show all',myvisit:'My visit',myvisitNote:'Select the cards you want for this visit. Use Add to my visit or Remove.'},
+    toolcards:{prep:{kicker:'Before the session',title:'Session prep',desc:'For when you want the session to begin where the real issue actually is.'},breathing:{kicker:'3-minute reset',title:'3-minute box breathing',desc:'For when your system is too activated to think cleanly.'},daily:{kicker:'Daily clarity',title:'Daily planner',desc:'For when the day needs shape before it gets taken over.'},weekly:{kicker:'Weekly clarity',title:'Weekly planner',desc:'For when the week needs direction before urgency fills it.'},monthly:{kicker:'Monthly clarity',title:'Monthly planner',desc:'For when the month needs design, not just reaction.'},overload:{kicker:'Load triage',title:'Overload triage worksheet',desc:'For when everything feels important and that is exactly the problem.'},conversation:{kicker:'Conversation clarity',title:'Difficult conversation prep',desc:'For when a conversation keeps not happening.'},decision:{kicker:'Decision quality',title:'Decision journal',desc:'For when speed is making you less intelligent.'},recovery:{kicker:'Recovery planning',title:'7-day recovery planner',desc:'For when rest will not happen unless it is designed.'},grounding:{kicker:'Before a hard moment',title:'Pre-conversation grounding',desc:'For when you need to enter the room steadier than you feel.'},review:{kicker:'After pressure',title:'Post-pressure review',desc:'For when you do not want to waste a hard week.'},notes:{kicker:'After the session',title:'Post-session notes',desc:'A private scratchpad for what you want to remember after the conversation.'},commitments:{kicker:'Carry the work forward',title:'Commitments tracker',desc:'Write 1–3 commitments, mark them done, or carry them forward.'},values:{kicker:'Values clarification',title:'Value discovery tool',desc:'Choose values that matter, narrow them to your top 5, and rank them.'}},
     values:{title:'Value discovery tool',desc:'Choose the values that matter, then narrow them to your top 5 and rank them.',step1:'Step 1 · Build a long list',step1Lead:'Select every value that genuinely matters to you. Do not optimize yet.',step2:'Step 2 · Choose only 5 and rank them',step2Lead:'From your selected values, choose your 5 core values and order them from most important to least important.',selectedCount:'Selected',topCount:'Top 5',addTop:'Add to top 5',remove:'Remove',clearAll:'Clear all',saveNote:'You can save a partial list, but the PDF is most useful once you have a fully ranked top 5.',selectedValues:'Selected values',rankedTop:'Ranked top 5'},
     path:{q1:'What is actually going on with my energy right now?',q1d:'Open Burnout Risk Check',q2:'Am I thinking clearly or am I in reaction mode?',q2d:'Open Strategic Mindset',q3:'What do I need to say that I have not said yet?',q3d:'Open Difficult Conversation Prep',q4:'What am I avoiding?',q4d:'Open Weekly Reflection'},
     initiations:{eyebrow:'Initiations',title:'Initiations',lead:'A smaller section for things that should stay close to hand: principles worth returning to, and one assessment for clarifying what matters before you build on top of it.',ethicsTag:'Ethics',ethicsTitle:'Ethical principles for a good life',ethicsDesc:'Not because you need more slogans. Because under pressure, people drift unless they have standards they can return to.',openEthics:'Open ethics groups',closeEthics:'Close ethics groups',downloadPdf:'Download PDF',valuesTag:'Value discovery',valuesTitle:'Value Discovery assessment',valuesDesc:'For when your decisions sound reasonable but something important is still not named.',valuesMeta:'Choose broadly first, then narrow to the five you do not want to betray.',openValues:'Open Value Discovery',selected:'Selected',top5:'Top 5',search:'Search values...',searchMeta:'Start with 12–20 that genuinely matter. Then reduce to five.',empty:'No values match this search.',remove:'Remove',save:'Save my top 5',saved:'Saved to summary.',pickMore:'Pick at least five values before saving.',summaryLabel:'Top values'},
@@ -481,13 +500,14 @@ const i18n = {
   ro: {
     brand:{hub:'Members Hub',members:'Hub',hubWord:'Membri'},
     nav:{start:'Start',initiations:'Inițieri',assessments:'Evaluări',tools:'Instrumente',support:'Suport',reflection:'Reflecție săptămânală',publicSite:'Site public'},
-    common:{openAssessment:'Deschide evaluarea',openTool:'Deschide instrumentul',startAssessment:'Începe evaluarea',seeResult:'Vezi rezultatul',copy:'Copiază',clear:'Șterge',copied:'Copiat.',start:'Start',reset:'Resetează',ready:'Pregătit',close:'Închide',pleaseAnswerAll:'Răspunde la toate întrebările înainte să vezi rezultatul.',fillField:'Completează cel puțin un câmp.',copyFailed:'Copierea a eșuat. Copiază manual.',save:'Salvează',saved:'Salvat.',scale1:'Deloc adevărat',scale2:'Puțin',scale3:'Parțial',scale4:'Mai degrabă da',scale5:'Foarte adevărat'},
-    hero:{kicker:'Members Hub',h1:'Un spațiu privat de lucru pentru oameni care au nevoie de claritate, nu de mai mult conținut.',lead:'Acesta nu este un curs și nu este o bibliotecă. Este un set de instrumente de folosit între sesiuni, în săptămâni dificile sau când ceva trebuie clarificat.',sub:'Folosește-l când ceva este viu, nu când amâni munca reală sub forma dezvoltării personale.',howTitle:'Cum se folosește',how1:'Dacă ai nevoie de sprijin în jurul unei sesiuni, începe cu Suport de coaching.',how2:'Dacă vrei să explorezi, răsfoiește colecția.',how3:'Dacă vrei să revii la fundamente, mergi la Inițieri.',cta1:'Vreau suport de coaching',cta2:'Vreau să răsfoiesc',inventory:'6 evaluări · 7 instrumente · inițieri · suport de coaching · De la Daniel · inspirație zilnică · reflecție săptămânală',nowTitle:'Pentru ce este acest hub',now1:'Pentru momentele în care încă livrezi, dar ceva este în liniște greșit.',now2:'Pentru momentele în care bănuiești că rezolvi problema greșită.',now3:'Pentru momentele în care o conversație continuă să nu aibă loc.',now4:'Pentru momentele în care vrei să ajungi la următoarea sesiune cu gândirea deja mai curată.',small:'Mai puțin conținut. Rutare mai bună. Muncă mai onestă.'},
+    common:{openAssessment:'Deschide evaluarea',openTool:'Deschide instrumentul',startAssessment:'Începe evaluarea',seeResult:'Vezi rezultatul',copy:'Copiază',clear:'Șterge',copied:'Copiat.',start:'Start',reset:'Resetează',ready:'Pregătit',close:'Închide',pleaseAnswerAll:'Răspunde la toate întrebările înainte să vezi rezultatul.',fillField:'Completează cel puțin un câmp.',copyFailed:'Copierea a eșuat. Copiază manual.',save:'Salvează',saved:'Salvat.',scale1:'Deloc adevărat',scale2:'Puțin',scale3:'Parțial',scale4:'Mai degrabă da',scale5:'Foarte adevărat',addToVisit:'Adaugă la vizita mea',removeFromVisit:'Elimină'},
+    hero:{kicker:'Members Hub',h1:'Un spațiu privat de lucru pentru oameni care au nevoie de claritate, nu de mai mult conținut.',lead:'Acesta nu este un curs și nu este o bibliotecă. Este un set de instrumente de folosit între sesiuni, în săptămâni dificile sau când ceva trebuie clarificat.',sub:'Folosește-l când ceva este viu, nu când amâni munca reală sub forma dezvoltării personale.',howTitle:'Cum se folosește',how1:'Dacă ai nevoie de sprijin în jurul unei sesiuni, începe cu Suport de coaching.',how2:'Dacă vrei să explorezi, răsfoiește colecția.',how3:'Dacă vrei să revii la fundamente, mergi la Inițieri.',cta1:'Vreau suport de coaching',cta2:'Vreau să răsfoiesc',inventory:'6 evaluări · 10 instrumente · inițieri · suport de coaching · De la Daniel · inspirație zilnică · reflecție săptămânală',nowTitle:'Pentru ce este acest hub',now1:'Pentru momentele în care încă livrezi, dar ceva este în liniște greșit.',now2:'Pentru momentele în care bănuiești că rezolvi problema greșită.',now3:'Pentru momentele în care o conversație continuă să nu aibă loc.',now4:'Pentru momentele în care vrei să ajungi la următoarea sesiune cu gândirea deja mai curată.',small:'Mai puțin conținut. Rutare mai bună. Muncă mai onestă.'},
     start:{title:'Alege un punct de intrare',lead:'Membrii pot trece între aceste moduri oricând.',pathE:'Opțiunea E · Explorează ceva specific',pathF:'Opțiunea F · Răsfoiește și alege',card1t:'Începe cu o întrebare',card1d:'Alege întrebarea care sună inconfortabil de apropiat de situația ta. Te va duce la un instrument relevant.',card2t:'Vezi colecția completă',card2d:'Răsfoiește evaluările, instrumentele, suportul de coaching și reflecția săptămânală.',reveal:'Arată întrebările',hide:'Ascunde întrebările',browse:'Răsfoiește colecția',optionETag:'Explorează prin întrebare'},
     assess:{title:'Evaluări',lead:'Folosește-le când vrei o citire mai clară a ceea ce se întâmplă, nu una măgulitoare.'},
     cards:{coachability:{tag:'Evaluare coachability',title:'Evaluare coachability',desc:'Pentru momentele în care insightul există, dar schimbarea tot continuă să nu se întâmple.'},leadership:{tag:'Leadership',title:'Leadership self-check',desc:'Pentru momentele în care problema poate fi mai puțin despre skill și mai mult despre cum apari sub presiune.'},burnout:{tag:'Burnout',title:'Burnout risk check',desc:'Pentru momentele în care încă livrezi, dar ceva este în liniște greșit.'},mental:{tag:'Mental Wellness',title:'Mental wellness and integration',desc:'Pentru momentele în care viața pare funcțională la exterior, dar neintegrată la interior.'},resilience:{tag:'Stress',title:'Resilience profile',desc:'Pentru momentele în care vrei să știi dacă te recuperezi cu adevărat sau doar supraviețuiești competent.'},strategic:{tag:'Critical Thinking',title:'Strategic mindset — gândire critică și agilitate cognitivă',desc:'Pentru momentele în care bănuiești că poate rezolvi problema greșită.'}},
     tools:{title:'Instrumente',lead:'Folosește un singur instrument pentru o singură problemă vie. De obicei este suficient.'},
-    toolcards:{prep:{kicker:'Înainte de sesiune',title:'Pregătire pentru sesiune',desc:'Pentru momentele în care vrei ca sesiunea să înceapă exact acolo unde este problema reală.'},breathing:{kicker:'Resetare în 3 minute',title:'Box breathing de 3 minute',desc:'Pentru momentele în care sistemul tău este prea activat ca să gândești clar.'},overload:{kicker:'Triere de încărcare',title:'Fișă de triere a supraîncărcării',desc:'Pentru momentele în care totul pare important și exact asta este problema.'},conversation:{kicker:'Claritate în conversație',title:'Pregătire pentru conversații dificile',desc:'Pentru momentele în care o conversație continuă să nu aibă loc.'},decision:{kicker:'Calitatea deciziei',title:'Jurnal de decizie',desc:'Pentru momentele în care viteza te face mai puțin inteligent.'},recovery:{kicker:'Planificarea recuperării',title:'Planificator de recuperare pe 7 zile',desc:'Pentru momentele în care odihna nu se va întâmpla decât dacă este proiectată.'},grounding:{kicker:'Înainte de un moment greu',title:'Grounding înainte de conversație',desc:'Pentru momentele în care trebuie să intri în cameră mai stabil decât te simți.'},review:{kicker:'După presiune',title:'Revizuire după presiune',desc:'Pentru momentele în care nu vrei să irosești o săptămână grea.'},notes:{kicker:'După sesiune',title:'Notițe post-sesiune',desc:'Un scratchpad privat pentru ce vrei să ții minte după conversație.'},commitments:{kicker:'Du munca mai departe',title:'Tracker de angajamente',desc:'Scrie 1–3 angajamente, marchează-le făcute sau du-le mai departe.'},values:{kicker:'Clarificare valori',title:'Instrument de descoperire a valorilor',desc:'Alege valorile care contează, restrânge-le la top 5 și ordonează-le.'}},
+    filters:{title:'Alege un focus',lead:'Folosește o temă ca să reduci pagina la ceea ce este cel mai relevant acum.',stress:'Stres și burnout',leadership:'Leadership',coaching:'Coaching',daily:'Claritate zilnică',weekly:'Claritate săptămânală',monthly:'Claritate lunară',all:'Arată tot',myvisit:'Vizita mea',myvisitNote:'Selectează cardurile pe care vrei să le folosești în această vizită. Folosește Adaugă la vizita mea sau Elimină.'},
+    toolcards:{prep:{kicker:'Înainte de sesiune',title:'Pregătire pentru sesiune',desc:'Pentru momentele în care vrei ca sesiunea să înceapă exact acolo unde este problema reală.'},breathing:{kicker:'Resetare în 3 minute',title:'Box breathing de 3 minute',desc:'Pentru momentele în care sistemul tău este prea activat ca să gândești clar.'},daily:{kicker:'Claritate zilnică',title:'Planificator zilnic',desc:'Pentru momentele în care ziua are nevoie de structură înainte să fie preluată de restul.'},weekly:{kicker:'Claritate săptămânală',title:'Planificator săptămânal',desc:'Pentru momentele în care săptămâna are nevoie de direcție înainte ca urgența să o umple.'},monthly:{kicker:'Claritate lunară',title:'Planificator lunar',desc:'Pentru momentele în care luna are nevoie de design, nu doar de reacție.'},overload:{kicker:'Triere de încărcare',title:'Fișă de triere a supraîncărcării',desc:'Pentru momentele în care totul pare important și exact asta este problema.'},conversation:{kicker:'Claritate în conversație',title:'Pregătire pentru conversații dificile',desc:'Pentru momentele în care o conversație continuă să nu aibă loc.'},decision:{kicker:'Calitatea deciziei',title:'Jurnal de decizie',desc:'Pentru momentele în care viteza te face mai puțin inteligent.'},recovery:{kicker:'Planificarea recuperării',title:'Planificator de recuperare pe 7 zile',desc:'Pentru momentele în care odihna nu se va întâmpla decât dacă este proiectată.'},grounding:{kicker:'Înainte de un moment greu',title:'Grounding înainte de conversație',desc:'Pentru momentele în care trebuie să intri în cameră mai stabil decât te simți.'},review:{kicker:'După presiune',title:'Revizuire după presiune',desc:'Pentru momentele în care nu vrei să irosești o săptămână grea.'},notes:{kicker:'După sesiune',title:'Notițe post-sesiune',desc:'Un scratchpad privat pentru ce vrei să ții minte după conversație.'},commitments:{kicker:'Du munca mai departe',title:'Tracker de angajamente',desc:'Scrie 1–3 angajamente, marchează-le făcute sau du-le mai departe.'},values:{kicker:'Clarificare valori',title:'Instrument de descoperire a valorilor',desc:'Alege valorile care contează, restrânge-le la top 5 și ordonează-le.'}},
     values:{title:'Instrument de descoperire a valorilor',desc:'Alege valorile care contează, apoi restrânge-le la top 5 și ordonează-le.',step1:'Pasul 1 · Construiește o listă lungă',step1Lead:'Selectează toate valorile care chiar contează pentru tine. Nu optimiza încă.',step2:'Pasul 2 · Alege doar 5 și ordonează-le',step2Lead:'Din valorile selectate, alege cele 5 valori de bază și ordonează-le de la cea mai importantă la cea mai puțin importantă.',selectedCount:'Selectate',topCount:'Top 5',addTop:'Adaugă în top 5',remove:'Elimină',clearAll:'Șterge tot',saveNote:'Poți salva și o listă parțială, dar PDF-ul este cel mai util când ai un top 5 complet ordonat.',selectedValues:'Valori selectate',rankedTop:'Top 5 valori ordonat'},
     path:{q1:'Ce se întâmplă de fapt cu energia mea chiar acum?',q1d:'Deschide Burnout Risk Check',q2:'Gândesc clar sau sunt în mod de reacție?',q2d:'Deschide Strategic Mindset',q3:'Ce trebuie să spun și încă nu am spus?',q3d:'Deschide Pregătire pentru conversații dificile',q4:'Ce evit?',q4d:'Deschide Reflecția săptămânală'},
     initiations:{eyebrow:'Inițieri',title:'Inițieri',lead:'O secțiune mai mică pentru lucrurile care merită ținute aproape: principii la care merită să revii și o evaluare care clarifică ce contează înainte să construiești ceva deasupra.',ethicsTag:'Etică',ethicsTitle:'Principii etice pentru o viață bună',ethicsDesc:'Nu pentru că ai nevoie de mai multe sloganuri. Ci pentru că, sub presiune, oamenii alunecă dacă nu au standarde la care să revină.',openEthics:'Deschide grupele etice',closeEthics:'Închide grupele etice',downloadPdf:'Descarcă PDF',valuesTag:'Descoperirea valorilor',valuesTitle:'Evaluarea de descoperire a valorilor',valuesDesc:'Pentru momentele în care deciziile tale sună rezonabil, dar ceva important încă nu este numit.',valuesMeta:'Alege mai larg la început, apoi restrânge la cele cinci pe care nu vrei să le trădezi.',openValues:'Deschide evaluarea valorilor',selected:'Selectate',top5:'Top 5',search:'Caută valori...',searchMeta:'Începe cu 12–20 care chiar contează. Apoi redu la cinci.',empty:'Nicio valoare nu se potrivește acestei căutări.',remove:'Elimină',save:'Salvează top 5',saved:'Salvat în rezumat.',pickMore:'Alege cel puțin cinci valori înainte să salvezi.',summaryLabel:'Valori principale'},
@@ -742,6 +762,9 @@ const assessments = {
 const toolDefs = {
   prep:{kind:'form',fields:[['shift','What has changed since the last session?','Ce s-a schimbat de la ultima sesiune?'],['topic','What matters most for this session?','Ce contează cel mai mult pentru această sesiune?'],['outcome','What would make this session useful?','Ce ar face această sesiune utilă?'],['blocker','What could get in the way?','Ce ar putea sta în cale?'],['else','What else/What would you find important to add?','Ce altceva/Ce ai considera important să adaugi?']]},
   breathing:{kind:'breathing'},
+  daily:{kind:'form',fields:[['priorities','What are my most important 3 priorities for today?','Care sunt cele mai importante 3 priorități ale mele pentru astăzi?'],['useful','What are 3 things that if they would happen today, it would be most useful for me?','Care sunt 3 lucruri care, dacă s-ar întâmpla astăzi, mi-ar fi cele mai utile?'],['finish','What do I want to finish today?','Ce vreau să finalizez astăzi?'],['start','What do I want to start today?','Ce vreau să încep astăzi?'],['forward','What am I looking forward to today?','Ce aștept cu interes astăzi?'],['avoid','What am I trying to avoid today?','Ce încerc să evit astăzi?'],['else','What else/What would you find important to add?','Ce altceva/Ce ai considera important să adaugi?']]},
+  weekly:{kind:'form',fields:[['forward','What am I looking forward to this week?','Ce aștept cu interes săptămâna aceasta?'],['avoid','What am I trying to avoid this week?','Ce încerc să evit săptămâna aceasta?'],['objectives','What are the most important 3 objectives for this week?','Care sunt cele mai importante 3 obiective pentru această săptămână?'],['start','What do I want to start this week?','Ce vreau să încep săptămâna aceasta?'],['finish','What do I want to finish this week?','Ce vreau să finalizez săptămâna aceasta?'],['events','What are the main events this week?','Care sunt principalele evenimente ale acestei săptămâni?'],['else','What else/What would you find important to add?','Ce altceva/Ce ai considera important să adaugi?']]},
+  monthly:{kind:'form',fields:[['forward','What am I looking forward to this month?','Ce aștept cu interes luna aceasta?'],['avoid','What am I trying to avoid this month?','Ce încerc să evit luna aceasta?'],['objectives','What are the most important 3 objectives for this month?','Care sunt cele mai importante 3 obiective pentru această lună?'],['start','What do I want to start this month?','Ce vreau să încep luna aceasta?'],['finish','What do I want to finish this month?','Ce vreau să finalizez luna aceasta?'],['events','What are the main events this month?','Care sunt principalele evenimente ale acestei luni?'],['else','What else/What would you find important to add?','Ce altceva/Ce ai considera important să adaugi?']]},
   overload:{kind:'form',fields:[['signals','What are the clearest signs you are overloaded?','Care sunt cele mai clare semne că ești supraîncărcat?'],['drop','What can be reduced, delayed, delegated, or stopped?','Ce poate fi redus, amânat, delegat sau oprit?'],['protect','What absolutely needs protecting this week?','Ce trebuie protejat absolut săptămâna aceasta?'],['next','What is the next stabilizing move?','Care este următoarea mișcare de stabilizare?'],['else','What else/What would you find important to add?','Ce altceva/Ce ai considera important să adaugi?']]},
   conversation:{kind:'form',fields:[['goal','What is the real aim of the conversation?','Care este scopul real al conversației?'],['truth','What needs to be said clearly?','Ce trebuie spus clar?'],['fear','What are you afraid will happen?','De ce te temi că se va întâmpla?'],['boundary','What boundary or request must be explicit?','Ce limită sau cerere trebuie formulată explicit?'],['else','What else/What would you find important to add?','Ce altceva/Ce ai considera important să adaugi?']]},
   decision:{kind:'form',fields:[['decision','What decision are you making?','Ce decizie iei?'],['options','What are the real options?','Care sunt opțiunile reale?'],['assumptions','What assumptions are you making?','Ce presupuneri faci?'],['tradeoff','What trade-off are you accepting?','Ce compromis accepți?'],['else','What else/What would you find important to add?','Ce altceva/Ce ai considera important să adaugi?']]},
@@ -762,26 +785,113 @@ const state = {
   values:{selected:[],top5:[],scrollTop:0,query:''},
   ethicsOpen:-1,
   ethicsListOpen:false,
-  breathing:null
+  breathing:null,
+  activeFilter:localStorage.getItem('gh_filter') || 'all',
+  myVisit:JSON.parse(localStorage.getItem('gh_myvisit') || '[]')
 };
 
 function escapeHtml(s=''){return s.replace(/[&<>\"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[m]))}
 function t(path){const parts=path.split('.'); let ref=i18n[state.lang]; for(const p of parts){if(ref==null) return path; ref=ref[p]} return ref ?? path}
 function mobileHubText(){return state.lang==='ro' ? 'Members Hub' : (window.innerWidth<=900 ? 'Members<br><span class="hubLine2">Hub</span>' : 'Members Hub')}
 
+const FILTERS=['stress-burnout','leadership','coaching','daily-clarity','weekly-clarity','monthly-clarity','all','myvisit'];
+const ASSESSMENT_META=[
+  {id:'burnout',tags:['stress-burnout']},
+  {id:'leadership',tags:['leadership']},
+  {id:'coachability',tags:['coaching']},
+  {id:'resilience',tags:['stress-burnout']},
+  {id:'mental',tags:['stress-burnout']},
+  {id:'strategic',tags:['leadership']}
+];
+const TOOL_META=[
+  {id:'breathing',tags:['stress-burnout']},
+  {id:'daily',tags:['daily-clarity']},
+  {id:'weekly',tags:['weekly-clarity']},
+  {id:'monthly',tags:['monthly-clarity']},
+  {id:'overload',tags:['stress-burnout']},
+  {id:'conversation',tags:['leadership']},
+  {id:'decision',tags:['leadership']},
+  {id:'recovery',tags:['stress-burnout']},
+  {id:'grounding',tags:['leadership']},
+  {id:'review',tags:['stress-burnout','leadership']}
+];
+const SUPPORT_META=[
+  {id:'prep',tags:['coaching']},
+  {id:'notes',tags:['coaching']},
+  {id:'commitments',tags:['coaching']}
+];
+function inMyVisit(id){ return (state.myVisit||[]).includes(id); }
+function toggleMyVisit(id){
+  const set=new Set(state.myVisit||[]);
+  if(set.has(id)) set.delete(id); else set.add(id);
+  state.myVisit=[...set];
+  localStorage.setItem('gh_myvisit', JSON.stringify(state.myVisit));
+  buildCards();
+  renderFocusFilters();
+}
+function matchesActiveFilter(tags){
+  if(state.activeFilter==='all' || state.activeFilter==='myvisit') return true;
+  return (tags||[]).includes(state.activeFilter);
+}
+function setActiveFilter(filterKey){
+  state.activeFilter=filterKey;
+  localStorage.setItem('gh_filter', filterKey);
+  buildCards();
+  renderFocusFilters();
+}
+function renderFocusFilters(){
+  const wrap=document.getElementById('focusFilters');
+  if(wrap){
+    const map={
+      'stress-burnout':t('filters.stress'),'leadership':t('filters.leadership'),'coaching':t('filters.coaching'),'daily-clarity':t('filters.daily'),'weekly-clarity':t('filters.weekly'),'monthly-clarity':t('filters.monthly'),'all':t('filters.all'),'myvisit':t('filters.myvisit')
+    };
+    wrap.innerHTML=FILTERS.map(key=>`<button type="button" class="filterChip ${state.activeFilter===key?'active':''}" onclick="setActiveFilter('${key}')">${map[key]}</button>`).join('');
+  }
+  const note=document.getElementById('focusNote');
+  if(note) note.textContent = state.activeFilter==='myvisit' ? t('filters.myvisitNote') : '';
+}
+function renderVisitButton(cardId){
+  if(state.activeFilter!=='myvisit') return '';
+  const active=inMyVisit(cardId);
+  return `<button class="btn sm visitPickBtn" type="button" onclick="toggleMyVisit('${cardId}')">${active ? t('common.removeFromVisit') : t('common.addToVisit')}</button>`;
+}
+function cardClass(cardId){ return inMyVisit(cardId) ? 'card inVisit' : 'card'; }
+function updateSectionVisibility(visible){
+  const setDisplay=(id,show)=>{ const el=document.getElementById(id); if(el) el.style.display=show?'':'none'; };
+  setDisplay('initiations', visible.initiations);
+  setDisplay('assessments', visible.assessments);
+  setDisplay('tools', visible.tools);
+  setDisplay('support', visible.support);
+  setDisplay('daily-inspiration', visible.daily);
+  setDisplay('reflection', visible.reflection);
+}
+
 function initTheme(){document.body.classList.toggle('dark', state.theme==='dark'); document.getElementById('themeToggle').textContent = state.theme==='dark' ? '☀' : '☾'}
 function toggleTheme(){state.theme = state.theme==='dark' ? 'light' : 'dark'; localStorage.setItem('gh_theme', state.theme); initTheme()}
 
 function buildCards(){
-  const assessOrder=['burnout','leadership','coachability','resilience','mental','strategic'];
+  renderFocusFilters();
   const assessGrid=document.getElementById('assessmentGrid');
-  if(assessGrid) assessGrid.innerHTML = assessOrder.map(k=>`<div class="card"><div class="tagline">${t('cards.'+k+'.tag')}</div><h3>${t('cards.'+k+'.title')}</h3><p>${t('cards.'+k+'.desc')}</p><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('${k}')">${t('common.openAssessment')}</button></div></div>`).join('');
-  const toolsOrder=['breathing','overload','conversation','decision','recovery','grounding','review'];
+  const visibleAssess=ASSESSMENT_META.filter(item=>matchesActiveFilter(item.tags));
+  if(assessGrid) assessGrid.innerHTML = visibleAssess.map(item=>`<div class="${cardClass('assessment:'+item.id)}"><div class="tagline">${t('cards.'+item.id+'.tag')}</div><h3>${t('cards.'+item.id+'.title')}</h3><p>${t('cards.'+item.id+'.desc')}</p><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('${item.id}')">${t('common.openAssessment')}</button>${renderVisitButton('assessment:'+item.id)}</div></div>`).join('');
+
   const toolGrid=document.getElementById('toolGrid');
-  if(toolGrid) toolGrid.innerHTML = toolsOrder.map(k=>`<div class="card">${(t('toolcards.'+k+'.kicker')&&t('toolcards.'+k+'.kicker')!==('toolcards.'+k+'.kicker'))?`<div class="tagline">${t('toolcards.'+k+'.kicker')}</div>`:''}<h3>${t('toolcards.'+k+'.title')}</h3><p>${t('toolcards.'+k+'.desc')}</p><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('${k}')">${t('common.openTool')}</button></div></div>`).join('');
+  const visibleTools=TOOL_META.filter(item=>matchesActiveFilter(item.tags));
+  if(toolGrid) toolGrid.innerHTML = visibleTools.map(item=>`<div class="${cardClass('tool:'+item.id)}">${(t('toolcards.'+item.id+'.kicker')&&t('toolcards.'+item.id+'.kicker')!==('toolcards.'+item.id+'.kicker'))?`<div class="tagline">${t('toolcards.'+item.id+'.kicker')}</div>`:''}<h3>${t('toolcards.'+item.id+'.title')}</h3><p>${t('toolcards.'+item.id+'.desc')}</p><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('${item.id}')">${t('common.openTool')}</button>${renderVisitButton('tool:'+item.id)}</div></div>`).join('');
+
   const supportGrid=document.getElementById('supportGrid');
-  if(supportGrid) supportGrid.innerHTML = ['prep','notes','commitments'].map(k=>`<div class="card">${(t('toolcards.'+k+'.kicker')&&t('toolcards.'+k+'.kicker')!==('toolcards.'+k+'.kicker'))?`<div class="tagline">${t('toolcards.'+k+'.kicker')}</div>`:''}<h3>${t('toolcards.'+k+'.title')}</h3><p>${t('toolcards.'+k+'.desc')}</p><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('${k}')">${t('common.openTool')}</button></div></div>`).join('');
+  const visibleSupport=SUPPORT_META.filter(item=>matchesActiveFilter(item.tags));
+  if(supportGrid) supportGrid.innerHTML = visibleSupport.map(item=>`<div class="${cardClass('support:'+item.id)}">${(t('toolcards.'+item.id+'.kicker')&&t('toolcards.'+item.id+'.kicker')!==('toolcards.'+item.id+'.kicker'))?`<div class="tagline">${t('toolcards.'+item.id+'.kicker')}</div>`:''}<h3>${t('toolcards.'+item.id+'.title')}</h3><p>${t('toolcards.'+item.id+'.desc')}</p><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('${item.id}')">${t('common.openTool')}</button>${renderVisitButton('support:'+item.id)}</div></div>`).join('');
+
   buildInitiations();
+  updateSectionVisibility({
+    initiations: state.activeFilter==='all' || state.activeFilter==='myvisit' || state.activeFilter==='coaching',
+    assessments: visibleAssess.length>0,
+    tools: visibleTools.length>0,
+    support: visibleSupport.length>0,
+    daily: ['all','myvisit','daily-clarity'].includes(state.activeFilter),
+    reflection: ['all','myvisit','weekly-clarity'].includes(state.activeFilter)
+  });
   renderDailyQuote();
 }
 
@@ -2210,14 +2320,26 @@ const ETHICS_GROUPS = {
 
 function buildInitiations(){
   const ethicsWrap=document.getElementById('ethicsAccordion');
+  const showEthics = state.activeFilter==='all' || state.activeFilter==='myvisit';
   if(ethicsWrap){
-    const groups=ETHICS_GROUPS[state.lang];
-    const isOpen=!!state.ethicsListOpen;
-    ethicsWrap.innerHTML=`<div class="card" style="margin-bottom:12px"><div class="tagline">${t('initiations.ethicsTag')}</div><h3>${t('initiations.ethicsTitle')}</h3><p>${t('initiations.ethicsDesc')}</p><div class="tileActions"><button class="btn primary sm ethicCardAction" type="button" onclick="toggleEthicsList()">${isOpen ? t('initiations.closeEthics') : t('initiations.openEthics')}</button><button class="btn sm ethicCardAction" type="button" onclick="downloadEthicsPdf()">${t('initiations.downloadPdf')}</button></div></div>${isOpen ? groups.map((group,idx)=>`<div class="ethicItem ${state.ethicsOpen===idx?'open':''}"><button class="ethicToggle" type="button" onclick="toggleEthicsGroup(${idx})"><div class="ethicMeta"><strong>${escapeHtml(group.title)}</strong><span style="margin-left:10px">${group.items.length} ${state.lang==='ro'?'principii':'principles'}</span></div><span class="ethicChevron">+</span></button><div class="ethicBody"><p class="ethicIntro">${escapeHtml(group.intro)}</p><ol class="ethicList">${group.items.map(([head,desc])=>`<li><strong>${escapeHtml(head)}</strong>${escapeHtml(desc)}</li>`).join('')}</ol></div></div>`).join('') : ''}`;
+    if(!showEthics){
+      ethicsWrap.innerHTML='';
+    } else {
+      const groups=ETHICS_GROUPS[state.lang];
+      const isOpen=!!state.ethicsListOpen;
+      ethicsWrap.innerHTML=`<div class="${cardClass('initiation:ethics')}" style="margin-bottom:12px"><div class="tagline">${t('initiations.ethicsTag')}</div><h3>${t('initiations.ethicsTitle')}</h3><p>${t('initiations.ethicsDesc')}</p><div class="tileActions"><button class="btn primary sm ethicCardAction" type="button" onclick="toggleEthicsList()">${isOpen ? t('initiations.closeEthics') : t('initiations.openEthics')}</button><button class="btn sm ethicCardAction" type="button" onclick="downloadEthicsPdf()">${t('initiations.downloadPdf')}</button>${renderVisitButton('initiation:ethics')}</div></div>${isOpen ? groups.map((group,idx)=>`<div class="ethicItem ${state.ethicsOpen===idx?'open':''}"><button class="ethicToggle" type="button" onclick="toggleEthicsGroup(${idx})"><div class="ethicMeta"><strong>${escapeHtml(group.title)}</strong><span style="margin-left:10px">${group.items.length} ${state.lang==='ro'?'principii':'principles'}</span></div><span class="ethicChevron">+</span></button><div class="ethicBody"><p class="ethicIntro">${escapeHtml(group.intro)}</p><ol class="ethicList">${group.items.map(([head,desc])=>`<li><strong>${escapeHtml(head)}</strong>${escapeHtml(desc)}</li>`).join('')}</ol></div></div>`).join('') : ''}`;
+    }
   }
   const valuesCard=document.getElementById('valuesDiscoveryCard');
+  const showValues = ['all','myvisit','coaching'].includes(state.activeFilter);
   if(valuesCard){
-    valuesCard.innerHTML=`<div class="tagline">${t('initiations.valuesTag')}</div><h3>${t('initiations.valuesTitle')}</h3><p>${t('initiations.valuesDesc')}</p><p class="initiationLead">${t('initiations.valuesMeta')}</p><div class="quietMeta">${(state.summary.values?.top5||[]).length ? escapeHtml((state.summary.values.top5||[]).join(' · ')) : ''}</div><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('valuesDiscovery')">${t('initiations.openValues')}</button></div>`;
+    if(!showValues){
+      valuesCard.innerHTML='';
+      valuesCard.style.display='none';
+    } else {
+      valuesCard.style.display='';
+      valuesCard.innerHTML=`<div class="tagline">${t('initiations.valuesTag')}</div><h3>${t('initiations.valuesTitle')}</h3><p>${t('initiations.valuesDesc')}</p><p class="initiationLead">${t('initiations.valuesMeta')}</p><div class="quietMeta">${(state.summary.values?.top5||[]).length ? escapeHtml((state.summary.values.top5||[]).join(' · ')) : ''}</div><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('valuesDiscovery')">${t('initiations.openValues')}</button>${renderVisitButton('initiation:values')}</div>`;
+    }
   }
 }
 function toggleEthicsList(){ state.ethicsListOpen=!state.ethicsListOpen; if(!state.ethicsListOpen) state.ethicsOpen=-1; buildInitiations(); }
