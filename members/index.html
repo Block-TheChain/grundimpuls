@@ -253,19 +253,17 @@
     body.dark .summaryCard{background:rgba(17,22,29,.96)}
     body.header-hidden header{transform:translateY(-100%)}
 
-    .focusHeading{margin:0 0 8px}
-    .focusQuestion{margin:0 0 8px;font-size:clamp(20px,2.9vw,30px);line-height:1.14;font-weight:800;color:var(--text)}
-    .focusLead{margin:0;max-width:760px;color:var(--muted)}
-    .focusFiltersShell{margin-top:22px;padding:20px 18px;border-radius:28px;border:1px solid rgba(47,94,153,.16);background:linear-gradient(180deg,#17345A 0%, #122946 100%);box-shadow:0 18px 36px rgba(15,40,78,.10)}
-    body.dark .focusFiltersShell{background:linear-gradient(180deg,rgba(190,207,229,.92),rgba(178,198,223,.96));border-color:rgba(113,150,198,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.38),0 18px 36px rgba(0,0,0,.16)}
+    .focusKicker{margin-bottom:12px;color:var(--accent);font-family:'Montserrat',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:13px;font-weight:800;letter-spacing:.28em;text-transform:uppercase}
+    .focusFiltersShell{margin-top:22px;background:linear-gradient(180deg,#17345A 0%, #0E223E 100%);border:1px solid rgba(111,160,216,.26);border-radius:28px;padding:20px 18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 20px 40px rgba(8,23,44,.14)}
+    body.dark .focusFiltersShell{background:linear-gradient(180deg,#132844 0%, #0A172B 100%);border-color:rgba(111,160,216,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 22px 44px rgba(0,0,0,.26)}
     .focusFilters{display:flex;flex-wrap:nowrap;gap:14px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px}
     .focusFilters::-webkit-scrollbar{display:none}
-    .filterChip{appearance:none;flex:0 0 102px;width:102px;height:102px;border-radius:999px;padding:12px 10px;display:flex;align-items:center;justify-content:center;text-align:center;font:800 12px/1.18 var(--font);letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:transform .16s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease,color .18s ease}
-    .filterChip:hover{transform:translateY(-1px)}
-    body:not(.dark) .filterChip{border:1px solid rgba(165,192,227,.52);background:rgba(240,246,252,.90);color:#335f9d;box-shadow:inset 0 1px 0 rgba(255,255,255,.55)}
-    body:not(.dark) .filterChip.active{background:linear-gradient(180deg,#4D7FBE 0%, #3568A9 100%);color:#fff;border-color:#4D7FBE;box-shadow:0 0 0 4px rgba(111,160,216,.16),0 10px 24px rgba(24,51,92,.22)}
-    body.dark .filterChip{border:1px solid rgba(69,111,167,.38);background:rgba(18,41,70,.18);color:#234979;box-shadow:inset 0 1px 0 rgba(255,255,255,.28)}
-    body.dark .filterChip.active{background:rgba(255,255,255,.98);color:#243E67;border-color:rgba(140,169,210,.68);box-shadow:0 0 0 4px rgba(255,255,255,.24),0 0 26px rgba(92,136,198,.44)}
+    .filterChip{appearance:none;flex:0 0 98px;width:98px;height:98px;border-radius:999px;border:1px solid rgba(150,183,225,.22);background:rgba(255,255,255,.06);color:#9EB6D2;padding:12px 10px;display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Montserrat',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:11px;line-height:1.2;font-weight:800;letter-spacing:.20em;text-transform:uppercase;cursor:pointer;transition:transform .16s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease,color .18s ease}
+    .filterChip:hover{transform:translateY(-1px);border-color:rgba(165,192,227,.44);color:#D9E6F6}
+    .filterChip.active{background:linear-gradient(180deg,#F7FAFD 0%, #EAF2FA 100%);color:#23456F;border-color:rgba(197,219,244,.95);box-shadow:0 0 0 4px rgba(126,174,232,.14),0 0 22px rgba(122,171,232,.34),0 10px 26px rgba(11,28,56,.26)}
+    body.dark .filterChip{background:rgba(255,255,255,.05);color:#8FA6C2;border-color:rgba(143,166,194,.24)}
+    body.dark .filterChip:hover{border-color:rgba(165,192,227,.34);color:#DCE8F8}
+    body.dark .filterChip.active{background:linear-gradient(180deg,#DCE8F8 0%, #B9D0EC 100%);color:#183A63;border-color:rgba(190,212,239,.92);box-shadow:0 0 0 4px rgba(111,160,216,.14),0 0 22px rgba(111,160,216,.30),0 10px 28px rgba(0,0,0,.34)}
     .focusNote{margin-top:12px;max-width:860px}
     .visitPickBtn{margin-left:auto}
     .card.inVisit{box-shadow:0 0 0 1px rgba(59,116,190,.38),0 18px 34px rgba(59,116,190,.14)}
@@ -346,12 +344,11 @@
     </div>
   </section>
 
-  <section id="focus" class="alt">
+  <section id="focus">
     <div class="wrap">
-      <div class="accentBar"></div>
-      <h2 class="focusHeading" data-i18n="filters.kicker">Focus your visit</h2>
-      <p class="focusQuestion" data-i18n="filters.title">What are you here to work on?</p>
-      <p class="focusLead" data-i18n="filters.lead">Choose a topic. The hub shows only what is relevant. Switch at any time.</p>
+      <div class="focusKicker" data-i18n="filters.kicker">Focus your visit</div>
+      <h2 data-i18n="filters.title">What are you here to work on?</h2>
+      <p data-i18n="filters.lead">Choose a topic. The hub shows only what is relevant. Switch at any time.</p>
       <div class="focusFiltersShell">
         <div class="focusFilters" id="focusFilters"></div>
       </div>
@@ -496,7 +493,7 @@ const i18n = {
     assess:{title:'Assessments',lead:'Use these when you want a sharper read on what is happening, not a flattering one.'},
     cards:{coachability:{tag:'Coachability',title:'Coachability assessment',desc:'For when insight is present but change still keeps not happening.'},leadership:{tag:'Leadership',title:'Leadership self-check',desc:'For when the issue may be less about skill and more about how you are showing up under load.'},burnout:{tag:'Burnout',title:'Burnout risk check',desc:'For when you are still delivering but something is quietly wrong.'},mental:{tag:'Mental Wellness',title:'Mental wellness and integration',desc:'For when life looks functional from the outside but not integrated from the inside.'},resilience:{tag:'Stress',title:'Resilience profile',desc:'For when you want to know whether you are actually recovering or just surviving well.'},strategic:{tag:'Critical Thinking',title:'Strategic mindset — critical thinking and cognitive agility',desc:'For when you suspect you may be solving the wrong problem.'}},
     tools:{title:'Tools',lead:'Use one instrument against one live issue. That is usually enough.'},
-    filters:{kicker:'Focus your visit',title:'What are you here to work on?',lead:'Choose a topic. The hub shows only what is relevant. Switch at any time.',stress:'Stress & Burnout',leadership:'Leadership',coaching:'Coaching',daily:'Daily clarity',weekly:'Weekly clarity',monthly:'Monthly clarity',all:'Show all',myvisit:'My visit',myvisitNote:'Selectează cardurile pe care le vrei pentru această vizită. Folosește Adaugă la vizita mea sau Elimină.'},
+    filters:{kicker:'Focus your visit',title:'What are you here to work on?',lead:'Choose a topic. The hub shows only what is relevant. Switch at any time.',stress:'Stress & Burnout',leadership:'Leadership',coaching:'Coaching',daily:'Daily clarity',weekly:'Weekly clarity',monthly:'Monthly clarity',all:'Show all',myvisit:'My visit',myvisitNote:'Select the cards you want for this visit. Use Add to my visit or Remove.'},
     toolcards:{prep:{kicker:'Before the session',title:'Session prep',desc:'For when you want the session to begin where the real issue actually is.'},breathing:{kicker:'3-minute reset',title:'3-minute box breathing',desc:'For when your system is too activated to think cleanly.'},daily:{kicker:'Daily clarity',title:'Daily planner',desc:'For when the day needs shape before it gets taken over.'},weekly:{kicker:'Weekly clarity',title:'Weekly planner',desc:'For when the week needs direction before urgency fills it.'},monthly:{kicker:'Monthly clarity',title:'Monthly planner',desc:'For when the month needs design, not just reaction.'},overload:{kicker:'Load triage',title:'Overload triage worksheet',desc:'For when everything feels important and that is exactly the problem.'},conversation:{kicker:'Conversation clarity',title:'Difficult conversation prep',desc:'For when a conversation keeps not happening.'},decision:{kicker:'Decision quality',title:'Decision journal',desc:'For when speed is making you less intelligent.'},recovery:{kicker:'Recovery planning',title:'7-day recovery planner',desc:'For when rest will not happen unless it is designed.'},grounding:{kicker:'Before a hard moment',title:'Pre-conversation grounding',desc:'For when you need to enter the room steadier than you feel.'},review:{kicker:'After pressure',title:'Post-pressure review',desc:'For when you do not want to waste a hard week.'},notes:{kicker:'After the session',title:'Post-session notes',desc:'A private scratchpad for what you want to remember after the conversation.'},commitments:{kicker:'Carry the work forward',title:'Commitments tracker',desc:'Write 1–3 commitments, mark them done, or carry them forward.'},values:{kicker:'Values clarification',title:'Value discovery tool',desc:'Choose values that matter, narrow them to your top 5, and rank them.'}},
     values:{title:'Value discovery tool',desc:'Choose the values that matter, then narrow them to your top 5 and rank them.',step1:'Step 1 · Build a long list',step1Lead:'Select every value that genuinely matters to you. Do not optimize yet.',step2:'Step 2 · Choose only 5 and rank them',step2Lead:'From your selected values, choose your 5 core values and order them from most important to least important.',selectedCount:'Selected',topCount:'Top 5',addTop:'Add to top 5',remove:'Remove',clearAll:'Clear all',saveNote:'You can save a partial list, but the PDF is most useful once you have a fully ranked top 5.',selectedValues:'Selected values',rankedTop:'Ranked top 5'},
     path:{q1:'What is actually going on with my energy right now?',q1d:'Open Burnout Risk Check',q2:'Am I thinking clearly or am I in reaction mode?',q2d:'Open Strategic Mindset',q3:'What do I need to say that I have not said yet?',q3d:'Open Difficult Conversation Prep',q4:'What am I avoiding?',q4d:'Open Weekly Reflection'},
