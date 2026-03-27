@@ -34,6 +34,13 @@
     --orange:      #E07320;   /* warm orange: CTA buttons */
     --orange-dark: #B85C12;   /* CTA hover */
 
+    /* Members hub blue-silver accent */
+    --member-accent: #3B74BE;
+    --member-accent-light: #A5C0E3;
+    --member-accent-bg: rgba(59,116,190,.12);
+    --member-accent-border: rgba(47,94,153,.26);
+    --member-accent-dark: #2F5E99;
+
     --radius:  18px;
     --radius2: 24px;
     --shadow:  0 4px 24px rgba(0,0,0,.07);
@@ -58,6 +65,12 @@ body.dark{
   --gold-light:  #FFC65A;
   --gold-bg:     rgba(240,180,60,.10);
   --gold-border: rgba(240,180,60,.28);
+
+  --member-accent: #6FA0D8;
+  --member-accent-light: #A5C0E3;
+  --member-accent-bg: rgba(59,116,190,.16);
+  --member-accent-border: rgba(165,192,227,.28);
+  --member-accent-dark: #3B74BE;
 
   --shadow:  0 4px 24px rgba(0,0,0,.55);
   --shadow2: 0 8px 40px rgba(0,0,0,.65);
@@ -150,7 +163,7 @@ body, header, section, .card{
   font-family:'Montserrat', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
   font-weight:600;
   letter-spacing:.06em;
-  font-size:25px;
+  font-size:20px;
   color:var(--text);
   display:block;
 }
@@ -158,10 +171,13 @@ body, header, section, .card{
 .wordmark #taglineTop{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  width:100%;
+  justify-content:center;
+  gap:3px;
+  width:auto;
+  max-width:100%;
   margin-top:5px;
-  font-size:9.5px;
+  font-size:9.12px;
+  letter-spacing:.01em;
   color:var(--muted2);
   text-transform:uppercase;
   white-space:nowrap;
@@ -173,7 +189,7 @@ body, header, section, .card{
 
 .wordmark #taglineTop .tagDot{
   flex:0 0 auto;
-  margin:0 6px;
+  margin:0 2px;
 }
 
   .right{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
@@ -186,6 +202,55 @@ body, header, section, .card{
   .toplinks a:hover{
     color:var(--gold); border-color:var(--gold-border);
     background:var(--gold-bg);
+  }
+  .membersLink{
+    position:relative;
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:40px;
+    padding:7px 11px; border-radius:999px; text-decoration:none;
+    font-weight:800; letter-spacing:.03em; font-size:12px; line-height:1;
+    color:#fff;
+    border:1px solid rgba(37,81,137,.34);
+    background:linear-gradient(135deg, #3467A6, #255189);
+    box-shadow:0 2px 10px rgba(37,81,137,.18);
+    transition:all .15s ease;
+    white-space:nowrap;
+  }
+  .membersLink:hover,
+  .membersLink:focus-visible{
+    color:#fff;
+    border-color:rgba(37,81,137,.44);
+    background:linear-gradient(135deg, #3A70B3, #2B5A95);
+    box-shadow:0 4px 14px rgba(37,81,137,.22);
+  }
+  .membersLink::after{
+    content:"Members Hub";
+    position:absolute;
+    top:calc(100% + 8px);
+    left:50%;
+    transform:translateX(-50%) translateY(-4px);
+    padding:6px 10px;
+    border-radius:10px;
+    border:1px solid var(--member-accent-border);
+    background:rgba(255,255,255,.96);
+    color:var(--member-accent-dark);
+    font-size:12px;
+    font-weight:700;
+    line-height:1;
+    white-space:nowrap;
+    box-shadow:0 10px 26px rgba(17,24,39,.10);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .15s ease, transform .15s ease;
+    z-index:30;
+  }
+  .membersLink:hover::after,
+  .membersLink:focus-visible::after{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+  @media (max-width:900px){
+    .membersLink{ display:none; }
   }
   .lang{
     display:flex; gap:5px; align-items:center;
@@ -340,7 +405,7 @@ body, header, section, .card{
   h1{ font-size:46px; line-height:1.06; margin:0 0 14px; letter-spacing:-.02em; }
   @media(max-width:600px){ h1{ font-size:36px } }
   h2{ font-size:32px; margin:0 0 12px; letter-spacing:-.01em; }
-  h3{ font-size:18px; margin:0 0 9px; letter-spacing:-.005em; }
+  h3{ font-size:14px; margin:0 0 9px; letter-spacing:-.005em; }
   p{ margin:0 0 12px; color:var(--muted); }
   .lead{ font-size:18px; color:var(--text); margin-bottom:18px; }
   .mini{ font-size:13px; color:var(--muted2); margin-top:12px; }
@@ -832,6 +897,19 @@ header{
     background:var(--gold-bg);
     border-color:var(--gold-border);
   }
+
+  .mobileMenu a.mobileMembersLink{
+    margin-top:4px;
+    color:var(--member-accent-dark);
+    border-color:var(--member-accent-border);
+    background:linear-gradient(135deg, rgba(165,192,227,.30), rgba(59,116,190,.14));
+  }
+
+  .mobileMenu a.mobileMembersLink:hover{
+    color:#fff;
+    background:linear-gradient(135deg, var(--member-accent-light), var(--member-accent));
+    border-color:transparent;
+  }
 }
 
 /* ===== Smart hide/show header (mobile only) ===== */
@@ -961,16 +1039,17 @@ header{
   }
 
   .wordmark strong{
-    font-size:clamp(19px, 4.8vw, 25px);
+    font-size:clamp(15px, 3.84vw, 20px);
     letter-spacing:clamp(.035em, .05em, .06em);
   }
 
   .wordmark #taglineTop{
-    font-size:clamp(7.2px, 2vw, 9.5px);
+    font-size:clamp(6.96px, 1.9vw, 9.12px);
+    gap:2px;
   }
 
   .wordmark #taglineTop .tagDot{
-    margin:0 4px;
+    margin:0 1px;
   }
 }
 
@@ -991,11 +1070,12 @@ header{
   }
 
   .wordmark #taglineTop{
-    font-size:7px;
+    font-size:6.72px;
+    gap:1px;
   }
 
   .wordmark #taglineTop .tagDot{
-    margin:0 3px;
+    margin:0 1px;
   }
 
   .right{
@@ -1030,9 +1110,43 @@ body.dark header{
     border:1px solid var(--border);
   }
 
+  body.dark .mobileMenu a.mobileMembersLink{
+    background:linear-gradient(135deg, rgba(165,192,227,.20), rgba(111,160,216,.12));
+    color:var(--member-accent-light);
+    border-color:var(--member-accent-border);
+  }
+
+  body.dark .mobileMenu a.mobileMembersLink:hover{
+    color:#0F1318;
+    background:linear-gradient(135deg, var(--member-accent-light), var(--member-accent));
+    border-color:transparent;
+  }
+
   body.dark .langMobileMenu{
     background:rgba(15,19,24,.97);
   }
+}
+
+body.dark .membersLink{
+  color:#2F5E99;
+  border-color:rgba(165,192,227,.40);
+  background:linear-gradient(135deg, #E7F1FF, #C9DCF3);
+  box-shadow:0 2px 10px rgba(6,10,16,.18);
+}
+
+body.dark .membersLink:hover,
+body.dark .membersLink:focus-visible{
+  color:#255189;
+  border-color:rgba(165,192,227,.54);
+  background:linear-gradient(135deg, #F0F7FF, #D7E6F7);
+  box-shadow:0 4px 14px rgba(6,10,16,.22);
+}
+
+body.dark .membersLink::after{
+  background:rgba(15,19,24,.96);
+  color:var(--member-accent-light);
+  border-color:var(--member-accent-border);
+  box-shadow:0 12px 28px rgba(0,0,0,.28);
 }
 
 /* Footer surface in dark mode */
@@ -1471,6 +1585,7 @@ body.dark .logo-dark{ display:block; }
         <a href="#booking" data-i18n="nav.booking">Book</a>
           <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
+        <a class="membersLink" href="/members/" aria-label="Members Hub">MH</a>
         <!-- Mobile language dropdown -->
 <div class="langMobile" id="langMobile">
   <button type="button" class="langMobileBtn" id="langMobileBtn" aria-expanded="false">
@@ -1504,6 +1619,7 @@ body.dark .logo-dark{ display:block; }
 <a href="#blog" data-i18n="nav.blog">Blog</a>
 <a href="#booking" data-i18n="nav.booking">Book</a>
 <a href="#contact" data-i18n="nav.contact">Contact</a>
+<a class="mobileMembersLink" href="/members/" data-i18n="nav.members">Members</a>
   </div>
 </div>
 </header>
@@ -2110,7 +2226,7 @@ Not all intention is equal
      ========== */
   const i18n = {
     en: {
-      nav:{coaching:"Coaching",training:"Training",about:"About",faq:"FAQ",blog:"Blog",booking:"Book",contact:"Contact"},
+      nav:{coaching:"Coaching",training:"Training",about:"About",faq:"FAQ",blog:"Blog",booking:"Book",contact:"Contact",members:"Members"},
       hero:{
         kicker:"Wanting more is a wish. Becoming more is a decision.",
         h1:"High performers don't break suddenly. They erode gradually. The ones who stay sharp don't wait to find out.",
@@ -2201,7 +2317,7 @@ cta:{
     },
 
     ro: {
-      nav:{coaching:"Coaching",training:"Training",about:"Despre",faq:"FAQ",blog:"Blog",booking:"Rezervă",contact:"Contact"},
+      nav:{coaching:"Coaching",training:"Training",about:"Despre",faq:"FAQ",blog:"Blog",booking:"Rezervă",contact:"Contact",members:"Members"},
       hero:{
         kicker:"A vrea mai mult este o dorință. A deveni mai mult este o decizie.",
         h1:"Oamenii de top nu cedează brusc. Se consumă treptat. Cei care rămân vigilenți nu așteaptă consecințele.",
@@ -2238,7 +2354,7 @@ cta:{
       training:{
         h2:"Traininguri",p:"Trei teme principale. Profunzimea și formatul se adaptează în funcție de client (jumătate de zi până la două zile).",
         mw:{title:"Mental Wellness la Locul de Muncă",doorQ:"Echipa ta gestionează presiunea bine, sau pur și simplu au încetat să o mai menționeze, pentru că a devenit ceva normal?",doorFine:"Gestionează bine",doorOff:"Au încetat să o menționeze",fineResp:"Bine. Fie e adevărat, fie e ceea ce spun echipele performante până când cifrele se schimbă. Dacă cifrele se schimbă, știi unde să mă găsești.",offP1:"Tăcerea nu e reziliență. În cele mai performante echipe, oamenii care duc cel mai mult din greutate sunt și cei mai puțin dispuși să ridice mâna.",offP2:"Ce vezi în schimb: decizii mai lente, răbdare mai scurtă, plecarea treptată a oamenilor buni din motive care nu se adună complet. Până devine vizibil, s-a construit luni de zile.",offP3:"Acest training abordează trei probleme specifice: cum să recunoști suprasolicitarea înainte ca aceasta să ducă la absenteism; cum să vorbești deschis despre presiune fără ca aceasta să fie interpretată ca o slăbiciune; și cum să dezvolți obiceiuri în cadrul unei echipe care să promoveze în mod sustenabil performanța și să prevină epuizarea profesională. Fără exerciții de respirație ghidate. Fără concepte motivaționale. Doar instrumente care funcționează într-o dimineață de marți, când afacerile nu merg bine.",cta:"Hai să vorbim despre un program pentru organizația ta"},
-        ct:{title:"Gândire Critică (Business)",doorQ:"Ești sigur că echipa ta gândește bine sub presiune, sau doar preferi să crezi că da?",doorFine:"Gândește bine",doorOff:"Prefer să cred că da",fineResp:"Bine. E rar. Dacă vrei vreodată să verifici, știi unde să mă găsești.",offP1:"Cele mai multe echipe nu au o problemă de cunoștințe. Au o problemă de raționament.",offP2:"Oameni buni, date bune, concluzii greșite. Decizii care aveau sens în sala de ședință și s-au destrămat la punerea în practică. Probleme rezolvate eficient care nu erau cu adevărat problemele relevante. Presupuneri pe care nimeni nu le-a pus la îndoială pentru că toată lumea a presupus că altcineva a făcut-o deja.",offP3:"Nu e un eșec al inteligenței. E ce se întâmplă când abilitățile de gândire nu sunt tratate ca antrenabile. Un workshop nu va închide acel decalaj definitiv. Insă va arăta echipei unde e acesta și îi va da un cadru și instrumentele necesare să înceapă să-l închidă singură.",cta:"Hai să vorbim despre un program pentru organizația ta"},
+        ct:{title:"Gândire Critică (Business)",doorQ:"Ești sigur că echipa ta gândește bine sub presiune, sau preferi să crezi că da?",doorFine:"Gândește bine",doorOff:"Prefer să cred că da",fineResp:"Bine. E rar. Dacă vrei vreodată să verifici, știi unde să mă găsești.",offP1:"Cele mai multe echipe nu au o problemă de cunoștințe. Au o problemă de raționament.",offP2:"Oameni buni, date bune, concluzii greșite. Decizii care aveau sens în sala de ședință și s-au destrămat la punerea în practică. Probleme rezolvate eficient care nu erau cu adevărat problemele relevante. Presupuneri pe care nimeni nu le-a pus la îndoială pentru că toată lumea a presupus că altcineva a făcut-o deja.",offP3:"Nu e un eșec al inteligenței. E ce se întâmplă când abilitățile de gândire nu sunt tratate ca antrenabile. Un workshop nu va închide acel decalaj definitiv. Insă va arăta echipei unde e acesta și îi va da un cadru și instrumentele necesare să înceapă să-l închidă singură.",cta:"Hai să vorbim despre un program pentru organizația ta"},
         nv:{title:"Comunicare Non-Verbală",doorQ:"Oamenii din jurul tău te percep și înțeleg așa cum intenționezi?",doorFine:"Mă înțeleg corect",doorOff:"Presupun că o da, dar nu știu sigur",fineResp:"Bine. Cei mai mulți lideri află că greșesc în legătură cu asta în cel mai prost moment posibil. Dacă acel moment vine, știi unde să mă găsești.",offP1:"Fiecare lider cunoaște discrepanța dintre intenția sa reală și modul în care ceilalți îl percep. Discrepanța e rareori din cauza cuvintelor.",offP2:"E în cele două secunde de tăcere înainte să răspunzi, care se înțeleg ca o judecată. Postura într-o conversație dificilă care spune că ai luat deja o decizie. Tonul dintr-un apel video care comunică stres pe care mesajul tău încearcă să-l ascundă.",offP3:"Aceste semnale urmează tipare, iar tiparele pot fi identificate, exersate și schimbate. Acest training e practic prin design: role play, feedback înregistrat, scenarii reale din compania ta. Te vei observa din exterior. E incomod. E și singura cale prin care poți schimba ceva.",cta:"Hai să vorbim despre un program pentru organizația ta"},
         custom:{title:"Alte teme (la cerere)",p:"Ai și alte nevoi. Păstrez site-ul focusat; într-un discovery call definim exact agenda, exemplele și livrabilele."}
       },
@@ -2292,7 +2408,7 @@ cta:{
     },
 
     de: {
-      nav:{coaching:"Coaching",training:"Training",about:"Profil",faq:"FAQ",blog:"Blog",booking:"Buchen",contact:"Kontakt"},
+      nav:{coaching:"Coaching",training:"Training",about:"Profil",faq:"FAQ",blog:"Blog",booking:"Buchen",contact:"Kontakt",members:"Members"},
       hero:{
         kicker:"Mehr zu wollen ist ein Wunsch. Besser zu sein ist eine Entscheidung.",
         h1:"Hochleistungsträger brechen nicht plötzlich zusammen. Sie erodieren schrittweise. Wer wachsam bleibt, wartet nicht darauf, es am eigenen Leib zu erfahren.",
