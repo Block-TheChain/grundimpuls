@@ -66,11 +66,11 @@
     .brand,.brand:visited,.brand:hover{display:flex;align-items:center;gap:8px;min-width:0;flex:1 1 auto}
     .mark,.footerMark,.siteReturn{width:36px;height:36px;position:relative;flex-shrink:0;overflow:visible;border-radius:50%;display:grid;place-items:center;background:transparent;border:1.5px solid transparent;transition:border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease}
     .brand:hover .mark,.footerBrand:hover .footerMark{border-color:var(--accent)}
-    .siteReturn{position:relative;border-color:rgba(200,134,10,.42);box-shadow:0 0 0 3px rgba(240,180,60,.30),0 0 20px rgba(200,134,10,.24);background:radial-gradient(circle at 30% 30%, rgba(255,233,176,.96), rgba(240,180,60,.40) 62%, rgba(200,134,10,.18) 100%)}
-    .siteReturn::before{content:"";position:absolute;inset:4px;border-radius:50%;background:radial-gradient(circle at 35% 30%, rgba(255,247,214,.96), rgba(255,223,136,.72) 58%, rgba(240,180,60,.16) 100%);z-index:0}
-    .siteReturn .logo{position:relative;z-index:1;filter:drop-shadow(0 0 7px rgba(200,134,10,.24))}
-    .siteReturn:hover{transform:translateY(-1px);border-color:rgba(200,134,10,.68);box-shadow:0 0 0 5px rgba(240,180,60,.34),0 0 30px rgba(200,134,10,.34);background:radial-gradient(circle at 30% 30%, rgba(255,241,196,.98), rgba(240,180,60,.56) 62%, rgba(200,134,10,.24) 100%)}
-    .siteReturn:hover::before{background:radial-gradient(circle at 35% 30%, rgba(255,250,227,.98), rgba(255,226,146,.84) 58%, rgba(240,180,60,.24) 100%)}
+    .siteReturn{position:relative;overflow:hidden;background:transparent;border:1px solid rgba(200,134,10,.30);box-shadow:none}
+    .siteReturn::before{display:none}
+    .siteReturn .logo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:none;transform-origin:center;z-index:1;filter:none;border-radius:50%}
+    .siteReturn:hover{transform:translateY(-1px);border-color:rgba(200,134,10,.52);box-shadow:0 0 0 3px rgba(240,180,60,.16)}
+    .siteReturn:hover::before{display:none}
     .logo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:scale(2);transform-origin:center}
     .logo-light{display:block}.logo-dark{display:none}
     body.dark .logo-light{display:none} body.dark .logo-dark{display:block}
@@ -434,6 +434,7 @@
       </div>
     </div>
   </section>
+
 
 
 
