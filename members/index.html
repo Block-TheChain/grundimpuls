@@ -255,16 +255,16 @@
     body.header-hidden header{transform:translateY(-100%)}
 
     .focusKicker{margin-bottom:12px;color:var(--accent);font-family:'Montserrat',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:13px;font-weight:800;letter-spacing:.28em;text-transform:uppercase}
-    .focusFiltersShell{display:inline-block;width:fit-content;max-width:100%;margin-top:22px;background:linear-gradient(180deg,#D9E5F2 0%, #C9D9EA 100%);border:1px solid rgba(96,136,183,.28);border-radius:28px;padding:20px 18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.52),0 20px 42px rgba(4,16,32,.22)}
-    body.dark .focusFiltersShell{background:linear-gradient(180deg,#17345A 0%, #0E223E 100%);border-color:rgba(111,160,216,.26);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 20px 40px rgba(8,23,44,.14)}
+    .focusFiltersShell{display:inline-block;width:fit-content;max-width:100%;margin-top:22px;background:linear-gradient(180deg,#17345A 0%, #0E223E 100%);border:1px solid rgba(111,160,216,.26);border-radius:28px;padding:20px 18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 20px 40px rgba(8,23,44,.14)}
+    body.dark .focusFiltersShell{background:linear-gradient(180deg,#D9E5F2 0%, #C9D9EA 100%);border-color:rgba(96,136,183,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.52),0 20px 42px rgba(4,16,32,.22)}
     .focusFilters{display:flex;flex-wrap:nowrap;gap:14px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px;width:max-content;max-width:100%}
     .focusFilters::-webkit-scrollbar{display:none}
-    .filterChip{appearance:none;flex:0 0 98px;width:98px;height:98px;border-radius:999px;border:1px solid rgba(95,132,176,.26);background:rgba(246,250,254,.56);color:#4D6686;padding:12px 10px;display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Montserrat',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:11px;line-height:1.2;font-weight:800;letter-spacing:.20em;text-transform:uppercase;cursor:pointer;transition:transform .16s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease,color .18s ease}
-    .filterChip:hover{border-color:rgba(82,123,170,.46);color:#254972;transform:translateY(-1px)}
-    .filterChip.active{background:linear-gradient(180deg,#2F62A2 0%, #234C81 100%);color:#F4F8FD;border-color:rgba(68,114,171,.96);box-shadow:0 0 0 4px rgba(111,160,216,.16),0 0 28px rgba(111,160,216,.38),0 12px 28px rgba(13,34,62,.28)}
-    body.dark .filterChip{border:1px solid rgba(150,183,225,.22);background:rgba(255,255,255,.06);color:#9EB6D2}
-    body.dark .filterChip:hover{transform:translateY(-1px);border-color:rgba(165,192,227,.44);color:#D9E6F6}
-    body.dark .filterChip.active{background:linear-gradient(180deg,#F7FAFD 0%, #EAF2FA 100%);color:#23456F;border-color:rgba(197,219,244,.95);box-shadow:0 0 0 4px rgba(126,174,232,.14),0 0 22px rgba(122,171,232,.34),0 10px 26px rgba(11,28,56,.26)}
+    .filterChip{appearance:none;flex:0 0 98px;width:98px;height:98px;border-radius:999px;border:1px solid rgba(150,183,225,.22);background:rgba(255,255,255,.06);color:#9EB6D2;padding:12px 10px;display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Montserrat',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:11px;line-height:1.2;font-weight:800;letter-spacing:.20em;text-transform:uppercase;cursor:pointer;transition:transform .16s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease,color .18s ease}
+    .filterChip:hover{transform:translateY(-1px);border-color:rgba(165,192,227,.44);color:#D9E6F6}
+    .filterChip.active{background:linear-gradient(180deg,#F7FAFD 0%, #EAF2FA 100%);color:#23456F;border-color:rgba(197,219,244,.95);box-shadow:0 0 0 4px rgba(126,174,232,.14),0 0 22px rgba(122,171,232,.34),0 10px 26px rgba(11,28,56,.26)}
+    body.dark .filterChip{background:rgba(246,250,254,.56);color:#4D6686;border-color:rgba(95,132,176,.26)}
+    body.dark .filterChip:hover{border-color:rgba(82,123,170,.46);color:#254972;transform:translateY(-1px)}
+    body.dark .filterChip.active{background:linear-gradient(180deg,#2F62A2 0%, #234C81 100%);color:#F4F8FD;border-color:rgba(68,114,171,.96);box-shadow:0 0 0 4px rgba(111,160,216,.16),0 0 28px rgba(111,160,216,.38),0 12px 28px rgba(13,34,62,.28)}
     .focusNote{margin-top:12px;max-width:860px}
     .visitPickBtn{margin-left:auto}
     .card.inVisit{box-shadow:0 0 0 1px rgba(59,116,190,.38),0 18px 34px rgba(59,116,190,.14)}
@@ -296,8 +296,8 @@
       </a>
       <div class="right">
         <a class="siteReturn" href="/" aria-label="Open public site">
-          <img class="logo logo-light" src="/assets/drop_light.svg" alt="Public site">
-          <img class="logo logo-dark" src="/assets/drop_dark.svg" alt="Public site">
+          <img class="logo logo-light" src="assets/drop_orange.png" alt="Public site">
+          <img class="logo logo-dark" src="assets/drop_orange.png" alt="Public site">
         </a>
         <div class="lang" aria-label="Language switcher"><button class="active" data-lang="en">EN</button><button data-lang="ro">RO</button></div>
         <div class="langMobile" id="langMobile"><button type="button" class="langMobileBtn" id="langMobileBtn"><span id="langMobileLabel">EN</span> ▾</button><div class="langMobileMenu"><button type="button" data-lang="en">EN</button><button type="button" data-lang="ro">RO</button></div></div>
