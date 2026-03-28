@@ -1035,7 +1035,7 @@ function saveTool(key){
 async function copyTextWithFallback(text){
   const value=String(text||'');
   if(!value.trim()) throw new Error('empty');
-  if(navigator.clipboard && typeof navigator.clipboard.writeText==='function'){
+  if(navigator.clipboard && typeof navigator.clipboard.writeText==='function' && window.isSecureContext){
     try{
       await navigator.clipboard.writeText(value);
       return true;
@@ -1088,12 +1088,10 @@ function fallbackCopyText(text){
 }
 function copyToolToClipboard(key){
   const def=toolDefs[key]; if(!def||!def.fields) return;
-  const text=def.fields.map(([id,en,ro])=>`${state.lang==='ro'?ro:en}
-${document.getElementById(`${key}_${id}`)?.value.trim()||''}`).join('
-
-').trim();
+  const text=def.fields.map(([id,en,ro])=>`${state.lang==='ro'?ro:en}\n${document.getElementById(`${key}_${id}`)?.value.trim()||''}`).join('\n\n').trim();
   copyTextWithFallback(text).then(()=>{const m=document.getElementById('msg_'+key); if(m){m.textContent=t('common.copied');m.classList.add('show');setTimeout(()=>{m.classList.remove('show');m.textContent=t('summary.statusSaved')},1400)}}).catch(()=>alert(t('common.copyFailed')));
 }
+
 function renderCommitmentsTool(){
   const items=(state.summary.tools.commitments?.items||[]).length ? state.summary.tools.commitments.items : [{text:'',done:false,date:''},{text:'',done:false,date:''},{text:'',done:false,date:''}];
   return `<div>${items.map((it,i)=>`<div class="panel" style="margin-bottom:12px"><label class="formLabel" for="commitment_${i}">${state.lang==='ro'?'Angajament':'Commitment'} ${i+1}</label><input id="commitment_${i}" class="toolInput" value="${escapeHtml(it.text||'')}"><div class="stackRow" style="margin-top:8px"><label><input type="checkbox" id="commitment_done_${i}" ${it.done?'checked':''}> ${state.lang==='ro'?'Finalizat':'Done'}</label><input id="commitment_date_${i}" class="toolInput" style="max-width:180px" type="date" value="${escapeHtml(it.date||'')}"></div></div>`).join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveCommitments()">${t('common.save')}</button><span class="copyMsg" id="msg_commitments">${t('summary.statusSaved')}</span></div></div>`
