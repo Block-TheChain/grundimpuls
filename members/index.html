@@ -880,7 +880,7 @@ function renderPinButton(cardId){
   const title = active ? t('common.removeFromMyVisit') : t('common.saveToVisit');
   return `<button class="pinBtn${active ? ' pinned' : ''}" type="button" data-card-id="${cardId}" onclick="toggleMyVisit('${cardId}')" title="${escapeHtml(title)}" aria-label="${escapeHtml(title)}">${active ? '★' : '☆'}</button>`;
 }
-function renderVisitButton(cardId){ return ''; }
+function renderVisitButton(cardId){ return renderPinButton(cardId); }
 function cardClass(cardId){ return inMyVisit(cardId) ? 'card inVisit pinnable' : 'card pinnable'; }
 function topicString(tags){ return (tags||[]).join(' '); }
 function updateSectionVisibility(visible){
@@ -891,6 +891,10 @@ function updateSectionVisibility(visible){
   setDisplay('support', visible.support);
   setDisplay('daily-inspiration', visible.daily);
   setDisplay('reflection', visible.reflection);
+}
+function hasVisibleInitiations(){
+  if(state.activeFilter==='myvisit') return inMyVisit('initiation:ethics') || inMyVisit('initiation:values');
+  return state.activeFilter==='all' || state.activeFilter==='coaching';
 }
 function updateSectionEmpty(gridId, emptyId){
   const grid=document.getElementById(gridId);
@@ -926,7 +930,7 @@ function buildCards(){
 
   buildInitiations();
   updateSectionVisibility({
-    initiations: !isMyVisit && (state.activeFilter==='all' || state.activeFilter==='coaching'),
+    initiations: hasVisibleInitiations(),
     assessments: isMyVisit || visibleAssess.length>0,
     tools: isMyVisit || visibleTools.length>0,
     support: isMyVisit || visibleSupport.length>0,
@@ -2403,25 +2407,28 @@ const ETHICS_GROUPS = {
 
 function buildInitiations(){
   const ethicsWrap=document.getElementById('ethicsAccordion');
-  const showEthics = state.activeFilter==='all' || state.activeFilter==='myvisit';
+  const showEthics = state.activeFilter==='all' || (state.activeFilter==='myvisit' && inMyVisit('initiation:ethics'));
   if(ethicsWrap){
     if(!showEthics){
       ethicsWrap.innerHTML='';
     } else {
       const groups=ETHICS_GROUPS[state.lang];
       const isOpen=!!state.ethicsListOpen;
-      ethicsWrap.innerHTML=`<div class="${cardClass('initiation:ethics')}" style="margin-bottom:12px"><div class="tagline">${t('initiations.ethicsTag')}</div><h3>${t('initiations.ethicsTitle')}</h3><p>${t('initiations.ethicsDesc')}</p><div class="tileActions"><button class="btn primary sm ethicCardAction" type="button" onclick="toggleEthicsList()">${isOpen ? t('initiations.closeEthics') : t('initiations.openEthics')}</button><button class="btn sm ethicCardAction" type="button" onclick="downloadEthicsPdf()">${t('initiations.downloadPdf')}</button>${renderVisitButton('initiation:ethics')}</div></div>${isOpen ? groups.map((group,idx)=>`<div class="ethicItem ${state.ethicsOpen===idx?'open':''}"><button class="ethicToggle" type="button" onclick="toggleEthicsGroup(${idx})"><div class="ethicMeta"><strong>${escapeHtml(group.title)}</strong><span style="margin-left:10px">${group.items.length} ${state.lang==='ro'?'principii':'principles'}</span></div><span class="ethicChevron">+</span></button><div class="ethicBody"><p class="ethicIntro">${escapeHtml(group.intro)}</p><ol class="ethicList">${group.items.map(([head,desc])=>`<li><strong>${escapeHtml(head)}</strong>${escapeHtml(desc)}</li>`).join('')}</ol></div></div>`).join('') : ''}`;
+      ethicsWrap.innerHTML=`<div class="${cardClass('initiation:ethics')}" data-card-id="initiation:ethics" data-topic="coaching" style="margin-bottom:12px">${renderPinButton('initiation:ethics')}<div class="tagline">${t('initiations.ethicsTag')}</div><h3>${t('initiations.ethicsTitle')}</h3><p>${t('initiations.ethicsDesc')}</p><div class="tileActions"><button class="btn primary sm ethicCardAction" type="button" onclick="toggleEthicsList()">${isOpen ? t('initiations.closeEthics') : t('initiations.openEthics')}</button><button class="btn sm ethicCardAction" type="button" onclick="downloadEthicsPdf()">${t('initiations.downloadPdf')}</button></div></div>${isOpen ? groups.map((group,idx)=>`<div class="ethicItem ${state.ethicsOpen===idx?'open':''}"><button class="ethicToggle" type="button" onclick="toggleEthicsGroup(${idx})"><div class="ethicMeta"><strong>${escapeHtml(group.title)}</strong><span style="margin-left:10px">${group.items.length} ${state.lang==='ro'?'principii':'principles'}</span></div><span class="ethicChevron">+</span></button><div class="ethicBody"><p class="ethicIntro">${escapeHtml(group.intro)}</p><ol class="ethicList">${group.items.map(([head,desc])=>`<li><strong>${escapeHtml(head)}</strong>${escapeHtml(desc)}</li>`).join('')}</ol></div></div>`).join('') : ''}`;
     }
   }
   const valuesCard=document.getElementById('valuesDiscoveryCard');
-  const showValues = ['all','myvisit','coaching'].includes(state.activeFilter);
+  const showValues = ['all','coaching'].includes(state.activeFilter) || (state.activeFilter==='myvisit' && inMyVisit('initiation:values'));
   if(valuesCard){
     if(!showValues){
       valuesCard.innerHTML='';
       valuesCard.style.display='none';
     } else {
       valuesCard.style.display='';
-      valuesCard.innerHTML=`<div class="tagline">${t('initiations.valuesTag')}</div><h3>${t('initiations.valuesTitle')}</h3><p>${t('initiations.valuesDesc')}</p><p class="initiationLead">${t('initiations.valuesMeta')}</p><div class="quietMeta">${(state.summary.values?.top5||[]).length ? escapeHtml((state.summary.values.top5||[]).join(' · ')) : ''}</div><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('valuesDiscovery')">${t('initiations.openValues')}</button>${renderVisitButton('initiation:values')}</div>`;
+      valuesCard.className = `${cardClass('initiation:values')} initiationCard`;
+      valuesCard.setAttribute('data-card-id','initiation:values');
+      valuesCard.setAttribute('data-topic','coaching');
+      valuesCard.innerHTML=`${renderPinButton('initiation:values')}<div class="tagline">${t('initiations.valuesTag')}</div><h3>${t('initiations.valuesTitle')}</h3><p>${t('initiations.valuesDesc')}</p><p class="initiationLead">${t('initiations.valuesMeta')}</p><div class="quietMeta">${(state.summary.values?.top5||[]).length ? escapeHtml((state.summary.values.top5||[]).join(' · ')) : ''}</div><div class="tileActions"><button class="btn primary sm" type="button" onclick="openModal('valuesDiscovery')">${t('initiations.openValues')}</button></div>`;
     }
   }
 }
