@@ -1007,7 +1007,7 @@ function renderAssessment(key){
     if(group!==currentGroup){currentGroup=group; html+=`<div class="qGroup">${escapeHtml(group)}</div>`}
     html += `<div class="question"><p>${idx+1}. ${escapeHtml(q.text[state.lang])}</p><div class="scaleRow">${[1,2,3,4,5].map(v=>`<label><input type="radio" name="q_${key}_${idx}" value="${v}" ${answers[idx]==v?'checked':''} onchange="setAssessmentAnswer('${key}',${idx},${v})"><span>${escapeHtml(scale[v-1])}</span></label>`).join('')}</div></div>`;
   });
-  html += `<div class="stackRow"><button class="btn primary" type="button" onclick="finishAssessment('${key}')">${t('common.seeResult')}</button><button class="btn" type="button" onclick="resetAssessment('${key}')">${t('common.reset')}</button></div><div class="result" id="result_${key}"></div>`;
+  html += `<div class="stackRow"><button class="btn primary" type="button" onclick="finishAssessment('${key}')">${t('common.seeResult')}</button><button class="btn" type="button" onclick="copyAssessmentToClipboard('${key}')">${t('common.copy')}</button><button class="btn" type="button" onclick="resetAssessment('${key}')">${t('common.reset')}</button><span class="copyMsg" id="msg_assessment_${key}">${t('summary.statusSaved')}</span></div><div class="result" id="result_${key}"></div>`;
   return html;
 }
 function setAssessmentAnswer(key, idx, val){ if(!state.assessmentAnswers[key]) state.assessmentAnswers[key]={}; state.assessmentAnswers[key][idx]=Number(val) }
@@ -1025,7 +1025,7 @@ function finishAssessment(key){
 function renderBulletList(items){ return `<ul class="rlist">${(items||[]).map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul>`; }
 function renderToolForm(key){
   const saved=state.summary.tools[key]?.data || {}; const fields=toolDefs[key].fields;
-  return `<div>${fields.map(([id,en,ro])=>`<label class="formLabel" for="${key}_${id}">${escapeHtml(state.lang==='ro'?ro:en)}</label><textarea id="${key}_${id}" class="toolArea">${escapeHtml(saved[id]||'')}</textarea>`).join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveTool('${key}')">${t('common.save')}</button><button class="btn" type="button" onclick="copyToolToClipboard('${key}')">${t('common.copy')}</button><span class="copyMsg" id="msg_${key}">${t('summary.statusSaved')}</span></div></div>`
+  return `<div>${fields.map(([id,en,ro])=>`<label class="formLabel" for="${key}_${id}">${escapeHtml(state.lang==='ro'?ro:en)}</label><textarea id="${key}_${id}" class="toolArea">${escapeHtml(saved[id]||'')}</textarea>`).join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveTool('${key}')">${t('common.save')}</button><button class="btn" type="button" onclick="copyToolToClipboard('${key}')">${t('common.copy')}</button><button class="btn" type="button" onclick="resetTool('${key}')">${t('common.reset')}</button><span class="copyMsg" id="msg_${key}">${t('summary.statusSaved')}</span></div></div>`
 }
 function saveTool(key){
   const payload={}; let filled=false; toolDefs[key].fields.forEach(([id])=>{const v=document.getElementById(`${key}_${id}`).value.trim(); payload[id]=v; if(v) filled=true});
@@ -1037,6 +1037,66 @@ function saveTool(key){
   updateSummaryDock();
 }
 
+function buildAssessmentClipboardText(key){
+  const def=assessments[key];
+  const ans=state.assessmentAnswers[key]||{};
+  if(Object.keys(ans).length!==def.questions.length) throw new Error('incomplete');
+  const total=Object.values(ans).reduce((a,b)=>a+b,0);
+  const band=def.bands.find(b=>total<=b.max) || def.bands[def.bands.length-1];
+  const heading=t('cards.'+key+'.title');
+  const label=band.label[state.lang];
+  const desc=band.desc[state.lang];
+  const blind=(band.blind[state.lang]||[]).map(x=>`- ${x}`).join('\n');
+  const actions=(band.actions[state.lang]||[]).map(x=>`- ${x}`).join('\n');
+  return [
+    heading,
+    `${total}/${def.scoreMax} — ${label}`,
+    '',
+    state.lang==='ro' ? 'Descriere' : 'Description',
+    desc,
+    '',
+    state.lang==='ro' ? 'Puncte oarbe' : 'Blind spots',
+    blind,
+    '',
+    state.lang==='ro' ? 'Pași de acțiune' : 'Action steps',
+    actions
+  ].join('\n').trim();
+}
+function showCopyMessage(id){
+  const m=document.getElementById(id);
+  if(m){
+    m.textContent=t('common.copied');
+    m.classList.add('show');
+    setTimeout(()=>{m.classList.remove('show');m.textContent=t('summary.statusSaved')},1400);
+  }
+}
+function copyAssessmentToClipboard(key){
+  let text='';
+  try{ text=buildAssessmentClipboardText(key); }catch(err){ alert(t('common.pleaseAnswerAll')); return; }
+  copyTextWithFallback(text).then(()=>showCopyMessage('msg_assessment_'+key)).catch(()=>alert(t('common.copyFailed')));
+}
+function resetTool(key){
+  if(key==='commitments'){
+    delete state.summary.tools.commitments;
+    persistHubData();
+    updateSummaryDock();
+    if(state.modal==='commitments') openModal('commitments', true);
+    return;
+  }
+  if(key==='reflectionNotes'){
+    state.summary.reflection=null;
+    persistHubData();
+    updateSummaryDock();
+    if(state.modal==='reflectionNotes') openModal('reflectionNotes', true);
+    return;
+  }
+  if(toolDefs[key]?.fields){
+    delete state.summary.tools[key];
+    persistHubData();
+    updateSummaryDock();
+    if(state.modal===key) openModal(key, true);
+  }
+}
 
 async function copyTextWithFallback(text){
   const value=String(text||'');
@@ -1095,12 +1155,12 @@ function fallbackCopyText(text){
 function copyToolToClipboard(key){
   const def=toolDefs[key]; if(!def||!def.fields) return;
   const text=def.fields.map(([id,en,ro])=>`${state.lang==='ro'?ro:en}\n${document.getElementById(`${key}_${id}`)?.value.trim()||''}`).join('\n\n').trim();
-  copyTextWithFallback(text).then(()=>{const m=document.getElementById('msg_'+key); if(m){m.textContent=t('common.copied');m.classList.add('show');setTimeout(()=>{m.classList.remove('show');m.textContent=t('summary.statusSaved')},1400)}}).catch(()=>alert(t('common.copyFailed')));
+  copyTextWithFallback(text).then(()=>showCopyMessage('msg_'+key)).catch(()=>alert(t('common.copyFailed')));
 }
 
 function renderCommitmentsTool(){
   const items=(state.summary.tools.commitments?.items||[]).length ? state.summary.tools.commitments.items : [{text:'',done:false,date:''},{text:'',done:false,date:''},{text:'',done:false,date:''}];
-  return `<div>${items.map((it,i)=>`<div class="panel" style="margin-bottom:12px"><label class="formLabel" for="commitment_${i}">${state.lang==='ro'?'Angajament':'Commitment'} ${i+1}</label><input id="commitment_${i}" class="toolInput" value="${escapeHtml(it.text||'')}"><div class="stackRow" style="margin-top:8px"><label><input type="checkbox" id="commitment_done_${i}" ${it.done?'checked':''}> ${state.lang==='ro'?'Finalizat':'Done'}</label><input id="commitment_date_${i}" class="toolInput" style="max-width:180px" type="date" value="${escapeHtml(it.date||'')}"></div></div>`).join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveCommitments()">${t('common.save')}</button><span class="copyMsg" id="msg_commitments">${t('summary.statusSaved')}</span></div></div>`
+  return `<div>${items.map((it,i)=>`<div class="panel" style="margin-bottom:12px"><label class="formLabel" for="commitment_${i}">${state.lang==='ro'?'Angajament':'Commitment'} ${i+1}</label><input id="commitment_${i}" class="toolInput" value="${escapeHtml(it.text||'')}"><div class="stackRow" style="margin-top:8px"><label><input type="checkbox" id="commitment_done_${i}" ${it.done?'checked':''}> ${state.lang==='ro'?'Finalizat':'Done'}</label><input id="commitment_date_${i}" class="toolInput" style="max-width:180px" type="date" value="${escapeHtml(it.date||'')}"></div></div>`).join('')}<div class="stackRow"><button class="btn primary" type="button" onclick="saveCommitments()">${t('common.save')}</button><button class="btn" type="button" onclick="resetTool('commitments')">${t('common.reset')}</button><span class="copyMsg" id="msg_commitments">${t('summary.statusSaved')}</span></div></div>`
 }
 function saveCommitments(){
   const items=[0,1,2].map(i=>({text:document.getElementById(`commitment_${i}`)?.value.trim()||'',done:!!document.getElementById(`commitment_done_${i}`)?.checked,date:document.getElementById(`commitment_date_${i}`)?.value||''})).filter(x=>x.text);
@@ -1113,7 +1173,7 @@ function saveCommitments(){
 }
 function renderReflectionNotes(){
   const saved=state.summary.reflection || {title:t('reflection.defaultTitle'),note:''}; const week=currentWeekly();
-  return `<div><label class="formLabel">${t('reflection.questionLabel')}</label><div class="panel" style="margin-bottom:14px"><div style="font-size:31px;line-height:1.28;font-weight:800;font-style:italic;color:var(--text)">“${escapeHtml(week.question)}”</div></div><label class="formLabel" for="reflection_title">${t('reflection.titleLabel')}</label><input id="reflection_title" class="toolInput" value="${escapeHtml(saved.title||t('reflection.defaultTitle'))}" style="margin-bottom:14px"><label class="formLabel" for="reflection_note">${t('reflection.notesTitle')}</label><textarea id="reflection_note" class="toolArea">${escapeHtml(saved.note||'')}</textarea><div class="stackRow"><button class="btn primary" type="button" onclick="saveReflectionNotes()">${t('common.save')}</button><span class="copyMsg" id="msg_reflection">${t('summary.statusSaved')}</span></div></div>`
+  return `<div><label class="formLabel">${t('reflection.questionLabel')}</label><div class="panel" style="margin-bottom:14px"><div style="font-size:31px;line-height:1.28;font-weight:800;font-style:italic;color:var(--text)">“${escapeHtml(week.question)}”</div></div><label class="formLabel" for="reflection_title">${t('reflection.titleLabel')}</label><input id="reflection_title" class="toolInput" value="${escapeHtml(saved.title||t('reflection.defaultTitle'))}" style="margin-bottom:14px"><label class="formLabel" for="reflection_note">${t('reflection.notesTitle')}</label><textarea id="reflection_note" class="toolArea">${escapeHtml(saved.note||'')}</textarea><div class="stackRow"><button class="btn primary" type="button" onclick="saveReflectionNotes()">${t('common.save')}</button><button class="btn" type="button" onclick="resetTool('reflectionNotes')">${t('common.reset')}</button><span class="copyMsg" id="msg_reflection">${t('summary.statusSaved')}</span></div></div>`
 }
 function saveReflectionNotes(){
   const title=document.getElementById('reflection_title').value.trim()||t('reflection.defaultTitle'); const note=document.getElementById('reflection_note').value.trim();
@@ -2490,12 +2550,29 @@ function buildValuesDiscoveryInnerHTML(){ const tt=i18n[state.lang].toolcards.va
         <div style="height:14px"></div>
         ${candidates.length ? `<div class="valuesCandidateList">${candidates.map(value => `<div class="valuesCandidate"><strong>${escapeHtml(value)}</strong><div class="valuesCandidateActions"><button class="miniBtn" type="button" onclick='removePickedValue(${JSON.stringify(value)})' title="${escapeHtml(tt.remove || t('values.remove'))}">×</button><button class="btn sm" type="button" onclick='addValueToTopFive(${JSON.stringify(value)})'${state.values.top5.length >= 5 ? ' disabled' : ''}>${tt.pickTop || t('values.addTop')}</button></div></div>`).join('')}</div>` : `<div class="valuesEmpty"></div>`}
         <p class="valuesHint" style="margin-top:14px">${t('values.saveNote')}</p>
-        <div class="stackRow"><button class="btn primary" type="button" onclick="saveValuesDiscovery()">${t('common.save')}</button><span class="copyMsg" id="msg_values">${t('summary.statusSaved')}</span></div>
+        <div class="stackRow"><button class="btn primary" type="button" onclick="saveValuesDiscovery()">${t('common.save')}</button><button class="btn" type="button" onclick="copyValuesDiscoveryToClipboard()">${t('common.copy')}</button><button class="btn" type="button" onclick="clearValuesTool()">${t('common.reset')}</button><span class="copyMsg" id="msg_values">${t('summary.statusSaved')}</span></div>
       </div>
     </div>`; }
 function rerenderValues(focusSearch=false){ const modalBody=document.querySelector('#modalShell .modalBody'); const valuesGrid=document.getElementById('valuesGrid'); const modalScrollTop=modalBody?modalBody.scrollTop:0; const gridScrollTop=valuesGrid?valuesGrid.scrollTop:0; const gridScrollLeft=valuesGrid?valuesGrid.scrollLeft:0; const root=document.getElementById('valuesToolRoot'); if(root) root.innerHTML=buildValuesDiscoveryInnerHTML(); requestAnimationFrame(() => { if(modalBody) modalBody.scrollTop=modalScrollTop; const nextGrid=document.getElementById('valuesGrid'); if(nextGrid){ nextGrid.scrollTop=gridScrollTop; nextGrid.scrollLeft=gridScrollLeft; } if(focusSearch){ const input=document.getElementById('valuesSearch'); if(input){ input.focus(); input.setSelectionRange(valuesSearch.length, valuesSearch.length); } } }); }
 function renderValuesTool(){ valuesSearch = state.values.query || ''; return `<div id="valuesToolRoot">${buildValuesDiscoveryInnerHTML()}</div>`; }
 
+function buildValuesClipboardText(){
+  const selected=(state.values.selected||[]).join(', ');
+  const top5=(state.values.top5||[]).map((value,index)=>`${index+1}. ${value}`).join('\n');
+  const parts=[t('values.title')];
+  parts.push('');
+  parts.push((i18n[state.lang].toolcards.values.selectedValues || t('values.selectedValues')) + ':');
+  parts.push(selected || '-');
+  parts.push('');
+  parts.push((i18n[state.lang].toolcards.values.rankedTop || t('values.rankedTop')) + ':');
+  parts.push(top5 || '-');
+  return parts.join('\n').trim();
+}
+function copyValuesDiscoveryToClipboard(){
+  const hasAnything=(state.values.selected||[]).length || (state.values.top5||[]).length;
+  if(!hasAnything){ alert(t('common.fillField')); return; }
+  copyTextWithFallback(buildValuesClipboardText()).then(()=>showCopyMessage('msg_values')).catch(()=>alert(t('common.copyFailed')));
+}
 function saveValuesDiscovery(){ syncValuesIntoSummary(); const m=document.getElementById('msg_values'); if(m){m.classList.add('show'); setTimeout(()=>m.classList.remove('show'),1400)} buildInitiations(); }
 function getBucharestParts(date){
   const fmt = new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Bucharest',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});
