@@ -2758,8 +2758,17 @@ function buildPdfSections(){
   }
 
 
-  if(values?.top5?.length){
-    sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0"><h2 class="pdfSectionTitle">${esc(t('initiations.valuesTitle'))}</h2><div class="pdfField"><strong>${esc(t('initiations.summaryLabel'))}:</strong> ${esc(values.top5.join(' · '))}</div></div>`);
+  if(values?.selected?.length || values?.top5?.length){
+    const selectedLabel = (i18n[state.lang].toolcards.values.selectedValues || t('values.selectedValues'));
+    const rankedLabel = (i18n[state.lang].toolcards.values.rankedTop || t('values.rankedTop'));
+    const valuesParts = [];
+    if(values?.selected?.length){
+      valuesParts.push(`<div class="pdfField"><strong>${esc(selectedLabel)}:</strong> ${esc(values.selected.join(' · '))}</div>`);
+    }
+    if(values?.top5?.length){
+      valuesParts.push(`<div class="pdfField" style="margin-top:8px"><strong>${esc(rankedLabel)}:</strong> ${esc(values.top5.join(' · '))}</div>`);
+    }
+    sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0"><h2 class="pdfSectionTitle">${esc(t('initiations.valuesTitle'))}</h2>${valuesParts.join('')}</div>`);
   }
 
   if(reflection?.note){
