@@ -2534,6 +2534,17 @@ function getValuesList(mode=getValuesMode()){
   return state.lang==='ro' ? RO_VALUES : EN_VALUES;
 }
 function normalizeValuesState(s){ const mode=s?.mode === 'simple' ? 'simple' : 'complex'; const allowed=getValuesList(mode); const selected=Array.from(new Set((s?.selected||[]).filter(v=>allowed.includes(v)))); const top5=Array.from(new Set((s?.top5||[]).filter(v=>selected.includes(v)))).slice(0,5); return {selected,top5,mode}; }
+function removeUnexpectedPresetValues(){
+  const unwanted=['Schimbare','Generozitate','Leadership','Curiozitate','Onestitate'];
+  if(state?.values){
+    state.values.selected=(state.values.selected||[]).filter(v=>!unwanted.includes(v));
+    state.values.top5=(state.values.top5||[]).filter(v=>!unwanted.includes(v));
+  }
+  if(state?.summary?.values){
+    state.summary.values.selected=(state.summary.values.selected||[]).filter(v=>!unwanted.includes(v));
+    state.summary.values.top5=(state.summary.values.top5||[]).filter(v=>!unwanted.includes(v));
+  }
+}
 function syncValuesIntoSummary(){ state.summary.values={title:t('toolcards.values.title'),selected:[...state.values.selected],top5:[...state.values.top5],mode:getValuesMode()}; persistHubData(); updateSummaryDock(); }
 function updateValuesSearch(value){ valuesSearch=value||''; state.values.query=valuesSearch; rerenderValues(true); }
 function updateValuesMode(mode){ if(mode!== 'simple' && mode !== 'complex') return; valuesSearch=''; state.values.query=''; const next=normalizeValuesState({...state.values, mode}); state.values={...state.values,...next}; syncValuesIntoSummary(); rerenderValues(); }
@@ -2881,6 +2892,7 @@ function loadHubData(){
     const saved=JSON.parse(localStorage.getItem('gh_members_summary')||'null');
     if(saved) state.summary=saved;
     if(saved?.values){ state.values.selected = saved.values.selected || saved.values.top5 || []; state.values.top5 = saved.values.top5 || []; state.values.mode = saved.values.mode || 'complex'; }
+    removeUnexpectedPresetValues();
   }catch(e){}
 }
 function toggleExploreQuestions(){
