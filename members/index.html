@@ -154,7 +154,7 @@
     .footerWordLine{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
     .footerName{font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.06em;font-size:15px;color:var(--text)}
     .footerHub{font-size:15px;font-weight:700;color:var(--accent-dark)}
-    .modalShell{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:22px}
+        .modalShell{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:22px}
     .modalShell.open{display:flex}
     .modalBackdrop{position:absolute;inset:0;background:rgba(12,18,28,.46);backdrop-filter:blur(6px)}
     .modalPanel{position:relative;z-index:1;width:min(980px,100%);max-height:calc(100vh - 44px);overflow:hidden;border-radius:28px;border:1px solid var(--accent-border);background:var(--bg);box-shadow:var(--shadow2);display:flex;flex-direction:column}
@@ -255,7 +255,6 @@
     .initiationLead{margin:0;color:var(--muted);line-height:1.7}
     @media(max-width:700px){.valuesGrid{max-height:260px}.valuesCandidate{grid-template-columns:minmax(0,1fr) auto;align-items:center}.valuesTopItem{grid-template-columns:44px minmax(0,1fr) auto;align-items:center}.valuesCandidateActions,.valuesTopActions{justify-content:flex-end}.valuesToolbar{align-items:flex-start}.valuesSearchRow{align-items:stretch}.scaleRow span{font-size:10px}.initiationsShell{grid-template-columns:1fr}.ethicToggle{padding:16px 18px}.ethicBody{padding:0 18px 18px}}
 
-
     .summaryDock{position:fixed;right:18px;bottom:18px;z-index:70;max-width:360px}
     .summaryFab{display:none;border:1px solid var(--accent-border);background:linear-gradient(180deg,#8eb8ea 0%,#3a75c8 100%);color:#fff;border-radius:999px;padding:12px 16px;font-weight:900;box-shadow:var(--shadow);cursor:pointer;align-items:center;justify-content:center;gap:8px}
     .summaryFab:hover{filter:brightness(1.03)}
@@ -306,7 +305,7 @@
                 <strong>GRUNDIMPULS</strong>
                 <span class="taglineTop"><span>EXPLORE</span><span class="tagDot">·</span><span>LEARN</span><span class="tagDot">·</span><span>CREATE</span></span>
               </div>
-              <span class="hubSuffix" id="headerHubSuffix"><span data-i18n="brand.members">Members</span><span data-i18n="brand.hubWord">Hub</span></span><span class="hubVersion" id="headerHubVersion">v1.01</span>
+              <span class="hubSuffix" id="headerHubSuffix"><span data-i18n="brand.members">Members</span><span data-i18n="brand.hubWord">Hub</span></span>
             </div>
           </div>
         </div>
@@ -457,9 +456,6 @@
     </div>
   </section>
 
-
-
-
 </main>
 
 <footer class="footer">
@@ -468,7 +464,15 @@
       <div class="footerMark"><img class="logo logo-light" src="/assets/drop_light.svg" alt="Grundimpuls Members Hub"><img class="logo logo-dark" src="/assets/drop_dark.svg" alt="Grundimpuls Members Hub"></div>
       <div><div class="footerWordLine"><div class="footerName">GRUNDIMPULS</div><div class="footerHub" data-i18n="footer.sub">Members Hub</div></div></div>
     </a>
-    <div class="small" data-i18n="footer.note">Private resource area for approved participants only.</div>
+    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:4px;">
+      <div class="small" data-i18n="footer.note">Private resource area for approved participants only.</div>
+      <div class="small" style="display:flex;gap:18px;align-items:center;justify-content:flex-end;text-align:right;">
+        Copyright © <span id="year"></span> Grundimpuls Members Hub Website v.1.03
+      </div>
+    </div>
+      
+    </div>
   </div>
 </footer>
 
@@ -926,6 +930,7 @@ function updateSectionEmpty(gridId, emptyId){
 }
 
 function initTheme(){document.body.classList.toggle('dark', state.theme==='dark'); document.getElementById('themeToggle').textContent = state.theme==='dark' ? '☀' : '☾'}
+document.getElementById("year").textContent = new Date().getFullYear();
 function toggleTheme(){state.theme = state.theme==='dark' ? 'light' : 'dark'; localStorage.setItem('gh_theme', state.theme); initTheme()}
 
 function buildCards(){
@@ -1216,8 +1221,6 @@ function stepBreathing(){ const b=state.breathing; if(!b.running) return; b.rema
 function updateBreathingDisplay(){ if(!state.breathing) return; const b=state.breathing; const phase=b.phases[b.phaseIndex]; document.getElementById('breathePhase').textContent=phase.name; document.getElementById('breatheCount').textContent=String(b.remaining); document.getElementById('breatheInstruction').textContent=phase.instruction; document.getElementById('breatheProgress').textContent=state.lang==='ro'?`Ciclul ${b.cycle+1} din 4`:`Cycle ${b.cycle+1} of 4`; document.getElementById('breatheCircle').style.transform=`scale(${phase.scale})`; }
 
 function getValuesList(){ return state.lang==='ro' ? RO_VALUES : EN_VALUES }
-
-
 
 const DAILY_QUOTES = [
   {
@@ -2695,7 +2698,6 @@ function saveSummaryNote(){
 
 function openSummaryComposer(){ openModal('summary'); }
 
-
 function buildPdfSections(){
   const generated = new Date();
   const generatedLabel = generated.toLocaleString(state.lang==='ro'?'ro-RO':'en-GB');
@@ -2764,7 +2766,6 @@ function buildPdfSections(){
       sections.push(`<div class="pdfPageBlock" style="width:794px;background:#fff;padding:0 34px 0"><div style="padding:2px 0 0"><div style="font-weight:700;font-size:16px;margin-bottom:6px">${esc(tl.title)}</div>${items}</div></div>`);
     });
   }
-
 
   if(values?.selected?.length || values?.top5?.length){
     const selectedLabel = (i18n[state.lang].toolcards.values.selectedValues || t('values.selectedValues'));
@@ -2871,7 +2872,6 @@ function setupMobileScrollBehavior(){
   });
 }
 
-
 function persistHubData(){
   localStorage.setItem('gh_lang', state.lang);
   localStorage.setItem('gh_members_summary', JSON.stringify(state.summary));
@@ -2935,6 +2935,7 @@ function initApp(){
 }
 
 window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+document.getElementById("year").textContent = new Date().getFullYear();
 window.addEventListener('load', initApp);
 </script>
 </body>
