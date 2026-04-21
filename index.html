@@ -1290,12 +1290,26 @@ body.dark .aboutPhoto .photoDark{
   display:flex; gap:10px; flex-wrap:wrap;
 }
 .doorBtn{
-  padding:11px 20px; border-radius:13px;
-  font-weight:900; font-size:13.5px; cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:11px 20px;
+  border-radius:13px;
+  font-weight:900;
+  font-size:13.5px;
+  cursor:pointer;
   border:1px solid var(--border);
-  background:var(--bg); color:var(--text);
-  transition: all .15s ease; line-height:1;
+  background:var(--bg);
+  color:var(--text);
+  transition: all .15s ease;
+  line-height:1.15;
   font-family: inherit;
+  text-align:left;
+}
+
+.doorBtn.doorPrimary{
+  text-align:left;
+  justify-content:flex-start;
 }
 .doorBtn:hover{
   border-color:var(--gold-border);
