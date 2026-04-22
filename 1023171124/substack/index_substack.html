@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GRUNDIMPULS Members Hub — Substack Cards</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root {
+      --bg:#F4F8FC;
+      --bg-alt:#EAF1F8;
+      --text:#1F2937;
+      --muted:#64748B;
+      --muted2:#8FA6C2;
+      --border:#D5E1EE;
+      --accent:#3B74BE;
+      --accent-bg:rgba(59,116,190,.12);
+      --accent-border:rgba(47,94,153,.26);
+      --accent-dark:#2F5E99;
+      --radius:18px;
+      --radius2:24px;
+      --shadow:0 4px 24px rgba(0,0,0,.07);
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      line-height:1.6;
+    }
+    .wrap{max-width:var(--max);margin:0 auto;padding:72px 16px 80px}
+    section{padding:0 0 80px}
+    section + section{border-top:1px solid var(--border);padding-top:80px}
+    .accentBar{width:40px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-dark));border-radius:2px;margin-bottom:14px}
+    h2{font-size:32px;line-height:1.1;margin:0 0 14px;letter-spacing:-.01em}
+    p.lead{margin:0 0 24px;color:var(--muted);font-size:18px}
+    .card{
+      position:relative;
+      border-radius:var(--radius2);
+      border:1px solid var(--border);
+      background:var(--bg);
+      box-shadow:var(--shadow);
+      padding:26px 24px 70px;
+      max-width:860px;
+    }
+    .card.reflection{
+      max-width:760px;
+      background:var(--accent-bg);
+      border-color:var(--accent-border);
+    }
+    .small{font-size:12px;color:var(--muted2);margin:0}
+    .quote{
+      font-size:20px;
+      font-weight:700;
+      color:var(--text);
+      font-style:italic;
+      line-height:1.55;
+      margin:12px 0 10px;
+    }
+    .author{
+      font-size:12px;
+      color:var(--accent-dark);
+      font-weight:700;
+      margin:0;
+    }
+    .brandStamp{
+      position:absolute;
+      right:22px;
+      bottom:18px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      opacity:.96;
+      user-select:none;
+      pointer-events:none;
+    }
+    .brandStamp img{
+      width:26px;
+      height:26px;
+      object-fit:contain;
+      display:block;
+    }
+    .brandText{
+      display:flex;
+      align-items:baseline;
+      gap:8px;
+      white-space:nowrap;
+      line-height:1;
+    }
+    .brandText strong{
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:.06em;
+      color:var(--text);
+      font-family:Montserrat,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    }
+    .brandText span{
+      font-size:13px;
+      font-weight:700;
+      color:var(--accent-dark);
+    }
+    .utility{
+      margin:0 0 28px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .utility button{
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--text);
+      border-radius:999px;
+      padding:8px 12px;
+      font:inherit;
+      font-size:13px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .utility button:hover{border-color:var(--accent-border);background:var(--accent-bg);color:var(--accent-dark)}
+    iframe{display:none}
+    .error{
+      color:#8b1e1e;
+      background:#fff6f6;
+      border:1px solid #efc2c2;
+      border-radius:14px;
+      padding:12px 14px;
+      max-width:860px;
+      display:none;
+    }
+    .show{display:block}
+    @media (max-width:760px){
+      .wrap{padding:40px 14px 56px}
+      section{padding-bottom:56px}
+      section + section{padding-top:56px}
+      h2{font-size:28px}
+      p.lead{font-size:16px}
+      .card,.card.reflection{max-width:none}
+      .quote{font-size:18px}
+      .brandStamp{right:16px;bottom:14px;gap:8px}
+      .brandText strong{font-size:12px}
+      .brandText span{font-size:11px}
+      .brandStamp img{width:22px;height:22px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="utility">
+      <button type="button" id="refreshBtn">Refresh from Members Hub</button>
+    </div>
+
+    <div class="error" id="errorBox"></div>
+
+    <section id="daily-inspiration">
+      <div class="accentBar"></div>
+      <h2>Daily inspiration</h2>
+      <p class="lead">A daily line worth thinking with, not just agreeing with.</p>
+      <div class="card" id="dailyCard">
+        <p class="small" id="dailyLabel"></p>
+        <div class="quote" id="dailyQuote"></div>
+        <p class="author" id="dailyAuthor"></p>
+        <div class="brandStamp" aria-hidden="true">
+          <img src="/members/assets/drop_light.svg" alt="">
+          <div class="brandText"><strong>GRUNDIMPULS</strong><span>Members Hub</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reflection">
+      <div class="accentBar"></div>
+      <h2>Weekly reflection</h2>
+      <div class="card reflection" id="reflectionCard">
+        <p class="small" id="weekLabel"></p>
+        <div class="quote" id="reflectionPrompt"></div>
+        <div class="brandStamp" aria-hidden="true">
+          <img src="/members/assets/drop_light.svg" alt="">
+          <div class="brandText"><strong>GRUNDIMPULS</strong><span>Members Hub</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <iframe id="sourceFrame" src="/members/"></iframe>
+
+  <script>
+    const frame = document.getElementById('sourceFrame');
+    const errorBox = document.getElementById('errorBox');
+
+    function setText(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value || '';
+    }
+
+    function showError(message) {
+      errorBox.textContent = message;
+      errorBox.classList.add('show');
+    }
+
+    function clearError() {
+      errorBox.textContent = '';
+      errorBox.classList.remove('show');
+    }
+
+    function copyFromMembersHub() {
+      try {
+        const doc = frame.contentDocument || frame.contentWindow.document;
+        if (!doc) {
+          showError('Could not read the Members Hub page.');
+          return;
+        }
+
+        const dailyLabel = doc.getElementById('dailyLabel')?.textContent?.trim() || '';
+        const dailyQuote = doc.getElementById('dailyQuote')?.textContent?.trim() || '';
+        const dailyAuthor = doc.getElementById('dailyAuthor')?.textContent?.trim() || '';
+        const weekLabel = doc.getElementById('weekLabel')?.textContent?.trim() || '';
+        const reflectionPrompt = doc.getElementById('reflectionPrompt')?.textContent?.trim() || '';
+
+        if (!dailyQuote || !reflectionPrompt) {
+          showError('The Members Hub loaded, but the quote or weekly reflection could not be extracted.');
+          return;
+        }
+
+        clearError();
+        setText('dailyLabel', dailyLabel);
+        setText('dailyQuote', dailyQuote);
+        setText('dailyAuthor', dailyAuthor);
+        setText('weekLabel', weekLabel);
+        setText('reflectionPrompt', reflectionPrompt);
+      } catch (err) {
+        showError('Could not copy the content from the Members Hub. If the path is different on your site, update the iframe src in this file.');
+      }
+    }
+
+    frame.addEventListener('load', () => {
+      setTimeout(copyFromMembersHub, 250);
+    });
+
+    document.getElementById('refreshBtn').addEventListener('click', () => {
+      clearError();
+      try {
+        frame.contentWindow.location.reload();
+      } catch (err) {
+        copyFromMembersHub();
+      }
+    });
+  </script>
+</body>
+</html>
