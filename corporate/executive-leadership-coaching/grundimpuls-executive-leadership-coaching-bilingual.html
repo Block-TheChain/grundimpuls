@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Flexible executive and leadership coaching for companies that need focused support without committing to a large, long-term coaching framework." name="description"/>
+<title>Executive &amp; Leadership Coaching | Grundimpuls</title>
+<style>
+    :root{
+      --navy:#0f2742;
+      --blue:#245f8f;
+      --blue-soft:#eaf2f8;
+      --silver:#dbe3ea;
+      --ink:#1b2733;
+      --muted:#5f6d78;
+      --white:#ffffff;
+      --bg:#f6f8fa;
+      --success:#2f6b57;
+      --shadow:0 14px 35px rgba(15,39,66,.10);
+      --radius:18px;
+      --max:1160px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .wrap{width:min(var(--max), calc(100% - 40px)); margin:auto}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:30;
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(15,39,66,.08);
+    }
+    .nav{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.04em;
+      color:var(--navy);
+    }
+    .brand span{
+      display:block;
+      font-size:.72rem;
+      font-weight:600;
+      letter-spacing:.16em;
+      color:var(--muted);
+      margin-top:-3px;
+    }
+    .nav-links{display:flex; gap:22px; align-items:center}
+    .nav-links a{
+      text-decoration:none;
+      font-size:.92rem;
+      color:var(--muted);
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:13px 20px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid transparent;
+      transition:.2s ease;
+    }
+    .btn-primary{background:var(--navy); color:var(--white)}
+    .btn-primary:hover{transform:translateY(-1px); background:#173a61}
+    .btn-secondary{border-color:rgba(15,39,66,.18); color:var(--navy); background:var(--white)}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 86% 14%, rgba(36,95,143,.22), transparent 30%),
+        linear-gradient(135deg, #0d223b 0%, #173b62 58%, #245f8f 100%);
+      color:var(--white);
+      padding:88px 0 76px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.18fr .82fr;
+      gap:52px;
+      align-items:center;
+    }
+    .eyebrow{
+      display:inline-flex;
+      padding:7px 11px;
+      border-radius:999px;
+      background:rgba(255,255,255,.11);
+      border:1px solid rgba(255,255,255,.18);
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+    }
+    h1{
+      margin:20px 0 20px;
+      font-size:clamp(2.6rem, 5vw, 5.2rem);
+      line-height:1.02;
+      letter-spacing:-.045em;
+      max-width:900px;
+    }
+    .hero p{
+      font-size:1.15rem;
+      color:rgba(255,255,255,.84);
+      max-width:760px;
+      margin:0 0 30px;
+    }
+    .hero-actions{display:flex; flex-wrap:wrap; gap:12px}
+    .hero .btn-primary{background:var(--white); color:var(--navy)}
+    .hero .btn-secondary{background:transparent; color:var(--white); border-color:rgba(255,255,255,.34)}
+
+    .hero-card{
+      background:rgba(255,255,255,.97);
+      color:var(--ink);
+      border-radius:24px;
+      padding:28px;
+      box-shadow:0 24px 60px rgba(0,0,0,.18);
+    }
+    .hero-card h2{margin:0 0 14px; font-size:1.35rem; color:var(--navy)}
+    .checklist{list-style:none; padding:0; margin:0}
+    .checklist li{
+      position:relative;
+      padding:10px 0 10px 30px;
+      border-bottom:1px solid #edf1f4;
+    }
+    .checklist li:last-child{border-bottom:0}
+    .checklist li::before{
+      content:"✓";
+      position:absolute; left:0; top:10px;
+      width:20px; height:20px;
+      display:grid; place-items:center;
+      border-radius:50%;
+      background:var(--blue-soft);
+      color:var(--blue);
+      font-size:.78rem;
+      font-weight:900;
+    }
+
+    section{padding:76px 0}
+    .section-head{max-width:770px; margin-bottom:34px}
+    .kicker{
+      color:var(--blue);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.76rem;
+      font-weight:900;
+      margin-bottom:10px;
+    }
+    h2{
+      margin:0 0 16px;
+      font-size:clamp(2rem, 3vw, 3.25rem);
+      line-height:1.12;
+      letter-spacing:-.035em;
+      color:var(--navy);
+    }
+    .lead{font-size:1.08rem; color:var(--muted); margin:0}
+
+    .problem-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+    .card{
+      background:var(--white);
+      border:1px solid rgba(15,39,66,.08);
+      border-radius:var(--radius);
+      padding:25px;
+      box-shadow:var(--shadow);
+    }
+    .card h3{margin:0 0 10px; color:var(--navy); font-size:1.08rem}
+    .card p{margin:0; color:var(--muted)}
+    .number{
+      display:grid;
+      place-items:center;
+      width:34px; height:34px;
+      border-radius:10px;
+      background:var(--blue-soft);
+      color:var(--blue);
+      font-weight:900;
+      margin-bottom:18px;
+    }
+
+    .band{
+      background:var(--navy);
+      color:var(--white);
+    }
+    .band h2{color:var(--white)}
+    .band .lead{color:rgba(255,255,255,.74)}
+    .audience{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+      margin-top:30px;
+    }
+    .audience div{
+      padding:20px;
+      border-radius:15px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.13);
+    }
+    .audience strong{display:block; margin-bottom:6px}
+    .audience span{font-size:.93rem; color:rgba(255,255,255,.7)}
+
+    .offer-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+    .offer{
+      position:relative;
+      overflow:hidden;
+      background:var(--white);
+      border-radius:20px;
+      padding:28px;
+      border:1px solid rgba(15,39,66,.09);
+    }
+    .offer.featured{
+      border:2px solid var(--blue);
+      box-shadow:0 16px 42px rgba(36,95,143,.14);
+    }
+    .tag{
+      display:inline-block;
+      border-radius:999px;
+      padding:5px 9px;
+      background:var(--blue-soft);
+      color:var(--blue);
+      font-size:.72rem;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:14px;
+    }
+    .offer h3{font-size:1.35rem; color:var(--navy); margin:0 0 8px}
+    .offer p{color:var(--muted)}
+    .offer ul{padding-left:20px; color:var(--ink)}
+    .offer li{margin:8px 0}
+
+    .process{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .process .card{box-shadow:none}
+    .process small{
+      font-weight:900;
+      color:var(--blue);
+      letter-spacing:.1em;
+    }
+
+    .admin-box{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:32px;
+      align-items:center;
+      background:linear-gradient(135deg,#ffffff,#eef4f8);
+      border:1px solid rgba(15,39,66,.08);
+      border-radius:24px;
+      padding:40px;
+    }
+    .admin-list{display:grid; gap:12px}
+    .admin-item{
+      background:var(--white);
+      padding:16px 18px;
+      border-radius:14px;
+      border:1px solid rgba(15,39,66,.07);
+      display:flex;
+      gap:12px;
+    }
+    .admin-item b{color:var(--success)}
+
+    .outcome-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+    .outcome{
+      background:var(--white);
+      border-left:4px solid var(--blue);
+      padding:22px 24px;
+      border-radius:0 15px 15px 0;
+      box-shadow:var(--shadow);
+    }
+    .outcome strong{display:block; color:var(--navy); margin-bottom:5px}
+    .outcome span{color:var(--muted)}
+
+    .trust-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:36px;
+      align-items:start;
+    }
+    .profile{
+      background:var(--navy);
+      color:var(--white);
+      border-radius:24px;
+      padding:32px;
+    }
+    .profile h3{font-size:1.7rem; margin:0 0 6px}
+    .profile p{color:rgba(255,255,255,.74)}
+    .stat-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:24px;
+    }
+    .stat{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:16px;
+    }
+    .stat strong{font-size:1.3rem; display:block}
+    .trust-list{
+      display:grid;
+      gap:14px;
+    }
+    .trust-item{
+      padding:20px;
+      background:var(--white);
+      border:1px solid rgba(15,39,66,.08);
+      border-radius:16px;
+    }
+    .trust-item strong{color:var(--navy)}
+
+    .faq{display:grid; gap:12px}
+    details{
+      background:var(--white);
+      border:1px solid rgba(15,39,66,.08);
+      border-radius:14px;
+      padding:18px 20px;
+    }
+    summary{cursor:pointer; font-weight:800; color:var(--navy)}
+    details p{color:var(--muted); margin-bottom:0}
+
+    .cta{
+      text-align:center;
+      background:linear-gradient(135deg,#173b62,#245f8f);
+      border-radius:26px;
+      color:var(--white);
+      padding:52px 28px;
+    }
+    .cta h2{color:var(--white)}
+    .cta p{max-width:700px; margin:0 auto 26px; color:rgba(255,255,255,.78)}
+    .cta .btn-primary{background:var(--white); color:var(--navy)}
+
+    footer{
+      padding:34px 0 46px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .footer-grid{
+      display:flex;
+      justify-content:space-between;
+      gap:30px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(15,39,66,.1);
+      padding-top:24px;
+    }
+
+    @media (max-width:900px){
+      .hero-grid,.trust-grid,.admin-box{grid-template-columns:1fr}
+      .problem-grid,.offer-grid{grid-template-columns:1fr 1fr}
+      .audience,.process{grid-template-columns:1fr 1fr}
+      .nav-links a:not(.btn){display:none}
+    }
+    @media (max-width:620px){
+      .wrap{width:min(100% - 24px,var(--max))}
+      .hero{padding:60px 0}
+      section{padding:56px 0}
+      .problem-grid,.offer-grid,.audience,.process,.outcome-grid{grid-template-columns:1fr}
+      .hero-actions{flex-direction:column; align-items:stretch}
+      .btn{width:100%}
+      .admin-box{padding:25px}
+      .stat-grid{grid-template-columns:1fr}
+    }
+  
+/* ===== Grundimpuls header controls and dark mode ===== */
+body.dark{
+  --navy:#e9f1f8;
+  --blue:#6fa0d8;
+  --blue-soft:rgba(59,116,190,.16);
+  --silver:#28313b;
+  --ink:#f3f5f7;
+  --muted:#c7ced6;
+  --white:#18202a;
+  --bg:#11161d;
+  --success:#75b79d;
+  --shadow:0 14px 35px rgba(0,0,0,.40);
+}
+body, header, section, .card, .offer, .outcome, details, .admin-box, .trust-item, footer{
+  transition:background .22s ease,color .22s ease,border-color .22s ease;
+}
+header{
+  background:rgba(255,255,255,.94);
+}
+body.dark header{
+  background:rgba(17,22,29,.94);
+}
+.nav{
+  min-height:72px;
+  padding:10px 0;
+  position:relative;
+}
+.brand{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:3px;
+  flex:1 1 auto;
+}
+.brandName{
+  font-weight:800;
+  letter-spacing:.06em;
+  color:var(--navy);
+  font-size:1.05rem;
+  line-height:1;
+}
+.brandTagline{
+  font-size:.58rem;
+  font-weight:600;
+  letter-spacing:.17em;
+  color:var(--muted);
+  white-space:nowrap;
+}
+.right{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  flex-wrap:nowrap;
+  justify-content:flex-end;
+}
+.siteReturn{
+  width:36px;
+  height:36px;
+  position:relative;
+  flex:0 0 36px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(200,134,10,.30);
+  transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+.siteReturn img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+}
+.siteReturn::after{
+  content:"Grundimpuls";
+  position:absolute;
+  left:50%;
+  top:calc(100% + 10px);
+  transform:translateX(-50%) translateY(-4px);
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(15,39,66,.12);
+  background:rgba(255,255,255,.97);
+  color:#1b2733;
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+  box-shadow:var(--shadow);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease;
+  z-index:40;
+}
+body.dark .siteReturn::after{
+  background:rgba(17,22,29,.97);
+  color:var(--ink);
+  border-color:#28313b;
+}
+.siteReturn:hover{
+  transform:translateY(-1px);
+  border-color:rgba(200,134,10,.52);
+  box-shadow:0 0 0 3px rgba(240,180,60,.16);
+}
+.siteReturn:hover::after,
+.siteReturn:focus-visible::after{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+.membersLink{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:42px;
+  padding:8px 11px;
+  border-radius:999px;
+  font-weight:800;
+  letter-spacing:.03em;
+  font-size:12px;
+  line-height:1;
+  color:#fff;
+  border:1px solid rgba(37,81,137,.34);
+  background:linear-gradient(135deg,#3467A6,#255189);
+  box-shadow:0 2px 10px rgba(37,81,137,.18);
+  transition:all .15s ease;
+}
+.membersLink:hover,
+.membersLink:focus-visible{
+  color:#fff;
+  background:linear-gradient(135deg,#3A70B3,#2B5A95);
+  box-shadow:0 4px 14px rgba(37,81,137,.22),0 0 0 4px rgba(143,191,245,.30);
+}
+.membersLink::after{
+  content:"Members Hub";
+  position:absolute;
+  top:calc(100% + 8px);
+  left:50%;
+  transform:translateX(-50%) translateY(-4px);
+  padding:6px 10px;
+  border-radius:10px;
+  border:1px solid rgba(47,94,153,.26);
+  background:rgba(255,255,255,.97);
+  color:#2F5E99;
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+  box-shadow:0 10px 26px rgba(17,24,39,.10);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .15s ease,transform .15s ease;
+  z-index:40;
+}
+body.dark .membersLink::after{
+  background:rgba(17,22,29,.97);
+  color:#a5c0e3;
+}
+.membersLink:hover::after,
+.membersLink:focus-visible::after{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+.lang{
+  display:flex;
+  gap:5px;
+  align-items:center;
+  border:1px solid rgba(15,39,66,.12);
+  padding:5px;
+  border-radius:999px;
+  background:var(--white);
+}
+body.dark .lang{border-color:#28313b}
+.lang button{
+  cursor:pointer;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  padding:7px 11px;
+  border-radius:999px;
+  font-weight:800;
+  letter-spacing:.03em;
+  font-size:12px;
+}
+.lang button.active{
+  color:#fff;
+  background:linear-gradient(135deg,#3467A6,#255189);
+  box-shadow:0 2px 10px rgba(59,116,190,.30);
+}
+.themeBtn,.burger,.langMobileBtn{
+  border:1px solid rgba(15,39,66,.12);
+  background:var(--white);
+  border-radius:999px;
+  padding:9px 12px;
+  font-weight:900;
+  cursor:pointer;
+  line-height:1;
+  color:var(--muted);
+}
+body.dark .themeBtn,
+body.dark .burger,
+body.dark .langMobileBtn{border-color:#28313b}
+.themeBtn:hover,.burger:hover,.langMobileBtn:hover{
+  border-color:rgba(47,94,153,.26);
+  background:var(--blue-soft);
+  color:var(--blue);
+}
+.langMobile,.burger,.mobileMenu{display:none}
+.langMobile{position:relative}
+.langMobileMenu{
+  position:absolute;
+  right:0;
+  top:calc(100% + 8px);
+  background:rgba(255,255,255,.98);
+  border:1px solid rgba(15,39,66,.12);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  padding:6px;
+  min-width:86px;
+  display:none;
+}
+body.dark .langMobileMenu{background:rgba(17,22,29,.98);border-color:#28313b}
+body.lang-open .langMobileMenu{display:block}
+.langMobileMenu button{
+  width:100%;
+  text-align:right;
+  border:0;
+  background:transparent;
+  padding:10px;
+  border-radius:10px;
+  font-weight:900;
+  color:var(--muted);
+  cursor:pointer;
+}
+.langMobileMenu button:hover{background:var(--blue-soft);color:var(--blue)}
+.burgerIcon{
+  display:block;
+  position:relative;
+  width:18px;
+  height:12px;
+}
+.burgerIcon::before,.burgerIcon::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:18px;
+  height:2px;
+  background:currentColor;
+  border-radius:2px;
+}
+.burgerIcon::before{top:0;box-shadow:0 5px 0 currentColor}
+.burgerIcon::after{bottom:0}
+.mobileMenu{
+  position:absolute;
+  right:0;
+  top:calc(100% + 8px);
+  min-width:220px;
+  padding:8px;
+  border:1px solid rgba(15,39,66,.12);
+  border-radius:20px;
+  background:rgba(255,255,255,.98);
+  box-shadow:var(--shadow);
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(-8px);
+  transition:opacity .18s ease,transform .22s ease;
+}
+body.dark .mobileMenu{background:rgba(17,22,29,.98);border-color:#28313b}
+body.menu-open .mobileMenu{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+.mobileMenuInner{display:flex;flex-direction:column}
+.mobileMenu a{
+  display:block;
+  width:100%;
+  padding:11px 13px;
+  border-radius:12px;
+  font-weight:800;
+  color:var(--muted);
+  text-align:right;
+}
+.mobileMenu a:hover{background:var(--blue-soft);color:var(--blue)}
+.mobileMenu a.mobileMembersLink{
+  margin-top:5px;
+  color:#2F5E99;
+  border:1px solid rgba(47,94,153,.26);
+  background:linear-gradient(135deg,rgba(165,192,227,.30),rgba(59,116,190,.14));
+}
+body.dark .mobileMenu a.mobileMembersLink{color:#a5c0e3}
+body.dark .card,
+body.dark .offer,
+body.dark .outcome,
+body.dark details,
+body.dark .trust-item,
+body.dark .admin-item{
+  background:#18202a;
+  border-color:#28313b;
+}
+body.dark .admin-box{
+  background:linear-gradient(135deg,#18202a,#11161d);
+  border-color:#28313b;
+}
+body.dark .profile{background:#0d223b}
+body.dark .hero-card{background:#18202a;color:var(--ink)}
+body.dark .hero-card .checklist li{border-color:#28313b}
+body.dark footer{background:#11161d}
+body.dark .cta{background:linear-gradient(135deg,#0d223b,#173b62)}
+body.dark .band{background:#0d223b}
+
+@media(max-width:900px){
+  header{position:fixed;top:0;left:0;right:0}
+  main{padding-top:72px}
+  .membersLink,.lang{display:none}
+  .langMobile,.burger,.mobileMenu{display:block}
+  .siteReturn{display:none}
+  .right{gap:6px}
+  .themeBtn,.burger,.langMobileBtn{padding:8px 10px}
+}
+@media(max-width:520px){
+  .brandName{font-size:.92rem}
+  .brandTagline{font-size:.49rem;letter-spacing:.12em}
+}
+</style>
+<meta content="noindex, nofollow, noarchive" name="robots"/><meta content="#F6F8FA" id="themeColor" name="theme-color"/></head>
+<body>
+<header>
+<div class="wrap">
+<div class="nav">
+<a aria-label="Executive and Leadership Coaching" class="brand" href="#top">
+<span class="brandName">GRUNDIMPULS</span>
+<span class="brandTagline">EXPLORE · LEARN · CREATE</span>
+</a>
+<div class="right">
+<a aria-label="Open Grundimpuls homepage" class="siteReturn" href="/">
+<img alt="Grundimpuls homepage" src="/members/assets/drop_orange.png"/>
+</a>
+<a aria-label="Members Hub" class="membersLink" href="/members/">MH</a>
+<button aria-label="Toggle dark mode" aria-pressed="false" class="themeBtn" id="themeToggle" type="button">☾</button>
+<div aria-label="Language switcher" class="lang">
+<button class="active" data-lang="en" type="button">EN</button>
+<button data-lang="ro" type="button">RO</button>
+</div>
+<div class="langMobile" id="langMobile">
+<button aria-expanded="false" class="langMobileBtn" id="langMobileBtn" type="button">
+<span id="langMobileLabel">EN</span> ▾
+          </button>
+<div class="langMobileMenu" id="langMobileMenu">
+<button data-lang="en" type="button">EN</button>
+<button data-lang="ro" type="button">RO</button>
+</div>
+</div>
+<button aria-expanded="false" aria-label="Open menu" class="burger" id="burgerBtn" type="button">
+<span aria-hidden="true" class="burgerIcon"></span>
+</button>
+</div>
+<div class="mobileMenu" id="mobileMenu">
+<div class="mobileMenuInner">
+<a data-i18n="nav.problems" href="#problems">Problems</a>
+<a data-i18n="nav.formats" href="#formats">Formats</a>
+<a data-i18n="nav.outcomes" href="#outcomes">Outcomes</a>
+<a data-i18n="nav.why" href="#trust">Why us</a>
+<a data-i18n="nav.discuss" href="https://cal.com/daniel-grundimpuls/30min">Discuss your needs</a>
+<a class="mobileMembersLink" data-i18n="nav.members" href="/members/">Members Hub</a>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main id="top">
+<section class="hero">
+<div class="wrap hero-grid">
+<div>
+<span class="eyebrow" data-i18n="page.t1">Executive &amp; Leadership Coaching</span>
+<h1 data-i18n="page.t2">Focused leadership support—without building a large coaching programme.</h1>
+<p data-i18n="page.t3">
+          Flexible, confidential coaching for companies that need to support two leaders, twelve managers,
+          or a larger group for a defined period. Start small, adapt the format and scale only when it makes sense.
+        </p>
+<div class="hero-actions">
+<a class="btn btn-primary" data-i18n="page.t4" href="https://cal.com/daniel-grundimpuls/30min">Start with a 30-minute call</a>
+<a class="btn btn-secondary" data-i18n="page.t5" href="#formats">See what you can book</a>
+</div>
+</div>
+<aside aria-label="Suitable situations" class="hero-card">
+<h2 data-i18n="page.t6">Designed for real leadership pressure</h2>
+<ul class="checklist">
+<li data-i18n="page.t7">Newly promoted managers who need to grow into leadership</li>
+<li data-i18n="page.t8">Senior leaders operating under sustained pressure</li>
+<li data-i18n="page.t9">Managers avoiding difficult conversations or decisions</li>
+<li data-i18n="page.t10">Teams affected by reorganization, uncertainty or resistance</li>
+<li data-i18n="page.t11">High-potential employees who need focused development</li>
+<li data-i18n="page.t12">International leaders facing communication and cultural friction</li>
+</ul>
+</aside>
+</div>
+</section>
+<section id="problems">
+<div class="wrap">
+<div class="section-head">
+<div class="kicker" data-i18n="page.t13">The organizational problem</div>
+<h2 data-i18n="page.t14">Leadership challenges rarely require the same solution for everyone.</h2>
+<p class="lead" data-i18n="page.t15">
+          Some companies need support for two key people. Others need concentrated coaching access for a larger management group.
+          The problem is often too important to ignore—but too specific or temporary to justify a year-long framework.
+        </p>
+</div>
+<div class="problem-grid">
+<article class="card">
+<div class="number">01</div>
+<h3 data-i18n="page.t16">Promotion without preparation</h3>
+<p data-i18n="page.t17">Strong specialists become managers, but delegation, feedback, accountability and people leadership are still underdeveloped.</p>
+</article>
+<article class="card">
+<div class="number">02</div>
+<h3 data-i18n="page.t18">Leadership under pressure</h3>
+<p data-i18n="page.t19">Senior leaders carry sustained responsibility, uncertainty and emotional load without a confidential thinking partner.</p>
+</article>
+<article class="card">
+<div class="number">03</div>
+<h3 data-i18n="page.t20">Avoided conversations</h3>
+<p data-i18n="page.t21">Performance issues, conflict and difficult decisions are delayed because managers lack confidence, clarity or preparation.</p>
+</article>
+<article class="card">
+<div class="number">04</div>
+<h3 data-i18n="page.t22">Change and resistance</h3>
+<p data-i18n="page.t23">Reorganization creates uncertainty, defensive behavior and communication gaps that managers are not equipped to navigate alone.</p>
+</article>
+<article class="card">
+<div class="number">05</div>
+<h3 data-i18n="page.t24">Untapped potential</h3>
+<p data-i18n="page.t25">High-potential employees need individual development, but a broad leadership programme would be disproportionate.</p>
+</article>
+<article class="card">
+<div class="number">06</div>
+<h3 data-i18n="page.t26">International friction</h3>
+<p data-i18n="page.t27">Distributed and multicultural teams struggle with interpretation, trust, expectations and leadership communication.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="band">
+<div class="wrap">
+<div class="section-head">
+<div class="kicker" data-i18n="page.t28" style="color:#9fc8e6">Who it is for</div>
+<h2 data-i18n="page.t29">For organizations that need targeted support, not unnecessary complexity.</h2>
+<p class="lead" data-i18n="page.t30">Suitable for companies in Romania and internationally, delivered online or in selected cases on-site.</p>
+</div>
+<div class="audience">
+<div><strong data-i18n="page.t31">Executives</strong><span data-i18n="page.t32">CEOs, country managers, directors and senior leaders.</span></div>
+<div><strong data-i18n="page.t33">Managers</strong><span data-i18n="page.t34">New, experienced or transitioning into broader responsibility.</span></div>
+<div><strong data-i18n="page.t35">High potentials</strong><span data-i18n="page.t36">Employees preparing for a larger leadership role.</span></div>
+<div><strong data-i18n="page.t37">HR &amp; People teams</strong><span data-i18n="page.t38">Organizations needing flexible, temporary development capacity.</span></div>
+</div>
+</div>
+</section>
+<section id="formats">
+<div class="wrap">
+<div class="section-head">
+<div class="kicker" data-i18n="page.t39">What the company can book</div>
+<h2 data-i18n="page.t40">A coaching framework sized around the actual need.</h2>
+<p class="lead" data-i18n="page.t41">
+          No fixed annual commitment. The number of participants, coaching window, duration and degree of HR involvement are agreed before launch.
+        </p>
+</div>
+<div class="offer-grid">
+<article class="offer">
+<span class="tag" data-i18n="page.t42">Focused support</span>
+<h3 data-i18n="page.t43">Individual Coaching Programme</h3>
+<p data-i18n="page.t44">For one or a small number of executives, leaders or high-potential employees.</p>
+<ul>
+<li data-i18n="page.t45">Typically 6–8 confidential sessions</li>
+<li data-i18n="page.t46">50-minute individual coaching</li>
+<li data-i18n="page.t47">Clear development objective</li>
+<li data-i18n="page.t48">Optional sponsor alignment</li>
+<li data-i18n="page.t49">Online delivery</li>
+</ul>
+</article>
+<article class="offer featured">
+<span class="tag" data-i18n="page.t50">Most flexible</span>
+<h3 data-i18n="page.t51">Reserved Coaching Capacity</h3>
+<p data-i18n="page.t52">A weekly or recurring block of coaching time that HR can allocate across selected employees.</p>
+<ul>
+<li data-i18n="page.t53">Example: 8 weeks, 09:00–12:00</li>
+<li data-i18n="page.t54">Half-day or full-day blocks</li>
+<li data-i18n="page.t55">Use across 2–12+ participants</li>
+<li data-i18n="page.t56">Individual coaching or focused leadership clinics</li>
+<li data-i18n="page.t57">Can be extended, paused or concluded</li>
+</ul>
+</article>
+<article class="offer">
+<span class="tag" data-i18n="page.t58">For larger groups</span>
+<h3 data-i18n="page.t59">Coaching Pool with Additional Coaches</h3>
+<p data-i18n="page.t60">For companies that need several people coached within the same restricted day or time window.</p>
+<ul>
+<li data-i18n="page.t61">Coordinated coaching team</li>
+<li data-i18n="page.t62">Parallel availability when required</li>
+<li data-i18n="page.t63">Shared standards and programme structure</li>
+<li data-i18n="page.t64">Scalable participant capacity</li>
+<li data-i18n="page.t65">One central point of coordination</li>
+</ul>
+</article>
+</div>
+</div>
+</section>
+<section>
+<div class="wrap">
+<div class="section-head">
+<div class="kicker" data-i18n="page.t66">How delivery works</div>
+<h2 data-i18n="page.t67">Simple to start. Structured enough to produce meaningful work.</h2>
+</div>
+<div class="process">
+<article class="card">
+<small data-i18n="page.t68">STEP 01</small>
+<h3 data-i18n="page.t69">Clarify the need</h3>
+<p data-i18n="page.t70">We identify the business context, participant group, practical constraints and desired development focus.</p>
+</article>
+<article class="card">
+<small data-i18n="page.t71">STEP 02</small>
+<h3 data-i18n="page.t72">Define the framework</h3>
+<p data-i18n="page.t73">We agree duration, session format, available time windows, number of participants and sponsor involvement.</p>
+</article>
+<article class="card">
+<small data-i18n="page.t74">STEP 03</small>
+<h3 data-i18n="page.t75">Deliver coaching</h3>
+<p data-i18n="page.t76">Participants work confidentially on concrete leadership situations, decisions, behaviors and implementation.</p>
+</article>
+<article class="card">
+<small data-i18n="page.t77">STEP 04</small>
+<h3 data-i18n="page.t78">Review and decide</h3>
+<p data-i18n="page.t79">At the agreed endpoint, the company can conclude, extend or redesign the support based on actual need.</p>
+</article>
+</div>
+</div>
+</section>
+<section>
+<div class="wrap admin-box">
+<div>
+<div class="kicker" data-i18n="page.t80">Internal administration</div>
+<h2 data-i18n="page.t81">Low administrative burden for HR.</h2>
+<p class="lead" data-i18n="page.t82">
+          The framework is designed so that internal teams do not need to create a complex programme architecture before support can begin.
+        </p>
+</div>
+<div class="admin-list">
+<div class="admin-item"><b>✓</b><span data-i18n="page.t83">One initial alignment conversation with the sponsor or HR contact.</span></div>
+<div class="admin-item"><b>✓</b><span data-i18n="page.t84">A simple participant list and agreed scheduling process.</span></div>
+<div class="admin-item"><b>✓</b><span data-i18n="page.t85">Clear confidentiality boundaries communicated from the beginning.</span></div>
+<div class="admin-item"><b>✓</b><span data-i18n="page.t86">Optional aggregated programme feedback—without disclosing coaching content.</span></div>
+<div class="admin-item"><b>✓</b><span data-i18n="page.t87">One central contact even when additional coaches are involved.</span></div>
+</div>
+</div>
+</section>
+<section id="outcomes">
+<div class="wrap">
+<div class="section-head">
+<div class="kicker" data-i18n="page.t88">Reasonable outcomes</div>
+<h2 data-i18n="page.t89">What the organization can realistically expect.</h2>
+<p class="lead" data-i18n="page.t90">
+          Coaching is not a promise of instant transformation. It creates focused reflection, better decisions and stronger follow-through around real leadership situations.
+        </p>
+</div>
+<div class="outcome-grid">
+<div class="outcome"><strong data-i18n="page.t91">Clearer leadership priorities</strong><span data-i18n="page.t92">Participants identify what requires attention and what can be deprioritized.</span></div>
+<div class="outcome"><strong data-i18n="page.t93">Better-prepared conversations</strong><span data-i18n="page.t94">Managers approach difficult feedback, conflict and accountability with greater clarity.</span></div>
+<div class="outcome"><strong data-i18n="page.t95">More deliberate decision-making</strong><span data-i18n="page.t96">Leaders examine assumptions, alternatives, risks and consequences before acting.</span></div>
+<div class="outcome"><strong data-i18n="page.t97">Stronger leadership behavior</strong><span data-i18n="page.t98">Participants translate insight into practical changes in communication, delegation and follow-through.</span></div>
+<div class="outcome"><strong data-i18n="page.t99">Greater resilience under pressure</strong><span data-i18n="page.t100">Leaders develop better ways to manage workload, uncertainty and emotional strain.</span></div>
+<div class="outcome"><strong data-i18n="page.t101">Faster development of key people</strong><span data-i18n="page.t102">High-potential employees receive focused support connected to their real responsibilities.</span></div>
+<div class="outcome"><strong data-i18n="page.t103">Reduced dependency on one fixed format</strong><span data-i18n="page.t104">The company can adapt the support as priorities, budgets and participant numbers change.</span></div>
+<div class="outcome"><strong data-i18n="page.t105">Confidential space for honest work</strong><span data-i18n="page.t106">Leaders can examine sensitive challenges without turning every issue into an internal escalation.</span></div>
+</div>
+</div>
+</section>
+<section id="trust">
+<div class="wrap trust-grid">
+<aside class="profile">
+<div class="kicker" data-i18n="page.t107" style="color:#9fc8e6">Why Grundimpuls</div>
+<h3>Daniel Stamin</h3>
+<p data-i18n="page.t108">Executive and leadership coach, trainer and consultant working with leaders, managers and organizations in Romania and internationally.</p>
+<div class="stat-grid">
+<div class="stat"><strong data-i18n="page.t109">25+ years</strong><span data-i18n="page.t110">business experience</span></div>
+<div class="stat"><strong data-i18n="page.t111">12+ years</strong><span data-i18n="page.t112">coaching and training</span></div>
+<div class="stat"><strong data-i18n="page.t113">3 languages</strong><span data-i18n="page.t114">English, German, Romanian</span></div>
+<div class="stat"><strong data-i18n="page.t115">Flexible scale</strong><span data-i18n="page.t116">2 to 12+ participants</span></div>
+</div>
+</aside>
+<div>
+<div class="section-head">
+<div class="kicker" data-i18n="page.t117">Why companies can trust the process</div>
+<h2 data-i18n="page.t118">Business understanding, coaching discipline and practical flexibility.</h2>
+</div>
+<div class="trust-list">
+<div class="trust-item"><strong data-i18n="page.t119">Business-grounded perspective.</strong><span data-i18n="page.t120"> Coaching is connected to decisions, leadership behavior, organizational realities and the participant’s actual role.</span></div>
+<div class="trust-item"><strong data-i18n="page.t121">Confidentiality by design.</strong><span data-i18n="page.t122"> Individual coaching content remains confidential. Sponsor communication is agreed in advance and focused on programme-level alignment.</span></div>
+<div class="trust-item"><strong data-i18n="page.t123">No oversized framework.</strong><span data-i18n="page.t124"> The engagement can be temporary, small-scale and adapted to the organization’s real budget and operational constraints.</span></div>
+<div class="trust-item"><strong data-i18n="page.t125">Scalable delivery.</strong><span data-i18n="page.t126"> Additional qualified coaches can be involved when several participants need access within the same limited time window.</span></div>
+<div class="trust-item"><strong data-i18n="page.t127">Multilingual and international.</strong><span data-i18n="page.t128"> Coaching can be delivered in English, German or Romanian for local and international participants.</span></div>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="wrap">
+<div class="section-head">
+<div class="kicker" data-i18n="page.t129">Frequently asked questions</div>
+<h2 data-i18n="page.t130">Enough information to evaluate and forward internally.</h2>
+</div>
+<div class="faq">
+<details>
+<summary data-i18n="page.t131">Do we need to commit to a year-long coaching contract?</summary>
+<p data-i18n="page.t132">No. The programme can be designed for a defined period, participant group or business situation. It can end after the agreed phase or be extended if there is a justified need.</p>
+</details>
+<details>
+<summary data-i18n="page.t133">Can we start with only two participants?</summary>
+<p data-i18n="page.t134">Yes. The framework can be built for two people, twelve people or a larger group. The delivery model should match the scale of the need—not the other way around.</p>
+</details>
+<details>
+<summary data-i18n="page.t135">What if all participants are available only on one day?</summary>
+<p data-i18n="page.t136">Reserved half-day or full-day blocks can be used. When several people require parallel availability within a restricted window, additional coaches can be coordinated.</p>
+</details>
+<details>
+<summary data-i18n="page.t137">Will HR receive reports from individual coaching sessions?</summary>
+<p data-i18n="page.t138">No individual session content is disclosed. Any sponsor feedback, attendance information or aggregated programme observations are agreed in advance and respect confidentiality.</p>
+</details>
+<details>
+<summary data-i18n="page.t139">Can coaching be combined with training?</summary>
+<p data-i18n="page.t140">Yes. Individual coaching can be combined with live online sessions on topics such as difficult conversations, critical thinking, leadership communication, stress and leadership under pressure.</p>
+</details>
+<details>
+<summary data-i18n="page.t141">Is online delivery suitable for international companies?</summary>
+<p data-i18n="page.t142">Yes. The format is designed for online delivery across locations and can support leaders and managers in different countries and time zones.</p>
+</details>
+</div>
+</div>
+</section>
+<section>
+<div class="wrap">
+<div class="cta">
+<div class="kicker" data-i18n="page.t143" style="color:#b9d8ee">Next step</div>
+<h2 data-i18n="page.t144">Start with the situation—not with a predefined package.</h2>
+<p data-i18n="page.t145">
+          In a 30-minute conversation, we clarify who needs support, what the company is trying to solve,
+          the available time window and whether a small coaching framework would be appropriate.
+        </p>
+<a class="btn btn-primary" data-i18n="page.t146" href="https://cal.com/daniel-grundimpuls/30min">Book a 30-minute conversation</a>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="wrap footer-grid">
+<div><strong>Grundimpuls</strong><br/><span data-i18n="page.t147">Bucharest · Vienna · Online</span></div>
+<div data-i18n="page.t148">Executive Coaching · Leadership Development · Training</div>
+<div data-i18n="page.t149">© 2026 Grundimpuls. All rights reserved.</div>
+</div>
+</footer>
+<script>
+const GI_I18N = {"en": {"page.t1": "Executive & Leadership Coaching", "page.t2": "Focused leadership support—without building a large coaching programme.", "page.t3": "Flexible, confidential coaching for companies that need to support two leaders, twelve managers, or a larger group for a defined period. Start small, adapt the format and scale only when it makes sense.", "page.t4": "Start with a 30-minute call", "page.t5": "See what you can book", "page.t6": "Designed for real leadership pressure", "page.t7": "Newly promoted managers who need to grow into leadership", "page.t8": "Senior leaders operating under sustained pressure", "page.t9": "Managers avoiding difficult conversations or decisions", "page.t10": "Teams affected by reorganization, uncertainty or resistance", "page.t11": "High-potential employees who need focused development", "page.t12": "International leaders facing communication and cultural friction", "page.t13": "The organizational problem", "page.t14": "Leadership challenges rarely require the same solution for everyone.", "page.t15": "Some companies need support for two key people. Others need concentrated coaching access for a larger management group. The problem is often too important to ignore—but too specific or temporary to justify a year-long framework.", "page.t16": "Promotion without preparation", "page.t17": "Strong specialists become managers, but delegation, feedback, accountability and people leadership are still underdeveloped.", "page.t18": "Leadership under pressure", "page.t19": "Senior leaders carry sustained responsibility, uncertainty and emotional load without a confidential thinking partner.", "page.t20": "Avoided conversations", "page.t21": "Performance issues, conflict and difficult decisions are delayed because managers lack confidence, clarity or preparation.", "page.t22": "Change and resistance", "page.t23": "Reorganization creates uncertainty, defensive behavior and communication gaps that managers are not equipped to navigate alone.", "page.t24": "Untapped potential", "page.t25": "High-potential employees need individual development, but a broad leadership programme would be disproportionate.", "page.t26": "International friction", "page.t27": "Distributed and multicultural teams struggle with interpretation, trust, expectations and leadership communication.", "page.t28": "Who it is for", "page.t29": "For organizations that need targeted support, not unnecessary complexity.", "page.t30": "Suitable for companies in Romania and internationally, delivered online or in selected cases on-site.", "page.t31": "Executives", "page.t32": "CEOs, country managers, directors and senior leaders.", "page.t33": "Managers", "page.t34": "New, experienced or transitioning into broader responsibility.", "page.t35": "High potentials", "page.t36": "Employees preparing for a larger leadership role.", "page.t37": "HR & People teams", "page.t38": "Organizations needing flexible, temporary development capacity.", "page.t39": "What the company can book", "page.t40": "A coaching framework sized around the actual need.", "page.t41": "No fixed annual commitment. The number of participants, coaching window, duration and degree of HR involvement are agreed before launch.", "page.t42": "Focused support", "page.t43": "Individual Coaching Programme", "page.t44": "For one or a small number of executives, leaders or high-potential employees.", "page.t45": "Typically 6–8 confidential sessions", "page.t46": "50-minute individual coaching", "page.t47": "Clear development objective", "page.t48": "Optional sponsor alignment", "page.t49": "Online delivery", "page.t50": "Most flexible", "page.t51": "Reserved Coaching Capacity", "page.t52": "A weekly or recurring block of coaching time that HR can allocate across selected employees.", "page.t53": "Example: 8 weeks, 09:00–12:00", "page.t54": "Half-day or full-day blocks", "page.t55": "Use across 2–12+ participants", "page.t56": "Individual coaching or focused leadership clinics", "page.t57": "Can be extended, paused or concluded", "page.t58": "For larger groups", "page.t59": "Coaching Pool with Additional Coaches", "page.t60": "For companies that need several people coached within the same restricted day or time window.", "page.t61": "Coordinated coaching team", "page.t62": "Parallel availability when required", "page.t63": "Shared standards and programme structure", "page.t64": "Scalable participant capacity", "page.t65": "One central point of coordination", "page.t66": "How delivery works", "page.t67": "Simple to start. Structured enough to produce meaningful work.", "page.t68": "STEP 01", "page.t69": "Clarify the need", "page.t70": "We identify the business context, participant group, practical constraints and desired development focus.", "page.t71": "STEP 02", "page.t72": "Define the framework", "page.t73": "We agree duration, session format, available time windows, number of participants and sponsor involvement.", "page.t74": "STEP 03", "page.t75": "Deliver coaching", "page.t76": "Participants work confidentially on concrete leadership situations, decisions, behaviors and implementation.", "page.t77": "STEP 04", "page.t78": "Review and decide", "page.t79": "At the agreed endpoint, the company can conclude, extend or redesign the support based on actual need.", "page.t80": "Internal administration", "page.t81": "Low administrative burden for HR.", "page.t82": "The framework is designed so that internal teams do not need to create a complex programme architecture before support can begin.", "page.t83": "One initial alignment conversation with the sponsor or HR contact.", "page.t84": "A simple participant list and agreed scheduling process.", "page.t85": "Clear confidentiality boundaries communicated from the beginning.", "page.t86": "Optional aggregated programme feedback—without disclosing coaching content.", "page.t87": "One central contact even when additional coaches are involved.", "page.t88": "Reasonable outcomes", "page.t89": "What the organization can realistically expect.", "page.t90": "Coaching is not a promise of instant transformation. It creates focused reflection, better decisions and stronger follow-through around real leadership situations.", "page.t91": "Clearer leadership priorities", "page.t92": "Participants identify what requires attention and what can be deprioritized.", "page.t93": "Better-prepared conversations", "page.t94": "Managers approach difficult feedback, conflict and accountability with greater clarity.", "page.t95": "More deliberate decision-making", "page.t96": "Leaders examine assumptions, alternatives, risks and consequences before acting.", "page.t97": "Stronger leadership behavior", "page.t98": "Participants translate insight into practical changes in communication, delegation and follow-through.", "page.t99": "Greater resilience under pressure", "page.t100": "Leaders develop better ways to manage workload, uncertainty and emotional strain.", "page.t101": "Faster development of key people", "page.t102": "High-potential employees receive focused support connected to their real responsibilities.", "page.t103": "Reduced dependency on one fixed format", "page.t104": "The company can adapt the support as priorities, budgets and participant numbers change.", "page.t105": "Confidential space for honest work", "page.t106": "Leaders can examine sensitive challenges without turning every issue into an internal escalation.", "page.t107": "Why Grundimpuls", "page.t108": "Executive and leadership coach, trainer and consultant working with leaders, managers and organizations in Romania and internationally.", "page.t109": "25+ years", "page.t110": "business experience", "page.t111": "12+ years", "page.t112": "coaching and training", "page.t113": "3 languages", "page.t114": "English, German, Romanian", "page.t115": "Flexible scale", "page.t116": "2 to 12+ participants", "page.t117": "Why companies can trust the process", "page.t118": "Business understanding, coaching discipline and practical flexibility.", "page.t119": "Business-grounded perspective.", "page.t120": "Coaching is connected to decisions, leadership behavior, organizational realities and the participant’s actual role.", "page.t121": "Confidentiality by design.", "page.t122": "Individual coaching content remains confidential. Sponsor communication is agreed in advance and focused on programme-level alignment.", "page.t123": "No oversized framework.", "page.t124": "The engagement can be temporary, small-scale and adapted to the organization’s real budget and operational constraints.", "page.t125": "Scalable delivery.", "page.t126": "Additional qualified coaches can be involved when several participants need access within the same limited time window.", "page.t127": "Multilingual and international.", "page.t128": "Coaching can be delivered in English, German or Romanian for local and international participants.", "page.t129": "Frequently asked questions", "page.t130": "Enough information to evaluate and forward internally.", "page.t131": "Do we need to commit to a year-long coaching contract?", "page.t132": "No. The programme can be designed for a defined period, participant group or business situation. It can end after the agreed phase or be extended if there is a justified need.", "page.t133": "Can we start with only two participants?", "page.t134": "Yes. The framework can be built for two people, twelve people or a larger group. The delivery model should match the scale of the need—not the other way around.", "page.t135": "What if all participants are available only on one day?", "page.t136": "Reserved half-day or full-day blocks can be used. When several people require parallel availability within a restricted window, additional coaches can be coordinated.", "page.t137": "Will HR receive reports from individual coaching sessions?", "page.t138": "No individual session content is disclosed. Any sponsor feedback, attendance information or aggregated programme observations are agreed in advance and respect confidentiality.", "page.t139": "Can coaching be combined with training?", "page.t140": "Yes. Individual coaching can be combined with live online sessions on topics such as difficult conversations, critical thinking, leadership communication, stress and leadership under pressure.", "page.t141": "Is online delivery suitable for international companies?", "page.t142": "Yes. The format is designed for online delivery across locations and can support leaders and managers in different countries and time zones.", "page.t143": "Next step", "page.t144": "Start with the situation—not with a predefined package.", "page.t145": "In a 30-minute conversation, we clarify who needs support, what the company is trying to solve, the available time window and whether a small coaching framework would be appropriate.", "page.t146": "Book a 30-minute conversation", "page.t147": "Bucharest · Vienna · Online", "page.t148": "Executive Coaching · Leadership Development · Training", "page.t149": "© 2026 Grundimpuls. All rights reserved.", "nav.problems": "Problems", "nav.formats": "Formats", "nav.outcomes": "Outcomes", "nav.why": "Why us", "nav.discuss": "Discuss your needs", "nav.members": "Members Hub"}, "ro": {"page.t1": "Coaching executiv și de leadership", "page.t2": "Sprijin de leadership concentrat—fără construirea unui program amplu de coaching.", "page.t3": "Coaching flexibil și confidențial pentru companii care trebuie să sprijine doi lideri, doisprezece manageri sau un grup mai mare pentru o perioadă definită. Începeți la scară mică, adaptați formatul și extindeți-l doar atunci când are sens.", "page.t4": "Începeți cu o discuție de 30 de minute", "page.t5": "Vedeți ce puteți contracta", "page.t6": "Conceput pentru presiuni reale de leadership", "page.t7": "Manageri recent promovați care trebuie să se dezvolte în rolul de lider", "page.t8": "Lideri seniori care lucrează sub presiune susținută", "page.t9": "Manageri care evită conversațiile sau deciziile dificile", "page.t10": "Echipe afectate de reorganizare, incertitudine sau rezistență", "page.t11": "Angajați cu potențial ridicat care au nevoie de dezvoltare concentrată", "page.t12": "Lideri internaționali care se confruntă cu dificultăți de comunicare și diferențe culturale", "page.t13": "Problema organizațională", "page.t14": "Provocările de leadership rareori necesită aceeași soluție pentru toată lumea.", "page.t15": "Unele companii au nevoie de sprijin pentru două persoane-cheie. Altele au nevoie de acces concentrat la coaching pentru un grup mai mare de manageri. Problema este adesea prea importantă pentru a fi ignorată, dar prea specifică sau temporară pentru a justifica un cadru pe durata unui an.", "page.t16": "Promovare fără pregătire", "page.t17": "Specialiștii performanți devin manageri, dar delegarea, feedbackul, asumarea responsabilității și conducerea oamenilor sunt încă insuficient dezvoltate.", "page.t18": "Leadership sub presiune", "page.t19": "Liderii seniori poartă responsabilitate continuă, incertitudine și o încărcătură emoțională ridicată fără un partener confidențial de reflecție.", "page.t20": "Conversații evitate", "page.t21": "Problemele de performanță, conflictele și deciziile dificile sunt amânate deoarece managerilor le lipsesc încrederea, claritatea sau pregătirea.", "page.t22": "Schimbare și rezistență", "page.t23": "Reorganizarea generează incertitudine, comportamente defensive și lacune de comunicare pe care managerii nu sunt pregătiți să le gestioneze singuri.", "page.t24": "Potențial nevalorificat", "page.t25": "Angajații cu potențial ridicat au nevoie de dezvoltare individuală, însă un program amplu de leadership ar fi disproporționat.", "page.t26": "Dificultăți internaționale", "page.t27": "Echipele distribuite și multiculturale se confruntă cu dificultăți de interpretare, încredere, așteptări și comunicare de leadership.", "page.t28": "Cui i se adresează", "page.t29": "Pentru organizații care au nevoie de sprijin direcționat, nu de complexitate inutilă.", "page.t30": "Potrivit pentru companii din România și din alte țări, cu livrare online sau, în anumite cazuri, la sediu.", "page.t31": "Executivi", "page.t32": "Directori generali, country manageri, directori și lideri seniori.", "page.t33": "Manageri", "page.t34": "Manageri noi, experimentați sau aflați în tranziție către responsabilități mai ample.", "page.t35": "Angajați cu potențial ridicat", "page.t36": "Angajați care se pregătesc pentru un rol de leadership mai amplu.", "page.t37": "Echipe HR & People", "page.t38": "Organizații care au nevoie de o resursă de dezvoltare flexibilă și temporară.", "page.t39": "Ce poate contracta compania", "page.t40": "Un cadru de coaching dimensionat în funcție de nevoia reală.", "page.t41": "Fără angajament anual fix. Numărul de participanți, intervalul de coaching, durata și nivelul de implicare al HR-ului sunt stabilite înainte de începere.", "page.t42": "Sprijin concentrat", "page.t43": "Program individual de coaching", "page.t44": "Pentru unul sau un număr restrâns de executivi, lideri sau angajați cu potențial ridicat.", "page.t45": "De regulă, 6–8 sesiuni confidențiale", "page.t46": "Coaching individual de 50 de minute", "page.t47": "Obiectiv clar de dezvoltare", "page.t48": "Aliniere opțională cu sponsorul intern", "page.t49": "Livrare online", "page.t50": "Cea mai flexibilă opțiune", "page.t51": "Capacitate rezervată de coaching", "page.t52": "Un interval săptămânal sau recurent de coaching pe care HR-ul îl poate aloca angajaților selectați.", "page.t53": "Exemplu: 8 săptămâni, 09:00–12:00", "page.t54": "Intervale de jumătate de zi sau de o zi întreagă", "page.t55": "Utilizare pentru 2–12+ participanți", "page.t56": "Coaching individual sau sesiuni concentrate de leadership", "page.t57": "Poate fi extins, întrerupt temporar sau încheiat", "page.t58": "Pentru grupuri mai mari", "page.t59": "Pool de coaching cu coachi suplimentari", "page.t60": "Pentru companii care au nevoie ca mai multe persoane să beneficieze de coaching în aceeași zi sau într-un interval orar restrâns.", "page.t61": "Echipă coordonată de coachi", "page.t62": "Disponibilitate în paralel, atunci când este necesar", "page.t63": "Standarde comune și structură unitară a programului", "page.t64": "Capacitate scalabilă pentru participanți", "page.t65": "Un singur punct central de coordonare", "page.t66": "Cum se desfășoară", "page.t67": "Simplu de început. Suficient de structurat pentru a produce rezultate relevante.", "page.t68": "PASUL 01", "page.t69": "Clarificarea nevoii", "page.t70": "Identificăm contextul de business, grupul de participanți, constrângerile practice și direcția de dezvoltare dorită.", "page.t71": "PASUL 02", "page.t72": "Definirea cadrului", "page.t73": "Stabilim durata, formatul sesiunilor, intervalele disponibile, numărul de participanți și implicarea sponsorului intern.", "page.t74": "PASUL 03", "page.t75": "Livrarea coachingului", "page.t76": "Participanții lucrează confidențial asupra unor situații concrete de leadership, decizii, comportamente și implementare.", "page.t77": "PASUL 04", "page.t78": "Evaluare și decizie", "page.t79": "La finalul perioadei convenite, compania poate încheia, extinde sau redesena sprijinul în funcție de nevoia reală.", "page.t80": "Administrare internă", "page.t81": "Efort administrativ redus pentru HR.", "page.t82": "Cadrul este conceput astfel încât echipele interne să nu fie nevoite să creeze o arhitectură complexă de program înainte ca sprijinul să poată începe.", "page.t83": "O conversație inițială de aliniere cu sponsorul sau persoana de contact din HR.", "page.t84": "O listă simplă de participanți și un proces de programare convenit.", "page.t85": "Limite clare de confidențialitate, comunicate de la început.", "page.t86": "Feedback agregat opțional despre program—fără divulgarea conținutului sesiunilor de coaching.", "page.t87": "Un singur punct central de contact, inclusiv atunci când sunt implicați coachi suplimentari.", "page.t88": "Rezultate realiste", "page.t89": "La ce se poate aștepta în mod realist organizația.", "page.t90": "Coachingul nu promite o transformare instantanee. El creează reflecție concentrată, decizii mai bune și o aplicare mai consecventă în situații reale de leadership.", "page.t91": "Priorități de leadership mai clare", "page.t92": "Participanții identifică ce necesită atenție și ce poate fi deprioritizat.", "page.t93": "Conversații mai bine pregătite", "page.t94": "Managerii abordează feedbackul dificil, conflictele și responsabilizarea cu mai multă claritate.", "page.t95": "Decizii mai deliberate", "page.t96": "Liderii analizează presupunerile, alternativele, riscurile și consecințele înainte de a acționa.", "page.t97": "Comportamente de leadership mai solide", "page.t98": "Participanții transformă înțelegerea în schimbări practice de comunicare, delegare și consecvență.", "page.t99": "Rezistență mai mare sub presiune", "page.t100": "Liderii dezvoltă modalități mai bune de a gestiona volumul de muncă, incertitudinea și presiunea emoțională.", "page.t101": "Dezvoltarea mai rapidă a persoanelor-cheie", "page.t102": "Angajații cu potențial ridicat primesc sprijin concentrat, conectat la responsabilitățile lor reale.", "page.t103": "Dependență redusă de un singur format fix", "page.t104": "Compania poate adapta sprijinul pe măsură ce prioritățile, bugetele și numărul de participanți se schimbă.", "page.t105": "Spațiu confidențial pentru lucru autentic", "page.t106": "Liderii pot analiza provocări sensibile fără ca fiecare problemă să devină o escaladare internă.", "page.t107": "De ce Grundimpuls", "page.t108": "Coach executiv și de leadership, trainer și consultant care lucrează cu lideri, manageri și organizații din România și din alte țări.", "page.t109": "25+ ani", "page.t110": "experiență în business", "page.t111": "12+ ani", "page.t112": "coaching și training", "page.t113": "3 limbi", "page.t114": "engleză, germană, română", "page.t115": "Scală flexibilă", "page.t116": "2 până la 12+ participanți", "page.t117": "De ce pot companiile avea încredere în proces", "page.t118": "Înțelegerea businessului, disciplina coachingului și flexibilitate practică.", "page.t119": "Perspectivă ancorată în business.", "page.t120": "Coachingul este conectat la decizii, comportamente de leadership, realități organizaționale și rolul concret al participantului.", "page.t121": "Confidențialitate prin design.", "page.t122": "Conținutul coachingului individual rămâne confidențial. Comunicarea cu sponsorul este stabilită în avans și se concentrează pe alinierea la nivel de program.", "page.t123": "Fără un cadru supradimensionat.", "page.t124": "Colaborarea poate fi temporară, la scară redusă și adaptată bugetului real și constrângerilor operaționale ale organizației.", "page.t125": "Livrare scalabilă.", "page.t126": "Coachi suplimentari calificați pot fi implicați atunci când mai mulți participanți au nevoie de acces în același interval limitat.", "page.t127": "Multilingv și internațional.", "page.t128": "Coachingul poate fi livrat în engleză, germană sau română pentru participanți locali și internaționali.", "page.t129": "Întrebări frecvente", "page.t130": "Suficiente informații pentru evaluare și distribuire internă.", "page.t131": "Este necesar să ne angajăm într-un contract de coaching pe un an?", "page.t132": "Nu. Programul poate fi conceput pentru o perioadă definită, un grup de participanți sau o situație de business. Se poate încheia după etapa convenită sau poate fi extins dacă există o nevoie justificată.", "page.t133": "Putem începe cu doar doi participanți?", "page.t134": "Da. Cadrul poate fi construit pentru două persoane, douăsprezece persoane sau un grup mai mare. Modelul de livrare trebuie să corespundă dimensiunii nevoii, nu invers.", "page.t135": "Ce se întâmplă dacă toți participanții sunt disponibili doar într-o anumită zi?", "page.t136": "Pot fi utilizate intervale rezervate de jumătate de zi sau de o zi întreagă. Când mai multe persoane au nevoie de disponibilitate în paralel într-un interval restrâns, pot fi coordonați coachi suplimentari.", "page.t137": "Va primi HR-ul rapoarte din sesiunile individuale de coaching?", "page.t138": "Conținutul sesiunilor individuale nu este divulgat. Orice feedback către sponsor, informații despre participare sau observații agregate despre program sunt stabilite în avans și respectă confidențialitatea.", "page.t139": "Poate fi combinat coachingul cu trainingul?", "page.t140": "Da. Coachingul individual poate fi combinat cu sesiuni live online pe teme precum conversații dificile, gândire critică, comunicare de leadership, stres și leadership sub presiune.", "page.t141": "Este livrarea online potrivită pentru companii internaționale?", "page.t142": "Da. Formatul este conceput pentru livrare online în mai multe locații și poate sprijini lideri și manageri din țări și fusuri orare diferite.", "page.t143": "Pasul următor", "page.t144": "Începeți cu situația—nu cu un pachet predefinit.", "page.t145": "Într-o conversație de 30 de minute clarificăm cine are nevoie de sprijin, ce încearcă organizația să rezolve, intervalul de timp disponibil și dacă un cadru restrâns de coaching este potrivit.", "page.t146": "Programați o conversație de 30 de minute", "page.t147": "București · Viena · Online", "page.t148": "Coaching executiv · Dezvoltare de leadership · Training", "page.t149": "© 2026 Grundimpuls. Toate drepturile rezervate.", "nav.problems": "Probleme", "nav.formats": "Formate", "nav.outcomes": "Rezultate", "nav.why": "De ce noi", "nav.discuss": "Discutați nevoile companiei", "nav.members": "Members Hub"}};
+
+function giApplyLanguage(lang) {
+  if (!GI_I18N[lang]) lang = "en";
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    const value = GI_I18N[lang][key];
+    if (value !== undefined) el.innerHTML = value;
+  });
+  document.querySelectorAll(".lang button[data-lang]").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.lang === lang);
+  });
+  const mobileLabel = document.getElementById("langMobileLabel");
+  if (mobileLabel) mobileLabel.textContent = lang.toUpperCase();
+  document.body.classList.remove("lang-open");
+  localStorage.setItem("gi_coaching_lang", lang);
+  document.title = lang === "ro"
+    ? "Coaching executiv și de leadership | Grundimpuls"
+    : "Executive & Leadership Coaching | Grundimpuls";
+}
+
+function giSetTheme(mode) {
+  const dark = mode === "dark";
+  document.body.classList.toggle("dark", dark);
+  const btn = document.getElementById("themeToggle");
+  if (btn) {
+    btn.setAttribute("aria-pressed", dark ? "true" : "false");
+    btn.textContent = dark ? "☀" : "☾";
+  }
+  const meta = document.getElementById("themeColor");
+  if (meta) meta.setAttribute("content", dark ? "#11161D" : "#F6F8FA");
+  localStorage.setItem("gi_coaching_theme", dark ? "dark" : "light");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  giSetTheme(localStorage.getItem("gi_coaching_theme") === "dark" ? "dark" : "light");
+  giApplyLanguage(localStorage.getItem("gi_coaching_lang") || "en");
+
+  document.querySelectorAll("button[data-lang]").forEach(btn => {
+    btn.addEventListener("click", () => giApplyLanguage(btn.dataset.lang));
+  });
+
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn?.addEventListener("click", () => {
+    giSetTheme(document.body.classList.contains("dark") ? "light" : "dark");
+  });
+
+  const langBtn = document.getElementById("langMobileBtn");
+  langBtn?.addEventListener("click", event => {
+    event.stopPropagation();
+    const open = document.body.classList.toggle("lang-open");
+    langBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    document.body.classList.remove("menu-open");
+    document.getElementById("burgerBtn")?.setAttribute("aria-expanded", "false");
+  });
+
+  const burger = document.getElementById("burgerBtn");
+  burger?.addEventListener("click", event => {
+    event.stopPropagation();
+    const open = document.body.classList.toggle("menu-open");
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+    document.body.classList.remove("lang-open");
+    langBtn?.setAttribute("aria-expanded", "false");
+  });
+
+  document.querySelectorAll(".mobileMenu a").forEach(link => {
+    link.addEventListener("click", () => {
+      document.body.classList.remove("menu-open");
+      burger?.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  document.addEventListener("click", event => {
+    const nav = document.querySelector(".nav");
+    if (nav && !nav.contains(event.target)) {
+      document.body.classList.remove("menu-open", "lang-open");
+      burger?.setAttribute("aria-expanded", "false");
+      langBtn?.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      document.body.classList.remove("menu-open", "lang-open");
+      burger?.setAttribute("aria-expanded", "false");
+      langBtn?.setAttribute("aria-expanded", "false");
+    }
+  });
+});
+</script></body>
+</html>
